@@ -1,5 +1,5 @@
 package org.logistics.model;
 
-public class edges {
+public class edge {
     
 }
