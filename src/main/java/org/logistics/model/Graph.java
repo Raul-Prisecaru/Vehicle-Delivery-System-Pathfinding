@@ -49,8 +49,8 @@ public class Graph {
      * @return Returns a message with all the Key Pair values in the adjacency List
      */
     public void print_List() {
-        for (Node i : adjacencyList.keySet()) {
-            System.out.println("key: " + i + " value: "+ adjacencyList.get(i));
+        for (Node node : adjacencyList.keySet()) {
+            System.out.println("Start Node: " + node + " Edge: "+ adjacencyList.get(node));
         }
     }
 
