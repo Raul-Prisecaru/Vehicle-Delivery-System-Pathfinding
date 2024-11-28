@@ -55,14 +55,23 @@ public class Graph {
 
     public static void main(String[] args) {
         Graph graph = new Graph();
-        Node newNode1 = new Node(1);
-        Node newNode2 = new Node(2);
+        DeliveryHub deliveryHub1 = new DeliveryHub(1);
+        DeliveryHub deliveryHub2 = new DeliveryHub(2);
 
-        graph.add_Vertex(newNode1);
-        graph.add_Vertex(newNode2);
+        CustomerLocation customerLocation1 = new CustomerLocation(1);
+        CustomerLocation customerLocation2 = new CustomerLocation(2);
 
-        graph.add_Edge(newNode1, newNode2);
-        graph.add_Edge(newNode2, newNode1);
+        graph.add_Vertex(deliveryHub1);
+        graph.add_Vertex(deliveryHub2);
+
+        graph.add_Vertex(customerLocation1);
+        graph.add_Vertex(customerLocation2);
+
+        graph.add_Edge(deliveryHub1, customerLocation1);
+        graph.add_Edge(deliveryHub1, deliveryHub2);
+
+        graph.add_Edge(deliveryHub2, customerLocation2);
+        graph.add_Edge(deliveryHub2, deliveryHub1);
         graph.print_List();
     }
 
