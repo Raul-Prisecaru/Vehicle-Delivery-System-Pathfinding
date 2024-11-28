@@ -5,10 +5,22 @@ import java.util.LinkedList;
 
 public class Graph {
 
-    private HashMap<Node, LinkedList<Node>> nodes;
+    private HashMap<Node, LinkedList<Node>> adjacencyList;
 
     public Graph() {
-        nodes = new HashMap<>();
+        adjacencyList = new HashMap<>();
+    }
+
+    public void add_Vertex() {
+
+    }
+
+    public void add_Edge(){
+
+    }
+
+    public void print_List() {
+
     }
 
 }
