@@ -4,7 +4,7 @@ package org.logistics.model;
 public class Node {
     private int value;
 
-    public Node(int value, Edge edge){
+    public Node(int value){
         this.value = value;
     }
 

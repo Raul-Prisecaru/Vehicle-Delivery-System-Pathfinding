@@ -30,8 +30,9 @@ public class Graph {
     }
 
     /**
-     * Method to add Vertex into the Adjacency List
-     * @param start_Node Starting Node to attempt at inserting into the Adjacency List
+     * Method to Create Edges between Nodes for Adjacency List
+     * @param start_Node Starting Node to attempt to connect the edge to
+     * @param end_Node Ending Node to attempt to connect the edge to
      * @return Returns None if successful else returns an error message
      */
     public void add_Edge(Node start_Node, Node end_Node) {
@@ -41,10 +42,14 @@ public class Graph {
             // TODO: Change this to Throw instead Later on
             System.out.println("Node: " + start_Node.get_node_value() + " Does not exist.");
 
-        }
+        }}
 
     public void print_List() {
-
+        for (Node i : adjacencyList.keySet()) {
+            System.out.println("key: " + i + " value: "+ adjacencyList.get(i));
+        }
     }
 
 }
+
+
