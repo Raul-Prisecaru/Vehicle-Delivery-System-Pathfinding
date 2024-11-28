@@ -30,8 +30,7 @@ public class Graph {
 
     /**
      * Method to Create Edges between Nodes for Adjacency List
-     * @param start_Node Starting Node to attempt to connect the edge to
-     * @param end_Node Ending Node to attempt to connect the edge to
+     * @param edge Used to add an edge to the starting node
      * @return Returns None if successful else returns an error message
      */
     public void add_Edge(Edge edge) {
