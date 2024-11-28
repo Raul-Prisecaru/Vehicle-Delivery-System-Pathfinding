@@ -18,6 +18,7 @@ public class Graph {
      */
     public void add_Vertex(Node start_Node) {
 
+        // Adds to the hashmap if start_node does not exist
         if (adjacencyList.get(start_Node) == null) {
             adjacencyList.put(start_Node, new LinkedList<>());
         } else {
