@@ -22,15 +22,26 @@ public class Graph {
         if (adjacencyList.get(start_Node) == null) {
             adjacencyList.put(start_Node, new LinkedList<>());
         } else {
+            // TODO: Change this to Throw instead Later On
             // TODO: Change this to Throw instead
             System.out.println("Node: " + start_Node.get_node_value() + " Already Exists, Cannot be Added");
         }
 
     }
 
-    public void add_Edge(){
+    /**
+     * Method to add Vertex into the Adjacency List
+     * @param start_Node Starting Node to attempt at inserting into the Adjacency List
+     * @return Returns None if successful else returns an error message
+     */
+    public void add_Edge(Node start_Node, Node end_Node) {
+        if (adjacencyList.get(start_Node) != null) {
+            adjacencyList.get(start_Node).add(end_Node);
+        } else {
+            // TODO: Change this to Throw instead Later on
+            System.out.println("Node: " + start_Node.get_node_value() + " Does not exist.");
 
-    }
+        }
 
     public void print_List() {
 
