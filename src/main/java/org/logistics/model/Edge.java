@@ -53,6 +53,6 @@ public class Edge {
 
     @Override
     public String toString() {
-        return "{" + getStart_node() + " / " + getEnd_node() + "}";
+        return "{" + "Start Node: " +  this.start_node + ", " + "End Node: " + this.end_node + ", " + "distance: " + this.distance_weight + ", " + "traffic: " + this.traffic_weight + ", " + "time: " + this.time_weight + "}";
     }
 }
