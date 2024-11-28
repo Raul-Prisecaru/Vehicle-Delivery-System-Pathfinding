@@ -11,15 +11,17 @@ public class Edge {
     private int traffic_weight;
     private int time_weight;
 
-    public Edge(Node start_node, Node end_node) {
+    public Edge(Node start_node, Node end_node, int distance_weight, int traffic_weight, int time_weight) {
         this.start_node = start_node;
         this.end_node = end_node;
+        this.distance_weight = distance_weight;
+        this.traffic_weight = traffic_weight;
+        this.time_weight = time_weight;
     }
 
     public Node getStart_node() {
         return start_node;
     }
-
 
     public Node getEnd_node() {
         return end_node;
