@@ -43,11 +43,27 @@ public class Graph {
             System.out.println("Node: " + start_Node.get_node_value() + " Does not exist.");
 
         }}
-
+    /**
+     * Method to display the adjacency List
+     * @return Returns a message with all the Key Pair values in the adjacency List
+     */
     public void print_List() {
         for (Node i : adjacencyList.keySet()) {
             System.out.println("key: " + i + " value: "+ adjacencyList.get(i));
         }
+    }
+
+    public static void main(String[] args) {
+        Graph graph = new Graph();
+        Node newNode1 = new Node(1);
+        Node newNode2 = new Node(2);
+
+        graph.add_Vertex(newNode1);
+        graph.add_Vertex(newNode2);
+
+        graph.add_Edge(newNode1, newNode2);
+        graph.add_Edge(newNode2, newNode1);
+        graph.print_List();
     }
 
 }
