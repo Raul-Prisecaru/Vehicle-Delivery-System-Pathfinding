@@ -51,9 +51,8 @@ public class Edge {
         this.distance_weight = distance_weight;
     }
 
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "{" + getStart_node() + " / " + getEnd_node() + "}";
+    }
 }
