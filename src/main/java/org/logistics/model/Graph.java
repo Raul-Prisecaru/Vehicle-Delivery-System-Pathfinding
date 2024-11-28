@@ -5,7 +5,7 @@ import java.util.LinkedList;
 
 public class Graph {
 
-    private HashMap<Node, LinkedList<Node>> adjacencyList;
+    private HashMap<Node, LinkedList<Edge>> adjacencyList;
 
     public Graph() {
         adjacencyList = new HashMap<>();
@@ -23,7 +23,6 @@ public class Graph {
             adjacencyList.put(start_Node, new LinkedList<>());
         } else {
             // TODO: Change this to Throw instead Later On
-            // TODO: Change this to Throw instead
             System.out.println("Node: " + start_Node.get_node_value() + " Already Exists, Cannot be Added");
         }
 
@@ -35,14 +34,16 @@ public class Graph {
      * @param end_Node Ending Node to attempt to connect the edge to
      * @return Returns None if successful else returns an error message
      */
-    public void add_Edge(Node start_Node, Node end_Node) {
-        if (adjacencyList.get(start_Node) != null) {
-            adjacencyList.get(start_Node).add(end_Node);
+    public void add_Edge(Edge edge) {
+        if (adjacencyList.get(edge.getStart_node()) != null) {
+            adjacencyList.get(edge.getStart_node()).add(edge);
         } else {
             // TODO: Change this to Throw instead Later on
-            System.out.println("Node: " + start_Node.get_node_value() + " Does not exist.");
-
-        }}
+            System.out.println(edge.getStart_node() + " Does not exist.");
+            System.out.println("You might want to look into creating the Node First");
+            
+        }
+    }
     /**
      * Method to display the adjacency List
      * @return Returns a message with all the Key Pair values in the adjacency List
@@ -67,11 +68,11 @@ public class Graph {
         graph.add_Vertex(customerLocation1);
         graph.add_Vertex(customerLocation2);
 
-        graph.add_Edge(deliveryHub1, customerLocation1);
-        graph.add_Edge(deliveryHub1, deliveryHub2);
+        // graph.add_Edge(deliveryHub1, customerLocation1);
+        // graph.add_Edge(deliveryHub1, deliveryHub2);
 
-        graph.add_Edge(deliveryHub2, customerLocation2);
-        graph.add_Edge(deliveryHub2, deliveryHub1);
+        // graph.add_Edge(deliveryHub2, customerLocation2);
+        // graph.add_Edge(deliveryHub2, deliveryHub1);
         graph.print_List();
     }
 
