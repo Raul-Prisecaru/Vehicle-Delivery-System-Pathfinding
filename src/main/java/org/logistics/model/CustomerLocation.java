@@ -12,4 +12,9 @@ public class CustomerLocation extends Node {
     public void set_node_value(int new_value) {
         super.set_node_value(new_value);
     }
+
+    @Override
+    public String toString() {
+        return "CustomerLocation " + get_node_value();
+    }
 }

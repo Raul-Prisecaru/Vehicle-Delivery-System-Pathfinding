@@ -12,4 +12,9 @@ public class DeliveryHub extends Node {
     public void set_node_value(int new_value) {
         super.set_node_value(new_value);
     }
+
+    @Override
+    public String toString() {
+        return "DeliveryHub " + get_node_value();
+    }
 }
