@@ -11,7 +11,13 @@ public class Graph {
         adjacencyList = new HashMap<>();
     }
 
-    public void add_Vertex() {
+    public void add_Vertex(Node start_Node) {
+        if (adjacencyList.get(start_Node) == null) {
+            adjacencyList.put(start_Node, new LinkedList<>());
+        } else {
+            // TODO: Change this to Throw instead
+            System.out.println("Node: " + start_Node.get_node_value() + " Already Exists, Cannot be Added");
+        }
 
     }
 
