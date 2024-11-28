@@ -11,7 +11,13 @@ public class Graph {
         adjacencyList = new HashMap<>();
     }
 
+    /**
+     * Method to add Vertex into the Adjacency List
+     * @param start_Node Starting Node to attempt at inserting into the Adjacency List
+     * @return Returns None if successful else returns an error message
+     */
     public void add_Vertex(Node start_Node) {
+
         if (adjacencyList.get(start_Node) == null) {
             adjacencyList.put(start_Node, new LinkedList<>());
         } else {
