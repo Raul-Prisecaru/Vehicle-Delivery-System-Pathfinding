@@ -1,15 +1,14 @@
 package org.logistics.model;
 
+import java.util.PriorityQueue;
 
 public class Vehicle {
-    // TODO: Convert Queue to a Priority Queue Later On
-    private Package delivery_Packages;
-    private
+    private PriorityQueue<Package> deliveryPackages;
 
 
-    public Vehicle(Package package_delivery) {
-        delivery_Packages = new Queue<Package>();
-
-        delivery_Packages.add(package_delivery);
+    public Vehicle() {
+        deliveryPackages = new PriorityQueue<>();
     }
+
+
 }
