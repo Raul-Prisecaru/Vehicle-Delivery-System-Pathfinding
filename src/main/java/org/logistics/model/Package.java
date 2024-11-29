@@ -9,4 +9,13 @@ public class Package {
         this.destination = destination;
     }
 
+
+    public String getItem_Name() {
+        return this.item_Name;
+    }
+
+    public CustomerLocation getDestination() {
+        return this.destination;
+    }
+
 }
