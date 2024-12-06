@@ -11,9 +11,9 @@ public class Graph {
     }
 
     /**
-     * Method to add Vertex into the Adjacency List
-     * @param start_Vertex Starting Node to attempt at inserting into the Adjacency List
-     * @return Returns None if successful else returns an error message
+     * Method responsible for adding Vertexes to the Hashmap
+     * @param start_vertex Vertex to add to the Hashmap
+     * @return None if successful, Error message otherwise
      */
     public void add_Vertex(Vertex start_vertex) {
 
@@ -28,9 +28,11 @@ public class Graph {
     }
 
     /**
-     * Method to Create Edges between Nodes for Adjacency List
-     * @param edge Used to add an edge to the starting node
-     * @return Returns None if successful else returns an error message
+     * Method responsible for creating edges between two vertexes with weights
+     * @param start_vertex Starting Vertex
+     * @param connecting_node Vertex to be connected to by Starting Vertex
+     * @param distance_weight Distance between Start and Connecting Vertexes
+     * @return None if successful, Error message otherwise
      */
     public void add_Edge(Vertex start_vertex, Vertex connecting_node, int distance_weight) {
         Edge vertex1_edge = new Edge(start_vertex, connecting_node, distance_weight);
@@ -44,8 +46,8 @@ public class Graph {
     }
 
     /**
-     * Method to display the adjacency List
-     * @return Returns a message with all the Key Pair values in the adjacency List
+     * Method responsible for displaying the current adjacencyList
+     * @return Output with current vertex and edges information
      */
     public void print_List() {
         for (Vertex vertex : adjacencyList.keySet()) {
@@ -61,12 +63,12 @@ public class Graph {
      * Method responsible for finding shortest path between two paths
      * @param vehicle used to retrieve the package and find the shortest path
      */
-    public void findShortestPath(Vehicle vehicle) {
-        Queue<Vertex> visited = new LinkedList<>();
-        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_node_value));
-
-
-    }
+//    public void findShortestPath(Vehicle vehicle) {
+//        Queue<Vertex> visited = new LinkedList<>();
+//        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_node_value));
+//
+//
+//    }
 
 }
 
