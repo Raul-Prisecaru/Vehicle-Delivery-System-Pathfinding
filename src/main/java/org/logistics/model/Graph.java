@@ -1,11 +1,10 @@
 package org.logistics.model;
 
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
 public class Graph {
 
-    private HashMap<Node, LinkedList<Edge>> adjacencyList;
+    private HashMap<Vertex, LinkedList<Edge>> adjacencyList;
 
     public Graph() {
         adjacencyList = new HashMap<>();
@@ -13,17 +12,17 @@ public class Graph {
 
     /**
      * Method to add Vertex into the Adjacency List
-     * @param start_Node Starting Node to attempt at inserting into the Adjacency List
+     * @param start_Vertex Starting Node to attempt at inserting into the Adjacency List
      * @return Returns None if successful else returns an error message
      */
-    public void add_Vertex(Node start_Node) {
+    public void add_Vertex(Vertex start_vertex) {
 
         // Adds to the hashmap if start_node does not exist
-        if (adjacencyList.get(start_Node) == null) {
-            adjacencyList.put(start_Node, new LinkedList<>());
+        if (adjacencyList.get(start_vertex) == null) {
+            adjacencyList.put(start_vertex, new LinkedList<>());
         } else {
             // TODO: Change this to Throw instead Later On
-            System.out.println("Node: " + start_Node.get_node_value() + " Already Exists, Cannot be Added");
+            System.out.println("Node: " + start_vertex.get_node_value() + " Already Exists, Cannot be Added");
         }
 
     }
@@ -33,15 +32,15 @@ public class Graph {
      * @param edge Used to add an edge to the starting node
      * @return Returns None if successful else returns an error message
      */
-    public void add_Edge(Edge edge) {
-        if (adjacencyList.get(edge.getStart_node()) != null) {
-            adjacencyList.get(edge.getStart_node()).add(edge);
+    public void add_Edge(Vertex start_vertex, Vertex connecting_node, int distance_weight) {
+        Edge vertex1_edge = new Edge(start_vertex, connecting_node, distance_weight);
+
+         if (adjacencyList.get(vertex1_edge.getStart_node()) != null) {
+            adjacencyList.get(vertex1_edge.getStart_node()).add(vertex1_edge);
         } else {
-            // TODO: Change this to Throw instead Later on
-            System.out.println(edge.getStart_node() + " Does not exist.");
-            System.out.println("You might want to look into creating the Node First");
-            
-        }
+             // TODO: Change this to Throw instead Later on
+             System.out.println("Node:" + start_vertex.get_node_value() + " Does Not Exist");
+         }
     }
 
     /**
@@ -49,8 +48,12 @@ public class Graph {
      * @return Returns a message with all the Key Pair values in the adjacency List
      */
     public void print_List() {
-        for (Node node : adjacencyList.keySet()) {
-            System.out.println("Start Node: " + node + " Edge: "+ adjacencyList.get(node));
+        for (Vertex vertex : adjacencyList.keySet()) {
+            System.out.println("Start Node: " + vertex.get_node_value());
+
+            for (Edge edge : adjacencyList.get(vertex)) {
+                System.out.println("Edge Distance: " + edge.getDistance_weight());
+                System.out.println("Connecting Node:" + edge.getConnecting_node());
         }
     }
 
@@ -59,6 +62,9 @@ public class Graph {
      * @param vehicle used to retrieve the package and find the shortest path
      */
     public void findShortestPath(Vehicle vehicle) {
+        Queue<Vertex> visited = new LinkedList<>();
+        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_node_value));
+
 
     }
 
