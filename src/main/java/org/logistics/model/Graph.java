@@ -34,11 +34,11 @@ public class Graph {
      * @param distance_weight Distance between Start and Connecting Vertexes
      * @return None if successful, Error message otherwise
      */
-    public void add_Edge(Vertex start_vertex, Vertex connecting_node, int distance_weight) {
-        Edge vertex1_edge = new Edge(start_vertex, connecting_node, distance_weight);
+    public void add_directed_edge(Vertex start_vertex, Vertex connecting_node, int distance_weight) {
+        Edge vertex_edge = new Edge(start_vertex, connecting_node, distance_weight);
 
-         if (adjacencyList.get(vertex1_edge.getStart_node()) != null) {
-            adjacencyList.get(vertex1_edge.getStart_node()).add(vertex1_edge);
+         if (adjacencyList.get(vertex_edge.getStart_node()) != null) {
+            adjacencyList.get(vertex_edge.getStart_node()).add(vertex_edge);
         } else {
              // TODO: Change this to Throw instead Later on
              System.out.println("Node:" + start_vertex.get_node_value() + " Does Not Exist");
@@ -56,20 +56,17 @@ public class Graph {
             for (Edge edge : adjacencyList.get(vertex)) {
                 System.out.println("Edge Distance: " + edge.getDistance_weight());
                 System.out.println("Connecting Node:" + edge.getConnecting_node());
+            }
         }
     }
 
     /**
-     * Method responsible for finding shortest path between two paths
-     * @param vehicle used to retrieve the package and find the shortest path
+     * Method responsible for finding the shortest distance between two vertexes
+     * @param vehicle Vehicle that should find the shortest path
      */
-//    public void findShortestPath(Vehicle vehicle) {
-//        Queue<Vertex> visited = new LinkedList<>();
-//        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_node_value));
-//
-//
+//    public void find_shortest_path(Vehicle vehicle) {
+//        for ()
 //    }
-
 }
 
 
