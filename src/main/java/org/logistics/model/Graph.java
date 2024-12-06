@@ -87,9 +87,10 @@ public class Graph {
                         unvisited.add(edge.getConnecting_node());
                     }
 
-                    unvisited.remove(current);
-                    visited.add(current);
+
                 }
+                unvisited.remove(current);
+                visited.add(current);
 
             }
         }
