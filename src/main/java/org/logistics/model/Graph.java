@@ -15,7 +15,7 @@ public class Graph {
      * @param start_vertex Vertex to add to the Hashmap
      * @return None if successful, Error message otherwise
      */
-    public void add_Vertex(Vertex start_vertex) {
+    public void add_vertex(Vertex start_vertex) {
 
         // Adds to the hashmap if start_node does not exist
         if (adjacencyList.get(start_vertex) == null) {
@@ -51,12 +51,15 @@ public class Graph {
      */
     public void print_List() {
         for (Vertex vertex : adjacencyList.keySet()) {
+            System.out.println("------------");
             System.out.println("Start Node: " + vertex.get_node_value());
 
             for (Edge edge : adjacencyList.get(vertex)) {
+                System.out.println("---");
                 System.out.println("Edge Distance: " + edge.getDistance_weight());
                 System.out.println("Connecting Node:" + edge.getConnecting_node());
             }
+            System.out.println("------------");
         }
     }
 
