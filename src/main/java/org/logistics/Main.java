@@ -38,7 +38,8 @@ public class Main {
         graph.add_directed_edge(customerLocationC, customerLocationE, 1);
         graph.add_directed_edge(customerLocationE, customerLocationD, 5);
 
-        graph.print_List();
+//        graph.print_List();
+        graph.find_shortest_path(deliveryHubA);
     }
 
 }
