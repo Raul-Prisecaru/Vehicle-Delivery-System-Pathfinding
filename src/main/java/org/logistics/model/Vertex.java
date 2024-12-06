@@ -1,10 +1,10 @@
 package org.logistics.model;
 
 
-public class Node {
+public class Vertex {
     private int value;
 
-    public Node(int value){
+    public Vertex(int value){
         this.value = value;
     }
 
