@@ -1,42 +1,44 @@
 package org.logistics;
 
-import org.logistics.model.CustomerLocation;
-import org.logistics.model.DeliveryHub;
-import org.logistics.model.Edge;
-import org.logistics.model.Graph;
+import org.logistics.model.*;
 
 public class Main {
     public static void main(String[] args) {
         // Creating Graph Environment
         Graph graph = new Graph();
+        Vehicle vehicle = new Vehicle();
+
 
         // Creating DeliveryHub Nodes
-        DeliveryHub deliveryHub1 = new DeliveryHub(1);
-        DeliveryHub deliveryHub2 = new DeliveryHub(2);
+        DeliveryHub deliveryHubA = new DeliveryHub(1);
+        DeliveryHub deliveryHubB = new DeliveryHub(3);
 
         // Creating CustomerLocation Nodes
-        CustomerLocation customerLocation1 = new CustomerLocation(1);
-        CustomerLocation customerLocation2 = new CustomerLocation(2);
+        CustomerLocation customerLocationC = new CustomerLocation(2);
+        CustomerLocation customerLocationD = new CustomerLocation(4);
+        CustomerLocation customerLocationE = new CustomerLocation(5);
+
+
+
+        // Creating Packages
+        // Package newPackage = new Package("Phone", customerLocation1, 5);
+
+        // Creating Vertexes
+        graph.add_vertex(deliveryHubA);
+        graph.add_vertex(deliveryHubB);
+
+        graph.add_vertex(customerLocationC);
+        graph.add_vertex(customerLocationD);
+        graph.add_vertex(customerLocationE);
 
         // Creating Edges
-        Edge edge1 = new Edge(deliveryHub1, customerLocation1, 4, 2, 5);
-        Edge edge2 = new Edge(deliveryHub1, deliveryHub2, 5, 3, 9);
-
-        Edge edge3 = new Edge(deliveryHub2, customerLocation2, 5, 2, 5);
-        Edge edge4 = new Edge(deliveryHub2, deliveryHub1, 2, 6, 1);
-
-        // Adding Vertexs to the Hashmap
-        graph.add_Vertex(deliveryHub1);
-        graph.add_Vertex(deliveryHub2);
-
-        graph.add_Vertex(customerLocation1);
-        graph.add_Vertex(customerLocation2);
-
-        // Adding Edges to the hashmap
-        graph.add_Edge(edge1);
-        graph.add_Edge(edge2);
-        graph.add_Edge(edge3);
-        graph.add_Edge(edge4);
+        graph.add_directed_edge(deliveryHubA, deliveryHubB, 4);
+        graph.add_directed_edge(deliveryHubA, customerLocationC, 2);
+        graph.add_directed_edge(deliveryHubB, customerLocationC, 1);
+        graph.add_directed_edge(deliveryHubB, customerLocationD, 2);
+        graph.add_directed_edge(deliveryHubB, customerLocationE, 3);
+        graph.add_directed_edge(customerLocationC, customerLocationE, 1);
+        graph.add_directed_edge(customerLocationE, customerLocationD, 5);
 
         graph.print_List();
     }
