@@ -73,9 +73,10 @@ public class Graph {
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
         Queue<Vertex> visited = new LinkedList<>();
 
+        Vertex current = unvisited.poll();
+
         while (!unvisited.isEmpty()) {
 
-            Vertex current = unvisited.poll();
 
             if (!visited.contains(current)) {
                 for (Edge edge : adjacencyList.get(current)) {
