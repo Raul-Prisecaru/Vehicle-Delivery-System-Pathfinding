@@ -8,17 +8,15 @@ public class Main {
         Graph graph = new Graph();
         Vehicle vehicle = new Vehicle();
 
-
+        // TODO: Perhaps move these to add_vertex() method and create it there?
         // Creating DeliveryHub Nodes
-        DeliveryHub deliveryHubA = new DeliveryHub(1);
-        DeliveryHub deliveryHubB = new DeliveryHub(3);
+        DeliveryHub deliveryHubA = new DeliveryHub("A");
+        DeliveryHub deliveryHubB = new DeliveryHub("B");
 
         // Creating CustomerLocation Nodes
-        CustomerLocation customerLocationC = new CustomerLocation(2);
-        CustomerLocation customerLocationD = new CustomerLocation(4);
-        CustomerLocation customerLocationE = new CustomerLocation(5);
-
-
+        CustomerLocation customerLocationC = new CustomerLocation("C");
+        CustomerLocation customerLocationD = new CustomerLocation("D");
+        CustomerLocation customerLocationE = new CustomerLocation("E");
 
         // Creating Packages
         // Package newPackage = new Package("Phone", customerLocation1, 5);
