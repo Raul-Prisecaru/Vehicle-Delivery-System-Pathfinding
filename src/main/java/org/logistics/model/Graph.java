@@ -92,7 +92,10 @@ public class Graph {
                 }
 
             }
-
+        }
+        for (Vertex vertex : visited) {
+            System.out.println("Vertex: " + vertex.get_node_value());
+            System.out.println("Distance: " + vertex.get_distance());
         }
 
     }
