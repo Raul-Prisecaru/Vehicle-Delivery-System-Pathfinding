@@ -2,18 +2,18 @@ package org.logistics.model;
 
 
 public class Vertex {
-    private int value;
+    private String value;
     private int distance = Integer.MAX_VALUE;
 
-    public Vertex(int value){
+    public Vertex(String value){
         this.value = value;
     }
 
-    public int get_node_value() {
+    public String get_node_value() {
         return this.value;
     }
 
-    public void set_node_value(int new_value) {
+    public void set_node_value(String new_value) {
         this.value = new_value;
     }
 
