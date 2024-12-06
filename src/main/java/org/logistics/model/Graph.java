@@ -81,6 +81,9 @@ public class Graph {
                 for (Edge edge : adjacencyList.get(current)) {
                     int totalDistance = current.get_distance() + edge.getDistance_weight();
 
+                    if (totalDistance < edge.getConnecting_node().get_distance()) {
+                        edge.getConnecting_node().set_distance(totalDistance);
+                    }
                 }
 
             }
