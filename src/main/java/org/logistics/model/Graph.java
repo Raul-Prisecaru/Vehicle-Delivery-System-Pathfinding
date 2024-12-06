@@ -43,6 +43,7 @@ public class Graph {
             
         }
     }
+
     /**
      * Method to display the adjacency List
      * @return Returns a message with all the Key Pair values in the adjacency List
@@ -51,6 +52,14 @@ public class Graph {
         for (Node node : adjacencyList.keySet()) {
             System.out.println("Start Node: " + node + " Edge: "+ adjacencyList.get(node));
         }
+    }
+
+    /**
+     * Method responsible for finding shortest path between two paths
+     * @param vehicle used to retrieve the package and find the shortest path
+     */
+    public void findShortestPath(Vehicle vehicle) {
+
     }
 
 }
