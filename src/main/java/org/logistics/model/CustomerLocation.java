@@ -1,6 +1,8 @@
 package org.logistics.model;
 
-public class CustomerLocation extends Node {
+public class CustomerLocation extends Vertex {
+    
+
     public CustomerLocation(int value) {
         super(value);
     }
@@ -11,6 +13,14 @@ public class CustomerLocation extends Node {
 
     public void set_node_value(int new_value) {
         super.set_node_value(new_value);
+    }
+
+    public int get_distance() {
+        return super.get_distance();
+    }
+
+    public void set_distance(int new_distance) {
+        super.set_distance(new_distance);
     }
 
     @Override
