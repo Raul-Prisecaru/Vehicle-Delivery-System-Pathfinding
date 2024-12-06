@@ -83,7 +83,12 @@ public class Graph {
 
                     if (totalDistance < edge.getConnecting_node().get_distance()) {
                         edge.getConnecting_node().set_distance(totalDistance);
+                        unvisited.remove(edge.getConnecting_node());
+                        unvisited.add(edge.getConnecting_node());
                     }
+
+                    unvisited.remove(current);
+                    visited.add(current);
                 }
 
             }
