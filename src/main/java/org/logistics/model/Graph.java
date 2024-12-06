@@ -67,9 +67,13 @@ public class Graph {
      * Method responsible for finding the shortest distance between two vertexes
      * @param vehicle Vehicle that should find the shortest path
      */
-//    public void find_shortest_path(Vehicle vehicle) {
-//        for ()
-//    }
+    public void find_shortest_path(Vertex start_vertex) {
+        start_vertex.set_distance(0);
+
+        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
+        Queue<Vertex> visited = new LinkedList<>();
+
+    }
 }
 
 
