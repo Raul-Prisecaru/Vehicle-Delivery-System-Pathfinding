@@ -3,11 +3,17 @@ package org.logistics.model;
 import java.util.*;
 
 public class Pathfinding {
+    private HashMap<Vertex, LinkedList<Edge>> adjacencyList;
+
 
     /**
      * Method responsible for finding the shortest distance between two vertexes
      * @param vehicle Vehicle that should find the shortest path
      */
+
+    public Pathfinding(Graph graph) {
+        this.adjacencyList = graph.getAdjacencyList();
+    }
     public void find_shortest_path(Vertex start_vertex) {
         start_vertex.set_distance(0);
 
