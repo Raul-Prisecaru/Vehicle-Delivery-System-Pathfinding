@@ -5,15 +5,19 @@ import java.util.*;
 public class Pathfinding {
     private HashMap<Vertex, LinkedList<Edge>> adjacencyList;
 
-
+    //TODO: Provide better description for the Constructor JavaDoc
     /**
-     * Method responsible for finding the shortest distance between two vertexes
-     * @param vehicle Vehicle that should find the shortest path
+     * Constructor responsible for setting the graph environment
+     * @param graph (Graph) | Graph Environment
      */
-
     public Pathfinding(Graph graph) {
         this.adjacencyList = graph.getAdjacencyList();
     }
+
+    /**
+     * Method Responsible for finding the shortest path between current vehicle position and package destination
+     * @param vehicle (Vehicle) | used to find shortest path between current vehicle location and packages it contains destinations
+     */
     public void find_shortest_path(Vehicle vehicle) {
         if (!vehicle.get_deliveryPackages().isEmpty()) {
 
