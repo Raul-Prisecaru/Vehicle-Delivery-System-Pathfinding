@@ -7,6 +7,7 @@ public class Main {
         // Creating Graph Environment
         Graph graph = new Graph();
         Vehicle vehicle = new Vehicle();
+        Pathfinding pathfinding = new Pathfinding(graph);
 
         // TODO: Perhaps move these to add_vertex() method and create it there?
         // Creating DeliveryHub Nodes
@@ -39,7 +40,7 @@ public class Main {
         graph.add_directed_edge(customerLocationE, customerLocationD, 5);
 
 //        graph.print_List();
-        graph.find_shortest_path(deliveryHubA);
+        pathfinding.find_shortest_path(deliveryHubA);
     }
 
 }
