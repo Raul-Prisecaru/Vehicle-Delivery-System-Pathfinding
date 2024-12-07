@@ -11,6 +11,15 @@ public class Vehicle {
     public Vehicle(Vertex start_vertex) {
         this.current_vertex = start_vertex;
     }
+
+    public Vertex getCurrent_vertex() {
+        return current_vertex;
+    }
+
+    public void setCurrent_vertex(Vertex new_location) {
+        this.current_vertex = new_location;
+    }
+
     /**
      * Method to retrieve Packages from the Vehicle
      * @return PriorityQueue | Priority Queue with Packages
