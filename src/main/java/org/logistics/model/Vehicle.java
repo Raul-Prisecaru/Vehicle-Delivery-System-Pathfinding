@@ -26,6 +26,10 @@ public class Vehicle {
         }
     }
 
+    /**
+     * Method responsible for removing packages from the vehicle
+     * @param package_delivery Package | Package to be removed from the vehicle
+     */
     public void remove_deliveryPackage(Package package_delivery) {
         if (deliveryPackages.contains(package_delivery)) {
             deliveryPackages.remove(package_delivery);
