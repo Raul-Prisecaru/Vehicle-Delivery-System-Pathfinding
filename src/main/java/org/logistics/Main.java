@@ -6,7 +6,6 @@ public class Main {
     public static void main(String[] args) {
         // Creating Graph Environment
         Graph graph = new Graph();
-        Vehicle vehicle = new Vehicle();
         Pathfinding pathfinding = new Pathfinding(graph);
 
         // TODO: Perhaps move these to add_vertex() method and create it there?
@@ -20,6 +19,7 @@ public class Main {
         CustomerLocation customerLocationE = new CustomerLocation("E");
 
         // Creating Packages
+        Vehicle vehicle1 = new Vehicle(deliveryHubA);
         // Package newPackage = new Package("Phone", customerLocation1, 5);
 
         // Creating Vertexes
@@ -40,7 +40,7 @@ public class Main {
         graph.add_directed_edge(customerLocationE, customerLocationD, 5);
 
 //        graph.print_List();
-        pathfinding.find_shortest_path(deliveryHubA);
+        pathfinding.find_shortest_path(vehicle1);
     }
 
 }
