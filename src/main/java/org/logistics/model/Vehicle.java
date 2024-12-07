@@ -26,6 +26,14 @@ public class Vehicle {
         }
     }
 
+    public void remove_deliveryPackage(Package package_delivery) {
+        if (deliveryPackages.contains(package_delivery)) {
+            deliveryPackages.remove(package_delivery);
+        } else {
+            System.out.println("Package: " + package_delivery.getItem_Name() + " Does not exist");
+        }
+    }
+
 
 
 }
