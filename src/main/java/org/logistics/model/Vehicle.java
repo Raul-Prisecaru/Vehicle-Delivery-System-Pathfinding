@@ -1,14 +1,10 @@
 package org.logistics.model;
 
+import java.util.Comparator;
 import java.util.PriorityQueue;
 
 public class Vehicle {
-    private PriorityQueue<Package> deliveryPackages;
-
-
-    public Vehicle() {
-        deliveryPackages = new PriorityQueue<>();
-    }
+    private PriorityQueue<Package> deliveryPackages = new PriorityQueue<>(Comparator.comparingInt(Package::getPriority));
 
     /**
      * Method to retrieve Packages from the Vehicle
