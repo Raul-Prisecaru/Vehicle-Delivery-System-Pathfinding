@@ -6,6 +6,11 @@ import java.util.PriorityQueue;
 public class Vehicle {
     private PriorityQueue<Package> deliveryPackages = new PriorityQueue<>(Comparator.comparingInt(Package::getPriority));
 
+    private Vertex current_vertex;
+
+    public Vehicle(Vertex start_vertex) {
+        this.current_vertex = start_vertex;
+    }
     /**
      * Method to retrieve Packages from the Vehicle
      * @return PriorityQueue | Priority Queue with Packages
