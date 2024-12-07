@@ -1,6 +1,7 @@
 package org.logistics;
 
 import org.logistics.model.*;
+import org.logistics.model.Package;
 
 public class Main {
     public static void main(String[] args) {
@@ -20,7 +21,8 @@ public class Main {
 
         // Creating Packages
         Vehicle vehicle1 = new Vehicle(deliveryHubA);
-        // Package newPackage = new Package("Phone", customerLocation1, 5);
+        Package phonePackage = new Package("Iphone", customerLocationE, 1);
+        vehicle1.add_deliveryPackage(phonePackage);
 
         // Creating Vertexes
         graph.add_vertex(deliveryHubA);
