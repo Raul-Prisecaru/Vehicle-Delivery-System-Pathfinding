@@ -1,5 +1,7 @@
 package org.logistics.model;
 
+import java.util.ArrayList;
+
 public class DeliveryHub extends Vertex {
     public DeliveryHub(String value) {
         super(value);
@@ -21,8 +23,16 @@ public class DeliveryHub extends Vertex {
         super.set_distance(new_distance);
     }
 
+    public ArrayList<Vehicle> getStoredVehicles() {
+        return super.getStoredVehicles();
+    }
+
+    public void setStoredVehicles(Vehicle vehicle) {
+        super.setStoredVehicles(vehicle);
+    }
+
     @Override
     public String toString() {
-        return "DeliveryHub " + get_node_value();
+        return "DeliveryHub: " + get_node_value();
     }
 }
