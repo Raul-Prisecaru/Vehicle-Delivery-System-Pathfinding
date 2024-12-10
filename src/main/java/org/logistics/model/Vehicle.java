@@ -60,6 +60,14 @@ public class Vehicle {
     }
 
     /**
+     * Method responsible for returning travelDestination
+     * @return travelDestination Stack
+     */
+    public Stack<Vertex> getTravelDestinations() {
+        return this.travelDestination;
+    }
+
+    /**
      * Method responsible for ensuring Vehicle travels to it's specified Vertexes
      */
     public void travel() {
