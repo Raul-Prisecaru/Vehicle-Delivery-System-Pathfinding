@@ -56,14 +56,19 @@ public class Vehicle {
      * @param vertex Vertex | Vertex for the Vehicle to travel to
      */
     public void addTravelDestination(Vertex vertex) {
-
+        travelDestination.add(vertex);
     }
 
     /**
      * Method responsible for ensuring Vehicle travels to it's specified Vertexes
      */
     public void travel() {
-
+        for (Vertex vertex : travelDestination) {
+            vertex.setStoredVehicles(this);
+            System.out.println("Vehicle have traveled to: " + vertex.getStoredVehicles());
+        }
+        // TODO: Add Logic to drop off package
+        System.out.println("I have reached the end of my destination");
     }
 
 
