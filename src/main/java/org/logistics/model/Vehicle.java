@@ -1,11 +1,10 @@
 package org.logistics.model;
 
-import java.util.Comparator;
-import java.util.PriorityQueue;
+import java.util.*;
 
 public class Vehicle {
     private PriorityQueue<Package> deliveryPackages = new PriorityQueue<>(Comparator.comparingInt(Package::getPriority));
-
+    private Stack<Vertex> travelDestination = new Stack<>();
     private Vertex current_vertex;
 
     public Vehicle(Vertex start_vertex) {
@@ -50,6 +49,21 @@ public class Vehicle {
         } else {
             System.out.println("Package: " + package_delivery.getItem_Name() + " Does not exist");
         }
+    }
+
+    /**
+     * Method responsible for adding vertexes for vehicle to travel to
+     * @param vertex Vertex | Vertex for the Vehicle to travel to
+     */
+    public void addTravelDestination(Vertex vertex) {
+
+    }
+
+    /**
+     * Method responsible for ensuring Vehicle travels to it's specified Vertexes
+     */
+    public void travel() {
+
     }
 
 
