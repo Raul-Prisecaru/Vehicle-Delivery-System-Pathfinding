@@ -1,8 +1,10 @@
 package org.logistics.model;
 
+import java.util.ArrayList;
 
 public class Vertex {
     private String value;
+    private ArrayList<Vehicle> storedVehicles = new ArrayList<>();
     private int distance = Integer.MAX_VALUE;
 
     public Vertex(String value){
@@ -25,5 +27,11 @@ public class Vertex {
         this.distance = new_distance;
     }
 
-    
+    public ArrayList<Vehicle> getStoredVehicles() {
+        return this.storedVehicles;
+    }
+
+    public void setStoredVehicles(Vehicle vehicle) {
+        this.storedVehicles.add(vehicle);
+    }
 }
