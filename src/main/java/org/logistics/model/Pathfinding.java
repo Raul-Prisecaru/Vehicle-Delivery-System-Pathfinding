@@ -19,12 +19,15 @@ public class Pathfinding {
      * @param vehicle (Vehicle) | used to find shortest path between current vehicle location and packages it contains destinations
      */
     public void find_shortest_path(Vehicle vehicle) {
+        // TODO: Put the Vertex and distance in a hash table
         if (!vehicle.get_deliveryPackages().isEmpty()) {
 
             Vertex start_vertex = vehicle.getCurrent_vertex();
             start_vertex.set_distance(0);
 
+
             HashMap<Vertex, Vertex> predecessor = new HashMap<>();
+
             PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
             Queue<Vertex> visited = new LinkedList<>();
 
@@ -53,13 +56,16 @@ public class Pathfinding {
 
                 }
             }
-            System.out.println("Visited");
+            System.out.println("-- Final Destination --");
+            // TODO: Modify this to get output from Hash Table
             for (Vertex vertex : visited) {
-                System.out.println("Vertex: " + vertex.get_node_value());
-                System.out.println("Distance: " + vertex.get_distance());
-                System.out.println("-----");
-            }
+                if (vertex == vehicle.get_deliveryPackages().peek().getDestination()) {
+                    System.out.println("Start Location: " + vehicle.getCurrent_vertex());
+                    System.out.println("Destination: " + vertex);
+                    System.out.println("Distance: " + vertex.get_distance());
 
+                }
+            }
 
             System.out.println("------");
             System.out.println("Predecessor");
@@ -72,5 +78,10 @@ public class Pathfinding {
         } else {
             System.out.println("Vehicle does not contain any package");
         }
+
+    }
+
+    public void back_track() {
+
     }
 }
