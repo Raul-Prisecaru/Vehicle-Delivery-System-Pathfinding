@@ -70,11 +70,15 @@ public class Pathfinding {
             System.out.println("------");
             System.out.println("Predecessor");
 
+            Vertex endVertex = vehicle.get_deliveryPackages().peek().getDestination();
+            vehicle.addTravelDestination(endVertex);
             for (Vertex vertex : predecessor.keySet()) {
-                if (predecessor.get(vertex) != null) {
-                    vehicle.addTravelDestination(predecessor.get(vertex));
+                if (predecessor.get(endVertex) != null) {
+                    vehicle.addTravelDestination(predecessor.get(endVertex));
+                    endVertex = predecessor.get(endVertex);
                 } else {
                     vehicle.addTravelDestination(vehicle.getCurrent_vertex());
+                    break;
                 }
 
                 System.out.println("Vertex: " + vertex);
