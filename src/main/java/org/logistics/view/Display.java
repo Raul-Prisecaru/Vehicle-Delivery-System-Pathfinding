@@ -1,6 +1,8 @@
 package org.logistics.view;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
+import org.graphstream.ui.layout.springbox.implementations.SpringBox;
+import org.graphstream.ui.view.Viewer;
 import org.logistics.model.Vertex;
 
 import java.util.LinkedList;
@@ -16,6 +18,8 @@ public class Display {
 
 
         Graph graph = new SingleGraph("Tutorial 1");
+
+        // TODO: Make it fancy, Customise Nodes and Edges
         graph.setAttribute("ui.stylesheet",
                 "node {" +
                         "   text-alignment: under;" +
@@ -59,7 +63,8 @@ public class Display {
 //        graph.addEdge("CA", "C", "A");
 
 
-        graph.display();
+        Viewer viewer = graph.display();
+        viewer.enableAutoLayout(new SpringBox());
     }
 
 }
