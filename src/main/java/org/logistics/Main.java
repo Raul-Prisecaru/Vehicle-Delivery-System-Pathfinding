@@ -2,12 +2,14 @@ package org.logistics;
 
 import org.logistics.model.*;
 import org.logistics.model.Package;
+import org.logistics.view.Display;
 
 public class Main {
     public static void main(String[] args) {
         // Creating Graph Environment
         Graph graph = new Graph();
         Pathfinding pathfinding = new Pathfinding(graph);
+        Display displayGraph = new Display(graph);
 
         // TODO: Perhaps move these to add_vertex() method and create it there?
         // Creating DeliveryHub Nodes
@@ -42,8 +44,12 @@ public class Main {
         graph.add_directed_edge(customerLocationE, customerLocationD, 5);
 
 //        graph.print_List();
-        pathfinding.find_shortest_path(vehicle1);
-        vehicle1.travel();
+//        pathfinding.find_shortest_path(vehicle1);
+//        vehicle1.travel();
+
+        displayGraph.displayGraph();
+
+
     }
 
 }
