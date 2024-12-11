@@ -16,11 +16,20 @@ public class Display {
 
 
         Graph graph = new SingleGraph("Tutorial 1");
+        graph.setAttribute("ui.stylesheet",
+                "node {" +
+                        "   text-alignment: under;" +
+                        "   text-size: 14px;" +
+                        "   text-color: black;" +
+                        "}");
+
 
         for (Vertex vertex : this.graphinformation.getAdjacencyList().keySet()) {
-            graph.addNode(vertex.get_node_value());
+            Node node = graph.addNode(vertex.get_node_value());
+            node.setAttribute("ui.label", vertex.get_node_value());
         }
 
+        // TODO: Make this more efficient by turing nested for loop into a singular loop
         for (Vertex vertex : this.graphinformation.getAdjacencyList().keySet()) {
             for (org.logistics.model.Edge currentEdge : this.graphinformation.getAdjacencyList().get(vertex)) {
 
