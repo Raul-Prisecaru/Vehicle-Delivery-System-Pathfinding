@@ -31,11 +31,21 @@ public class vehicleTest {
 
     @Test
     void updateDeliveryPackages() {
-        testVehicle.add_deliveryPackage(new Package("Phone", new CustomerLocation("B"), 2));
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
 
         assertFalse(testVehicle.get_deliveryPackages().isEmpty());
 
         assertInstanceOf(Package.class, testVehicle.get_deliveryPackages().peek());
+    }
+
+    @Test
+    void MaxCapacity() {
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
+
+        // TODO: Update this to check for a throw error
+        assertNotEquals("3", testVehicle.get_deliveryPackages().size());
     }
 
     @Test
