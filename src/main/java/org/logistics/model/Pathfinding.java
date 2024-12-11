@@ -71,10 +71,18 @@ public class Pathfinding {
             System.out.println("Predecessor");
 
             for (Vertex vertex : predecessor.keySet()) {
+                if (predecessor.get(vertex) != null) {
+                    vehicle.addTravelDestination(predecessor.get(vertex));
+                } else {
+                    vehicle.addTravelDestination(vehicle.getCurrent_vertex());
+                }
+
                 System.out.println("Vertex: " + vertex);
                 System.out.println("predecessor: " + predecessor.get(vertex));
                 System.out.println("-------");
             }
+
+            System.out.println(vehicle.getTravelDestinations());
         } else {
             System.out.println("Vehicle does not contain any package");
         }
