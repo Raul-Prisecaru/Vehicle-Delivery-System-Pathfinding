@@ -73,6 +73,7 @@ public class Vehicle {
     public void travel() {
         for (Vertex vertex : travelDestination.reversed()) {
             vertex.setStoredVehicles(this);
+            setCurrent_vertex(vertex);
             System.out.println("Vehicle have traveled to: " + vertex.get_node_value());
         }
         // TODO: Add Logic to drop off package
