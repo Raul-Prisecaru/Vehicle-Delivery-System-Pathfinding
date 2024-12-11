@@ -1,12 +1,9 @@
-package untested;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 import org.logistics.model.Edge;
 import org.logistics.model.Graph;
 import org.logistics.model.Vertex;
-
-import java.util.LinkedList;
 
 
 public class graphTest {
