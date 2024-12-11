@@ -1,9 +1,8 @@
-package untested;
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import org.logistics.model.Edge;
 import org.logistics.model.Vertex;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 public class edgeTest {
     Vertex testVertexA = new Vertex("A");
