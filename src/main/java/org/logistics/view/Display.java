@@ -21,7 +21,13 @@ public class Display {
                         "   text-alignment: under;" +
                         "   text-size: 14px;" +
                         "   text-color: black;" +
+                        "}" +
+                        "edge {" +
+                        "   text-alignment: under;" +
+                        "   text-size: 14px;" +
+                        "   text-color: black;" +
                         "}");
+
 
 
         for (Vertex vertex : this.graphinformation.getAdjacencyList().keySet()) {
@@ -37,7 +43,8 @@ public class Display {
                     break;
                 }
                 String id = currentEdge.getStart_node().get_node_value() + currentEdge.getConnecting_node().get_node_value();
-                graph.addEdge(id, currentEdge.getStart_node().get_node_value(), currentEdge.getConnecting_node().get_node_value(), true);
+                Edge edge = graph.addEdge(id, currentEdge.getStart_node().get_node_value(), currentEdge.getConnecting_node().get_node_value(), true);
+                edge.setAttribute("ui.label", currentEdge.getDistance_weight());
             }
 
         }
