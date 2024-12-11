@@ -1,9 +1,9 @@
 import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 import org.logistics.model.Vehicle;
 import org.logistics.model.Vertex;
 
-import static org.junit.jupiter.api.Assertions.*;
 
 
 public class vertexTest {
