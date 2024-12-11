@@ -18,13 +18,13 @@ public class Pathfinding {
      * Method Responsible for finding the shortest path between current vehicle position and package destination
      * @param vehicle (Vehicle) | used to find shortest path between current vehicle location and packages it contains destinations
      */
-    public void find_shortest_path(Vehicle vehicle) {
+    public HashMap<Vertex, Integer> find_shortest_path(Vehicle vehicle) {
         // TODO: Put the Vertex and distance in a hash table
+        HashMap <Vertex, Integer> shortestPath = new HashMap<>();
         if (!vehicle.get_deliveryPackages().isEmpty()) {
 
             Vertex start_vertex = vehicle.getCurrent_vertex();
             start_vertex.set_distance(0);
-
 
             HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
@@ -63,6 +63,7 @@ public class Pathfinding {
                     System.out.println("Start Location: " + vehicle.getCurrent_vertex());
                     System.out.println("Destination: " + vertex);
                     System.out.println("Distance: " + vertex.get_distance());
+                    shortestPath.put(vertex, vertex.get_distance());
 
                 }
             }
@@ -90,10 +91,7 @@ public class Pathfinding {
         } else {
             System.out.println("Vehicle does not contain any package");
         }
-
+        return shortestPath;
     }
 
-    public void back_track() {
-
-    }
 }
