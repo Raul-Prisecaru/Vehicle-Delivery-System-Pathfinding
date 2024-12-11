@@ -43,6 +43,7 @@ public class Main {
 
 //        graph.print_List();
         pathfinding.find_shortest_path(vehicle1);
+        vehicle1.travel();
     }
 
 }
