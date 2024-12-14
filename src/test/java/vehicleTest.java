@@ -13,24 +13,24 @@ public class vehicleTest {
     Vehicle testVehicle = new Vehicle(testVertexA);
 
     @Test
-    void getCurrentLocation() {
+    public void getCurrentLocation() {
         assertEquals("A", testVehicle.getCurrent_vertex().get_node_value());
     }
 
     @Test
-    void updateCurrentLocation() {
+    public void updateCurrentLocation() {
         testVehicle.setCurrent_vertex(new Vertex("B"));
 
         assertEquals("B", testVehicle.getCurrent_vertex().get_node_value());
     }
 
     @Test
-    void getDeliveryPackages() {
+    public void getDeliveryPackages() {
         assertTrue(testVehicle.get_deliveryPackages().isEmpty());
     }
 
     @Test
-    void updateDeliveryPackages() {
+    public void updateDeliveryPackages() {
         testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
 
         assertFalse(testVehicle.get_deliveryPackages().isEmpty());
@@ -39,7 +39,7 @@ public class vehicleTest {
     }
 
     @Test
-    void MaxCapacity() {
+    public void MaxCapacity() {
         testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
         testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
         testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
@@ -49,12 +49,12 @@ public class vehicleTest {
     }
 
     @Test
-    void getTravelDestination() {
+    public void getTravelDestination() {
         assertTrue(testVehicle.getTravelDestinations().isEmpty());
     }
 
     @Test
-    void updateTravelDestination() {
+    public void updateTravelDestination() {
         testVehicle.addTravelDestination(new Vertex("B"));
 
         assertFalse(testVehicle.getTravelDestinations().isEmpty());
@@ -64,7 +64,7 @@ public class vehicleTest {
     }
 
     @Test
-    void travelDestination() {
+    public void travelDestination() {
         Vertex testVertexB = new Vertex("B");
         testVehicle.addTravelDestination(testVertexB);
 
