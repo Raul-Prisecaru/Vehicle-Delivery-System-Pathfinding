@@ -70,14 +70,17 @@ public class Vehicle {
     /**
      * Method responsible for ensuring Vehicle travels to it's specified Vertexes
      */
-    public void travel() {
-        for (Vertex vertex : travelDestination.reversed()) {
-            vertex.setStoredVehicles(this);
-            setCurrent_vertex(vertex);
-            System.out.println("Vehicle have traveled to: " + vertex.get_node_value());
-        }
-        // TODO: Add Logic to drop off package
-        System.out.println("I have reached the end of my destination");
+    public void travel(Vertex travel_vertex) {
+            travel_vertex.setStoredVehicles(this);
+            this.setCurrent_vertex(travel_vertex);
+
+//        for (Vertex vertex : travelDestination.reversed()) {
+//            vertex.setStoredVehicles(this);
+//            setCurrent_vertex(vertex);
+//            System.out.println("Vehicle have traveled to: " + vertex.get_node_value());
+//        }
+//        // TODO: Add Logic to drop off package
+//        System.out.println("I have reached the end of my destination");
     }
 
 
