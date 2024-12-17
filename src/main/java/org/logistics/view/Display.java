@@ -67,18 +67,49 @@ public class Display {
 
             if (input == 1) {
                 try {
-
                     System.out.println("Enter DeliveryHub Value");
                     System.out.print(":: ");
                     String vertex_value = scanner.next();
                     graph.addNode(vertex_value);
 
                 } catch (Exception e) {
-
                     System.out.println("An Error has occurred: " + e.getMessage());
                 }
             }
 
+            if (input == 2) {
+                try {
+                    System.out.println("Enter CustomerLocation Value");
+                    System.out.print(":: ");
+                    String vertex_value = scanner.next();
+                    graph.addNode(vertex_value);
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 3) {
+                try {
+                    System.out.println("Enter Start Vertex");
+                    System.out.print(":: ");
+                    String start_vertex = scanner.next();
+
+                    System.out.println("Enter connecting Vertex");
+                    System.out.print(":: ");
+                    String connecting_vertex = scanner.next();
+
+                    System.out.println("Enter distance weight");
+                    System.out.print(":: ");
+                    int distance_weight = scanner.nextInt();
+
+                    Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex);
+                    edge.setAttribute("ui.label", distance_weight);
+
+
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
         }
 
     }
