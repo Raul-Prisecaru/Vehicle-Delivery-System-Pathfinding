@@ -5,7 +5,7 @@ import org.graphstream.ui.layout.springbox.implementations.SpringBox;
 import org.graphstream.ui.view.Viewer;
 import org.logistics.model.Vertex;
 
-import java.util.LinkedList;
+import java.util.Scanner;
 
 public class Display {
     private org.logistics.model.Graph graphinformation;
@@ -14,6 +14,7 @@ public class Display {
         this.graphinformation = graph;
     }
     public void displayGraph() {
+        Scanner scanner = new Scanner(System.in);
         System.setProperty("org.graphstream.ui", "swing");
 
 
@@ -31,7 +32,6 @@ public class Display {
                         "   text-size: 14px;" +
                         "   text-color: black;" +
                         "}");
-
 
 
         for (Vertex vertex : this.graphinformation.getAdjacencyList().keySet()) {
@@ -53,18 +53,34 @@ public class Display {
 
         }
 
-
-
-//        graph.addNode("A");
-//        graph.addNode("B");
-//        graph.addNode("C");
-//        graph.addEdge("AB", "A", "B");
-//        graph.addEdge("BC", "B", "C");
-//        graph.addEdge("CA", "C", "A");
-
-
         Viewer viewer = graph.display();
         viewer.enableAutoLayout(new SpringBox());
+
+
+        while (true) {
+            System.out.println("1 - Add DeliverHub Vertex");
+            System.out.println("2 - Add CustomerLocation Vertex");
+            System.out.println("3 - Add Edge");
+            System.out.print(":: ");
+
+            int input = scanner.nextInt();
+
+            if (input == 1) {
+                try {
+
+                    System.out.println("Enter DeliveryHub Value");
+                    System.out.print(":: ");
+                    String vertex_value = scanner.next();
+                    graph.addNode(vertex_value);
+
+                } catch (Exception e) {
+
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+        }
+
     }
 
 }
