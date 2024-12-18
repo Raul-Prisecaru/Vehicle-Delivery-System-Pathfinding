@@ -81,7 +81,10 @@ public class Display {
                     String vertex_value = scanner.next();
                     graphinformation.add_vertex(new DeliveryHub(vertex_value));
 
-                    graph.addNode(vertex_value);
+                    Node vertex = graph.addNode(vertex_value);
+                    vertex.setAttribute("ui.label", vertex_value);
+
+
                     continue;
 
 
@@ -111,7 +114,9 @@ public class Display {
                     System.out.print(":: ");
                     String vertex_value = scanner.next();
                     graphinformation.add_vertex(new CustomerLocation(vertex_value));
-                    graph.addNode(vertex_value);
+                    Node vertex = graph.addNode(vertex_value);
+                    vertex.setAttribute("ui.label", vertex_value);
+
                     continue;
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
