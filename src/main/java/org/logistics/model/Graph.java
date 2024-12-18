@@ -93,7 +93,7 @@ public class Graph {
             if (Objects.equals(edge.getConnecting_node().get_node_value(), exist_connecting.get_node_value())) {
                 edge.setConnecting_vertex(exist_new_connecting);
                 edge.setDistance_weight(new_distance);
-
+                edge.setStart_vertex(exist_new_start);
                 adjacencyList.get(exist_start).remove(edge);
 
                 adjacencyList.get(exist_new_start).push(edge);
