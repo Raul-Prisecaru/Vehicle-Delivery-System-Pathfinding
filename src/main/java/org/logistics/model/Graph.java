@@ -30,7 +30,7 @@ public class Graph {
 
     /**
      * Method responsible for removing Vertex from the AdjacencyList
-     * @param vertex
+     * @param vertex (Vertex) - Vertex to remove
      */
     public  void remove_vertex(Vertex vertex) {
         Vertex exist_vertex = this.findVertex(vertex);
