@@ -27,6 +27,11 @@ public class Graph {
 
     }
 
+
+    /**
+     * Method responsible for removing Vertex from the AdjacencyList
+     * @param vertex
+     */
     public  void remove_vertex(Vertex vertex) {
         Vertex exist_vertex = this.findVertex(vertex);
 
@@ -66,6 +71,24 @@ public class Graph {
 
     }
 
+
+    /**
+     * Method responsible for removing the Edge connecting from starting Vertex
+     * @param start_vertex (Vertex) - Vertex to remove edge from
+     */
+
+    public void remove_directed_edge(Vertex start_vertex) {
+        // TODO: Fix issue where it would remove every Vertex because of unspecified Connecting vertex
+
+        Vertex exist_start = this.findVertex(start_vertex);
+
+        if (exist_start == null) {
+            System.out.println("Couldn't find vertex to remove edge from");
+        }
+
+        adjacencyList.get(start_vertex).remove();
+    }
+
     /**
      * Method responsible for displaying the current adjacencyList
      * @return Output with current vertex and edges information
@@ -84,10 +107,20 @@ public class Graph {
         }
     }
 
+    /**
+     * Method responsible for return the AdjacencyList
+     * @return adjacencyList
+     */
     public HashMap<Vertex, LinkedList<Edge>> getAdjacencyList() {
         return adjacencyList;
     }
 
+
+    /**
+     * Method responsible for finding appropriate vertex in the adjacencyList based on Vertex Value
+     * @param vertex (Vertex) - Vertex to find in the AdjacencyList
+     * @return vertex - Returns Appropriate Vertex. Otherwise null
+     */
     public Vertex findVertex(Vertex vertex) {
         // TODO: Improve this to search for both so we don't have to reloop each time
 //        System.out.println(vertex.get_node_value());
