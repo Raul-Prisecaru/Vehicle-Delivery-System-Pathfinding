@@ -148,7 +148,7 @@ public class Display {
 
                     graphinformation.add_directed_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), distance_weight);
 
-                    Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex);
+                    Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex, true);
                     edge.setAttribute("ui.label", distance_weight);
                     continue;
 
