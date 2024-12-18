@@ -93,6 +93,12 @@ public class Display {
             if (input == 2) {
                 try {
                     // code to remove DeliveryHub
+                    System.out.println("Enter DeliveryHub Value");
+                    System.out.print(":: ");
+                    String vertex_value = scanner.next();
+
+                    graphinformation.remove_vertex(new Vertex(vertex_value));
+                    graph.removeNode(vertex_value);
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
                 }
