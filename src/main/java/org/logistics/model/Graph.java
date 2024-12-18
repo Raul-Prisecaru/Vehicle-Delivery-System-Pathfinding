@@ -71,10 +71,11 @@ public class Graph {
     }
 
 
-    public void modify_edge(Vertex start_vertex, Vertex connecting_vertex, int new_distance, Vertex new_start_vertex) {
+    public void modify_edge(Vertex start_vertex, Vertex connecting_vertex, int new_distance, Vertex new_start_vertex, Vertex new_connecting_vertex) {
         Vertex exist_start = this.findVertex(start_vertex);
         Vertex exist_connecting = this.findVertex(connecting_vertex);
         Vertex exist_new_start = this.findVertex(new_start_vertex);
+        Vertex exist_new_connecting = this.findVertex(new_connecting_vertex);
 
         if (exist_start == null) {
             System.out.println("Couldn't find starting vertex");
@@ -90,7 +91,7 @@ public class Graph {
 
         for (Edge edge : adjacencyList.get(exist_start)) {
             if (Objects.equals(edge.getConnecting_node().get_node_value(), exist_connecting.get_node_value())) {
-                edge.setConnecting_vertex(exist_connecting);
+                edge.setConnecting_vertex(exist_new_connecting);
                 edge.setDistance_weight(new_distance);
 
                 adjacencyList.get(start_vertex).remove(edge);
