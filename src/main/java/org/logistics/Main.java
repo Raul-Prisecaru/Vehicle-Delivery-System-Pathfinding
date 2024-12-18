@@ -4,14 +4,16 @@ import org.logistics.model.*;
 import org.logistics.model.Package;
 import org.logistics.view.Display;
 
+import java.util.Scanner;
+
 public class Main {
     public static void main(String[] args) {
         // Creating Graph Environment
+        Scanner scanner = new Scanner(System.in);
         Graph graph = new Graph();
         Pathfinding pathfinding = new Pathfinding(graph);
         Display displayGraph = new Display(graph);
 
-        // TODO: Perhaps move these to add_vertex() method and create it there?
         // Creating DeliveryHub Nodes
         DeliveryHub deliveryHubA = new DeliveryHub("A");
         DeliveryHub deliveryHubB = new DeliveryHub("B");
@@ -56,12 +58,28 @@ public class Main {
         graph.add_directed_edge(customerLocationD, customerLocationF, 2); // Distance: 2
         graph.add_directed_edge(customerLocationC, customerLocationG, 6); // Distance: 6
 
+//        while (true) {
+//            // travelDestination == empty
+//
+//            // // Search for a DeliveryHub
+//            // // Go to the DeliveryHub
+//
+//            // travelDestination != empty
+//
+//            // Loop throught the travel destinations (pathfinding class)
+//            for (Vertex travel_vertex : vehicle1.getTravelDestinations().reversed()) {
+//                vehicle1.travel(travel_vertex);
+//            }
+//
+//
+//
+//        }
 
 //        graph.print_List();
 //        pathfinding.find_shortest_path(vehicle1);
 //        vehicle1.travel();
-
         displayGraph.displayGraph();
+
 
 
     }
