@@ -94,7 +94,7 @@ public class Graph {
                 edge.setConnecting_vertex(exist_new_connecting);
                 edge.setDistance_weight(new_distance);
 
-                adjacencyList.get(start_vertex).remove(edge);
+                adjacencyList.get(exist_start).remove(edge);
 
                 adjacencyList.get(exist_new_start).push(edge);
             }
