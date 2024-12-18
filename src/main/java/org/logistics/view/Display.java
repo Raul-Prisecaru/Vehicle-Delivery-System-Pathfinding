@@ -19,7 +19,7 @@ public class Display {
         this.graphinformation = graph;
     }
 
-    public void displayGraph() {
+    public void createGraph() {
         System.setProperty("org.graphstream.ui", "swing");
 
 
@@ -59,10 +59,14 @@ public class Display {
 
 
 
+
+
+
+    }
+
+    public void displayGUI(){
         Viewer viewer = graph.display();
         viewer.enableAutoLayout(new SpringBox());
-
-
     }
 
     public void dynamic_options() {
