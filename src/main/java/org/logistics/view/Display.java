@@ -59,10 +59,12 @@ public class Display {
         viewer.enableAutoLayout(new SpringBox());
 
 
+        // TODO: Somehow add a Unit Test for this
         while (true) {
             System.out.println("1 - Add DeliverHub Vertex");
             System.out.println("2 - Add CustomerLocation Vertex");
             System.out.println("3 - Add Edge");
+            System.out.println("4 - Print AdjacencyList");
             System.out.print(":: ");
 
             int input = scanner.nextInt();
@@ -75,6 +77,7 @@ public class Display {
                     graphinformation.add_vertex(new DeliveryHub(vertex_value));
 
                     graph.addNode(vertex_value);
+                    continue;
 
 
 
@@ -90,6 +93,7 @@ public class Display {
                     String vertex_value = scanner.next();
                     graphinformation.add_vertex(new CustomerLocation(vertex_value));
                     graph.addNode(vertex_value);
+                    continue;
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
                 }
@@ -113,11 +117,16 @@ public class Display {
 
                     Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex);
                     edge.setAttribute("ui.label", distance_weight);
+                    continue;
 
 
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
                 }
+            }
+
+            if (input == 4) {
+                graphinformation.print_List();
             }
         }
 
