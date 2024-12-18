@@ -68,7 +68,7 @@ public class Graph {
             for (Edge edge : adjacencyList.get(vertex)) {
                 System.out.println("---");
                 System.out.println("Edge Distance: " + edge.getDistance_weight());
-                System.out.println("Connecting Node:" + edge.getConnecting_node());
+                System.out.println("Connecting Node:" + edge.getConnecting_node().get_node_value());
             }
             System.out.println("------------");
         }
@@ -80,7 +80,7 @@ public class Graph {
 
     public Vertex findVertex(Vertex vertex) {
         // TODO: Improve this to search for both so we don't have to reloop each time
-        System.out.println(vertex.get_node_value());
+//        System.out.println(vertex.get_node_value());
         for (Vertex v : adjacencyList.keySet()) {
             if (Objects.equals(v.get_node_value(), vertex.get_node_value())) {
                 return v;
