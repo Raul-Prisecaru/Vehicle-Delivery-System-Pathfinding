@@ -3,6 +3,8 @@ import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.layout.springbox.implementations.SpringBox;
 import org.graphstream.ui.view.Viewer;
+import org.logistics.model.CustomerLocation;
+import org.logistics.model.DeliveryHub;
 import org.logistics.model.Vertex;
 
 import java.util.Scanner;
@@ -70,7 +72,11 @@ public class Display {
                     System.out.println("Enter DeliveryHub Value");
                     System.out.print(":: ");
                     String vertex_value = scanner.next();
+                    graphinformation.add_vertex(new DeliveryHub(vertex_value));
+
                     graph.addNode(vertex_value);
+
+
 
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
@@ -82,6 +88,7 @@ public class Display {
                     System.out.println("Enter CustomerLocation Value");
                     System.out.print(":: ");
                     String vertex_value = scanner.next();
+                    graphinformation.add_vertex(new CustomerLocation(vertex_value));
                     graph.addNode(vertex_value);
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
@@ -101,6 +108,8 @@ public class Display {
                     System.out.println("Enter distance weight");
                     System.out.print(":: ");
                     int distance_weight = scanner.nextInt();
+
+                    graphinformation.add_directed_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), distance_weight);
 
                     Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex);
                     edge.setAttribute("ui.label", distance_weight);
