@@ -186,8 +186,12 @@ public class Display {
                     System.out.print(":: ");
                     String new_connecting_vertex = scanner.next();
 
-                    graphinformation.modify_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), new_distance, new Vertex(new_start_vertex), new Vertex(new_connecting_vertex));
+//                    graphinformation.modify_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), new_distance, new Vertex(new_start_vertex), new Vertex(new_connecting_vertex));
+
                     graph.removeEdge(start_vertex + "" + connecting_vertex);
+                    Edge edge = graph.addEdge(new_start_vertex + "" + new_connecting_vertex, new_start_vertex, new_connecting_vertex, true);
+                    edge.setAttribute("ui.label", new_distance);
+
 
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
