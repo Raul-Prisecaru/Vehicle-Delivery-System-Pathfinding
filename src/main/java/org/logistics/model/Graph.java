@@ -77,16 +77,26 @@ public class Graph {
      * @param start_vertex (Vertex) - Vertex to remove edge from
      */
 
-    public void remove_directed_edge(Vertex start_vertex) {
+    public void remove_directed_edge(Vertex start_vertex, Vertex connecting_vertex) {
         // TODO: Fix issue where it would remove every Vertex because of unspecified Connecting vertex
 
         Vertex exist_start = this.findVertex(start_vertex);
+        Vertex exist_connecting = this.findVertex(connecting_vertex);
 
         if (exist_start == null) {
-            System.out.println("Couldn't find vertex to remove edge from");
+            System.out.println("Couldn't find starting vertex to remove edge from");
         }
 
-        adjacencyList.get(start_vertex).remove();
+        if (exist_connecting == null) {
+            System.out.println("Couldn't find connecting vertex");
+        }
+        Edge exist_edge = this.findEdge(exist_start, connecting_vertex);
+
+        if (exist_edge == null) {
+            System.out.println("Couldn't find edge to remove");
+        }
+
+        adjacencyList.get(exist_start).remove(exist_edge);
     }
 
     /**
@@ -129,6 +139,17 @@ public class Graph {
                 return v;
             }
         }
+        return null;
+    }
+
+
+    public Edge findEdge(Vertex start_vertex, Vertex connecting_vertex) {
+        for (Edge edge : adjacencyList.get(start_vertex)) {
+            if (Objects.equals(edge.getConnecting_node().get_node_value(), connecting_vertex.get_node_value())) {
+                return edge;
+            }
+        }
+
         return null;
     }
 
