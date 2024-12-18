@@ -161,6 +161,28 @@ public class Display {
             if (input == 6) {
                 try {
                     // code to modify Edge
+                    System.out.println("Enter Existing Start Vertex");
+                    System.out.print(":: ");
+                    String start_vertex = scanner.next();
+
+                    System.out.println("Enter Existing connecting Vertex");
+                    System.out.print(":: ");
+                    String connecting_vertex = scanner.next();
+
+                    System.out.println("Enter New Distance weight");
+                    System.out.print(":: ");
+                    int new_distance = scanner.nextInt();
+
+                    System.out.println("Enter new Start Vertex");
+                    System.out.print(":: ");
+                    String new_start_vertex = scanner.next();
+
+                    System.out.println("Enter new Connecting Vertex");
+                    System.out.print(":: ");
+                    String new_connecting_vertex = scanner.next();
+
+                    graphinformation.modify_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), new_distance, new Vertex(new_start_vertex), new Vertex(new_connecting_vertex));
+                    graph.removeEdge(start_vertex + "" + connecting_vertex);
 
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
