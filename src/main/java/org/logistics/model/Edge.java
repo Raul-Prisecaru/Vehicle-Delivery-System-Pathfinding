@@ -23,8 +23,16 @@ public class Edge {
         return start_vertex;
     }
 
+    public void setStart_vertex(Vertex new_start_vertex) {
+        this.start_vertex = new_start_vertex;
+    }
+
     public Vertex getConnecting_node() {
         return connecting_vertex;
+    }
+
+    public void setConnecting_vertex(Vertex new_connecting_vertex) {
+        this.connecting_vertex = new_connecting_vertex;
     }
 
 //    public int getTime_weight() {
