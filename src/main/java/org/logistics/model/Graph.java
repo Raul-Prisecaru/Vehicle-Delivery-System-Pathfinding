@@ -65,10 +65,41 @@ public class Graph {
         }
         Edge vertex_edge = new Edge(start_vertex, connecting_node, distance_weight);
 
-
         adjacencyList.get(exist_start).add(vertex_edge);
 
 
+    }
+
+
+    public void modify_edge(Vertex start_vertex, Vertex connecting_vertex, int new_distance, Vertex new_start_vertex, Vertex new_connecting_vertex) {
+        Vertex exist_start = this.findVertex(start_vertex);
+        Vertex exist_connecting = this.findVertex(connecting_vertex);
+        Vertex exist_new_start = this.findVertex(new_start_vertex);
+        Vertex exist_new_connecting = this.findVertex(new_connecting_vertex);
+
+        if (exist_start == null) {
+            System.out.println("Couldn't find starting vertex");
+            return;
+        }
+
+        if (exist_connecting == null) {
+            System.out.println("Couldn't find connecting vertex");
+            return;
+        }
+
+//        Edge edge = this.findEdge(exist_start, exist_connecting);
+
+        for (Edge edge : adjacencyList.get(exist_start)) {
+            if (Objects.equals(edge.getConnecting_node().get_node_value(), exist_connecting.get_node_value())) {
+                edge.setConnecting_vertex(exist_new_connecting);
+                edge.setDistance_weight(new_distance);
+                edge.setStart_vertex(exist_new_start);
+                adjacencyList.get(exist_start).remove(edge);
+
+                adjacencyList.get(exist_new_start).push(edge);
+            }
+
+        }
     }
 
 
@@ -76,7 +107,6 @@ public class Graph {
      * Method responsible for removing the Edge connecting from starting Vertex
      * @param start_vertex (Vertex) - Vertex to remove edge from
      */
-
     public void remove_directed_edge(Vertex start_vertex, Vertex connecting_vertex) {
         // TODO: Fix issue where it would remove every Vertex because of unspecified Connecting vertex
 

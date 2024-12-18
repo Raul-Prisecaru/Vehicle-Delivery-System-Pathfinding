@@ -81,7 +81,10 @@ public class Display {
                     String vertex_value = scanner.next();
                     graphinformation.add_vertex(new DeliveryHub(vertex_value));
 
-                    graph.addNode(vertex_value);
+                    Node vertex = graph.addNode(vertex_value);
+                    vertex.setAttribute("ui.label", vertex_value);
+
+
                     continue;
 
 
@@ -111,7 +114,9 @@ public class Display {
                     System.out.print(":: ");
                     String vertex_value = scanner.next();
                     graphinformation.add_vertex(new CustomerLocation(vertex_value));
-                    graph.addNode(vertex_value);
+                    Node vertex = graph.addNode(vertex_value);
+                    vertex.setAttribute("ui.label", vertex_value);
+
                     continue;
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
@@ -161,6 +166,33 @@ public class Display {
             if (input == 6) {
                 try {
                     // code to modify Edge
+                    System.out.println("Enter Existing Start Vertex");
+                    System.out.print(":: ");
+                    String start_vertex = scanner.next();
+
+                    System.out.println("Enter Existing connecting Vertex");
+                    System.out.print(":: ");
+                    String connecting_vertex = scanner.next();
+
+                    System.out.println("Enter New Distance weight");
+                    System.out.print(":: ");
+                    int new_distance = scanner.nextInt();
+
+                    System.out.println("Enter new Start Vertex");
+                    System.out.print(":: ");
+                    String new_start_vertex = scanner.next();
+
+                    System.out.println("Enter new Connecting Vertex");
+                    System.out.print(":: ");
+                    String new_connecting_vertex = scanner.next();
+
+                    // TODO: An Error has occurred: Cannot invoke "java.util.LinkedList.remove(Object)" because the return value of "java.util.HashMap.get(Object)" is null
+                    graphinformation.modify_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), new_distance, new Vertex(new_start_vertex), new Vertex(new_connecting_vertex));
+
+                    graph.removeEdge(start_vertex + "" + connecting_vertex);
+                    Edge edge = graph.addEdge(new_start_vertex + "" + new_connecting_vertex, new_start_vertex, new_connecting_vertex, true);
+                    edge.setAttribute("ui.label", new_distance);
+
 
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
