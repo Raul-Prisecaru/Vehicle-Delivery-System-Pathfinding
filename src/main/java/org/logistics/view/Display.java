@@ -186,7 +186,8 @@ public class Display {
                     System.out.print(":: ");
                     String new_connecting_vertex = scanner.next();
 
-//                    graphinformation.modify_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), new_distance, new Vertex(new_start_vertex), new Vertex(new_connecting_vertex));
+                    // TODO: An Error has occurred: Cannot invoke "java.util.LinkedList.remove(Object)" because the return value of "java.util.HashMap.get(Object)" is null
+                    graphinformation.modify_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), new_distance, new Vertex(new_start_vertex), new Vertex(new_connecting_vertex));
 
                     graph.removeEdge(start_vertex + "" + connecting_vertex);
                     Edge edge = graph.addEdge(new_start_vertex + "" + new_connecting_vertex, new_start_vertex, new_connecting_vertex, true);
