@@ -11,16 +11,18 @@ import java.util.Scanner;
 
 public class Display {
     private org.logistics.model.Graph graphinformation;
+    Scanner scanner = new Scanner(System.in);
+    Graph graph = new SingleGraph("Tutorial 1");
+
 
     public Display(org.logistics.model.Graph graph) {
         this.graphinformation = graph;
     }
+
     public void displayGraph() {
-        Scanner scanner = new Scanner(System.in);
         System.setProperty("org.graphstream.ui", "swing");
 
 
-        Graph graph = new SingleGraph("Tutorial 1");
 
         // TODO: Make it fancy, Customise Nodes and Edges
         graph.setAttribute("ui.stylesheet",
@@ -55,10 +57,15 @@ public class Display {
 
         }
 
+
+
         Viewer viewer = graph.display();
         viewer.enableAutoLayout(new SpringBox());
 
 
+    }
+
+    public void dynamic_options() {
         // TODO: Somehow add a Unit Test for this
         while (true) {
             System.out.println("1 - Add DeliverHub Vertex");
