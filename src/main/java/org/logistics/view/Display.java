@@ -62,13 +62,18 @@ public class Display {
         // TODO: Somehow add a Unit Test for this
         while (true) {
             System.out.println("1 - Add DeliverHub Vertex");
-            System.out.println("2 - Add CustomerLocation Vertex");
-            System.out.println("3 - Add Edge");
-            System.out.println("4 - Print AdjacencyList");
+            System.out.println("2 - Remove DeliverHub Vertex");
+            System.out.println("3 - Add CustomerLocation Vertex");
+            System.out.println("4 - Remove CustomerLocation Vertex");
+            System.out.println("5 - Add Edge");
+            System.out.println("6 - Change Edge");
+            System.out.println("7 - Remove Edge");
+            System.out.println("8 - Print AdjacencyList");
             System.out.print(":: ");
 
             int input = scanner.nextInt();
 
+            // TODO: Bundle DeliveryHub and CustomerLocation into Add/Delete Vertex option
             if (input == 1) {
                 try {
                     System.out.println("Enter DeliveryHub Value");
@@ -88,6 +93,20 @@ public class Display {
 
             if (input == 2) {
                 try {
+                    // code to remove DeliveryHub
+                    System.out.println("Enter DeliveryHub Value");
+                    System.out.print(":: ");
+                    String vertex_value = scanner.next();
+
+                    graphinformation.remove_vertex(new Vertex(vertex_value));
+                    graph.removeNode(vertex_value);
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 3) {
+                try {
                     System.out.println("Enter CustomerLocation Value");
                     System.out.print(":: ");
                     String vertex_value = scanner.next();
@@ -99,7 +118,21 @@ public class Display {
                 }
             }
 
-            if (input == 3) {
+            if (input == 4) {
+                try {
+                    // code to remove CustomerLocation
+                    System.out.println("Enter CustomerLocation Value");
+                    System.out.print(":: ");
+                    String vertex_value = scanner.next();
+
+                    graphinformation.remove_vertex(new Vertex(vertex_value));
+                    graph.removeNode(vertex_value);
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 5) {
                 try {
                     System.out.println("Enter Start Vertex");
                     System.out.print(":: ");
@@ -115,7 +148,7 @@ public class Display {
 
                     graphinformation.add_directed_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), distance_weight);
 
-                    Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex);
+                    Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex, true);
                     edge.setAttribute("ui.label", distance_weight);
                     continue;
 
@@ -125,7 +158,34 @@ public class Display {
                 }
             }
 
-            if (input == 4) {
+            if (input == 6) {
+                try {
+                    // code to modify Edge
+
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 7) {
+                try {
+                    // code to remove Edge
+                    System.out.println("Enter Start Vertex");
+                    System.out.print(":: ");
+                    String start_vertex = scanner.next();
+
+                    System.out.println("Enter connecting Vertex");
+                    System.out.print(":: ");
+                    String connecting_vertex = scanner.next();
+
+                    graphinformation.remove_directed_edge(new Vertex(start_vertex), new Vertex(connecting_vertex));
+                    graph.removeEdge(start_vertex + "" + connecting_vertex);
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 8) {
                 graphinformation.print_List();
             }
         }

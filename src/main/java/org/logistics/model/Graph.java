@@ -27,6 +27,21 @@ public class Graph {
 
     }
 
+
+    /**
+     * Method responsible for removing Vertex from the AdjacencyList
+     * @param vertex (Vertex) - Vertex to remove
+     */
+    public  void remove_vertex(Vertex vertex) {
+        Vertex exist_vertex = this.findVertex(vertex);
+
+        if (exist_vertex == null) {
+            System.out.println("Couldn't find vertex to remove");
+        }
+
+        adjacencyList.remove(exist_vertex);
+    }
+
     /**
      * Method responsible for creating edges between two vertexes with weights
      * @param start_vertex Starting Vertex
@@ -56,6 +71,34 @@ public class Graph {
 
     }
 
+
+    /**
+     * Method responsible for removing the Edge connecting from starting Vertex
+     * @param start_vertex (Vertex) - Vertex to remove edge from
+     */
+
+    public void remove_directed_edge(Vertex start_vertex, Vertex connecting_vertex) {
+        // TODO: Fix issue where it would remove every Vertex because of unspecified Connecting vertex
+
+        Vertex exist_start = this.findVertex(start_vertex);
+        Vertex exist_connecting = this.findVertex(connecting_vertex);
+
+        if (exist_start == null) {
+            System.out.println("Couldn't find starting vertex to remove edge from");
+        }
+
+        if (exist_connecting == null) {
+            System.out.println("Couldn't find connecting vertex");
+        }
+        Edge exist_edge = this.findEdge(exist_start, connecting_vertex);
+
+        if (exist_edge == null) {
+            System.out.println("Couldn't find edge to remove");
+        }
+
+        adjacencyList.get(exist_start).remove(exist_edge);
+    }
+
     /**
      * Method responsible for displaying the current adjacencyList
      * @return Output with current vertex and edges information
@@ -74,10 +117,20 @@ public class Graph {
         }
     }
 
+    /**
+     * Method responsible for return the AdjacencyList
+     * @return adjacencyList
+     */
     public HashMap<Vertex, LinkedList<Edge>> getAdjacencyList() {
         return adjacencyList;
     }
 
+
+    /**
+     * Method responsible for finding appropriate vertex in the adjacencyList based on Vertex Value
+     * @param vertex (Vertex) - Vertex to find in the AdjacencyList
+     * @return vertex - Returns Appropriate Vertex. Otherwise null
+     */
     public Vertex findVertex(Vertex vertex) {
         // TODO: Improve this to search for both so we don't have to reloop each time
 //        System.out.println(vertex.get_node_value());
@@ -86,6 +139,17 @@ public class Graph {
                 return v;
             }
         }
+        return null;
+    }
+
+
+    public Edge findEdge(Vertex start_vertex, Vertex connecting_vertex) {
+        for (Edge edge : adjacencyList.get(start_vertex)) {
+            if (Objects.equals(edge.getConnecting_node().get_node_value(), connecting_vertex.get_node_value())) {
+                return edge;
+            }
+        }
+
         return null;
     }
 
