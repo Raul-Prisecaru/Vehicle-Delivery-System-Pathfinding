@@ -66,9 +66,16 @@ public class vehicleTest {
     @Test
     public void travelDestination() {
         Vertex testVertexB = new Vertex("B");
+        Vertex testVertexC = new Vertex("C");
         testVehicle.addTravelDestination(testVertexB);
+        testVehicle.addTravelDestination(testVertexC);
 
-        testVehicle.travel();
+        for (Vertex vertex : testVehicle.getTravelDestinations().reversed()) {
+            testVehicle.travel(vertex);
+            assertEquals(testVehicle.getCurrent_vertex(), vertex);
+        }
+
+
         assertEquals("B", testVehicle.getCurrent_vertex().get_node_value());
         assertTrue(testVertexA.getStoredVehicles().isEmpty());
         assertFalse(testVertexB.getStoredVehicles().isEmpty());
