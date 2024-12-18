@@ -27,6 +27,16 @@ public class Graph {
 
     }
 
+    public  void remove_vertex(Vertex vertex) {
+        Vertex exist_vertex = this.findVertex(vertex);
+
+        if (exist_vertex == null) {
+            System.out.println("Couldn't find vertex to remove");
+        }
+
+        adjacencyList.remove(exist_vertex);
+    }
+
     /**
      * Method responsible for creating edges between two vertexes with weights
      * @param start_vertex Starting Vertex
