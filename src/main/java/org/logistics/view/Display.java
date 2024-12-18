@@ -73,6 +73,7 @@ public class Display {
 
             int input = scanner.nextInt();
 
+            // TODO: Bundle DeliveryHub and CustomerLocation into Add/Delete Vertex option
             if (input == 1) {
                 try {
                     System.out.println("Enter DeliveryHub Value");
@@ -169,13 +170,16 @@ public class Display {
             if (input == 7) {
                 try {
                     // code to remove Edge
-                    System.out.println("Enter Start Vertex Value");
+                    System.out.println("Enter Start Vertex");
                     System.out.print(":: ");
-                    String vertex_value = scanner.next();
+                    String start_vertex = scanner.next();
 
-                    // TODO: An Error has occurred: Cannot invoke "java.util.LinkedList.remove()" because the return value of "java.util.HashMap.get(Object)" is null
-                    graphinformation.remove_directed_edge(new Vertex(vertex_value));
-                    graph.removeEdge(vertex_value);
+                    System.out.println("Enter connecting Vertex");
+                    System.out.print(":: ");
+                    String connecting_vertex = scanner.next();
+
+                    graphinformation.remove_directed_edge(new Vertex(start_vertex), new Vertex(connecting_vertex));
+                    graph.removeEdge(start_vertex + "" + connecting_vertex);
                 } catch (Exception e) {
                     System.out.println("An Error has occurred: " + e.getMessage());
                 }
