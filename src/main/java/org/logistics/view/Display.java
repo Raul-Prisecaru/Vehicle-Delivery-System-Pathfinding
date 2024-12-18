@@ -62,9 +62,13 @@ public class Display {
         // TODO: Somehow add a Unit Test for this
         while (true) {
             System.out.println("1 - Add DeliverHub Vertex");
-            System.out.println("2 - Add CustomerLocation Vertex");
-            System.out.println("3 - Add Edge");
-            System.out.println("4 - Print AdjacencyList");
+            System.out.println("2 - Remove DeliverHub Vertex");
+            System.out.println("3 - Add CustomerLocation Vertex");
+            System.out.println("4 - Remove CustomerLocation Vertex");
+            System.out.println("5 - Add Edge");
+            System.out.println("6 - Change Edge");
+            System.out.println("7 - Remove Edge");
+            System.out.println("8 - Print AdjacencyList");
             System.out.print(":: ");
 
             int input = scanner.nextInt();
@@ -88,6 +92,14 @@ public class Display {
 
             if (input == 2) {
                 try {
+                    // code to remove DeliveryHub
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 3) {
+                try {
                     System.out.println("Enter CustomerLocation Value");
                     System.out.print(":: ");
                     String vertex_value = scanner.next();
@@ -99,7 +111,15 @@ public class Display {
                 }
             }
 
-            if (input == 3) {
+            if (input == 4) {
+                try {
+                    // code to remove DeliveryHub
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 5) {
                 try {
                     System.out.println("Enter Start Vertex");
                     System.out.print(":: ");
@@ -125,7 +145,23 @@ public class Display {
                 }
             }
 
-            if (input == 4) {
+            if (input == 6) {
+                try {
+                    // code to modify Edge
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 7) {
+                try {
+                    // code to remove Edge
+                } catch (Exception e) {
+                    System.out.println("An Error has occurred: " + e.getMessage());
+                }
+            }
+
+            if (input == 8) {
                 graphinformation.print_List();
             }
         }
