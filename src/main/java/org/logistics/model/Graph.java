@@ -71,7 +71,7 @@ public class Graph {
     }
 
 
-    public void modify_edge(Vertex start_vertex, Vertex connecting_vertex, int new_distance) {
+    public void modify_edge(Vertex start_vertex, Vertex connecting_vertex, int new_distance, Vertex new_start_vertex) {
         Vertex exist_start = this.findVertex(start_vertex);
         Vertex exist_connecting = this.findVertex(connecting_vertex);
 
@@ -91,6 +91,10 @@ public class Graph {
             if (Objects.equals(edge.getConnecting_node().get_node_value(), exist_connecting.get_node_value())) {
                 edge.setConnecting_vertex(exist_connecting);
                 edge.setDistance_weight(new_distance);
+
+                adjacencyList.get(start_vertex).remove(edge);
+
+                adjacencyList.get(new_start_vertex).push(edge);
             }
 
         }
