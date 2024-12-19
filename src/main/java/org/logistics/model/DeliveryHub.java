@@ -1,8 +1,11 @@
 package org.logistics.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class DeliveryHub extends Vertex {
+    HashSet<Package> packages = new HashSet<Package>();
+
     public DeliveryHub(String value) {
         super(value);
     }
@@ -34,5 +37,16 @@ public class DeliveryHub extends Vertex {
     @Override
     public String toString() {
         return "DeliveryHub: " + get_node_value();
+    }
+
+
+    public HashSet<Package> getPackages () {
+        return packages;
+    }
+
+    public void removePackages(Package package_remove) {
+        packages.remove(package_remove);
+
+        packages.add(new Package("Phone", new CustomerLocation("E"), 0));
     }
 }
