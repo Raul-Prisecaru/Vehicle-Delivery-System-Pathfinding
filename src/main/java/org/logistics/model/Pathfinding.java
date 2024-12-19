@@ -4,13 +4,14 @@ import java.util.*;
 
 public class Pathfinding {
     private HashMap<Vertex, LinkedList<Edge>> adjacencyList;
-
+    private Graph graph;
     //TODO: Provide better description for the Constructor JavaDoc
     /**
      * Constructor responsible for setting the graph environment
      * @param graph (Graph) | Graph Environment
      */
     public Pathfinding(Graph graph) {
+        this.graph = graph;
         this.adjacencyList = graph.getAdjacencyList();
     }
 
@@ -90,7 +91,44 @@ public class Pathfinding {
 
             System.out.println(vehicle.getTravelDestinations());
         } else {
-            System.out.println("Vehicle does not contain any package");
+            Vertex start_vertex = vehicle.getCurrent_vertex();
+            start_vertex.set_distance(0);
+
+            unvisited.add(start_vertex);
+            predecessor.put(start_vertex, null);
+
+            while (!unvisited.isEmpty()) {
+                Vertex current = unvisited.poll();
+                if (!visited.contains(current)) {
+                    for (Edge edge : adjacencyList.get(current)) {
+                        int totalDistance = current.get_distance() + edge.getDistance_weight();
+
+                        if (totalDistance < edge.getConnecting_node().get_distance()) {
+                            edge.getConnecting_node().set_distance(totalDistance);
+                            unvisited.remove(edge.getConnecting_node());
+                            unvisited.add(edge.getConnecting_node());
+
+                            predecessor.remove(edge.getConnecting_node(), current);
+                            predecessor.put(edge.getConnecting_node(), current);
+                        }
+
+
+                    }
+                    unvisited.remove(current);
+                    visited.add(current);
+
+                }
+            }
+            Vertex endVertex = this.graph.findVertex(new Vertex("A"));
+            vehicle.addTravelDestination(endVertex);
+            for (Vertex vertex : predecessor.keySet()) {
+                if (predecessor.get(endVertex) != null) {
+                    vehicle.addTravelDestination(predecessor.get(endVertex));
+                    endVertex = predecessor.get(endVertex);
+                } else {
+                    vehicle.addTravelDestination(vehicle.getCurrent_vertex());
+                    break;
+                }
         }
         return shortestPath;
     }
@@ -98,4 +136,23 @@ public class Pathfinding {
 
     // TODO: Idea: Method to check which vehicle is closest to High priority packages
 
+        return null;
+    }
+
+
+    /**
+     * Method responsible for finding the shortest route towards a specified customerLocation
+     * @param customerLocation (CustomerLocation) - CustomerLocation to find the route to
+     */
+    public void find_shortest_customer(CustomerLocation customerLocation) {
+
+    }
+
+    /**
+     * Method responsible for finding the shortest route towards a specified DeliveryHub
+     * @param deliveryHub (DeliveryHub) - DeliveryHub to find the route to
+     */
+    public void find_shortest_delivery(DeliveryHub deliveryHub) {
+
+    }
 }
