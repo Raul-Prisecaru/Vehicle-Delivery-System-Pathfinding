@@ -221,9 +221,7 @@ public class Pathfinding {
      * @param customerLocation (DeliveryHub) - DeliveryHub to find the route to
      * @return
      */
-    public HashMap<Vertex, Integer> find_shortest_customer(Vertex customerLocation, Vehicle vehicle) {
-
-        HashMap <Vertex, Integer> shortestPath = new HashMap<>();
+    public HashMap<Vertex, Integer> find_shortest_customer(Vertex deliveryHub, Vehicle vehicle) {
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
@@ -247,7 +245,7 @@ public class Pathfinding {
                         unvisited.remove(edge.getConnecting_node());
                         unvisited.add(edge.getConnecting_node());
 
-//                        predecessor.remove(edge.getConnecting_node(), current);
+                        predecessor.remove(edge.getConnecting_node(), current);
                         predecessor.put(edge.getConnecting_node(), current);
                     }
 
@@ -259,21 +257,21 @@ public class Pathfinding {
             }
         }
         System.out.println("-- Final Destination --");
-        // TODO: Modify this to get output from Hash Table
-        for (Vertex vertex : visited) {
-            if (vertex == customerLocation) {
-                System.out.println("Start Location: " + vehicle.getCurrent_location());
-                System.out.println("Destination: " + vertex);
-                System.out.println("Distance: " + vertex.get_distance());
-                shortestPath.put(vertex, vertex.get_distance());
+////        // TODO: Modify this to get output from Hash Table
+//        for (Vertex vertex : visited) {
+//            if (vertex == deliveryHub) {
+//                System.out.println("Start Location: " + vehicle.getCurrent_location());
+//                System.out.println("Destination: " + vertex);
+//                System.out.println("Distance: " + vertex.get_distance());
+//                shortestPath.put(vertex, vertex.get_distance());
+//
+//            }
+//        }
 
-            }
-        }
+//        System.out.println("------");
+//        System.out.println("Predecessor");
 
-        System.out.println("------");
-        System.out.println("Predecessor");
-
-        Vertex endVertex = customerLocation;
+        Vertex endVertex = deliveryHub;
         vehicle.addTravelDestination(endVertex);
         for (Vertex vertex : predecessor.keySet()) {
             if (predecessor.get(endVertex) != null) {
@@ -284,10 +282,9 @@ public class Pathfinding {
                 break;
             }
 
-            System.out.println("Vertex: " + vertex);
-            System.out.println("predecessor: " + predecessor.get(vertex));
-            System.out.println("-------");
         }
-        return shortestPath;
+        return null;
     }
+
+
 }
