@@ -233,9 +233,17 @@ public class Display {
 
     }
 
-    public void visualise_vehicle(Vehicle vehicle) {
-        Node current_Node = graph.getNode(vehicle.getCurrent_vertex().get_node_value());
-        current_Node.setAttribute("ui.style", "fill-color: red;");
+    public void visualise_vehicle(Vertex vertex, int OnOff) {
+        Node current_Node = graph.getNode(vertex.get_node_value());
+
+        if (OnOff == 0) {
+            current_Node.setAttribute("ui.style", "fill-color: black;");
+        }
+
+        if (OnOff == 1) {
+            current_Node.setAttribute("ui.style", "fill-color: red;");
+
+        }
 
 
 
