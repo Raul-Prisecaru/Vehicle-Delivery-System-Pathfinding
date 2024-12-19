@@ -89,15 +89,17 @@ public class Main {
         // Create Initial Graph and display
         displayGraph.createGraph();
         displayGraph.displayGUI();
+
         while (true) {
             // call pathfinding method for vehicles to find their destinations
             for (Vehicle vehicle : list_of_vehicles) {
-                if (vehicle.get_deliveryPackages().isEmpty()) {
-                    pathfinding.find_shortest_customer(customerLocationE, vehicle);
+                if (!vehicle.get_deliveryPackages().isEmpty()) {
+                    pathfinding.find_shortest_customer(customerLocationF, vehicle);
                 }
 
-                if (!vehicle.get_deliveryPackages().isEmpty()) {
-                    pathfinding.find_shortest_delivery(deliveryHubA, vehicle);
+                if (vehicle.get_deliveryPackages().isEmpty()) {
+//                    pathfinding.find_shortest_delivery(deliveryHubB, vehicle);
+                    pathfinding.find_shortest_customer(deliveryHubB, vehicle);
 
                 }
             }
@@ -107,43 +109,15 @@ public class Main {
                 vehicle1.travel(vertex);
                 Thread.sleep(500);
                 displayGraph.visualise_vehicle(vertex, 0);
-            }
 
-            // If we collecting packages from deliveryHub
-//            if (vehicle1.getCurrent_vertex() == deliveryHubA) {
-//                // Collect packages from DeliveryHub
-//                for (Package package_delivery : deliveryHubA.getPackages()) {
-//                    deliveryHubA.removePackages(package_delivery);
-//                    vehicle1.get_deliveryPackages().add(package_delivery);
-//                }
-//            }
-//
-//            // If we dropping off package to CustomerLocation
-//            if (vehicle1.getCurrent_vertex() == vehicle1.get_deliveryPackages().peek().getDestination()) {
-//                // Drop the packages off to the Customer Location
-//                System.out.println("PACKAGE: " + vehicle1.get_deliveryPackages());
-//                vehicle1.get_deliveryPackages().poll().getDestination().getCollected_packages().add(vehicle1.get_deliveryPackages().peek());
-//                System.out.println("PACKAGE: " + vehicle1.get_deliveryPackages());
-//
-//            }
+
+                if (vertex == customerLocationE) {
+                    vehicle1.get_deliveryPackages().clear();
+                }
+            }
 
             vehicle1.getTravelDestinations().clear();
 
-            // vehicle travels to those destination
-
-            // Drop off the packages
-
-            // Update the Graph to reflect those changes?
-
-            // pathfinding to the nearest deliveryHub
-
-            // vehicle travels to those destinations
-
-
-
-            // Display the options for dynamically modify graph
-            // Move this to it's own thread to run alongside simulation??
-//            displayGraph.dynamic_options();
         }
 
 
