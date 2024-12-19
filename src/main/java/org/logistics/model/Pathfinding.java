@@ -11,7 +11,10 @@ public class Pathfinding {
      * Constructor responsible for setting the graph environment
      * @param graph (Graph) | Graph Environment
      */
-
+    public Pathfinding(Graph graph) {
+        this.graph = graph;
+        this.adjacencyList = graph.getAdjacencyList();
+    }
     /**
      * Method Responsible for finding the shortest path between current vehicle position and package destination
      * @param vehicle (Vehicle) | used to find shortest path between current vehicle location and packages it contains destinations
@@ -177,17 +180,17 @@ public class Pathfinding {
 
             }
         }
-        System.out.println("-- Final Destination --");
-        // TODO: Modify this to get output from Hash Table
-        for (Vertex vertex : visited) {
-            if (vertex == deliveryHub) {
-                System.out.println("Start Location: " + vehicle.getCurrent_location());
-                System.out.println("Destination: " + vertex);
-                System.out.println("Distance: " + vertex.get_distance());
-                shortestPath.put(vertex, vertex.get_distance());
-
-            }
-        }
+//        System.out.println("-- Final Destination --");
+//        // TODO: Modify this to get output from Hash Table
+//        for (Vertex vertex : visited) {
+//            if (vertex == deliveryHub) {
+//                System.out.println("Start Location: " + vehicle.getCurrent_location());
+//                System.out.println("Destination: " + vertex);
+//                System.out.println("Distance: " + vertex.get_distance());
+//                shortestPath.put(vertex, vertex.get_distance());
+//
+//            }
+//        }
 
         System.out.println("------");
         System.out.println("Predecessor");
