@@ -30,7 +30,7 @@ public class Pathfinding {
 
         if (!vehicle.get_deliveryPackages().isEmpty()) {
 
-            Vertex start_vertex = vehicle.getCurrent_vertex();
+            Vertex start_vertex = vehicle.getCurrent_location();
             start_vertex.set_distance(0);
 
             unvisited.add(start_vertex);
@@ -62,7 +62,7 @@ public class Pathfinding {
             // TODO: Modify this to get output from Hash Table
             for (Vertex vertex : visited) {
                 if (vertex == vehicle.get_deliveryPackages().peek().getDestination()) {
-                    System.out.println("Start Location: " + vehicle.getCurrent_vertex());
+                    System.out.println("Start Location: " + vehicle.getCurrent_location());
                     System.out.println("Destination: " + vertex);
                     System.out.println("Distance: " + vertex.get_distance());
                     shortestPath.put(vertex, vertex.get_distance());
@@ -80,7 +80,7 @@ public class Pathfinding {
                     vehicle.addTravelDestination(predecessor.get(endVertex));
                     endVertex = predecessor.get(endVertex);
                 } else {
-                    vehicle.addTravelDestination(vehicle.getCurrent_vertex());
+                    vehicle.addTravelDestination(vehicle.getCurrent_location());
                     break;
                 }
 
@@ -91,7 +91,7 @@ public class Pathfinding {
 
             System.out.println(vehicle.getTravelDestinations());
         } else {
-            Vertex start_vertex = vehicle.getCurrent_vertex();
+            Vertex start_vertex = vehicle.getCurrent_location();
             start_vertex.set_distance(0);
 
             unvisited.add(start_vertex);
@@ -126,7 +126,7 @@ public class Pathfinding {
                     vehicle.addTravelDestination(predecessor.get(endVertex));
                     endVertex = predecessor.get(endVertex);
                 } else {
-                    vehicle.addTravelDestination(vehicle.getCurrent_vertex());
+                    vehicle.addTravelDestination(vehicle.getCurrent_location());
                     break;
                 }
         }
@@ -142,17 +142,145 @@ public class Pathfinding {
 
     /**
      * Method responsible for finding the shortest route towards a specified customerLocation
-     * @param customerLocation (CustomerLocation) - CustomerLocation to find the route to
+     *
      */
-    public void find_shortest_customer(CustomerLocation customerLocation) {
+    public HashMap<Vertex, Integer> find_shortest_delivery(DeliveryHub deliveryHub, Vehicle vehicle) {
+        HashMap<Vertex, Integer> shortestPath = new HashMap<>();
+        HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
+        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
+        Set<Vertex> visited = new HashSet<>();
+
+        Vertex start_vertex = vehicle.getCurrent_location();
+        start_vertex.set_distance(0);
+
+        unvisited.add(start_vertex);
+        predecessor.put(start_vertex, null); // Initialize start_vertex with no predecessor.
+
+        while (!unvisited.isEmpty()) {
+            Vertex current = unvisited.poll();
+            if (!visited.contains(current)) {
+                for (Edge edge : adjacencyList.get(current)) {
+                    int totalDistance = current.get_distance() + edge.getDistance_weight();
+
+                    if (totalDistance < edge.getConnecting_node().get_distance()) {
+                        edge.getConnecting_node().set_distance(totalDistance);
+                        unvisited.remove(edge.getConnecting_node());
+                        unvisited.add(edge.getConnecting_node());
+                        predecessor.put(edge.getConnecting_node(), current); // Update predecessor.
+                    }
+                }
+                visited.add(current);
+            }
+        }
+
+        System.out.println("-- Final Destination --");
+        for (Vertex vertex : visited) {
+            if (vertex.equals(deliveryHub)) {
+                System.out.println("Start Location: " + vehicle.getCurrent_location());
+                System.out.println("Destination: " + vertex);
+                System.out.println("Distance: " + vertex.get_distance());
+                shortestPath.put(vertex, vertex.get_distance());
+            }
+        }
+
+        System.out.println("------");
+        System.out.println("Predecessor");
+
+        // Path Reconstruction
+        LinkedList<Vertex> path = new LinkedList<>();
+        Vertex endVertex = deliveryHub;
+
+        // Traverse the predecessor chain back to the starting vertex.
+        while (endVertex != null) {
+            path.addFirst(endVertex); // Add each vertex at the start of the list.
+            endVertex = predecessor.get(endVertex);
+        }
+
+        // Add the path to the vehicle's travel destinations.
+        for (Vertex vertex : path) {
+            vehicle.addTravelDestination(vertex);
+        }
+
+        return shortestPath;
     }
+
+
+
 
     /**
      * Method responsible for finding the shortest route towards a specified DeliveryHub
-     * @param deliveryHub (DeliveryHub) - DeliveryHub to find the route to
+     *
+     * @param customerLocation (DeliveryHub) - DeliveryHub to find the route to
+     * @return
      */
-    public void find_shortest_delivery(DeliveryHub deliveryHub) {
+    public HashMap<Vertex, Integer> find_shortest_customer(Vertex customerLocation, Vehicle vehicle) {
 
+        HashMap <Vertex, Integer> shortestPath = new HashMap<>();
+        HashMap<Vertex, Vertex> predecessor = new HashMap<>();
+
+        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
+        Queue<Vertex> visited = new LinkedList<>();
+
+        Vertex start_vertex = vehicle.getCurrent_location();
+        start_vertex.set_distance(0);
+
+        unvisited.add(start_vertex);
+        predecessor.put(start_vertex, null);
+
+        while (!unvisited.isEmpty()) {
+            Vertex current = unvisited.poll();
+            if (!visited.contains(current)) {
+                for (Edge edge : adjacencyList.get(current)) {
+                    int totalDistance = current.get_distance() + edge.getDistance_weight();
+                    edge.getConnecting_node().set_distance(Integer.MAX_VALUE);
+
+                    if (totalDistance < edge.getConnecting_node().get_distance()) {
+                        edge.getConnecting_node().set_distance(totalDistance);
+                        unvisited.remove(edge.getConnecting_node());
+                        unvisited.add(edge.getConnecting_node());
+
+//                        predecessor.remove(edge.getConnecting_node(), current);
+                        predecessor.put(edge.getConnecting_node(), current);
+                    }
+
+
+                }
+                unvisited.remove(current);
+                visited.add(current);
+
+            }
+        }
+        System.out.println("-- Final Destination --");
+        // TODO: Modify this to get output from Hash Table
+        for (Vertex vertex : visited) {
+            if (vertex == customerLocation) {
+                System.out.println("Start Location: " + vehicle.getCurrent_location());
+                System.out.println("Destination: " + vertex);
+                System.out.println("Distance: " + vertex.get_distance());
+                shortestPath.put(vertex, vertex.get_distance());
+
+            }
+        }
+
+        System.out.println("------");
+        System.out.println("Predecessor");
+
+        Vertex endVertex = customerLocation;
+        vehicle.addTravelDestination(endVertex);
+        for (Vertex vertex : predecessor.keySet()) {
+            if (predecessor.get(endVertex) != null) {
+                vehicle.addTravelDestination(predecessor.get(endVertex));
+                endVertex = predecessor.get(endVertex);
+            } else {
+                vehicle.addTravelDestination(vehicle.getCurrent_location());
+                break;
+            }
+
+            System.out.println("Vertex: " + vertex);
+            System.out.println("predecessor: " + predecessor.get(vertex));
+            System.out.println("-------");
+        }
+        return shortestPath;
     }
 }
