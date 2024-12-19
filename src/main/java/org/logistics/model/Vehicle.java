@@ -5,18 +5,18 @@ import java.util.*;
 public class Vehicle {
     private PriorityQueue<Package> deliveryPackages = new PriorityQueue<>(Comparator.comparingInt(Package::getPriority));
     private Stack<Vertex> travelDestination = new Stack<>();
-    private Vertex current_vertex;
+    private Vertex current_location;
 
     public Vehicle(Vertex start_vertex) {
-        this.current_vertex = start_vertex;
+        this.current_location = start_vertex;
     }
 
-    public Vertex getCurrent_vertex() {
-        return current_vertex;
+    public Vertex getCurrent_location() {
+        return current_location;
     }
 
-    public void setCurrent_vertex(Vertex new_location) {
-        this.current_vertex = new_location;
+    public void setCurrent_location(Vertex new_location) {
+        this.current_location = new_location;
     }
 
     /**
@@ -72,7 +72,8 @@ public class Vehicle {
      */
     public void travel(Vertex travel_vertex) {
             travel_vertex.setStoredVehicles(this);
-            this.setCurrent_vertex(travel_vertex);
+            this.setCurrent_location(travel_vertex);
+
 
 //        for (Vertex vertex : travelDestination.reversed()) {
 //            vertex.setStoredVehicles(this);
