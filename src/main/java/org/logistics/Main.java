@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws InterruptedException {
         HashSet<Vehicle> list_of_vehicles = new HashSet<>();
 
 
@@ -35,6 +35,7 @@ public class Main {
 
         Package phonePackage = new Package("Iphone", customerLocationE, 1);
         vehicle1.add_deliveryPackage(phonePackage);
+        deliveryHubA.getPackages().add(phonePackage);
 
         // Creating Vertexes
         graph.add_vertex(deliveryHubA);
@@ -90,8 +91,43 @@ public class Main {
         displayGraph.displayGUI();
         while (true) {
             // call pathfinding method for vehicles to find their destinations
+            for (Vehicle vehicle : list_of_vehicles) {
+                if (vehicle.get_deliveryPackages().isEmpty()) {
+                    pathfinding.find_shortest_customer(customerLocationE, vehicle);
+                }
 
+                if (!vehicle.get_deliveryPackages().isEmpty()) {
+                    pathfinding.find_shortest_delivery(deliveryHubA, vehicle);
 
+                }
+            }
+
+            for (Vertex vertex : vehicle1.getTravelDestinations().reversed()) {
+                displayGraph.visualise_vehicle(vertex, 1);
+                vehicle1.travel(vertex);
+                Thread.sleep(500);
+                displayGraph.visualise_vehicle(vertex, 0);
+            }
+
+            // If we collecting packages from deliveryHub
+//            if (vehicle1.getCurrent_vertex() == deliveryHubA) {
+//                // Collect packages from DeliveryHub
+//                for (Package package_delivery : deliveryHubA.getPackages()) {
+//                    deliveryHubA.removePackages(package_delivery);
+//                    vehicle1.get_deliveryPackages().add(package_delivery);
+//                }
+//            }
+//
+//            // If we dropping off package to CustomerLocation
+//            if (vehicle1.getCurrent_vertex() == vehicle1.get_deliveryPackages().peek().getDestination()) {
+//                // Drop the packages off to the Customer Location
+//                System.out.println("PACKAGE: " + vehicle1.get_deliveryPackages());
+//                vehicle1.get_deliveryPackages().poll().getDestination().getCollected_packages().add(vehicle1.get_deliveryPackages().peek());
+//                System.out.println("PACKAGE: " + vehicle1.get_deliveryPackages());
+//
+//            }
+
+            vehicle1.getTravelDestinations().clear();
 
             // vehicle travels to those destination
 
@@ -107,7 +143,7 @@ public class Main {
 
             // Display the options for dynamically modify graph
             // Move this to it's own thread to run alongside simulation??
-            displayGraph.dynamic_options();
+//            displayGraph.dynamic_options();
         }
 
 
