@@ -5,6 +5,7 @@ import org.graphstream.ui.layout.springbox.implementations.SpringBox;
 import org.graphstream.ui.view.Viewer;
 import org.logistics.model.CustomerLocation;
 import org.logistics.model.DeliveryHub;
+import org.logistics.model.Vehicle;
 import org.logistics.model.Vertex;
 
 import java.util.Scanner;
@@ -53,13 +54,10 @@ public class Display {
                 String id = currentEdge.getStart_node().get_node_value() + currentEdge.getConnecting_node().get_node_value();
                 Edge edge = graph.addEdge(id, currentEdge.getStart_node().get_node_value(), currentEdge.getConnecting_node().get_node_value(), true);
                 edge.setAttribute("ui.label", currentEdge.getDistance_weight());
+
             }
 
         }
-
-
-
-
 
 
     }
@@ -232,6 +230,15 @@ public class Display {
                 graphinformation.print_List();
             }
         }
+
+    }
+
+    public void visualise_vehicle(Vehicle vehicle) {
+        Node current_Node = graph.getNode(vehicle.getCurrent_vertex().get_node_value());
+        current_Node.setAttribute("ui.style", "fill-color: red;");
+
+
+
 
     }
 
