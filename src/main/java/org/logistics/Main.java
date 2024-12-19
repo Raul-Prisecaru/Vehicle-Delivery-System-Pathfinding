@@ -4,10 +4,14 @@ import org.logistics.model.*;
 import org.logistics.model.Package;
 import org.logistics.view.Display;
 
+import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        HashSet<Vehicle> list_of_vehicles = new HashSet<>();
+
+
         // Creating Graph Environment
         Scanner scanner = new Scanner(System.in);
         Graph graph = new Graph();
@@ -27,6 +31,8 @@ public class Main {
 
         // Creating Packages
         Vehicle vehicle1 = new Vehicle(deliveryHubA);
+        list_of_vehicles.add(vehicle1);
+
         Package phonePackage = new Package("Iphone", customerLocationE, 1);
         vehicle1.add_deliveryPackage(phonePackage);
 
@@ -78,8 +84,31 @@ public class Main {
 //        graph.print_List();
 //        pathfinding.find_shortest_path(vehicle1);
 //        vehicle1.travel();
-        displayGraph.displayGraph();
 
+        // Create Initial Graph and display
+        displayGraph.createGraph();
+        displayGraph.displayGUI();
+        while (true) {
+            // call pathfinding method for vehicles to find their destinations
+
+
+
+            // vehicle travels to those destination
+
+            // Drop off the packages
+
+            // Update the Graph to reflect those changes?
+
+            // pathfinding to the nearest deliveryHub
+
+            // vehicle travels to those destinations
+
+
+
+            // Display the options for dynamically modify graph
+            // Move this to it's own thread to run alongside simulation??
+            displayGraph.dynamic_options();
+        }
 
 
     }
