@@ -21,15 +21,16 @@ public class Pathfinding {
     public HashMap<Vertex, Integer> find_shortest_path(Vehicle vehicle) {
         // TODO: Put the Vertex and distance in a hash table
         HashMap <Vertex, Integer> shortestPath = new HashMap<>();
+        HashMap<Vertex, Vertex> predecessor = new HashMap<>();
+
+        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
+        Queue<Vertex> visited = new LinkedList<>();
+
+
         if (!vehicle.get_deliveryPackages().isEmpty()) {
 
             Vertex start_vertex = vehicle.getCurrent_vertex();
             start_vertex.set_distance(0);
-
-            HashMap<Vertex, Vertex> predecessor = new HashMap<>();
-
-            PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
-            Queue<Vertex> visited = new LinkedList<>();
 
             unvisited.add(start_vertex);
             predecessor.put(start_vertex, null);
