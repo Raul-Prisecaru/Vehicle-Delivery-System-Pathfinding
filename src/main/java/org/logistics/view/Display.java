@@ -233,6 +233,12 @@ public class Display {
 
     }
 
+
+    /**
+     * Method responsible for highlighting the current vertex which the vehicle is currently on
+     * @param vertex (Vertex) - Vertex to highlight
+     * @param OnOff (int) - 0 to turn off highlight, 1 to turn on highlight
+     */
     public void visualise_vehicle(Vertex vertex, int OnOff) {
         Node current_Node = graph.getNode(vertex.get_node_value());
 
