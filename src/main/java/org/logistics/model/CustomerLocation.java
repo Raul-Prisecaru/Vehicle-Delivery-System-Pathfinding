@@ -1,12 +1,17 @@
 package org.logistics.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 public class CustomerLocation extends Vertex {
-    
+    HashSet<Package> collected_packages = new HashSet<Package>();
 
     public CustomerLocation(String value) {
         super(value);
+    }
+
+    public HashSet<Package> getCollected_packages() {
+        return collected_packages;
     }
 
     public String get_node_value() {
@@ -37,4 +42,6 @@ public class CustomerLocation extends Vertex {
     public String toString() {
         return "CustomerLocation: " + get_node_value();
     }
+
+
 }
