@@ -5,15 +5,12 @@ import java.util.*;
 public class Pathfinding {
     private HashMap<Vertex, LinkedList<Edge>> adjacencyList;
     private Graph graph;
+
     //TODO: Provide better description for the Constructor JavaDoc
     /**
      * Constructor responsible for setting the graph environment
      * @param graph (Graph) | Graph Environment
      */
-    public Pathfinding(Graph graph) {
-        this.graph = graph;
-        this.adjacencyList = graph.getAdjacencyList();
-    }
 
     /**
      * Method Responsible for finding the shortest path between current vehicle position and package destination
@@ -145,17 +142,18 @@ public class Pathfinding {
      *
      */
     public HashMap<Vertex, Integer> find_shortest_delivery(DeliveryHub deliveryHub, Vehicle vehicle) {
-        HashMap<Vertex, Integer> shortestPath = new HashMap<>();
+
+        HashMap <Vertex, Integer> shortestPath = new HashMap<>();
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
-        Set<Vertex> visited = new HashSet<>();
+        Queue<Vertex> visited = new LinkedList<>();
 
         Vertex start_vertex = vehicle.getCurrent_location();
         start_vertex.set_distance(0);
 
         unvisited.add(start_vertex);
-        predecessor.put(start_vertex, null); // Initialize start_vertex with no predecessor.
+        predecessor.put(start_vertex, null);
 
         while (!unvisited.isEmpty()) {
             Vertex current = unvisited.poll();
@@ -167,44 +165,50 @@ public class Pathfinding {
                         edge.getConnecting_node().set_distance(totalDistance);
                         unvisited.remove(edge.getConnecting_node());
                         unvisited.add(edge.getConnecting_node());
-                        predecessor.put(edge.getConnecting_node(), current); // Update predecessor.
+
+                        predecessor.remove(edge.getConnecting_node(), current);
+                        predecessor.put(edge.getConnecting_node(), current);
                     }
+
+
                 }
+                unvisited.remove(current);
                 visited.add(current);
+
             }
         }
-
         System.out.println("-- Final Destination --");
+        // TODO: Modify this to get output from Hash Table
         for (Vertex vertex : visited) {
-            if (vertex.equals(deliveryHub)) {
+            if (vertex == deliveryHub) {
                 System.out.println("Start Location: " + vehicle.getCurrent_location());
                 System.out.println("Destination: " + vertex);
                 System.out.println("Distance: " + vertex.get_distance());
                 shortestPath.put(vertex, vertex.get_distance());
+
             }
         }
 
         System.out.println("------");
         System.out.println("Predecessor");
 
-        // Path Reconstruction
-        LinkedList<Vertex> path = new LinkedList<>();
         Vertex endVertex = deliveryHub;
+        vehicle.addTravelDestination(endVertex);
+        for (Vertex vertex : predecessor.keySet()) {
+            if (predecessor.get(endVertex) != null) {
+                vehicle.addTravelDestination(predecessor.get(endVertex));
+                endVertex = predecessor.get(endVertex);
+            } else {
+                vehicle.addTravelDestination(vehicle.getCurrent_location());
 
-        // Traverse the predecessor chain back to the starting vertex.
-        while (endVertex != null) {
-            path.addFirst(endVertex); // Add each vertex at the start of the list.
-            endVertex = predecessor.get(endVertex);
+            }
+
+            System.out.println("Vertex: " + vertex);
+            System.out.println("predecessor: " + predecessor.get(vertex));
+            System.out.println("-------");
         }
-
-        // Add the path to the vehicle's travel destinations.
-        for (Vertex vertex : path) {
-            vehicle.addTravelDestination(vertex);
-        }
-
         return shortestPath;
     }
-
 
 
 
