@@ -15,7 +15,10 @@ public class Main {
         // Creating Graph Environment
         Scanner scanner = new Scanner(System.in);
         Graph graph = new Graph();
-        Pathfinding pathfinding = new Pathfinding(graph);
+
+        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
+        Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation(graph);
+
         Display displayGraph = new Display(graph);
 
         // Creating DeliveryHub Nodes
@@ -35,6 +38,7 @@ public class Main {
 
         Package PriorityphonePackage = new Package("Iphone", customerLocationF, 1);
         Package NonPriorityphonePackage = new Package("Iphone", customerLocationE, 0);
+        vehicle1.add_deliveryPackage(PriorityphonePackage);
         vehicle1.add_deliveryPackage(NonPriorityphonePackage);
         deliveryHubA.getPackages().add(PriorityphonePackage);
         deliveryHubB.getPackages().add(NonPriorityphonePackage);
@@ -67,27 +71,6 @@ public class Main {
         graph.add_directed_edge(customerLocationD, customerLocationF, 2); // Distance: 2
         graph.add_directed_edge(customerLocationC, customerLocationG, 6); // Distance: 6
 
-//        while (true) {
-//            // travelDestination == empty
-//
-//            // // Search for a DeliveryHub
-//            // // Go to the DeliveryHub
-//
-//            // travelDestination != empty
-//
-//            // Loop throught the travel destinations (pathfinding class)
-//            for (Vertex travel_vertex : vehicle1.getTravelDestinations().reversed()) {
-//                vehicle1.travel(travel_vertex);
-//            }
-//
-//
-//
-//        }
-
-//        graph.print_List();
-//        pathfinding.find_shortest_path(vehicle1);
-//        vehicle1.travel();
-
         // Create Initial Graph and display
         displayGraph.createGraph();
         displayGraph.displayGUI();
@@ -99,11 +82,11 @@ public class Main {
                     pathfinding.find_shortest_customer(vehicle);
                 }
 
-//                if (vehicle.get_deliveryPackages().isEmpty()) {
-////                    pathfinding.find_shortest_delivery(deliveryHubB, vehicle);
-////                    pathfinding.find_shortest_customer(deliveryHubB, vehicle);
-//
-//                }
+                if (vehicle.get_deliveryPackages().isEmpty()) {
+//                    pathfinding.find_shortest_delivery(deliveryHubB, vehicle);
+//                    pathfinding.find_shortest_customer(deliveryHubB, vehicle);
+
+                }
             }
 
             for (Vertex vertex : vehicle1.getTravelDestinations().reversed()) {
@@ -119,7 +102,7 @@ public class Main {
 
                 displayGraph.visualise_vehicle(vertex, 1);
                 vehicle1.travel(vertex);
-                Thread.sleep(3000);
+                Thread.sleep(1500);
                 displayGraph.visualise_vehicle(vertex, 0);
 
 

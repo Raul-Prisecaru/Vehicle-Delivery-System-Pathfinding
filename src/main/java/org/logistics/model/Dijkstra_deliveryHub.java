@@ -2,21 +2,20 @@ package org.logistics.model;
 
 import java.util.*;
 
-public class dijkstra_customerLocation {
+public class Dijkstra_deliveryHub {
     private HashMap<Vertex, LinkedList<Edge>> adjacencyList = new HashMap<>();
-
-    public dijkstra_customerLocation(Graph graph) {
+    public Dijkstra_deliveryHub(Graph graph) {
         this.adjacencyList = graph.getAdjacencyList();
+
     }
 
 
-
-      /**
-      * Method responsible for using dijkstra's algorithm to find the quickest route to customerLocation
-      * @Param vehicle (Vehicle) - vehicle to find the quickest route for based on packages
-      * @Return None
-      */
-    public void find_shortest_customer(Vehicle vehicle) {
+    /**
+     * Method responsible for using dijkstra's algorithm to find the quickest route to deliveryHub
+     * @Param vehicle (Vehicle) - vehicle to find the quickest route for
+     * @Return None
+     */
+    public void find_shortest_delivery(Vehicle vehicle) {
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
@@ -80,4 +79,6 @@ public class dijkstra_customerLocation {
             }
         }
     }
+
+
 }
