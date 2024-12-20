@@ -22,6 +22,10 @@ public class CustomerLocation extends Vertex {
         return collected_packages;
     }
 
+    public void addCollectedPackage(String itemName, CustomerLocation deliveryLocation, int priority) {
+        this.collected_packages.add(new Package(itemName, deliveryLocation, priority));
+    }
+
     /**
      * Method Responsible for returning the Vertex value of the CustomerLocation
      * @return String - Vertex Value
