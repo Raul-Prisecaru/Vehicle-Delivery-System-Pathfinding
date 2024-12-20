@@ -3,10 +3,12 @@ package org.logistics.model;
 import java.util.*;
 
 public class Dijkstra_deliveryHub {
+    private HashSet<DeliveryHub> deliveryHubList = new HashSet<>();
     private HashMap<Vertex, LinkedList<Edge>> adjacencyList = new HashMap<>();
+
     public Dijkstra_deliveryHub(Graph graph) {
         this.adjacencyList = graph.getAdjacencyList();
-
+        this.deliveryHubList = graph.getDeliveryHubList();
     }
 
 
@@ -26,22 +28,6 @@ public class Dijkstra_deliveryHub {
 
         unvisited.add(start_vertex);
         predecessor.put(start_vertex, null);
-
-        Package package_package = new Package(null, null, -1);
-
-        if (vehicle.get_deliveryPackages().size() == 2) {
-            // Compare the two packages
-            for (Package package_package_temp : vehicle.get_deliveryPackages()) {
-                if (package_package_temp.getPriority() > package_package.getPriority()) {
-                    package_package = package_package_temp;
-                }
-            }
-        }
-
-        if (vehicle.get_deliveryPackages().size() == 1) {
-            // set the package_package from null to what the vehicle has
-        }
-
 
         while (!unvisited.isEmpty()) {
             Vertex current = unvisited.poll();
@@ -66,7 +52,19 @@ public class Dijkstra_deliveryHub {
 
             }
         }
-        Vertex endVertex = package_package.getDestination();
+
+        DeliveryHub deliveryHub_shortest = null;
+        int minDistance = Integer.MAX_VALUE;
+
+        for (DeliveryHub deliveryHub : deliveryHubList) {
+            if (deliveryHub.get_distance() < minDistance) {
+                minDistance = deliveryHub.get_distance();
+                deliveryHub_shortest = deliveryHub;
+            }
+        }
+
+
+        Vertex endVertex = deliveryHub_shortest;
         vehicle.addTravelDestination(endVertex);
         for (Vertex vertex : predecessor.keySet()) {
             if (predecessor.get(endVertex) != null) {
@@ -74,7 +72,7 @@ public class Dijkstra_deliveryHub {
                 endVertex = predecessor.get(endVertex);
             }
 
-            if (endVertex == package_package.getDestination()) {
+            if (endVertex == deliveryHub_shortest) {
                 break;
             }
         }
