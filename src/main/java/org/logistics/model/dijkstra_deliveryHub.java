@@ -3,6 +3,11 @@ package org.logistics.model;
 import java.util.*;
 
 public class dijkstra_deliveryHub {
+    private HashMap<Vertex, LinkedList<Edge>> adjacencyList = new HashMap<>();
+    public dijkstra_deliveryHub(Graph graph) {
+        this.adjacencyList = graph.getAdjacencyList();
+
+    }
 
 
     /**
