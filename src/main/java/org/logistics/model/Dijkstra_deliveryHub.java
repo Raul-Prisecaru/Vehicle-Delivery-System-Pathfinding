@@ -3,11 +3,31 @@ package org.logistics.model;
 import java.util.*;
 
 public class Dijkstra_deliveryHub {
+    private Graph graph;
     private HashSet<DeliveryHub> deliveryHubList = new HashSet<>();
     private HashMap<Vertex, LinkedList<Edge>> adjacencyList = new HashMap<>();
 
+    /**
+     * Constructor Responsible for setting the graph, adjacencyList, and deliveryHubList
+     * @param graph
+     */
     public Dijkstra_deliveryHub(Graph graph) {
+        this.graph = graph;
         this.adjacencyList = graph.getAdjacencyList();
+        this.deliveryHubList = graph.getDeliveryHubList();
+    }
+
+    /**
+     * Method Responsible for updating the adjacencyList to ensure any dynamically added Vertexes or edges are added
+     */
+    public void updateAdjacencyList() {
+        this.adjacencyList = graph.getAdjacencyList();
+    }
+
+    /**
+     * Method Responsible for updating the DeliveryHub to ensure any dynamically added DeliveryHubs are added
+     */
+    public void updateDeliveryHub() {
         this.deliveryHubList = graph.getDeliveryHubList();
     }
 
@@ -18,6 +38,8 @@ public class Dijkstra_deliveryHub {
      * @Return None
      */
     public void find_shortest_delivery(Vehicle vehicle) {
+        updateAdjacencyList();
+        updateDeliveryHub();
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
