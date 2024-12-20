@@ -20,7 +20,7 @@ public class customerLocationVertexTest {
      * Method Responsible for ensuring Vertex's default distance has been correctly configured
      */
     @Test
-    void getVertexDistance() {
+    void getCustomerLocationDistance() {
         assertEquals(Integer.MAX_VALUE, testVertex.getDistance(), "Vertex's Distance was not properly configured");
     }
 
@@ -28,7 +28,7 @@ public class customerLocationVertexTest {
      * Method Responsible for ensuring Vertex's Distance value can be correctly updated
      */
     @Test
-    void updateVertexDistance() {
+    void updateCustomerLocationDistance() {
         testVertex.setDistance(5);
         assertEquals(5, testVertex.getDistance(), "Vertex's distance was not properly updated");
     }
@@ -37,7 +37,7 @@ public class customerLocationVertexTest {
      * Method Responsible for ensuring Vertex does not hold any vehicle at start
      */
     @Test
-    void getVertexStoredVehicle() {
+    void getCustomerLocationStoredVehicle() {
         assertTrue(testVertex.getStoredVehicles().isEmpty(), "Vertex's storedVehicle should contain nothing at start");
     }
 
@@ -45,7 +45,7 @@ public class customerLocationVertexTest {
      * Method Responsible for ensuring Vertex can hold Vehicles
      */
     @Test
-    void updateVertexStoredVehicle() {
+    void updateCustomerLocationStoredVehicle() {
         Vehicle testVehicle = new Vehicle(testVertex);
         testVertex.addStoredVehicles(testVehicle);
 
