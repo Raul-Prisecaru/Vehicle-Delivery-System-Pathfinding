@@ -2,16 +2,16 @@ package org.logistics.model;
 
 import java.util.ArrayList;
 
-public class Vertex {
-    private String value;
+public class Vertex<T> {
+    private T value;
     private ArrayList<Vehicle> storedVehicles = new ArrayList<>();
     private int distance = Integer.MAX_VALUE;
 
-    public Vertex(String value){
+    public Vertex(T value){
         this.value = value;
     }
 
-    public String getNodeValue() {
+    public T getNodeValue() {
         return this.value;
     }
 

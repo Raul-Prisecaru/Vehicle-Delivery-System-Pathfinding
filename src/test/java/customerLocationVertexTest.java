@@ -7,7 +7,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 public class customerLocationVertexTest {
-    CustomerLocation testCustomerLocationVertex = new CustomerLocation("A");
+    CustomerLocation<String> testCustomerLocationVertex = new CustomerLocation<String>("A");
 
     /**
      * Method Responsible for ensuring Vertex's Value has been correctly configured
@@ -64,7 +64,7 @@ public class customerLocationVertexTest {
 
     @Test
     void addCustomerLocationPackage() {
-        CustomerLocation customerLocation = new CustomerLocation("A");
+        CustomerLocation<String> customerLocation = new CustomerLocation<String>("A");
         testCustomerLocationVertex.addCollectedPackage("TestItem", customerLocation, 1);
 
         for (Package package_package : testCustomerLocationVertex.getCollectedPackages()) {
