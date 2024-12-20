@@ -79,13 +79,11 @@ public class Main {
             // call pathfinding method for vehicles to find their destinations
             for (Vehicle vehicle : list_of_vehicles) {
                 if (!vehicle.get_deliveryPackages().isEmpty()) {
-                    pathfinding.find_shortest_customer(vehicle);
+                    dijkstra_customerLocation.find_shortest_customer(vehicle);
                 }
 
                 if (vehicle.get_deliveryPackages().isEmpty()) {
-//                    pathfinding.find_shortest_delivery(deliveryHubB, vehicle);
-//                    pathfinding.find_shortest_customer(deliveryHubB, vehicle);
-
+                    dijkstra_deliveryHub.find_shortest_delivery(vehicle);
                 }
             }
 
