@@ -30,8 +30,8 @@ public class DeliveryHub extends Vertex {
         return super.getStoredVehicles();
     }
 
-    public void setStoredVehicles(Vehicle vehicle) {
-        super.setStoredVehicles(vehicle);
+    public void addStoredVehicles(Vehicle vehicle) {
+        super.addStoredVehicles(vehicle);
     }
 
     @Override

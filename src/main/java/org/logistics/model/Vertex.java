@@ -31,7 +31,7 @@ public class Vertex {
         return this.storedVehicles;
     }
 
-    public void setStoredVehicles(Vehicle vehicle) {
+    public void addStoredVehicles(Vehicle vehicle) {
         this.storedVehicles.add(vehicle);
     }
 }

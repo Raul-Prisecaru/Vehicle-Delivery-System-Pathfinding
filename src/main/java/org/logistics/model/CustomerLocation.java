@@ -66,8 +66,8 @@ public class CustomerLocation extends Vertex {
      * Method Responsible for adding vehicles to the ArrayList
      * @param vehicle (Vehicle) - Vehicle to add to the ArrayList
      */
-    public void setStoredVehicles(Vehicle vehicle) {
-        super.setStoredVehicles(vehicle);
+    public void addStoredVehicles(Vehicle vehicle) {
+        super.addStoredVehicles(vehicle);
     }
 
     /**

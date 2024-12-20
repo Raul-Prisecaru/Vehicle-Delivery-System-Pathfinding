@@ -71,7 +71,7 @@ public class Vehicle {
      * Method responsible for ensuring Vehicle travels to it's specified Vertexes
      */
     public void travel(Vertex travel_vertex) {
-            travel_vertex.setStoredVehicles(this);
+            travel_vertex.addStoredVehicles(this);
             this.setCurrent_location(travel_vertex);
 
 

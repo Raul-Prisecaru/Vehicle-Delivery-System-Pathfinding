@@ -57,7 +57,7 @@ public class vertexTest {
     @Test
     void updateVertexStoredVehicle() {
         Vehicle testVehicle = new Vehicle(testVertex);
-        testVertex.setStoredVehicles(testVehicle);
+        testVertex.addStoredVehicles(testVehicle);
 
         assertFalse(testVertex.getStoredVehicles().isEmpty());
 

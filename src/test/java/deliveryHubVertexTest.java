@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 import org.logistics.model.DeliveryHub;
 import org.logistics.model.Vehicle;
-import org.logistics.model.Vertex;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -57,7 +56,7 @@ public class deliveryHubVertexTest {
     @Test
     void updateVertexStoredVehicle() {
         Vehicle testVehicle = new Vehicle(testVertex);
-        testVertex.setStoredVehicles(testVehicle);
+        testVertex.addStoredVehicles(testVehicle);
 
         assertFalse(testVertex.getStoredVehicles().isEmpty());
 
