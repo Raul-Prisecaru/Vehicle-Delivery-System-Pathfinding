@@ -76,12 +76,44 @@ public class Display {
 
         viewer.enableAutoLayout(new SpringBox());
 
-        ViewPanel viewPanel = (ViewPanel) viewer.addDefaultView(false); // Add default view to the viewer
+        ViewPanel viewPanel = (ViewPanel) viewer.addDefaultView(false);
         frame.add(viewPanel, BorderLayout.CENTER);
         frame.setSize(800, 600);
         frame.setVisible(true);
 //        Viewer viewer = graph.display();
 //        viewer.enableAutoLayout(new SpringBox());
+    }
+
+    public void add_deliveryHub() {
+
+    }
+
+    public void add_customerLocation() {
+
+    }
+
+    public void remove_deliveryHub() {
+
+    }
+
+    public void remove_customerLocation() {
+
+    }
+
+    public void add_edge() {
+
+    }
+
+    public void modify_edge() {
+
+    }
+
+    public void remove_edge() {
+
+    }
+
+    public void print_adjacencyList() {
+
     }
 
     public void dynamic_options() {
