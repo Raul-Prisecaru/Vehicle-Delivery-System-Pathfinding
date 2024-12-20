@@ -41,6 +41,7 @@ public class Dijkstra_customerLocation {
 
         if (vehicle.get_deliveryPackages().size() == 1) {
             // set the package_package from null to what the vehicle has
+            package_package = vehicle.get_deliveryPackages().peek();
         }
 
 
