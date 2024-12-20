@@ -14,10 +14,6 @@ public class DeliveryHub extends Vertex {
         return super.getNodeValue();
     }
 
-    public void setNodeValue(String new_value) {
-        super.setNodeValue(new_value);
-    }
-
     public int getDistance() {
         return super.getDistance();
     }

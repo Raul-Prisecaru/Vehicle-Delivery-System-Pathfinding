@@ -12,17 +12,8 @@ public class customerLocationVertexTest {
      * Method Responsible for ensuring Vertex's Value has been correctly configured
      */
     @Test
-    void getVertexValue() {
+    void getCustomerLocationValue() {
         assertEquals("A", testVertex.getNodeValue(), "Vertex's value was not properly configured");
-    }
-
-    /**
-     * Method Responsible for ensuring Vertex's Value can be correctly updated
-     */
-    @Test
-    void updatingVertexValue() {
-        testVertex.setNodeValue("B");
-        assertEquals("B", testVertex.getNodeValue(), "Vertex's value was not properly updated'");
     }
 
     /**

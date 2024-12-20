@@ -15,10 +15,6 @@ public class Vertex {
         return this.value;
     }
 
-    public void setNodeValue(String new_value) {
-        this.value = new_value;
-    }
-
     public int getDistance() {
         return distance;
     }

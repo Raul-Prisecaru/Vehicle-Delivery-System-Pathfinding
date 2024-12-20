@@ -17,15 +17,6 @@ public class deliveryHubVertexTest {
     }
 
     /**
-     * Method Responsible for ensuring Vertex's Value can be correctly updated
-     */
-    @Test
-    void updatingVertexValue() {
-        testVertex.setNodeValue("B");
-        assertEquals("B", testVertex.getNodeValue(), "Vertex's value was not properly updated'");
-    }
-
-    /**
      * Method Responsible for ensuring Vertex's default distance has been correctly configured
      */
     @Test

@@ -31,14 +31,6 @@ public class CustomerLocation extends Vertex {
     }
 
     /**
-     * Method Responsible for overriding the Vertex value of the CustomerLocation
-     * @param new_value (String) - new value of the Vertex
-     */
-    public void setNodeValue(String new_value) {
-        super.setNodeValue(new_value);
-    }
-
-    /**
      * Method Responsible for returning the distance of the CustomerLocation
      * @return int - Distance of the Vertex
      */
