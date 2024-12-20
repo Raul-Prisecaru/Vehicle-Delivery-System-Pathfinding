@@ -144,8 +144,7 @@ public class Pathfinding {
      * Method responsible for finding the shortest route towards a specified customerLocation
      *
      */
-    public HashMap<Vertex, Integer> find_shortest_delivery(DeliveryHub deliveryHub, Vehicle vehicle) {
-        HashMap <Vertex, Integer> shortestPath = new HashMap<>();
+    public void find_shortest_delivery(DeliveryHub deliveryHub, Vehicle vehicle) {
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
@@ -156,6 +155,22 @@ public class Pathfinding {
 
         unvisited.add(start_vertex);
         predecessor.put(start_vertex, null);
+
+        Package package_package = new Package(null, null, -1);
+
+        if (vehicle.get_deliveryPackages().size() == 2) {
+            // Compare the two packages
+            for (Package package_package_temp : vehicle.get_deliveryPackages()) {
+                if (package_package_temp.getPriority() > package_package.getPriority()) {
+                    package_package = package_package_temp;
+                }
+            }
+        }
+
+        if (vehicle.get_deliveryPackages().size() == 1) {
+            // set the package_package from null to what the vehicle has
+        }
+
 
         while (!unvisited.isEmpty()) {
             Vertex current = unvisited.poll();
@@ -180,37 +195,18 @@ public class Pathfinding {
 
             }
         }
-//        System.out.println("-- Final Destination --");
-//        // TODO: Modify this to get output from Hash Table
-//        for (Vertex vertex : visited) {
-//            if (vertex == deliveryHub) {
-//                System.out.println("Start Location: " + vehicle.getCurrent_location());
-//                System.out.println("Destination: " + vertex);
-//                System.out.println("Distance: " + vertex.get_distance());
-//                shortestPath.put(vertex, vertex.get_distance());
-//
-//            }
-//        }
-
-        System.out.println("------");
-        System.out.println("Predecessor");
-
-        Vertex endVertex = deliveryHub;
+        Vertex endVertex = package_package.getDestination();
         vehicle.addTravelDestination(endVertex);
         for (Vertex vertex : predecessor.keySet()) {
             if (predecessor.get(endVertex) != null) {
                 vehicle.addTravelDestination(predecessor.get(endVertex));
                 endVertex = predecessor.get(endVertex);
-            } else {
-                vehicle.addTravelDestination(vehicle.getCurrent_location());
-
             }
 
-            System.out.println("Vertex: " + vertex);
-            System.out.println("predecessor: " + predecessor.get(vertex));
-            System.out.println("-------");
+            if (endVertex == package_package.getDestination()) {
+                break;
+            }
         }
-        return shortestPath;
     }
 
 
