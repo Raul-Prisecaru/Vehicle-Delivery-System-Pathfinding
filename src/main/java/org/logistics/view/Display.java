@@ -78,7 +78,46 @@ public class Display {
 
         ViewPanel viewPanel = (ViewPanel) viewer.addDefaultView(false);
         frame.add(viewPanel, BorderLayout.CENTER);
-        frame.setSize(800, 600);
+
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 4, 10, 10)); // Grid layout for buttons
+
+        JButton addDeliverHubButton = new JButton("Add DeliverHub Vertex");
+        addDeliverHubButton.addActionListener(e -> add_deliveryHub());
+
+        JButton removeDeliverHubButton = new JButton("Remove DeliverHub Vertex");
+        removeDeliverHubButton.addActionListener(e -> remove_deliveryHub());
+
+        JButton addCustomerLocationButton = new JButton("Add CustomerLocation Vertex");
+        addCustomerLocationButton.addActionListener(e -> add_customerLocation());
+
+        JButton removeCustomerLocationButton = new JButton("Remove CustomerLocation Vertex");
+        removeCustomerLocationButton.addActionListener(e -> remove_customerLocation());
+
+        JButton addEdgeButton = new JButton("Add Edge");
+        addEdgeButton.addActionListener(e -> add_edge());
+
+        JButton modifyEdgeButton = new JButton("Change Edge");
+        modifyEdgeButton.addActionListener(e -> modify_edge());
+
+        JButton removeEdgeButton = new JButton("Remove Edge");
+        removeEdgeButton.addActionListener(e -> remove_edge());
+
+        JButton printAdjacencyListButton = new JButton("Print AdjacencyList");
+        printAdjacencyListButton.addActionListener(e -> print_adjacencyList());
+
+        buttonPanel.add(addDeliverHubButton);
+        buttonPanel.add(removeDeliverHubButton);
+        buttonPanel.add(addCustomerLocationButton);
+        buttonPanel.add(removeCustomerLocationButton);
+        buttonPanel.add(addEdgeButton);
+        buttonPanel.add(modifyEdgeButton);
+        buttonPanel.add(removeEdgeButton);
+        buttonPanel.add(printAdjacencyListButton);
+
+        frame.add(buttonPanel, BorderLayout.SOUTH);
+
+
+        frame.setSize(1200, 800);
         frame.setVisible(true);
 //        Viewer viewer = graph.display();
 //        viewer.enableAutoLayout(new SpringBox());
