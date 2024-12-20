@@ -221,7 +221,7 @@ public class Pathfinding {
      * @param customerLocation (DeliveryHub) - DeliveryHub to find the route to
      * @return
      */
-    public void find_shortest_customer(Vertex deliveryHub, Vehicle vehicle) {
+    public void find_shortest_customer(Vehicle vehicle) {
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
@@ -232,6 +232,22 @@ public class Pathfinding {
 
         unvisited.add(start_vertex);
         predecessor.put(start_vertex, null);
+
+        Package package_package = new Package(null, null, -1);
+
+        if (vehicle.get_deliveryPackages().size() == 2) {
+            // Compare the two packages
+            for (Package package_package_temp : vehicle.get_deliveryPackages()) {
+                if (package_package_temp.getPriority() > package_package.getPriority()) {
+                    package_package = package_package_temp;
+                }
+            }
+        }
+
+        if (vehicle.get_deliveryPackages().size() == 1) {
+            // set the package_package from null to what the vehicle has
+        }
+
 
         while (!unvisited.isEmpty()) {
             Vertex current = unvisited.poll();
@@ -256,7 +272,7 @@ public class Pathfinding {
 
             }
         }
-        Vertex endVertex = deliveryHub;
+        Vertex endVertex = package_package.getDestination();
         vehicle.addTravelDestination(endVertex);
         for (Vertex vertex : predecessor.keySet()) {
             if (predecessor.get(endVertex) != null) {
@@ -264,7 +280,7 @@ public class Pathfinding {
                 endVertex = predecessor.get(endVertex);
             }
 
-            if (endVertex == deliveryHub) {
+            if (endVertex == package_package.getDestination()) {
                 break;
             }
         }
