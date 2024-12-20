@@ -3,20 +3,32 @@ package org.logistics.model;
 import java.util.*;
 
 public class Dijkstra_customerLocation {
+    private Graph graph;
     private HashMap<Vertex, LinkedList<Edge>> adjacencyList = new HashMap<>();
 
+    /**
+     * Constructor is responsible for setting the Graph and adjacencyList
+     * @param graph - Graph Environment
+     */
     public Dijkstra_customerLocation(Graph graph) {
+        this.graph = graph;
         this.adjacencyList = graph.getAdjacencyList();
     }
 
-
+    /**
+     * Method Responsible for updating the adjacencyList to ensure any new dynamically added Vertexes or edges are added
+     */
+    // TODO: Ensure this actually updates the adjacencyList upon adding a new Vertex
+    public void updateAdjacencyList() {
+        this.adjacencyList = graph.getAdjacencyList();
+    }
 
       /**
-      * Method responsible for using dijkstra's algorithm to find the quickest route to customerLocation
-      * @Param vehicle (Vehicle) - vehicle to find the quickest route for based on packages
-      * @Return None
+      * Method responsible for using dijkstra's algorithm to find the quickest route to customerLocation Based on Vehicles packages
+      * @param vehicle (Vehicle) - vehicle to find the quickest route for based on packages
       */
     public void find_shortest_customer(Vehicle vehicle) {
+        updateAdjacencyList();
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
