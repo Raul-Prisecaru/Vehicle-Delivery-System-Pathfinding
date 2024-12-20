@@ -11,19 +11,19 @@ public class Vertex {
         this.value = value;
     }
 
-    public String get_node_value() {
+    public String getNodeValue() {
         return this.value;
     }
 
-    public void set_node_value(String new_value) {
+    public void setNodeValue(String new_value) {
         this.value = new_value;
     }
 
-    public int get_distance() {
+    public int getDistance() {
         return distance;
     }
 
-    public void set_distance(int new_distance) {
+    public void setDistance(int new_distance) {
         this.distance = new_distance;
     }
 

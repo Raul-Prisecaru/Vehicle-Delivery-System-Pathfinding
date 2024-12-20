@@ -20,11 +20,11 @@ public class Dijkstra_deliveryHub {
     public void find_shortest_delivery(Vehicle vehicle) {
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
-        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
+        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
         Queue<Vertex> visited = new LinkedList<>();
 
         Vertex start_vertex = vehicle.getCurrent_location();
-        start_vertex.set_distance(0);
+        start_vertex.setDistance(0);
 
         unvisited.add(start_vertex);
         predecessor.put(start_vertex, null);
@@ -33,11 +33,11 @@ public class Dijkstra_deliveryHub {
             Vertex current = unvisited.poll();
             if (!visited.contains(current)) {
                 for (Edge edge : adjacencyList.get(current)) {
-                    int totalDistance = current.get_distance() + edge.getDistance_weight();
-                    edge.getConnecting_node().set_distance(Integer.MAX_VALUE);
+                    int totalDistance = current.getDistance() + edge.getDistance_weight();
+                    edge.getConnecting_node().setDistance(Integer.MAX_VALUE);
 
-                    if (totalDistance < edge.getConnecting_node().get_distance()) {
-                        edge.getConnecting_node().set_distance(totalDistance);
+                    if (totalDistance < edge.getConnecting_node().getDistance()) {
+                        edge.getConnecting_node().setDistance(totalDistance);
                         unvisited.remove(edge.getConnecting_node());
                         unvisited.add(edge.getConnecting_node());
 
@@ -57,8 +57,8 @@ public class Dijkstra_deliveryHub {
         int minDistance = Integer.MAX_VALUE;
 
         for (DeliveryHub deliveryHub : deliveryHubList) {
-            if (deliveryHub.get_distance() < minDistance) {
-                minDistance = deliveryHub.get_distance();
+            if (deliveryHub.getDistance() < minDistance) {
+                minDistance = deliveryHub.getDistance();
                 deliveryHub_shortest = deliveryHub;
             }
         }

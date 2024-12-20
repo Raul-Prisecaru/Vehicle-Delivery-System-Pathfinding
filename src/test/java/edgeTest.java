@@ -12,12 +12,12 @@ public class edgeTest {
 
     @Test
     void getStartNode() {
-        assertEquals("A", testEdge.getStart_node().get_node_value());
+        assertEquals("A", testEdge.getStart_node().getNodeValue());
     }
 
     @Test
     void getConnectingNode() {
-        assertEquals("B", testEdge.getConnecting_node().get_node_value());
+        assertEquals("B", testEdge.getConnecting_node().getNodeValue());
     }
 
     @Test

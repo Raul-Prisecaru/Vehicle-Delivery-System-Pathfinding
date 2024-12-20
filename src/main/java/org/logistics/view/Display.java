@@ -7,7 +7,6 @@ import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.swing_viewer.ViewPanel;
 import org.logistics.model.CustomerLocation;
 import org.logistics.model.DeliveryHub;
-import org.logistics.model.Vehicle;
 import org.logistics.model.Vertex;
 
 import javax.swing.*;
@@ -44,8 +43,8 @@ public class Display {
 
 
         for (Vertex vertex : this.graphinformation.getAdjacencyList().keySet()) {
-            Node node = graph.addNode(vertex.get_node_value());
-            node.setAttribute("ui.label", vertex.get_node_value());
+            Node node = graph.addNode(vertex.getNodeValue());
+            node.setAttribute("ui.label", vertex.getNodeValue());
         }
 
         // TODO: Make this more efficient by turing nested for loop into a singular loop
@@ -55,8 +54,8 @@ public class Display {
                 if (currentEdge == null) {
                     break;
                 }
-                String id = currentEdge.getStart_node().get_node_value() + currentEdge.getConnecting_node().get_node_value();
-                Edge edge = graph.addEdge(id, currentEdge.getStart_node().get_node_value(), currentEdge.getConnecting_node().get_node_value(), true);
+                String id = currentEdge.getStart_node().getNodeValue() + currentEdge.getConnecting_node().getNodeValue();
+                Edge edge = graph.addEdge(id, currentEdge.getStart_node().getNodeValue(), currentEdge.getConnecting_node().getNodeValue(), true);
                 edge.setAttribute("ui.label", currentEdge.getDistance_weight());
 
             }
@@ -270,7 +269,7 @@ public class Display {
      * @param OnOff (int) - 0 to turn off highlight, 1 to turn on highlight
      */
     public void visualise_vehicle(Vertex vertex, int OnOff) {
-        Node current_Node = graph.getNode(vertex.get_node_value());
+        Node current_Node = graph.getNode(vertex.getNodeValue());
 
         if (OnOff == 0) {
             current_Node.setAttribute("ui.style", "fill-color: black;");

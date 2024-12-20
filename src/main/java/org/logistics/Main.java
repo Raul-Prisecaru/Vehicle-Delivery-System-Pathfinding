@@ -113,7 +113,7 @@ public class Main {
                     for (Package package_package : currentDeliveryHub.getPackages()) {
                         currentDeliveryHub.removePackages(package_package);
                         vehicle.get_deliveryPackages().add(package_package);
-                        System.out.println("I have picked up a package from DeliveryHub:" + vehicle.getCurrent_location().get_node_value() );
+                        System.out.println("I have picked up a package from DeliveryHub:" + vehicle.getCurrent_location().getNodeValue() );
                     }
                 }
 

@@ -27,7 +27,7 @@ public class Graph {
             adjacencyList.put(start_vertex, new LinkedList<>());
         } else {
             // TODO: Change this to Throw instead Later On
-            System.out.println("Node: " + start_vertex.get_node_value() + " Already Exists, Cannot be Added");
+            System.out.println("Node: " + start_vertex.getNodeValue() + " Already Exists, Cannot be Added");
         }
     }
 
@@ -58,12 +58,12 @@ public class Graph {
         Vertex exist_connecting = this.findVertex(connecting_node);
 
         if (exist_start == null) {
-            System.out.println("Vertex: " + start_vertex.get_node_value() + " Does not exist");
+            System.out.println("Vertex: " + start_vertex.getNodeValue() + " Does not exist");
             return;
         }
 
         if (exist_connecting == null) {
-            System.out.println("Vertex: " + connecting_node.get_node_value() + " Does not exist");
+            System.out.println("Vertex: " + connecting_node.getNodeValue() + " Does not exist");
             return;
 
         }
@@ -94,7 +94,7 @@ public class Graph {
 //        Edge edge = this.findEdge(exist_start, exist_connecting);
 
         for (Edge edge : adjacencyList.get(exist_start)) {
-            if (Objects.equals(edge.getConnecting_node().get_node_value(), exist_connecting.get_node_value())) {
+            if (Objects.equals(edge.getConnecting_node().getNodeValue(), exist_connecting.getNodeValue())) {
                 edge.setConnecting_vertex(exist_new_connecting);
                 edge.setDistance_weight(new_distance);
                 edge.setStart_vertex(exist_new_start);
@@ -140,12 +140,12 @@ public class Graph {
     public void print_List() {
         for (Vertex vertex : adjacencyList.keySet()) {
             System.out.println("------------");
-            System.out.println("Start Node: " + vertex.get_node_value());
+            System.out.println("Start Node: " + vertex.getNodeValue());
 
             for (Edge edge : adjacencyList.get(vertex)) {
                 System.out.println("---");
                 System.out.println("Edge Distance: " + edge.getDistance_weight());
-                System.out.println("Connecting Node:" + edge.getConnecting_node().get_node_value());
+                System.out.println("Connecting Node:" + edge.getConnecting_node().getNodeValue());
             }
             System.out.println("------------");
         }
@@ -169,7 +169,7 @@ public class Graph {
         // TODO: Improve this to search for both so we don't have to reloop each time
 //        System.out.println(vertex.get_node_value());
         for (Vertex v : adjacencyList.keySet()) {
-            if (Objects.equals(v.get_node_value(), vertex.get_node_value())) {
+            if (Objects.equals(v.getNodeValue(), vertex.getNodeValue())) {
                 return v;
             }
         }
@@ -179,7 +179,7 @@ public class Graph {
 
     public Edge findEdge(Vertex start_vertex, Vertex connecting_vertex) {
         for (Edge edge : adjacencyList.get(start_vertex)) {
-            if (Objects.equals(edge.getConnecting_node().get_node_value(), connecting_vertex.get_node_value())) {
+            if (Objects.equals(edge.getConnecting_node().getNodeValue(), connecting_vertex.getNodeValue())) {
                 return edge;
             }
         }

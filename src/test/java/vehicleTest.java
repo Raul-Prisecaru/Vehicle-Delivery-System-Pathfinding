@@ -14,14 +14,14 @@ public class vehicleTest {
 
     @Test
     public void getCurrentLocation() {
-        assertEquals("A", testVehicle.getCurrent_location().get_node_value());
+        assertEquals("A", testVehicle.getCurrent_location().getNodeValue());
     }
 
     @Test
     public void updateCurrentLocation() {
         testVehicle.setCurrent_location(new Vertex("B"));
 
-        assertEquals("B", testVehicle.getCurrent_location().get_node_value());
+        assertEquals("B", testVehicle.getCurrent_location().getNodeValue());
     }
 
     @Test
@@ -76,7 +76,7 @@ public class vehicleTest {
         }
 
 
-        assertEquals("B", testVehicle.getCurrent_location().get_node_value());
+        assertEquals("B", testVehicle.getCurrent_location().getNodeValue());
         assertTrue(testVertexA.getStoredVehicles().isEmpty());
         assertFalse(testVertexB.getStoredVehicles().isEmpty());
 

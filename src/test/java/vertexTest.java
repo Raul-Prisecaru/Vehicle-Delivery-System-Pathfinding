@@ -14,7 +14,7 @@ public class vertexTest {
      */
     @Test
     void getVertexValue() {
-        assertEquals("A", testVertex.get_node_value(), "Vertex's value was not properly configured");
+        assertEquals("A", testVertex.getNodeValue(), "Vertex's value was not properly configured");
     }
 
     /**
@@ -22,8 +22,8 @@ public class vertexTest {
      */
     @Test
     void updatingVertexValue() {
-        testVertex.set_node_value("B");
-        assertEquals("B", testVertex.get_node_value(), "Vertex's value was not properly updated'");
+        testVertex.setNodeValue("B");
+        assertEquals("B", testVertex.getNodeValue(), "Vertex's value was not properly updated'");
     }
 
     /**
@@ -31,7 +31,7 @@ public class vertexTest {
      */
     @Test
     void getVertexDistance() {
-        assertEquals(Integer.MAX_VALUE, testVertex.get_distance(), "Vertex's Distance was not properly configured");
+        assertEquals(Integer.MAX_VALUE, testVertex.getDistance(), "Vertex's Distance was not properly configured");
     }
 
     /**
@@ -39,8 +39,8 @@ public class vertexTest {
      */
     @Test
     void updateVertexDistance() {
-        testVertex.set_distance(5);
-        assertEquals(5, testVertex.get_distance(), "Vertex's distance was not properly updated");
+        testVertex.setDistance(5);
+        assertEquals(5, testVertex.getDistance(), "Vertex's distance was not properly updated");
     }
 
     /**
