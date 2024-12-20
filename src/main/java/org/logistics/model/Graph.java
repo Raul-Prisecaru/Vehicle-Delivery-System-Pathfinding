@@ -3,13 +3,8 @@ package org.logistics.model;
 import java.util.*;
 
 public class Graph {
-    private HashSet<DeliveryHub> deliveryHubList;
-    private HashMap<Vertex, LinkedList<Edge>> adjacencyList;
-
-    public Graph() {
-        adjacencyList = new HashMap<>();
-        deliveryHubList = new HashSet<>();
-    }
+    private HashSet<DeliveryHub> deliveryHubList = new HashSet<>();
+    private HashMap<Vertex, LinkedList<Edge>> adjacencyList = new HashMap<>();
 
     /**
      * Method responsible for adding Vertexes to the Hashmap
