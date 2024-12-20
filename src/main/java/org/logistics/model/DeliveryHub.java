@@ -40,8 +40,12 @@ public class DeliveryHub extends Vertex {
         return packages;
     }
 
+    public void addPackage(String itemName, CustomerLocation deliveryLocation, int priority) {
+        this.packages.add(new Package(itemName, deliveryLocation, priority));
+    }
+
     public void removePackages(Package package_remove) {
-        packages.remove(package_remove);
+        this.packages.remove(package_remove);
 
         packages.add(new Package("Phone", new CustomerLocation("E"), 0));
     }
