@@ -36,6 +36,7 @@ public class Main {
         Package phonePackage = new Package("Iphone", customerLocationE, 1);
         vehicle1.add_deliveryPackage(phonePackage);
         deliveryHubA.getPackages().add(phonePackage);
+        deliveryHubB.getPackages().add(phonePackage);
 
         // Creating Vertexes
         graph.add_vertex(deliveryHubA);
@@ -105,17 +106,41 @@ public class Main {
             }
 
             for (Vertex vertex : vehicle1.getTravelDestinations().reversed()) {
+                System.out.println("--- Vehicle Status ---  ");
+                System.out.println("Vehicle Location: " +  vehicle1.getCurrent_location().get_node_value());
+
+                System.out.println("--- Package Status ---  ");
+                for (Package package_package : vehicle1.get_deliveryPackages()) {
+                    System.out.println(package_package.getItem_Name());
+                    System.out.println(package_package.getDestination());
+
+                }
+
                 displayGraph.visualise_vehicle(vertex, 1);
                 vehicle1.travel(vertex);
-                Thread.sleep(500);
+                Thread.sleep(3000);
                 displayGraph.visualise_vehicle(vertex, 0);
 
 
-                if (vertex == customerLocationE) {
-                    vehicle1.get_deliveryPackages().clear();
-                }
+
             }
 
+            for (Vehicle vehicle : list_of_vehicles) {
+                if (vehicle.getCurrent_location() instanceof DeliveryHub) {
+                    DeliveryHub currentDeliveryHub = (DeliveryHub) vehicle.getCurrent_location();
+                    for (Package package_package : currentDeliveryHub.getPackages()) {
+                        currentDeliveryHub.removePackages(package_package);
+                        vehicle.get_deliveryPackages().add(package_package);
+                        System.out.println("I have picked up a package from DeliveryHub:" + vehicle.getCurrent_location().get_node_value() );
+                    }
+                }
+
+                if (vehicle.getCurrent_location() instanceof CustomerLocation) {
+                    vehicle1.get_deliveryPackages().clear();
+                    System.out.println("I have dropped up a package from CustomerLocation:" + vehicle.getCurrent_location().get_node_value()) ;
+
+                }
+            }
             vehicle1.getTravelDestinations().clear();
 
         }
