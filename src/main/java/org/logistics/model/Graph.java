@@ -3,11 +3,12 @@ package org.logistics.model;
 import java.util.*;
 
 public class Graph {
-
+    private HashSet<DeliveryHub> deliveryHubList;
     private HashMap<Vertex, LinkedList<Edge>> adjacencyList;
 
     public Graph() {
         adjacencyList = new HashMap<>();
+        deliveryHubList = new HashSet<>();
     }
 
     /**
@@ -17,6 +18,10 @@ public class Graph {
      */
     public void add_vertex(Vertex start_vertex) {
 
+        if (start_vertex instanceof DeliveryHub) {
+            deliveryHubList.add((DeliveryHub) start_vertex);
+        }
+
         // Adds to the hashmap if start_node does not exist
         if (adjacencyList.get(start_vertex) == null) {
             adjacencyList.put(start_vertex, new LinkedList<>());
@@ -24,7 +29,6 @@ public class Graph {
             // TODO: Change this to Throw instead Later On
             System.out.println("Node: " + start_vertex.get_node_value() + " Already Exists, Cannot be Added");
         }
-
     }
 
 
@@ -32,7 +36,7 @@ public class Graph {
      * Method responsible for removing Vertex from the AdjacencyList
      * @param vertex (Vertex) - Vertex to remove
      */
-    public  void remove_vertex(Vertex vertex) {
+    public void remove_vertex(Vertex vertex) {
         Vertex exist_vertex = this.findVertex(vertex);
 
         if (exist_vertex == null) {
@@ -181,6 +185,11 @@ public class Graph {
         }
 
         return null;
+    }
+
+
+    public HashSet<DeliveryHub> getDeliveryHubList() {
+        return deliveryHubList;
     }
 
 //    public Boolean findVertex(Vertex vertex1, Vertex vertex2) {
