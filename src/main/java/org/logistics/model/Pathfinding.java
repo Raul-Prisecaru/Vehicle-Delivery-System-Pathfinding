@@ -221,7 +221,7 @@ public class Pathfinding {
      * @param customerLocation (DeliveryHub) - DeliveryHub to find the route to
      * @return
      */
-    public HashMap<Vertex, Integer> find_shortest_customer(Vertex deliveryHub, Vehicle vehicle) {
+    public void find_shortest_customer(Vertex deliveryHub, Vehicle vehicle) {
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
@@ -256,35 +256,19 @@ public class Pathfinding {
 
             }
         }
-        System.out.println("-- Final Destination --");
-////        // TODO: Modify this to get output from Hash Table
-//        for (Vertex vertex : visited) {
-//            if (vertex == deliveryHub) {
-//                System.out.println("Start Location: " + vehicle.getCurrent_location());
-//                System.out.println("Destination: " + vertex);
-//                System.out.println("Distance: " + vertex.get_distance());
-//                shortestPath.put(vertex, vertex.get_distance());
-//
-//            }
-//        }
-
-//        System.out.println("------");
-//        System.out.println("Predecessor");
-
         Vertex endVertex = deliveryHub;
         vehicle.addTravelDestination(endVertex);
         for (Vertex vertex : predecessor.keySet()) {
             if (predecessor.get(endVertex) != null) {
                 vehicle.addTravelDestination(predecessor.get(endVertex));
                 endVertex = predecessor.get(endVertex);
-            } else {
-                vehicle.addTravelDestination(vehicle.getCurrent_location());
-                break;
             }
 
+            if (endVertex == deliveryHub) {
+                break;
+            }
         }
-        return null;
     }
 
-
 }
+
