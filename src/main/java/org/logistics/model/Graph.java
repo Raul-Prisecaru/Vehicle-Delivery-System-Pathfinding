@@ -8,10 +8,10 @@ public class Graph {
 
     /**
      * Method responsible for adding Vertexes to the Hashmap
-     * @param start_vertex Vertex to add to the Hashmap
+     * @param start_vertex (Vertex)-  to add to the Hashmap
      * @return None if successful, Error message otherwise
      */
-    public void add_vertex(Vertex start_vertex) {
+    public void add_vertex(Vertex start_vertex) throws Exception {
 
         if (start_vertex instanceof DeliveryHub) {
             deliveryHubList.add((DeliveryHub) start_vertex);
@@ -21,8 +21,7 @@ public class Graph {
         if (adjacencyList.get(start_vertex) == null) {
             adjacencyList.put(start_vertex, new LinkedList<>());
         } else {
-            // TODO: Change this to Throw instead Later On
-            System.out.println("Node: " + start_vertex.getNodeValue() + " Already Exists, Cannot be Added");
+            throw new Exception("Node: " + start_vertex.getNodeValue() + " Already Exists, Cannot be Added");
         }
     }
 

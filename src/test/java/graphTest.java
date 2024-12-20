@@ -15,7 +15,7 @@ public class graphTest {
     }
 
     @Test
-    void addVertex() {
+    void addVertex() throws Exception {
         Vertex testVertex = new Vertex("A");
 
         graphTest.add_vertex(testVertex);
@@ -25,7 +25,7 @@ public class graphTest {
     }
 
     @Test
-    void addDirectedEdge() {
+    void addDirectedEdge() throws Exception {
         Vertex testStartVertex = new Vertex("A");
         Vertex testEndVertex = new Vertex("B");
         Edge testEdge = new Edge(testStartVertex, testEndVertex, 10);

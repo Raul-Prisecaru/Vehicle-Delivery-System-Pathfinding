@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) throws InterruptedException {
+    public static void main(String[] args) throws Exception {
         HashSet<Vehicle> list_of_vehicles = new HashSet<>();
 
 
