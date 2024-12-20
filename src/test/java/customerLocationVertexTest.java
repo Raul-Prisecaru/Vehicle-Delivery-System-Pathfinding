@@ -1,19 +1,20 @@
 import org.junit.jupiter.api.Test;
 import org.logistics.model.CustomerLocation;
+import org.logistics.model.Package;
 import org.logistics.model.Vehicle;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
 public class customerLocationVertexTest {
-    CustomerLocation testVertex = new CustomerLocation("A");
+    CustomerLocation testCustomerLocationVertex = new CustomerLocation("A");
 
     /**
      * Method Responsible for ensuring Vertex's Value has been correctly configured
      */
     @Test
     void getCustomerLocationValue() {
-        assertEquals("A", testVertex.getNodeValue(), "Vertex's value was not properly configured");
+        assertEquals("A", testCustomerLocationVertex.getNodeValue(), "Vertex's value was not properly configured");
     }
 
     /**
@@ -21,7 +22,7 @@ public class customerLocationVertexTest {
      */
     @Test
     void getCustomerLocationDistance() {
-        assertEquals(Integer.MAX_VALUE, testVertex.getDistance(), "Vertex's Distance was not properly configured");
+        assertEquals(Integer.MAX_VALUE, testCustomerLocationVertex.getDistance(), "Vertex's Distance was not properly configured");
     }
 
     /**
@@ -29,8 +30,8 @@ public class customerLocationVertexTest {
      */
     @Test
     void updateCustomerLocationDistance() {
-        testVertex.setDistance(5);
-        assertEquals(5, testVertex.getDistance(), "Vertex's distance was not properly updated");
+        testCustomerLocationVertex.setDistance(5);
+        assertEquals(5, testCustomerLocationVertex.getDistance(), "Vertex's distance was not properly updated");
     }
 
     /**
@@ -38,7 +39,7 @@ public class customerLocationVertexTest {
      */
     @Test
     void getCustomerLocationStoredVehicle() {
-        assertTrue(testVertex.getStoredVehicles().isEmpty(), "Vertex's storedVehicle should contain nothing at start");
+        assertTrue(testCustomerLocationVertex.getStoredVehicles().isEmpty(), "Vertex's storedVehicle should contain nothing at start");
     }
 
     /**
@@ -46,11 +47,32 @@ public class customerLocationVertexTest {
      */
     @Test
     void updateCustomerLocationStoredVehicle() {
-        Vehicle testVehicle = new Vehicle(testVertex);
-        testVertex.addStoredVehicles(testVehicle);
+        Vehicle testVehicle = new Vehicle(testCustomerLocationVertex);
+        testCustomerLocationVertex.addStoredVehicles(testVehicle);
 
-        assertFalse(testVertex.getStoredVehicles().isEmpty());
+        assertFalse(testCustomerLocationVertex.getStoredVehicles().isEmpty());
 
-        assertInstanceOf(Vehicle.class, testVertex.getStoredVehicles().getFirst());
+        assertInstanceOf(Vehicle.class, testCustomerLocationVertex.getStoredVehicles().getFirst());
+    }
+
+
+    @Test
+    void getCustomerLocationPackages() {
+        assertEquals(0, testCustomerLocationVertex.getCollectedPackages().size());
+    }
+
+
+    @Test
+    void addCustomerLocationPackage() {
+        CustomerLocation customerLocation = new CustomerLocation("A");
+        testCustomerLocationVertex.addCollectedPackage("TestItem", customerLocation, 1);
+
+        for (Package package_package : testCustomerLocationVertex.getCollectedPackages()) {
+            assertEquals("TestItem", package_package.getItem_Name());
+            assertEquals(customerLocation, package_package.getDestination());
+            assertEquals(1, package_package.getPriority());
+
+        }
+
     }
 }
