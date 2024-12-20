@@ -8,12 +8,11 @@ public class dijkstra_customerLocation {
 
 
 
-    /**
-     * Method responsible for finding the shortest route towards a specified DeliveryHub
-     *
-     * @param customerLocation (DeliveryHub) - DeliveryHub to find the route to
-     * @return
-     */
+      /**
+      * Method responsible for using dijkstra's algorithm to find the quickest route to customerLocation
+      * @Param vehicle (Vehicle) - vehicle to find the quickest route for based on packages
+      * @Return None
+      */
     public void find_shortest_customer(Vehicle vehicle) {
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 

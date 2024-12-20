@@ -6,10 +6,11 @@ public class dijkstra_deliveryHub {
 
 
     /**
-     * Method responsible for finding the shortest route towards a specified customerLocation
-     *
+     * Method responsible for using dijkstra's algorithm to find the quickest route to deliveryHub
+     * @Param vehicle (Vehicle) - vehicle to find the quickest route for
+     * @Return None
      */
-    public void find_shortest_delivery(DeliveryHub deliveryHub, Vehicle vehicle) {
+    public void find_shortest_delivery(Vehicle vehicle) {
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::get_distance));
