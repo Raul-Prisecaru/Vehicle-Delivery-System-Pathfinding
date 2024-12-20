@@ -2,12 +2,16 @@ package org.logistics.view;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
 import org.graphstream.ui.layout.springbox.implementations.SpringBox;
+import org.graphstream.ui.swing_viewer.SwingViewer;
 import org.graphstream.ui.view.Viewer;
+import org.graphstream.ui.swing_viewer.ViewPanel;
 import org.logistics.model.CustomerLocation;
 import org.logistics.model.DeliveryHub;
 import org.logistics.model.Vehicle;
 import org.logistics.model.Vertex;
 
+import javax.swing.*;
+import java.awt.*;
 import java.util.Scanner;
 
 public class Display {
@@ -63,8 +67,21 @@ public class Display {
     }
 
     public void displayGUI(){
-        Viewer viewer = graph.display();
+        JFrame frame = new JFrame("GraphStream");
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLayout(new BorderLayout());
+
+        System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.swing_viewer.SwingViewer");
+        SwingViewer viewer = new SwingViewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
+
         viewer.enableAutoLayout(new SpringBox());
+
+        ViewPanel viewPanel = (ViewPanel) viewer.addDefaultView(false); // Add default view to the viewer
+        frame.add(viewPanel, BorderLayout.CENTER);
+        frame.setSize(800, 600);
+        frame.setVisible(true);
+//        Viewer viewer = graph.display();
+//        viewer.enableAutoLayout(new SpringBox());
     }
 
     public void dynamic_options() {
