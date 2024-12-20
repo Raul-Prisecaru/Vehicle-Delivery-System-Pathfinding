@@ -88,15 +88,15 @@ public class Main {
             }
 
             for (Vertex vertex : vehicle1.getTravelDestinations().reversed()) {
-                System.out.println("--- Vehicle Status ---  ");
-                System.out.println("Vehicle Location: " +  vehicle1.getCurrent_location().get_node_value());
-
-                System.out.println("--- Package Status ---  ");
-                for (Package package_package : vehicle1.get_deliveryPackages()) {
-                    System.out.println(package_package.getItem_Name());
-                    System.out.println(package_package.getDestination());
-
-                }
+//                System.out.println("--- Vehicle Status ---  ");
+//                System.out.println("Vehicle Location: " +  vehicle1.getCurrent_location().get_node_value());
+//
+//                System.out.println("--- Package Status ---  ");
+//                for (Package package_package : vehicle1.get_deliveryPackages()) {
+//                    System.out.println(package_package.getItem_Name());
+//                    System.out.println(package_package.getDestination());
+//
+//                }
 
                 displayGraph.visualise_vehicle(vertex, 1);
                 vehicle1.travel(vertex);
@@ -119,7 +119,7 @@ public class Main {
 
                 if (vehicle.getCurrent_location() instanceof CustomerLocation) {
                     vehicle1.get_deliveryPackages().clear();
-                    System.out.println("I have dropped up a package from CustomerLocation:" + vehicle.getCurrent_location().get_node_value()) ;
+//                    System.out.println("I have dropped up a package from CustomerLocation:" + vehicle.getCurrent_location().get_node_value()) ;
 
                 }
             }
