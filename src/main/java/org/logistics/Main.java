@@ -33,10 +33,11 @@ public class Main {
         Vehicle vehicle1 = new Vehicle(deliveryHubA);
         list_of_vehicles.add(vehicle1);
 
-        Package phonePackage = new Package("Iphone", customerLocationE, 1);
-        vehicle1.add_deliveryPackage(phonePackage);
-        deliveryHubA.getPackages().add(phonePackage);
-        deliveryHubB.getPackages().add(phonePackage);
+        Package PriorityphonePackage = new Package("Iphone", customerLocationF, 1);
+        Package NonPriorityphonePackage = new Package("Iphone", customerLocationE, 0);
+        vehicle1.add_deliveryPackage(NonPriorityphonePackage);
+        deliveryHubA.getPackages().add(PriorityphonePackage);
+        deliveryHubB.getPackages().add(NonPriorityphonePackage);
 
         // Creating Vertexes
         graph.add_vertex(deliveryHubA);
@@ -95,14 +96,14 @@ public class Main {
             // call pathfinding method for vehicles to find their destinations
             for (Vehicle vehicle : list_of_vehicles) {
                 if (!vehicle.get_deliveryPackages().isEmpty()) {
-                    pathfinding.find_shortest_customer(customerLocationF, vehicle);
+                    pathfinding.find_shortest_customer(vehicle);
                 }
 
-                if (vehicle.get_deliveryPackages().isEmpty()) {
-//                    pathfinding.find_shortest_delivery(deliveryHubB, vehicle);
-                    pathfinding.find_shortest_customer(deliveryHubB, vehicle);
-
-                }
+//                if (vehicle.get_deliveryPackages().isEmpty()) {
+////                    pathfinding.find_shortest_delivery(deliveryHubB, vehicle);
+////                    pathfinding.find_shortest_customer(deliveryHubB, vehicle);
+//
+//                }
             }
 
             for (Vertex vertex : vehicle1.getTravelDestinations().reversed()) {
