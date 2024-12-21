@@ -3,19 +3,33 @@ package org.logistics.model;
 import java.util.*;
 
 public class Graph {
-    private HashSet<DeliveryHub> deliveryHubList = new HashSet<>();
-    private HashMap<Vertex, LinkedList<Edge>> adjacencyList = new HashMap<>();
+    private HashSet<DeliveryHub<String>> deliveryHubList = new HashSet<>();
+    private HashSet<CustomerLocation<String>> customerLocationList = new HashSet<>();
+    private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList = new HashMap<>();
 
     /**
-     * Method responsible for adding Vertexes to the Hashmap
-     * @param start_vertex (Vertex)-  to add to the Hashmap
-     * @return None if successful, Error message otherwise
+     * Method Responsible for adding deliveryHub to the Hashmap
+     * @param start_vertex (DeliveryHub) - DeliveryHub to add
+     * @throws Exception
      */
-    public void add_vertex(Vertex start_vertex) throws Exception {
+    public void add_deliveryHub(DeliveryHub<String> start_vertex) throws Exception {
+        deliveryHubList.add(start_vertex);
 
-        if (start_vertex instanceof DeliveryHub) {
-            deliveryHubList.add((DeliveryHub) start_vertex);
+        // Adds to the hashmap if start_node does not exist
+        if (adjacencyList.get(start_vertex) == null) {
+            adjacencyList.put(start_vertex, new LinkedList<>());
+        } else {
+            throw new Exception("Node: " + start_vertex.getNodeValue() + " Already Exists, Cannot be Added");
         }
+    }
+
+    /**
+     * Method Responsible for adding CustomerLocation to the Hashmap
+     * @param start_vertex (CustomerLocation) - CustomerLocation to add
+     * @throws Exception
+     */
+    public void add_customerLocation(CustomerLocation<String> start_vertex) throws Exception {
+        customerLocationList.add(start_vertex);
 
         // Adds to the hashmap if start_node does not exist
         if (adjacencyList.get(start_vertex) == null) {
@@ -30,14 +44,28 @@ public class Graph {
      * Method responsible for removing Vertex from the AdjacencyList
      * @param vertex (Vertex) - Vertex to remove
      */
-    public void remove_vertex(Vertex vertex) {
-        Vertex exist_vertex = this.findVertex(vertex);
+    public void remove_vertex(Vertex<String> vertex) {
+        Vertex<String> exist_vertex = this.findVertex(vertex);
 
         if (exist_vertex == null) {
             System.out.println("Couldn't find vertex to remove");
         }
 
         adjacencyList.remove(exist_vertex);
+    }
+
+    public void removeDeliveryHub(DeliveryHub<String> deliveryHub) {
+        DeliveryHub<String> exist_vertex = this.findVertex(deliveryHub);
+
+        if (exist_vertex == null) {
+            System.out.println("Couldn't find vertex to remove");
+        }
+
+        adjacencyList.remove(exist_vertex);
+    }
+
+    public void removeCustomerLocation(CustomerLocation customerLocation) {
+
     }
 
     /**
@@ -47,9 +75,9 @@ public class Graph {
      * @param distance_weight Distance between Start and Connecting Vertexes
      * @return None if successful, Error message otherwise
      */
-    public void add_directed_edge(Vertex start_vertex, Vertex connecting_node, int distance_weight) {
-        Vertex exist_start = this.findVertex(start_vertex);
-        Vertex exist_connecting = this.findVertex(connecting_node);
+    public void add_directed_edge(Vertex<String> start_vertex, Vertex<String> connecting_node, int distance_weight) {
+        Vertex<String> exist_start = this.findVertex(start_vertex);
+        Vertex<String> exist_connecting = this.findVertex(connecting_node);
 
         if (exist_start == null) {
             System.out.println("Vertex: " + start_vertex.getNodeValue() + " Does not exist");
@@ -69,23 +97,19 @@ public class Graph {
     }
 
 
-    public void modify_edge(Vertex start_vertex, Vertex connecting_vertex, int new_distance, Vertex new_start_vertex, Vertex new_connecting_vertex) {
-        Vertex exist_start = this.findVertex(start_vertex);
-        Vertex exist_connecting = this.findVertex(connecting_vertex);
-        Vertex exist_new_start = this.findVertex(new_start_vertex);
-        Vertex exist_new_connecting = this.findVertex(new_connecting_vertex);
+    public void modify_edge(Vertex<String> start_vertex, Vertex<String> connecting_vertex, int new_distance, Vertex<String> new_start_vertex, Vertex<String> new_connecting_vertex) throws Exception {
+        Vertex<String> exist_start = this.findVertex(start_vertex);
+        Vertex<String> exist_connecting = this.findVertex(connecting_vertex);
+        Vertex<String> exist_new_start = this.findVertex(new_start_vertex);
+        Vertex<String> exist_new_connecting = this.findVertex(new_connecting_vertex);
 
         if (exist_start == null) {
-            System.out.println("Couldn't find starting vertex");
-            return;
+            throw new Exception("Couldn't find starting vertex");
         }
 
         if (exist_connecting == null) {
-            System.out.println("Couldn't find connecting vertex");
-            return;
+            throw new Exception("Couldn't find connecting vertex");
         }
-
-//        Edge edge = this.findEdge(exist_start, exist_connecting);
 
         for (Edge edge : adjacencyList.get(exist_start)) {
             if (Objects.equals(edge.getConnecting_node().getNodeValue(), exist_connecting.getNodeValue())) {
@@ -105,23 +129,23 @@ public class Graph {
      * Method responsible for removing the Edge connecting from starting Vertex
      * @param start_vertex (Vertex) - Vertex to remove edge from
      */
-    public void remove_directed_edge(Vertex start_vertex, Vertex connecting_vertex) {
+    public void remove_directed_edge(Vertex<String> start_vertex, Vertex<String> connecting_vertex) throws Exception {
         // TODO: Fix issue where it would remove every Vertex because of unspecified Connecting vertex
 
-        Vertex exist_start = this.findVertex(start_vertex);
-        Vertex exist_connecting = this.findVertex(connecting_vertex);
+        Vertex<String> exist_start = this.findVertex(start_vertex);
+        Vertex<String> exist_connecting = this.findVertex(connecting_vertex);
 
         if (exist_start == null) {
-            System.out.println("Couldn't find starting vertex to remove edge from");
+            throw new Exception("Couldn't find starting vertex to remove edge from");
         }
 
         if (exist_connecting == null) {
-            System.out.println("Couldn't find connecting vertex");
+            throw new Exception("Couldn't find connecting vertex");
         }
         Edge exist_edge = this.findEdge(exist_start, connecting_vertex);
 
         if (exist_edge == null) {
-            System.out.println("Couldn't find edge to remove");
+            throw new Exception("Couldn't find edge to remove");
         }
 
         adjacencyList.get(exist_start).remove(exist_edge);
@@ -132,7 +156,7 @@ public class Graph {
      * @return Output with current vertex and edges information
      */
     public void print_List() {
-        for (Vertex vertex : adjacencyList.keySet()) {
+        for (Vertex<String> vertex : adjacencyList.keySet()) {
             System.out.println("------------");
             System.out.println("Start Node: " + vertex.getNodeValue());
 
@@ -149,7 +173,7 @@ public class Graph {
      * Method responsible for return the AdjacencyList
      * @return adjacencyList
      */
-    public HashMap<Vertex, LinkedList<Edge>> getAdjacencyList() {
+    public HashMap<Vertex<String>, LinkedList<Edge>> getAdjacencyList() {
         return adjacencyList;
     }
 
@@ -159,10 +183,8 @@ public class Graph {
      * @param vertex (Vertex) - Vertex to find in the AdjacencyList
      * @return vertex - Returns Appropriate Vertex. Otherwise null
      */
-    public Vertex findVertex(Vertex vertex) {
-        // TODO: Improve this to search for both so we don't have to reloop each time
-//        System.out.println(vertex.get_node_value());
-        for (Vertex v : adjacencyList.keySet()) {
+    public Vertex<String> findVertex(Vertex<String> vertex) {
+        for (Vertex<String> v : adjacencyList.keySet()) {
             if (Objects.equals(v.getNodeValue(), vertex.getNodeValue())) {
                 return v;
             }
@@ -170,8 +192,26 @@ public class Graph {
         return null;
     }
 
+    public Vertex<String> findVertex(CustomerLocation<String> customerLocation) {
+        for (Vertex<String> v : adjacencyList.keySet()) {
+            if (Objects.equals(v.getNodeValue(), customerLocation.getNodeValue())) {
+                return v;
+            }
+        }
+        return null;
+    }
 
-    public Edge findEdge(Vertex start_vertex, Vertex connecting_vertex) {
+    public Vertex<String> findVertex(DeliveryHub<String> deliveryHub) {
+        for (Vertex<String> v : adjacencyList.keySet()) {
+            if (Objects.equals(v.getNodeValue(), deliveryHub.getNodeValue())) {
+                return v;
+            }
+        }
+        return null;
+    }
+
+
+    public Edge findEdge(Vertex<String> start_vertex, Vertex<String> connecting_vertex) {
         for (Edge edge : adjacencyList.get(start_vertex)) {
             if (Objects.equals(edge.getConnecting_node().getNodeValue(), connecting_vertex.getNodeValue())) {
                 return edge;
@@ -182,7 +222,7 @@ public class Graph {
     }
 
 
-    public HashSet<DeliveryHub> getDeliveryHubList() {
+    public HashSet<DeliveryHub<String>> getDeliveryHubList() {
         return deliveryHubList;
     }
 
