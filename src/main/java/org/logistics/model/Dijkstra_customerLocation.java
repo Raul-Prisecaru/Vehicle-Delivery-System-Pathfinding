@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Dijkstra_customerLocation {
     private Graph graph;
-    private HashMap<Vertex, LinkedList<Edge>> adjacencyList = new HashMap<>();
+    private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList = new HashMap<>();
 
     /**
      * Constructor is responsible for setting the Graph and adjacencyList
@@ -29,12 +29,12 @@ public class Dijkstra_customerLocation {
       */
     public void find_shortest_customer(Vehicle vehicle) {
         updateAdjacencyList();
-        HashMap<Vertex, Vertex> predecessor = new HashMap<>();
+        HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
 
-        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
-        Queue<Vertex> visited = new LinkedList<>();
+        PriorityQueue<Vertex<String>> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
+        Queue<Vertex<String>> visited = new LinkedList<>();
 
-        Vertex start_vertex = vehicle.getCurrent_location();
+        Vertex<String> start_vertex = vehicle.getCurrent_location();
         start_vertex.setDistance(0);
 
         unvisited.add(start_vertex);
