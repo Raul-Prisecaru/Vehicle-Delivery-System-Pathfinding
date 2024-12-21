@@ -4,44 +4,52 @@ import java.util.*;
 
 public class Vehicle {
     private PriorityQueue<Package> deliveryPackages = new PriorityQueue<>(Comparator.comparingInt(Package::getPriority));
-    private Stack<Vertex> travelDestination = new Stack<>();
-    private Vertex current_location;
+    private Stack<Vertex<String>> travelDestination = new Stack<>();
+    private Vertex<String > current_location;
 
-    public Vehicle(Vertex start_vertex) {
+    public Vehicle(Vertex<String> start_vertex) {
         this.current_location = start_vertex;
     }
 
-    public Vertex getCurrent_location() {
+    /**
+     * Method Responsible for getting the current position of the vehicle
+     * @return Vertex - current vertex of the vehicle
+     */
+    public Vertex<String> getCurrent_location() {
         return current_location;
     }
 
-    public void setCurrent_location(Vertex new_location) {
+    /**
+     * Method Responsible for setting the current position of the Vehicle
+     * @param new_location
+     */
+    public void setCurrent_location(Vertex<String> new_location) {
         this.current_location = new_location;
     }
 
     /**
-     * Method to retrieve Packages from the Vehicle
-     * @return PriorityQueue | Priority Queue with Packages
+     * Method Responsible for returning PriorityQueue of Packages
+     * @return PriorityQueue - PriorityQueue of Packages
      */
     public PriorityQueue<Package> get_deliveryPackages() {
         return deliveryPackages;
     }
 
     /**
-     * Method to Add Packages to the Vehicle delivery job. Max is 2 packages at a time
-     * @param package_Delivery Package | Package to add to the Deliver Job
+     * Method Responsible for adding packages to the Vehicle
+     * @param package_Delivery (Package) - Package to add to the vehicle
      */
-    public void add_deliveryPackage(Package package_Delivery){
+    public void add_deliveryPackage(Package package_Delivery) throws Exception {
         if (deliveryPackages.size() >= 2) {
-            System.out.println("Vehicle is full, unable to add more packages");
+            throw new Exception("Vehicle is full, unable to add more packages");
         } else {
             deliveryPackages.add(package_Delivery);
         }
     }
 
     /**
-     * Method responsible for removing packages from the vehicle
-     * @param package_delivery Package | Package to be removed from the vehicle
+     * Method Responsible for removing packages from the vehicle
+     * @param package_delivery (Package) - Package to be removed from the vehicle
      */
     public void remove_deliveryPackage(Package package_delivery) {
         if (deliveryPackages.contains(package_delivery)) {
@@ -52,36 +60,29 @@ public class Vehicle {
     }
 
     /**
-     * Method responsible for adding vertexes for vehicle to travel to
-     * @param vertex Vertex | Vertex for the Vehicle to travel to
+     * Method Responsible for adding Vertexes to vehicle destination
+     * @param vertex (Vertex) - Vertex to add to vehicle's destination
      */
-    public void addTravelDestination(Vertex vertex) {
+    public void addTravelDestination(Vertex<String> vertex) {
         travelDestination.add(vertex);
     }
 
     /**
-     * Method responsible for returning travelDestination
-     * @return travelDestination Stack
+     * Method Responsible for returning Vehicle's travelDestination
+     * @return Stack - Travel Destination
      */
-    public Stack<Vertex> getTravelDestinations() {
+    public Stack<Vertex<String>> getTravelDestinations() {
         return this.travelDestination;
     }
 
     /**
      * Method responsible for ensuring Vehicle travels to it's specified Vertexes
+     * @param travel_vertex (Vertex) - Vertex for vehicle to travel to
      */
-    public void travel(Vertex travel_vertex) {
+    public void travel(Vertex<String> travel_vertex) {
             travel_vertex.addStoredVehicles(this);
             this.setCurrent_location(travel_vertex);
-
-
-//        for (Vertex vertex : travelDestination.reversed()) {
-//            vertex.setStoredVehicles(this);
-//            setCurrent_vertex(vertex);
-//            System.out.println("Vehicle have traveled to: " + vertex.get_node_value());
-//        }
-//        // TODO: Add Logic to drop off package
-//        System.out.println("I have reached the end of my destination");
+            ;
     }
 
 
