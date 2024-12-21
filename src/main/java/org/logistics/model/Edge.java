@@ -3,8 +3,8 @@ package org.logistics.model;
 
 public class Edge {
     // Nodes
-    private Vertex start_vertex;
-    private Vertex connecting_vertex;
+    private Vertex<String> start_vertex;
+    private Vertex<String> connecting_vertex;
 
     // Weights
     private int distance_weight;
@@ -17,7 +17,7 @@ public class Edge {
      * @param connecting_vertex (Vertex) - Connecting Vertex to connect to
      * @param distance_weight (int) - Distance weight between Starting and Connecting vertexes
      */
-    public Edge(Vertex start_vertex, Vertex connecting_vertex, int distance_weight) {
+    public Edge(Vertex<String> start_vertex, Vertex<String> connecting_vertex, int distance_weight) {
         this.start_vertex = start_vertex;
         this.connecting_vertex = connecting_vertex;
         this.distance_weight = distance_weight;
@@ -29,7 +29,7 @@ public class Edge {
      * Method Responsible for returning the starting vertex of the edge
      * @return Vertex - Starting Vertex of an Edge
      */
-    public Vertex getStart_node() {
+    public Vertex<String> getStart_node() {
         return start_vertex;
     }
 
@@ -37,7 +37,7 @@ public class Edge {
      * Method Responsible for overriding the starting vertex of an edge
      * @param new_start_vertex - new start vertex
      */
-    public void setStart_vertex(Vertex new_start_vertex) {
+    public void setStart_vertex(Vertex<String> new_start_vertex) {
         this.start_vertex = new_start_vertex;
     }
 
@@ -53,7 +53,7 @@ public class Edge {
      * Method Responsible for overriding the connecting vertex of an edge
      * @param new_connecting_vertex - new connecting vertex
      */
-    public void setConnecting_vertex(Vertex new_connecting_vertex) {
+    public void setConnecting_vertex(Vertex<String> new_connecting_vertex) {
         this.connecting_vertex = new_connecting_vertex;
     }
 
