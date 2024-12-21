@@ -82,7 +82,15 @@ public class Graph {
 
     }
 
-
+    /**
+     * Method Responsible for modifying existing edge
+     * @param start_vertex - Current start vertex
+     * @param connecting_vertex - current connecting vertex
+     * @param new_distance - new distance weight
+     * @param new_start_vertex - new start vertex
+     * @param new_connecting_vertex - new connecting vertex
+     * @throws Exception
+     */
     public void modify_edge(Vertex<String> start_vertex, Vertex<String> connecting_vertex, int new_distance, Vertex<String> new_start_vertex, Vertex<String> new_connecting_vertex) throws Exception {
         Vertex<String> exist_start = this.findVertex(start_vertex);
         Vertex<String> exist_connecting = this.findVertex(connecting_vertex);
@@ -116,8 +124,6 @@ public class Graph {
      * @param start_vertex (Vertex) - Vertex to remove edge from
      */
     public void remove_directed_edge(Vertex<String> start_vertex, Vertex<String> connecting_vertex) throws Exception {
-        // TODO: Fix issue where it would remove every Vertex because of unspecified Connecting vertex
-
         Vertex<String> exist_start = this.findVertex(start_vertex);
         Vertex<String> exist_connecting = this.findVertex(connecting_vertex);
 
@@ -157,7 +163,7 @@ public class Graph {
 
     /**
      * Method responsible for return the AdjacencyList
-     * @return adjacencyList
+     * @return adjacencyList - adjacencyList of the Graph environment
      */
     public HashMap<Vertex<String>, LinkedList<Edge>> getAdjacencyList() {
         return adjacencyList;
@@ -194,16 +200,6 @@ public class Graph {
     public HashSet<DeliveryHub<String>> getDeliveryHubList() {
         return deliveryHubList;
     }
-
-//    public Boolean findVertex(Vertex vertex1, Vertex vertex2) {
-//        // TODO: Improve this to search for both so we don't have to reloop each time
-//        for (Vertex v : adjacencyList.keySet()) {
-//            if (v.get_node_value() == vertex1.get_node_value()) {
-//                return true;
-//            }
-//        }
-//        return false;
-//    }
 
 }
 
