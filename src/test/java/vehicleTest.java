@@ -9,7 +9,7 @@ import org.logistics.model.Vertex;
 
 
 public class vehicleTest {
-    Vertex testVertexA = new Vertex("A");
+    Vertex<String> testVertexA = new Vertex<String>("A");
     Vehicle testVehicle = new Vehicle(testVertexA);
 
     @Test
@@ -19,7 +19,7 @@ public class vehicleTest {
 
     @Test
     public void updateCurrentLocation() {
-        testVehicle.setCurrent_location(new Vertex("B"));
+        testVehicle.setCurrent_location(new Vertex<String>("B"));
 
         assertEquals("B", testVehicle.getCurrent_location().getNodeValue());
     }
@@ -30,7 +30,7 @@ public class vehicleTest {
     }
 
     @Test
-    public void updateDeliveryPackages() {
+    public void updateDeliveryPackages() throws Exception {
         testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
 
         assertFalse(testVehicle.get_deliveryPackages().isEmpty());
@@ -39,14 +39,16 @@ public class vehicleTest {
     }
 
     @Test
-    public void MaxCapacity() {
-        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
-        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
-        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
+    public void MaxCapacity() throws Exception {
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2));
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2));
 
-        // TODO: Update this to check for a throw error
-        assertNotEquals("3", testVehicle.get_deliveryPackages().size());
+        // Assert that adding a third package throws an exception
+        assertThrows(Exception.class,
+                () -> testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2))
+        );
     }
+
 
     @Test
     public void getTravelDestination() {
@@ -55,7 +57,7 @@ public class vehicleTest {
 
     @Test
     public void updateTravelDestination() {
-        testVehicle.addTravelDestination(new Vertex("B"));
+        testVehicle.addTravelDestination(new Vertex<String>("B"));
 
         assertFalse(testVehicle.getTravelDestinations().isEmpty());
 
@@ -65,12 +67,12 @@ public class vehicleTest {
 
     @Test
     public void travelDestination() {
-        Vertex testVertexB = new Vertex("B");
-        Vertex testVertexC = new Vertex("C");
+        Vertex<String> testVertexB = new Vertex<String>("B");
+        Vertex<String> testVertexC = new Vertex<String>("C");
         testVehicle.addTravelDestination(testVertexB);
         testVehicle.addTravelDestination(testVertexC);
 
-        for (Vertex vertex : testVehicle.getTravelDestinations().reversed()) {
+        for (Vertex<String> vertex : testVehicle.getTravelDestinations().reversed()) {
             testVehicle.travel(vertex);
             assertEquals(testVehicle.getCurrent_location(), vertex);
         }
