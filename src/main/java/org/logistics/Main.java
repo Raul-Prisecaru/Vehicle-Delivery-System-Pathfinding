@@ -87,7 +87,7 @@ public class Main {
                 }
             }
 
-            for (Vertex vertex : vehicle1.getTravelDestinations().reversed()) {
+            for (Vertex<String> vertex : vehicle1.getTravelDestinations().reversed()) {
 //                System.out.println("--- Vehicle Status ---  ");
 //                System.out.println("Vehicle Location: " +  vehicle1.getCurrent_location().get_node_value());
 //
@@ -109,11 +109,10 @@ public class Main {
 
             for (Vehicle vehicle : list_of_vehicles) {
                 if (vehicle.getCurrent_location() instanceof DeliveryHub) {
-                    DeliveryHub currentDeliveryHub = (DeliveryHub) vehicle.getCurrent_location();
-                    for (Package package_package : currentDeliveryHub.getPackages()) {
+                    DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
+                    for (Package package_package : ((DeliveryHub<?>) vehicle.getCurrent_location()).getPackages()) {
                         currentDeliveryHub.removePackages(package_package);
                         vehicle.get_deliveryPackages().add(package_package);
-                        System.out.println("I have picked up a package from DeliveryHub:" + vehicle.getCurrent_location().getNodeValue() );
                     }
                 }
 

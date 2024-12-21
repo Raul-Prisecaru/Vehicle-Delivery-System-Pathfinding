@@ -3,7 +3,7 @@ package org.logistics.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class CustomerLocation<T> extends Vertex {
+public class CustomerLocation<T> extends Vertex<T> {
     HashSet<Package> collected_packages = new HashSet<Package>();
 
     /**

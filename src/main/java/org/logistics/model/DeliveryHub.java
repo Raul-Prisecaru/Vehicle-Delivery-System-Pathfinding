@@ -3,14 +3,14 @@ package org.logistics.model;
 import java.util.ArrayList;
 import java.util.HashSet;
 
-public class DeliveryHub<T> extends Vertex {
+public class DeliveryHub<T> extends Vertex<T> {
     HashSet<Package> packages = new HashSet<Package>();
 
     /**
      * Constructor Responsible for setting the value of the DeliveryHub Vertex
      * @param value (String) - Value of the DeliveryHub Vertex
      */
-    public DeliveryHub(String value) {
+    public DeliveryHub(T value) {
         super(value);
     }
 
