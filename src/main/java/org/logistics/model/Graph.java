@@ -13,10 +13,10 @@ public class Graph {
      * @throws Exception
      */
     public void add_deliveryHub(DeliveryHub<String> start_vertex) throws Exception {
-        deliveryHubList.add(start_vertex);
 
         // Adds to the hashmap if start_node does not exist
         if (adjacencyList.get(start_vertex) == null) {
+            deliveryHubList.add(start_vertex);
             adjacencyList.put(start_vertex, new LinkedList<>());
         } else {
             throw new Exception("Node: " + start_vertex.getNodeValue() + " Already Exists, Cannot be Added");
@@ -29,10 +29,10 @@ public class Graph {
      * @throws Exception
      */
     public void add_customerLocation(CustomerLocation<String> start_vertex) throws Exception {
-        customerLocationList.add(start_vertex);
 
         // Adds to the hashmap if start_node does not exist
         if (adjacencyList.get(start_vertex) == null) {
+            customerLocationList.add(start_vertex);
             adjacencyList.put(start_vertex, new LinkedList<>());
         } else {
             throw new Exception("Node: " + start_vertex.getNodeValue() + " Already Exists, Cannot be Added");
