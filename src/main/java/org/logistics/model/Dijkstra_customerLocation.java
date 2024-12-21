@@ -31,6 +31,10 @@ public class Dijkstra_customerLocation {
         updateAdjacencyList();
         HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
 
+        for (Vertex<String> vertex : adjacencyList.keySet()) {
+            vertex.setDistance(Integer.MAX_VALUE);
+        }
+
         PriorityQueue<Vertex<String>> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
         Queue<Vertex<String>> visited = new LinkedList<>();
 
@@ -62,7 +66,6 @@ public class Dijkstra_customerLocation {
             if (!visited.contains(current)) {
                 for (Edge edge : adjacencyList.get(current)) {
                     int totalDistance = current.getDistance() + edge.getDistance_weight();
-                    edge.getConnecting_node().setDistance(Integer.MAX_VALUE);
 
                     if (totalDistance < edge.getConnecting_node().getDistance()) {
                         edge.getConnecting_node().setDistance(totalDistance);

@@ -40,6 +40,10 @@ public class Dijkstra_deliveryHub {
     public void find_shortest_delivery(Vehicle vehicle) {
         updateAdjacencyList();
         updateDeliveryHub();
+
+        for (Vertex<String> vertex : adjacencyList.keySet()) {
+            vertex.setDistance(Integer.MAX_VALUE);
+        }
         HashMap<Vertex, Vertex> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
@@ -56,7 +60,6 @@ public class Dijkstra_deliveryHub {
             if (!visited.contains(current)) {
                 for (Edge edge : adjacencyList.get(current)) {
                     int totalDistance = current.getDistance() + edge.getDistance_weight();
-                    edge.getConnecting_node().setDistance(Integer.MAX_VALUE);
 
                     if (totalDistance < edge.getConnecting_node().getDistance()) {
                         edge.getConnecting_node().setDistance(totalDistance);
