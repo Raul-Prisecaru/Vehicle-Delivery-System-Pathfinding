@@ -22,15 +22,15 @@ public class Main {
         Display displayGraph = new Display(graph);
 
         // Creating DeliveryHub Nodes
-        DeliveryHub deliveryHubA = new DeliveryHub("A");
-        DeliveryHub deliveryHubB = new DeliveryHub("B");
+        DeliveryHub<String> deliveryHubA = new DeliveryHub<String>("A");
+        DeliveryHub<String> deliveryHubB = new DeliveryHub<String>("B");
 
         // Creating CustomerLocation Nodes
-        CustomerLocation customerLocationC = new CustomerLocation("C");
-        CustomerLocation customerLocationD = new CustomerLocation("D");
-        CustomerLocation customerLocationE = new CustomerLocation("E");
-        CustomerLocation customerLocationF = new CustomerLocation("F");
-        CustomerLocation customerLocationG = new CustomerLocation("G");
+        CustomerLocation<String> customerLocationC = new CustomerLocation<String>("C");
+        CustomerLocation<String> customerLocationD = new CustomerLocation<String>("D");
+        CustomerLocation<String> customerLocationE = new CustomerLocation<String>("E");
+        CustomerLocation<String> customerLocationF = new CustomerLocation<String>("F");
+        CustomerLocation<String> customerLocationG = new CustomerLocation<String>("G");
 
         // Creating Packages
         Vehicle vehicle1 = new Vehicle(deliveryHubA);
@@ -44,14 +44,14 @@ public class Main {
         deliveryHubB.getPackages().add(NonPriorityphonePackage);
 
         // Creating Vertexes
-        graph.add_vertex(deliveryHubA);
-        graph.add_vertex(deliveryHubB);
+        graph.add_deliveryHub(deliveryHubA);
+        graph.add_deliveryHub(deliveryHubB);
 
-        graph.add_vertex(customerLocationC);
-        graph.add_vertex(customerLocationD);
-        graph.add_vertex(customerLocationE);
-        graph.add_vertex(customerLocationF); // New Vertex
-        graph.add_vertex(customerLocationG); // New Vertex
+        graph.add_customerLocation(customerLocationC);
+        graph.add_customerLocation(customerLocationD);
+        graph.add_customerLocation(customerLocationE);
+        graph.add_customerLocation(customerLocationF); // New Vertex
+        graph.add_customerLocation(customerLocationG); // New Vertex
 
         // Creating Edges
         graph.add_directed_edge(deliveryHubA, deliveryHubB, 4); // Distance: 4
