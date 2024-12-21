@@ -2,35 +2,40 @@ package org.logistics.model;
 
 public class Package {
     private String item_Name;
-    private CustomerLocation destination;
+    private CustomerLocation<String> destination;
     private int priority;
 
-
-    public Package(String item_Name, CustomerLocation destination, int priority) {
+    /**
+     * Constructor to setting up a package
+     * @param item_Name (String) - item name
+     * @param destination (CustomerLocation) - Destination of the package
+     * @param priority (int) -
+     */
+    public Package(String item_Name, CustomerLocation<String> destination, int priority) {
         this.item_Name = item_Name;
         this.destination = destination;
         this.priority = priority;
     }
 
     /**
-     * Method to retrieve the Name of the Package
-     * @return Package name
+     * Method Responsible for returning the item name
+     * @return String - Item name
      */
     public String getItem_Name() {
         return this.item_Name;
     }
 
     /**
-     * Method to retrieve the destination of the Package
-     * @return CustomerLocation | Destination
+     * Method Responsible for returning the customerLocation of the package
+     * @return CustomerLocation - Destination of the package
      */
-    public CustomerLocation getDestination() {
+    public CustomerLocation<String> getDestination() {
         return this.destination;
     }
 
     /**
-     * Method to retrieve the priority of the Package
-     * @return int | Priority
+     * Method Responsible for returning the priority of the package
+     * @return int - Priority of the package
      */
     public int getPriority() {
         return this.priority;
