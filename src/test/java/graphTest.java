@@ -1,9 +1,7 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
-import org.logistics.model.Edge;
-import org.logistics.model.Graph;
-import org.logistics.model.Vertex;
+import org.logistics.model.*;
 
 
 public class graphTest {
@@ -16,9 +14,9 @@ public class graphTest {
 
     @Test
     void addVertex() throws Exception {
-        Vertex testVertex = new Vertex("A");
+        DeliveryHub<String> testVertex = new DeliveryHub<>("A");
 
-        graphTest.add_vertex(testVertex);
+        graphTest.add_deliveryHub(testVertex);
 
         assertTrue(graphTest.getAdjacencyList().containsKey(testVertex));
 
@@ -26,12 +24,12 @@ public class graphTest {
 
     @Test
     void addDirectedEdge() throws Exception {
-        Vertex testStartVertex = new Vertex("A");
-        Vertex testEndVertex = new Vertex("B");
+        DeliveryHub<String> testStartVertex = new DeliveryHub<>("A");
+        CustomerLocation<String> testEndVertex = new CustomerLocation<>("B");
         Edge testEdge = new Edge(testStartVertex, testEndVertex, 10);
 
-        graphTest.add_vertex(testStartVertex);
-        graphTest.add_vertex(testEndVertex);
+        graphTest.add_deliveryHub(testStartVertex);
+        graphTest.add_customerLocation(testEndVertex);
         graphTest.add_directed_edge(testStartVertex, testEndVertex, 10);
 
         Edge adjacentEdge = graphTest.getAdjacencyList().get(testStartVertex).getFirst();
