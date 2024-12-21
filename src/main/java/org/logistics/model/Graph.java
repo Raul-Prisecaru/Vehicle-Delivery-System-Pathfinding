@@ -54,20 +54,6 @@ public class Graph {
         adjacencyList.remove(exist_vertex);
     }
 
-    public void removeDeliveryHub(DeliveryHub<String> deliveryHub) {
-        DeliveryHub<String> exist_vertex = this.findVertex(deliveryHub);
-
-        if (exist_vertex == null) {
-            System.out.println("Couldn't find vertex to remove");
-        }
-
-        adjacencyList.remove(exist_vertex);
-    }
-
-    public void removeCustomerLocation(CustomerLocation customerLocation) {
-
-    }
-
     /**
      * Method responsible for creating edges between two vertexes with weights
      * @param start_vertex Starting Vertex
@@ -192,23 +178,6 @@ public class Graph {
         return null;
     }
 
-    public Vertex<String> findVertex(CustomerLocation<String> customerLocation) {
-        for (Vertex<String> v : adjacencyList.keySet()) {
-            if (Objects.equals(v.getNodeValue(), customerLocation.getNodeValue())) {
-                return v;
-            }
-        }
-        return null;
-    }
-
-    public Vertex<String> findVertex(DeliveryHub<String> deliveryHub) {
-        for (Vertex<String> v : adjacencyList.keySet()) {
-            if (Objects.equals(v.getNodeValue(), deliveryHub.getNodeValue())) {
-                return v;
-            }
-        }
-        return null;
-    }
 
 
     public Edge findEdge(Vertex<String> start_vertex, Vertex<String> connecting_vertex) {
