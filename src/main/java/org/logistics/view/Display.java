@@ -42,18 +42,19 @@ public class Display {
                         "}");
 
 
-        for (Vertex vertex : this.graphinformation.getAdjacencyList().keySet()) {
+        for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
             Node node = graph.addNode(vertex.getNodeValue());
             node.setAttribute("ui.label", vertex.getNodeValue());
         }
 
         // TODO: Make this more efficient by turing nested for loop into a singular loop
-        for (Vertex vertex : this.graphinformation.getAdjacencyList().keySet()) {
+        for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
             for (org.logistics.model.Edge currentEdge : this.graphinformation.getAdjacencyList().get(vertex)) {
 
                 if (currentEdge == null) {
                     break;
                 }
+
                 String id = currentEdge.getStart_node().getNodeValue() + currentEdge.getConnecting_node().getNodeValue();
                 Edge edge = graph.addEdge(id, currentEdge.getStart_node().getNodeValue(), currentEdge.getConnecting_node().getNodeValue(), true);
                 edge.setAttribute("ui.label", currentEdge.getDistance_weight());
@@ -127,7 +128,7 @@ public class Display {
             System.out.println("Enter DeliveryHub Value");
             System.out.print(":: ");
             String vertex_value = scanner.next();
-            graphinformation.add_deliveryHub(new DeliveryHub(vertex_value));
+            graphinformation.add_deliveryHub(new DeliveryHub<String>(vertex_value));
 
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
@@ -142,7 +143,7 @@ public class Display {
             System.out.println("Enter CustomerLocation Value");
             System.out.print(":: ");
             String vertex_value = scanner.next();
-            graphinformation.add_customerLocation(new CustomerLocation(vertex_value));
+            graphinformation.add_customerLocation(new CustomerLocation<String>(vertex_value));
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
 
@@ -158,7 +159,7 @@ public class Display {
             System.out.print(":: ");
             String vertex_value = scanner.next();
 
-            graphinformation.remove_vertex(new Vertex(vertex_value));
+            graphinformation.remove_vertex(new Vertex<String>(vertex_value));
             graph.removeNode(vertex_value);
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -172,7 +173,7 @@ public class Display {
             System.out.print(":: ");
             String vertex_value = scanner.next();
 
-            graphinformation.remove_vertex(new Vertex(vertex_value));
+            graphinformation.remove_vertex(new Vertex<String>(vertex_value));
             graph.removeNode(vertex_value);
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -193,7 +194,7 @@ public class Display {
             System.out.print(":: ");
             int distance_weight = scanner.nextInt();
 
-            graphinformation.add_directed_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), distance_weight);
+            graphinformation.add_directed_edge(new Vertex<String>(start_vertex), new Vertex<String>(connecting_vertex), distance_weight);
 
             Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex, true);
             edge.setAttribute("ui.label", distance_weight);
@@ -228,7 +229,7 @@ public class Display {
             String new_connecting_vertex = scanner.next();
 
             // TODO: An Error has occurred: Cannot invoke "java.util.LinkedList.remove(Object)" because the return value of "java.util.HashMap.get(Object)" is null
-            graphinformation.modify_edge(new Vertex(start_vertex), new Vertex(connecting_vertex), new_distance, new Vertex(new_start_vertex), new Vertex(new_connecting_vertex));
+            graphinformation.modify_edge(new Vertex<String>(start_vertex), new Vertex<String>(connecting_vertex), new_distance, new Vertex<String>(new_start_vertex), new Vertex<String>(new_connecting_vertex));
 
             graph.removeEdge(start_vertex + "" + connecting_vertex);
             Edge edge = graph.addEdge(new_start_vertex + "" + new_connecting_vertex, new_start_vertex, new_connecting_vertex, true);
@@ -268,7 +269,7 @@ public class Display {
      * @param vertex (Vertex) - Vertex to highlight
      * @param OnOff (int) - 0 to turn off highlight, 1 to turn on highlight
      */
-    public void visualise_vehicle(Vertex vertex, int OnOff) {
+    public void visualise_vehicle(Vertex<String> vertex, int OnOff) {
         Node current_Node = graph.getNode(vertex.getNodeValue());
 
         if (OnOff == 0) {
