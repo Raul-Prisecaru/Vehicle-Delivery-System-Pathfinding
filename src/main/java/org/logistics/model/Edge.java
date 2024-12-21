@@ -45,7 +45,7 @@ public class Edge {
      * Method Responsible for returning the connecting vertex of the edge
      * @return Vertex - Connecting vertex of the edge
      */
-    public Vertex getConnecting_node() {
+    public Vertex<String> getConnecting_node() {
         return connecting_vertex;
     }
 
