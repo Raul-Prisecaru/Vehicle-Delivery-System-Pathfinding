@@ -127,7 +127,7 @@ public class Display {
             System.out.println("Enter DeliveryHub Value");
             System.out.print(":: ");
             String vertex_value = scanner.next();
-            graphinformation.add_vertex(new DeliveryHub(vertex_value));
+            graphinformation.add_deliveryHub(new DeliveryHub(vertex_value));
 
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
@@ -142,7 +142,7 @@ public class Display {
             System.out.println("Enter CustomerLocation Value");
             System.out.print(":: ");
             String vertex_value = scanner.next();
-            graphinformation.add_vertex(new CustomerLocation(vertex_value));
+            graphinformation.add_customerLocation(new CustomerLocation(vertex_value));
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
 
