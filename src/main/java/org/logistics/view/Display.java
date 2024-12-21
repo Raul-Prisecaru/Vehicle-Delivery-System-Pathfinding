@@ -281,9 +281,13 @@ public class Display {
 
         }
 
-
-
-
     }
 
+    public boolean doesNodeExist(String nodeID) {
+        return graph.getNode(nodeID) != null;
+    }
+
+    public boolean doesEdgeExist(String edgeID) {
+        return graph.getEdge(edgeID) != null;
+    }
 }
