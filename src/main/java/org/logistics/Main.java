@@ -98,10 +98,12 @@ public class Main {
 //
 //                }
 
+                graph.findEdge(vehicle1.getCurrent_location(), vertex).addCongestion_weight();
                 displayGraph.visualise_vehicle(vertex, 1);
                 vehicle1.travel(vertex);
                 Thread.sleep(1500);
                 displayGraph.visualise_vehicle(vertex, 0);
+                graph.findEdge(vehicle1.getCurrent_location(), vertex).removeCongestion_weight();
 
 
 
