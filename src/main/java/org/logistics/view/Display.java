@@ -69,6 +69,12 @@ public class Display {
 
     }
 
+    public void updateEdge(org.logistics.model.Edge edge_edge) {
+        graph.removeEdge(edge_edge.getStart_node().getNodeValue() + "" + edge_edge.getConnecting_node().getNodeValue());
+        Edge edge = graph.addEdge(edge_edge.getStart_node().getNodeValue() + "" + edge_edge.getConnecting_node().getNodeValue(), edge_edge.getStart_node().getNodeValue(), edge_edge.getConnecting_node().getNodeValue(), true);
+        edge.setAttribute("ui.label", edge_edge.getTime_weight());
+    }
+
     public void displayGUI(){
         JFrame frame = new JFrame("GraphStream");
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
