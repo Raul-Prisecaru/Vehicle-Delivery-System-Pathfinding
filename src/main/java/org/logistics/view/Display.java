@@ -60,7 +60,7 @@ public class Display {
 
                 String id = currentEdge.getStart_node().getNodeValue() + currentEdge.getConnecting_node().getNodeValue();
                 Edge edge = graph.addEdge(id, currentEdge.getStart_node().getNodeValue(), currentEdge.getConnecting_node().getNodeValue(), true);
-                edge.setAttribute("ui.label", currentEdge.getDistance_weight());
+                edge.setAttribute("ui.label", currentEdge.getTime_weight());
 
             }
 
