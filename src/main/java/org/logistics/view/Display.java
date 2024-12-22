@@ -34,6 +34,8 @@ public class Display {
                         "   text-alignment: under;" +
                         "   text-size: 14px;" +
                         "   text-color: black;" +
+                        "   fill-mode: image-scaled;" +
+                        "   size: 30px, 30px;" +
                         "}" +
                         "edge {" +
                         "   text-alignment: under;" +
@@ -45,6 +47,7 @@ public class Display {
         for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
             Node node = graph.addNode(vertex.getNodeValue());
             node.setAttribute("ui.label", vertex.getNodeValue());
+            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
         }
 
         // TODO: Make this more efficient by turing nested for loop into a singular loop
