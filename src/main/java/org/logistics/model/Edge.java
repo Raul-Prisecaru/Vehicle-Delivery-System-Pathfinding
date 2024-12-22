@@ -8,8 +8,8 @@ public class Edge {
 
     // Weights
     private int distance_weight;
-//    private int traffic_weight;
-//    private int time_weight;
+    private int congestion_weight;
+    private int time_weight;
 
     /**
      * Constructor to set the values of an edge
@@ -21,8 +21,8 @@ public class Edge {
         this.start_vertex = start_vertex;
         this.connecting_vertex = connecting_vertex;
         this.distance_weight = distance_weight;
-//        this.traffic_weight = traffic_weight;
-//        this.time_weight = time_weight;
+
+        this.time_weight = this.congestion_weight + this.distance_weight;
     }
 
     /**
@@ -57,21 +57,27 @@ public class Edge {
         this.connecting_vertex = new_connecting_vertex;
     }
 
-//    public int getTime_weight() {
-//        return time_weight;
-//    }
-//
+    public int getTime_weight() {
+        return time_weight;
+    }
+
 //    public void setTime_weight(int time_weight) {
 //        this.time_weight = time_weight;
 //    }
-//
-//    public int getTraffic_weight() {
-//        return traffic_weight;
-//    }
-//
-//    public void setTraffic_weight(int traffic_weight) {
-//        this.traffic_weight = traffic_weight;
-//    }
+
+    public int getCongestion_weight() {
+        return congestion_weight;
+    }
+
+    public void addCongestion_weight() {
+        this.congestion_weight++;
+        this.time_weight = this.congestion_weight + distance_weight;
+    }
+
+    public void removeCongestion_weight() {
+        this.congestion_weight--;
+        this.time_weight = this.congestion_weight + distance_weight;
+    }
 
     /**
      * Method responsible for returning the distance weight of the edge
