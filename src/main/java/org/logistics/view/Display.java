@@ -396,11 +396,14 @@ public class Display {
         Node current_Node = graph.getNode(vertex.getNodeValue());
 
         if (OnOff == 0) {
-            current_Node.setAttribute("ui.style", "fill-color: black;");
+            current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+
         }
 
         if (OnOff == 1) {
-            current_Node.setAttribute("ui.style", "fill-color: red;");
+//            current_Node.setAttribute("ui.style", "fill-color: red;");
+            current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/fast-delivery.png');");
+
 
         }
 
