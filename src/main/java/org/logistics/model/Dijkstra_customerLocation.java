@@ -62,10 +62,10 @@ public class Dijkstra_customerLocation {
 
 
         while (!unvisited.isEmpty()) {
-            Vertex current = unvisited.poll();
+            Vertex<String> current = unvisited.poll();
             if (!visited.contains(current)) {
                 for (Edge edge : adjacencyList.get(current)) {
-                    int totalDistance = current.getDistance() + edge.getDistance_weight();
+                    int totalDistance = current.getDistance() + edge.getTime_weight();
 
                     if (totalDistance < edge.getConnecting_node().getDistance()) {
                         edge.getConnecting_node().setDistance(totalDistance);
@@ -83,9 +83,9 @@ public class Dijkstra_customerLocation {
 
             }
         }
-        Vertex endVertex = package_package.getDestination();
+        Vertex<String> endVertex = package_package.getDestination();
         vehicle.addTravelDestination(endVertex);
-        for (Vertex vertex : predecessor.keySet()) {
+        for (Vertex<String> vertex : predecessor.keySet()) {
             if (predecessor.get(endVertex) != null) {
                 vehicle.addTravelDestination(predecessor.get(endVertex));
                 endVertex = predecessor.get(endVertex);

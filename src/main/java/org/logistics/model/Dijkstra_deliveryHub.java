@@ -44,22 +44,22 @@ public class Dijkstra_deliveryHub {
         for (Vertex<String> vertex : adjacencyList.keySet()) {
             vertex.setDistance(Integer.MAX_VALUE);
         }
-        HashMap<Vertex, Vertex> predecessor = new HashMap<>();
+        HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
 
-        PriorityQueue<Vertex> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
-        Queue<Vertex> visited = new LinkedList<>();
+        PriorityQueue<Vertex<String>> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex<String>::getDistance));
+        Queue<Vertex<String>> visited = new LinkedList<>();
 
-        Vertex start_vertex = vehicle.getCurrent_location();
+        Vertex<String> start_vertex = vehicle.getCurrent_location();
         start_vertex.setDistance(0);
 
         unvisited.add(start_vertex);
         predecessor.put(start_vertex, null);
 
         while (!unvisited.isEmpty()) {
-            Vertex current = unvisited.poll();
+            Vertex<String> current = unvisited.poll();
             if (!visited.contains(current)) {
                 for (Edge edge : adjacencyList.get(current)) {
-                    int totalDistance = current.getDistance() + edge.getDistance_weight();
+                    int totalDistance = current.getDistance() + edge.getTime_weight();
 
                     if (totalDistance < edge.getConnecting_node().getDistance()) {
                         edge.getConnecting_node().setDistance(totalDistance);
