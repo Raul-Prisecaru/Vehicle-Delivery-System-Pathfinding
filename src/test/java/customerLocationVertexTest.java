@@ -65,7 +65,7 @@ public class customerLocationVertexTest {
     @Test
     void addCustomerLocationPackage() {
         CustomerLocation<String> customerLocation = new CustomerLocation<String>("A");
-        testCustomerLocationVertex.addCollectedPackage("TestItem", customerLocation, 1);
+        testCustomerLocationVertex.addCollectedPackage(new Package("TestItem", customerLocation, 1));
 
         for (Package package_package : testCustomerLocationVertex.getCollectedPackages()) {
             assertEquals("TestItem", package_package.getItem_Name());
