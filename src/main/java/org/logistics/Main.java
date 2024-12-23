@@ -76,13 +76,21 @@ public class Main {
         displayGraph.displayGUI();
 
         while (true) {
-            // call pathfinding method for vehicles to find their destinations
+
+            // For every vehicle
             for (Vehicle vehicle : list_of_vehicles) {
+
+                // If Vehicle HAS packages
                 if (!vehicle.get_deliveryPackages().isEmpty()) {
+
+                    // Find shortest route towards customer based on package
                     dijkstra_customerLocation.find_shortest_customer(vehicle);
                 }
 
+                // If Vehicle has NO packages
                 if (vehicle.get_deliveryPackages().isEmpty()) {
+
+                    // Find shortest route towards closest deliveryHub
                     dijkstra_deliveryHub.find_shortest_delivery(vehicle);
                 }
             }
@@ -97,41 +105,94 @@ public class Main {
 //                    System.out.println(package_package.getDestination());
 //
 //                }
+
+
+                // Temp Fix for preventing null error due to unable to find edge of two same vertexes
+                // TODO: Fix this issue /\
                 if (vehicle1.getCurrent_location() == vertex) {
                     continue;
                 }
 
+                // Find Relevant Edge
                 Edge edge_edge = graph.findEdge(vehicle1.getCurrent_location(), vertex);
+
+                // Increase Congestion Weight by one
                 edge_edge.addCongestion_weight();
+
+                // Update Label of the edge to reflect those changes
                 displayGraph.updateEdge(edge_edge);
+
+                // Highlight the current position of the Vehicle
                 displayGraph.visualise_vehicle(vertex, 1);
+
+                // Vehicle Travels to the vertex
                 vehicle1.travel(vertex);
+
+                // Timer
                 Thread.sleep(1500);
+
+                // Remove the highlight of current position
                 displayGraph.visualise_vehicle(vertex, 0);
+
+                // Decrease Congestion by one
                 edge_edge.removeCongestion_weight();
+
+                // Update Label of the edge to reflect those changes
                 displayGraph.updateEdge(edge_edge);
-
-
 
 
             }
 
+            // After all vehicles has finished travelling
+
+
+            // for every Vehicle
             for (Vehicle vehicle : list_of_vehicles) {
+
+                // If vehicle is in a DeliveryHub
                 if (vehicle.getCurrent_location() instanceof DeliveryHub) {
+
+                    // Store the deliveryHub
                     DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
-                    for (Package package_package : ((DeliveryHub<?>) vehicle.getCurrent_location()).getPackages()) {
+
+                    // For Every Package in the deliveryHub
+                    for (Package package_package : currentDeliveryHub.getPackages()) {
+                        // TODO: Check if vehicle is full and break the loop if full
+
+
+                        // Remove the package from the deliveryHub
                         currentDeliveryHub.removePackages(package_package);
-                        vehicle.get_deliveryPackages().add(package_package);
+
+                        // Add package to the Vehicle
+                        vehicle.add_deliveryPackage(package_package);
+//                        vehicle.get_deliveryPackages().add(package_package);
                     }
                 }
 
+                // If vehicle is in a CustomerLocation
                 if (vehicle.getCurrent_location() instanceof CustomerLocation) {
-                    vehicle1.get_deliveryPackages().clear();
-//                    System.out.println("I have dropped up a package from CustomerLocation:" + vehicle.getCurrent_location().get_node_value()) ;
 
+                    CustomerLocation<String> customerLocation = (CustomerLocation<String>) vehicle.getCurrent_location();
+
+                    for (Package package_package : vehicle.get_deliveryPackages()) {
+                        if (package_package.getDestination() == customerLocation) {
+                            customerLocation.addCollectedPackage(package_package);
+                            vehicle.remove_deliveryPackage(package_package);
+                            break;
+                        }
+                    }
                 }
             }
-            vehicle1.getTravelDestinations().clear();
+
+            // Once all packages are collected or dropped
+
+            // For Every Vehicle
+            for (Vehicle vehicle : list_of_vehicles) {
+
+                // Clear the vehicle's Destination
+                vehicle.getTravelDestinations().clear();
+
+            }
 
         }
 
