@@ -24,12 +24,10 @@ public class CustomerLocation<T> extends Vertex<T> {
 
     /**
      * Method Responsible for adding a package to the CustomerLocation
-     * @param itemName (String) - Item name
-     * @param deliveryLocation (CustomerLocation) - DeliveryLocation
-     * @param priority (int) - Priority of the Package
+     * @param package_package (Package) - package to add to the customerLocation
      */
-    public void addCollectedPackage(String itemName, CustomerLocation<String> deliveryLocation, int priority) {
-        this.collected_packages.add(new Package(itemName, deliveryLocation, priority));
+    public void addCollectedPackage(Package package_package) {
+        this.collected_packages.add(package_package);
     }
 
     /**
