@@ -36,10 +36,15 @@ public class Main {
         Vehicle vehicle1 = new Vehicle(deliveryHubA);
         list_of_vehicles.add(vehicle1);
 
+        Vehicle vehicle2 = new Vehicle(deliveryHubB);
+        list_of_vehicles.add(vehicle2);
+
         Package PriorityphonePackage = new Package("Iphone", customerLocationF, 1);
         Package NonPriorityphonePackage = new Package("Iphone", customerLocationE, 0);
         vehicle1.add_deliveryPackage(PriorityphonePackage);
         vehicle1.add_deliveryPackage(NonPriorityphonePackage);
+
+        vehicle2.add_deliveryPackage(NonPriorityphonePackage);
         deliveryHubA.getPackages().add(PriorityphonePackage);
         deliveryHubB.getPackages().add(NonPriorityphonePackage);
 
@@ -80,68 +85,68 @@ public class Main {
             // For every vehicle
             for (Vehicle vehicle : list_of_vehicles) {
 
-                // If Vehicle HAS packages
-                if (!vehicle.get_deliveryPackages().isEmpty()) {
+                // If vehicle has no travel destinations
+                if (vehicle.getTravelDestinations().isEmpty()) {
 
-                    // Find shortest route towards customer based on package
-                    dijkstra_customerLocation.find_shortest_customer(vehicle);
+                    // If Vehicle HAS packages
+                    if (!vehicle.get_deliveryPackages().isEmpty()) {
+
+                        // Find the shortest route towards customer based on package
+                        dijkstra_customerLocation.find_shortest_customer(vehicle);
+                    }
+
+                    // If Vehicle has NO packages
+                    if (vehicle.get_deliveryPackages().isEmpty()) {
+
+                        // Find the shortest route towards closest deliveryHub
+                        dijkstra_deliveryHub.find_shortest_delivery(vehicle);
+                    }
                 }
-
-                // If Vehicle has NO packages
-                if (vehicle.get_deliveryPackages().isEmpty()) {
-
-                    // Find shortest route towards closest deliveryHub
-                    dijkstra_deliveryHub.find_shortest_delivery(vehicle);
-                }
-            }
-
-            for (Vertex<String> vertex : vehicle1.getTravelDestinations().reversed()) {
-//                System.out.println("--- Vehicle Status ---  ");
-//                System.out.println("Vehicle Location: " +  vehicle1.getCurrent_location().get_node_value());
-//
-//                System.out.println("--- Package Status ---  ");
-//                for (Package package_package : vehicle1.get_deliveryPackages()) {
-//                    System.out.println(package_package.getItem_Name());
-//                    System.out.println(package_package.getDestination());
-//
-//                }
-
-
-                // Temp Fix for preventing null error due to unable to find edge of two same vertexes
-                // TODO: Fix this issue /\
-                if (vehicle1.getCurrent_location() == vertex) {
-                    continue;
-                }
-
-                // Find Relevant Edge
-                Edge edge_edge = graph.findEdge(vehicle1.getCurrent_location(), vertex);
-
-                // Increase Congestion Weight by one
-                edge_edge.addCongestion_weight();
-
-                // Update Label of the edge to reflect those changes
-                displayGraph.updateEdge(edge_edge);
-
-                // Highlight the current position of the Vehicle
-                displayGraph.visualise_vehicle(vertex, 1);
-
-                // Vehicle Travels to the vertex
-                vehicle1.travel(vertex);
-
-                // Timer
-                Thread.sleep(1500);
-
-                // Remove the highlight of current position
-                displayGraph.visualise_vehicle(vertex, 0);
-
-                // Decrease Congestion by one
-                edge_edge.removeCongestion_weight();
-
-                // Update Label of the edge to reflect those changes
-                displayGraph.updateEdge(edge_edge);
 
 
             }
+
+            for (Vehicle vehicle : list_of_vehicles) {
+                for (Vertex<String> vertex : vehicle1.getTravelDestinations().reversed()) {
+
+                    // Temp Fix for preventing null error due to unable to find edge of two same vertexes
+                    // TODO: Fix this issue /\
+                    if (vehicle.getCurrent_location() == vertex) {
+                        continue;
+                    }
+
+                    // Find Relevant Edge
+                    Edge edge_edge = graph.findEdge(vehicle.getCurrent_location(), vertex);
+
+                    // Increase Congestion Weight by one
+                    edge_edge.addCongestion_weight();
+
+                    // Update Label of the edge to reflect those changes
+                    displayGraph.updateEdge(edge_edge);
+
+                    // Highlight the current position of the Vehicle
+                    displayGraph.visualise_vehicle(vertex, 1);
+
+                    // Vehicle Travels to the vertex
+                    vehicle.travel(vertex);
+
+                    // Timer
+                    Thread.sleep(1500);
+
+                    // Remove the highlight of current position
+                    displayGraph.visualise_vehicle(vertex, 0);
+
+                    // Decrease Congestion by one
+                    edge_edge.removeCongestion_weight();
+
+                    // Update Label of the edge to reflect those changes
+                    displayGraph.updateEdge(edge_edge);
+
+
+                }
+            }
+
+
 
             // After all vehicles has finished travelling
 
