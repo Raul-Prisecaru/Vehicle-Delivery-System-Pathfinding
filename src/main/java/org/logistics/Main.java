@@ -13,7 +13,6 @@ public class Main {
 
 
         // Creating Graph Environment
-        Scanner scanner = new Scanner(System.in);
         Graph graph = new Graph();
 
         Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
@@ -36,15 +35,11 @@ public class Main {
         Vehicle vehicle1 = new Vehicle(deliveryHubA);
         list_of_vehicles.add(vehicle1);
 
-        Vehicle vehicle2 = new Vehicle(deliveryHubB);
-        list_of_vehicles.add(vehicle2);
-
         Package PriorityphonePackage = new Package("Iphone", customerLocationF, 1);
         Package NonPriorityphonePackage = new Package("Iphone", customerLocationE, 0);
         vehicle1.add_deliveryPackage(PriorityphonePackage);
         vehicle1.add_deliveryPackage(NonPriorityphonePackage);
 
-        vehicle2.add_deliveryPackage(NonPriorityphonePackage);
         deliveryHubA.getPackages().add(PriorityphonePackage);
         deliveryHubB.getPackages().add(NonPriorityphonePackage);
 
@@ -104,56 +99,47 @@ public class Main {
                 }
 
 
-            }
 
-            for (Vehicle vehicle : list_of_vehicles) {
-                for (Vertex<String> vertex : vehicle1.getTravelDestinations().reversed()) {
+            if (!vehicle.getTravelDestinations().isEmpty()) {
+                Vertex<String> nextVertex = vehicle.getTravelDestinations().pop();
 
-                    // Temp Fix for preventing null error due to unable to find edge of two same vertexes
-                    // TODO: Fix this issue /\
-                    if (vehicle.getCurrent_location() == vertex) {
-                        continue;
-                    }
-
-                    // Find Relevant Edge
-                    Edge edge_edge = graph.findEdge(vehicle.getCurrent_location(), vertex);
-
-                    // Increase Congestion Weight by one
-                    edge_edge.addCongestion_weight();
-
-                    // Update Label of the edge to reflect those changes
-                    displayGraph.updateEdge(edge_edge);
-
-                    // Highlight the current position of the Vehicle
-                    displayGraph.visualise_vehicle(vertex, 1);
-
-                    // Vehicle Travels to the vertex
-                    vehicle.travel(vertex);
-
-                    // Timer
-                    Thread.sleep(1500);
-
-                    // Remove the highlight of current position
-                    displayGraph.visualise_vehicle(vertex, 0);
-
-                    // Decrease Congestion by one
-                    edge_edge.removeCongestion_weight();
-
-                    // Update Label of the edge to reflect those changes
-                    displayGraph.updateEdge(edge_edge);
-
-
+                // Temp Fix for preventing null error due to unable to find edge of two same vertexes
+                // TODO: Fix this issue /\
+                if (vehicle.getCurrent_location() == nextVertex) {
+                    continue;
                 }
+
+                // Find Relevant Edge
+                Edge edge_edge = graph.findEdge(vehicle.getCurrent_location(), nextVertex);
+
+                // Increase Congestion Weight by one
+                edge_edge.addCongestion_weight();
+
+                // Update Label of the edge to reflect those changes
+                displayGraph.updateEdge(edge_edge);
+
+                // Highlight the current position of the Vehicle
+                displayGraph.visualise_vehicle(nextVertex, 1);
+
+                // Vehicle Travels to the vertex
+                vehicle.travel(nextVertex);
+
+                // Timer
+                Thread.sleep(500);
+
+                // Remove the highlight of current position
+                displayGraph.visualise_vehicle(nextVertex, 0);
+
+                // Decrease Congestion by one
+                edge_edge.removeCongestion_weight();
+
+                // Update Label of the edge to reflect those changes
+                displayGraph.updateEdge(edge_edge);
+
+
             }
 
-
-
-            // After all vehicles has finished travelling
-
-
-            // for every Vehicle
-            for (Vehicle vehicle : list_of_vehicles) {
-
+            if (vehicle.getTravelDestinations().isEmpty()) {
                 // If vehicle is in a DeliveryHub
                 if (vehicle.getCurrent_location() instanceof DeliveryHub) {
 
@@ -189,18 +175,8 @@ public class Main {
                 }
             }
 
-            // Once all packages are collected or dropped
-
-            // For Every Vehicle
-            for (Vehicle vehicle : list_of_vehicles) {
-
-                // Clear the vehicle's Destination
-                vehicle.getTravelDestinations().clear();
-
             }
-
         }
-
 
     }
 
