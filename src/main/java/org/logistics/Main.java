@@ -97,6 +97,9 @@ public class Main {
 //                    System.out.println(package_package.getDestination());
 //
 //                }
+                if (vehicle1.getCurrent_location() == vertex) {
+                    continue;
+                }
 
                 Edge edge_edge = graph.findEdge(vehicle1.getCurrent_location(), vertex);
                 edge_edge.addCongestion_weight();
