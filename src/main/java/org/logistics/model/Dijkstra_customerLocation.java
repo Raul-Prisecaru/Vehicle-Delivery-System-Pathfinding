@@ -86,7 +86,7 @@ public class Dijkstra_customerLocation {
         Vertex<String> endVertex = package_package.getDestination();
         vehicle.addTravelDestination(endVertex);
         for (Vertex<String> vertex : predecessor.keySet()) {
-            if (predecessor.get(endVertex) != null) {
+            if (predecessor.get(endVertex) != null && predecessor.get(endVertex) != vehicle.getCurrent_location()) {
                 vehicle.addTravelDestination(predecessor.get(endVertex));
                 endVertex = predecessor.get(endVertex);
             }

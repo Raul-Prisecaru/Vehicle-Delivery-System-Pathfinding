@@ -78,10 +78,10 @@ public class Dijkstra_deliveryHub {
             }
         }
 
-        DeliveryHub deliveryHub_shortest = null;
+        DeliveryHub<String> deliveryHub_shortest = null;
         int minDistance = Integer.MAX_VALUE;
 
-        for (DeliveryHub deliveryHub : deliveryHubList) {
+        for (DeliveryHub<String> deliveryHub : deliveryHubList) {
             if (deliveryHub.getDistance() < minDistance) {
                 minDistance = deliveryHub.getDistance();
                 deliveryHub_shortest = deliveryHub;
@@ -89,10 +89,10 @@ public class Dijkstra_deliveryHub {
         }
 
 
-        Vertex endVertex = deliveryHub_shortest;
+        Vertex<String> endVertex = deliveryHub_shortest;
         vehicle.addTravelDestination(endVertex);
-        for (Vertex vertex : predecessor.keySet()) {
-            if (predecessor.get(endVertex) != null) {
+        for (Vertex<String> vertex : predecessor.keySet()) {
+            if (predecessor.get(endVertex) != null && predecessor.get(endVertex) != vehicle.getCurrent_location()) {
                 vehicle.addTravelDestination(predecessor.get(endVertex));
                 endVertex = predecessor.get(endVertex);
             }
