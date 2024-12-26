@@ -201,6 +201,30 @@ public class Graph {
         return deliveryHubList;
     }
 
-}
 
+    public HashSet<DeliveryHub<String>> getAllDeliveryHub() {
+        HashSet<DeliveryHub<String>> deliveryHubs = new HashSet<>();
+
+        for (Vertex<String> vertex : adjacencyList.keySet()) {
+            if (vertex instanceof DeliveryHub<String>) {
+                deliveryHubs.add((DeliveryHub<String>) vertex);
+            }
+        }
+        return deliveryHubs;
+    }
+
+
+    public HashSet<CustomerLocation<String>> getAllCustomerLocation() {
+        HashSet<CustomerLocation<String>> customerLocations = new HashSet<>();
+
+        for (Vertex<String> vertex : adjacencyList.keySet()) {
+            if (vertex instanceof CustomerLocation<String>) {
+                customerLocations.add((CustomerLocation<String>) vertex);
+            }
+        }
+
+        return customerLocations;
+    }
+
+}
 
