@@ -45,7 +45,7 @@ public class Graph {
      * @param vertex (Vertex) - Vertex to remove
      */
     public void remove_vertex(Vertex<String> vertex) {
-        Vertex<String> exist_vertex = this.findVertex(vertex);
+        Vertex<String> exist_vertex = this.findVertexAndReturn(vertex);
 
         if (exist_vertex == null) {
             System.out.println("Couldn't find vertex to remove");
@@ -62,8 +62,8 @@ public class Graph {
      * @return None if successful, Error message otherwise
      */
     public void add_directed_edge(Vertex<String> start_vertex, Vertex<String> connecting_node, int distance_weight) {
-        Vertex<String> exist_start = this.findVertex(start_vertex);
-        Vertex<String> exist_connecting = this.findVertex(connecting_node);
+        Vertex<String> exist_start = this.findVertexAndReturn(start_vertex);
+        Vertex<String> exist_connecting = this.findVertexAndReturn(connecting_node);
 
         if (exist_start == null) {
             System.out.println("Vertex: " + start_vertex.getNodeValue() + " Does not exist");
@@ -92,10 +92,10 @@ public class Graph {
      * @throws Exception
      */
     public void modify_edge(Vertex<String> start_vertex, Vertex<String> connecting_vertex, int new_distance, Vertex<String> new_start_vertex, Vertex<String> new_connecting_vertex) throws Exception {
-        Vertex<String> exist_start = this.findVertex(start_vertex);
-        Vertex<String> exist_connecting = this.findVertex(connecting_vertex);
-        Vertex<String> exist_new_start = this.findVertex(new_start_vertex);
-        Vertex<String> exist_new_connecting = this.findVertex(new_connecting_vertex);
+        Vertex<String> exist_start = this.findVertexAndReturn(start_vertex);
+        Vertex<String> exist_connecting = this.findVertexAndReturn(connecting_vertex);
+        Vertex<String> exist_new_start = this.findVertexAndReturn(new_start_vertex);
+        Vertex<String> exist_new_connecting = this.findVertexAndReturn(new_connecting_vertex);
 
         if (exist_start == null) {
             throw new Exception("Couldn't find starting vertex");
@@ -124,8 +124,8 @@ public class Graph {
      * @param start_vertex (Vertex) - Vertex to remove edge from
      */
     public void remove_directed_edge(Vertex<String> start_vertex, Vertex<String> connecting_vertex) throws Exception {
-        Vertex<String> exist_start = this.findVertex(start_vertex);
-        Vertex<String> exist_connecting = this.findVertex(connecting_vertex);
+        Vertex<String> exist_start = this.findVertexAndReturn(start_vertex);
+        Vertex<String> exist_connecting = this.findVertexAndReturn(connecting_vertex);
 
         if (exist_start == null) {
             throw new Exception("Couldn't find starting vertex to remove edge from");
@@ -134,7 +134,7 @@ public class Graph {
         if (exist_connecting == null) {
             throw new Exception("Couldn't find connecting vertex");
         }
-        Edge exist_edge = this.findEdge(exist_start, connecting_vertex);
+        Edge exist_edge = this.findEdgeAndReturn(exist_start, connecting_vertex);
 
         if (exist_edge == null) {
             throw new Exception("Couldn't find edge to remove");
@@ -175,7 +175,7 @@ public class Graph {
      * @param vertex (Vertex) - Vertex to find in the AdjacencyList
      * @return vertex - Returns Appropriate Vertex. Otherwise null
      */
-    public Vertex<String> findVertex(Vertex<String> vertex) {
+    public Vertex<String> findVertexAndReturn(Vertex<String> vertex) {
         for (Vertex<String> v : adjacencyList.keySet()) {
             if (Objects.equals(v.getNodeValue(), vertex.getNodeValue())) {
                 return v;
@@ -186,7 +186,7 @@ public class Graph {
 
 
 
-    public Edge findEdge(Vertex<String> start_vertex, Vertex<String> connecting_vertex) {
+    public Edge findEdgeAndReturn(Vertex<String> start_vertex, Vertex<String> connecting_vertex) {
         for (Edge edge : adjacencyList.get(start_vertex)) {
             if (Objects.equals(edge.getConnecting_node().getNodeValue(), connecting_vertex.getNodeValue())) {
                 return edge;
