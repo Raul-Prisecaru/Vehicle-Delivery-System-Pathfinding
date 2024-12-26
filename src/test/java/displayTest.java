@@ -50,6 +50,14 @@ public class displayTest {
 
         display.add_edge(new Edge(new Vertex<>("M"), new Vertex<>("N"), 2));
         assertTrue(display.doesEdgeExist("MN"));
+
+
+        Edge edge = graph.findEdgeAndReturn(graph.findVertexAndReturn(new Vertex<>("M")), graph.findVertexAndReturn(new Vertex<>("N")));
+
+        assertEquals(edge.getStart_node().getNodeValue(), graph.findVertexAndReturn(new Vertex<>("M")).getNodeValue());
+        assertEquals(edge.getConnecting_node().getNodeValue(), graph.findVertexAndReturn(new Vertex<>("N")).getNodeValue());
+        assertEquals(edge.getDistance_weight(), 2);
+
     }
 
     @Test
