@@ -34,6 +34,10 @@ public class displayTest {
 
         assertFalse(display.doesNodeExist("V"));
         assertFalse(display.doesNodeExist("M"));
+
+        assertNull(graph.findVertexAndReturn(new Vertex<>("V")));
+        assertNull(graph.findVertexAndReturn(new Vertex<>("M")));
+
     }
 
 
