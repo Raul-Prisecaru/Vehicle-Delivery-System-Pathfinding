@@ -98,15 +98,10 @@ public class Main {
                 }
 
 
-
             if (!vehicle.getTravelDestinations().isEmpty()) {
+                // Highlight the current position of the Vehicle
                 Vertex<String> nextVertex = vehicle.getTravelDestinations().pop();
 
-                // Temp Fix for preventing null error due to unable to find edge of two same vertexes
-                // TODO: Fix this issue /\
-                if (vehicle.getCurrent_location() == nextVertex) {
-                    continue;
-                }
 
                 // Find Relevant Edge
                 Edge edge_edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextVertex);
@@ -124,7 +119,7 @@ public class Main {
                 vehicle.travel(nextVertex);
 
                 // Timer
-                Thread.sleep(500);
+                Thread.sleep(1500 );
 
                 // Remove the highlight of current position
                 displayGraph.visualise_vehicle(nextVertex, 0);
@@ -149,6 +144,7 @@ public class Main {
                     for (Package package_package : currentDeliveryHub.getPackages()) {
                         // TODO: Check if vehicle is full and break the loop if full
 
+                        currentDeliveryHub.addPackage(new Package("TestITem", customerLocationF, 0));
 
                         // Remove the package from the deliveryHub
                         currentDeliveryHub.removePackages(package_package);
