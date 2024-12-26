@@ -95,5 +95,9 @@ public class displayTest {
         display.add_edge(new Edge(new Vertex<>("M"), new Vertex<>("N"), 2));
         display.remove_edge(new Edge(new Vertex<>("M"), new Vertex<>("N"), 2));
         assertFalse(display.doesEdgeExist("MN"));
+        assertNull(graph.findEdgeAndReturn(graph.findVertexAndReturn(new Vertex<>("M")), graph.findVertexAndReturn(new Vertex<>("N"))));
+
+
+
     }
 }
