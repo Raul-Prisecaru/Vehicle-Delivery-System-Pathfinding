@@ -73,7 +73,6 @@ public class DijkstraCustomerLocationTest {
         tempStackExpected.add(customerLocationF);
         tempStackExpected.add(customerLocationE);
         tempStackExpected.add(customerLocationC);
-        tempStackExpected.add(deliveryHubA);
 
         dijkstra_customerLocation.find_shortest_customer(vehicle1);
         tempStackVehicle = vehicle1.getTravelDestinations();

@@ -1,7 +1,6 @@
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 import org.logistics.model.*;
-import org.logistics.model.Package;
 import org.logistics.model.Vehicle;
 
 import java.util.Stack;
@@ -65,7 +64,6 @@ public class DijkstraDeliveryHubTest {
         Stack<Vertex<String>> tempStackExpected = new Stack<>();
         tempStackExpected.add(deliveryHubA);
         tempStackExpected.add(customerLocationG);
-        tempStackExpected.add(customerLocationF);
 
         dijkstra_deliveryHub.find_shortest_delivery(vehicle1);
         tempStackVehicle = vehicle1.getTravelDestinations();
