@@ -4,7 +4,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.logistics.model.*;
 import org.logistics.view.Display;
 
-public class displayTest {
+public class DisplayTest {
 
     @Test
     void testAddNode() {
