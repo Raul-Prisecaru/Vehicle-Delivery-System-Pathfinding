@@ -14,7 +14,7 @@ public class Dijkstra_deliveryHub {
     public Dijkstra_deliveryHub(Graph graph) {
         this.graph = graph;
         this.adjacencyList = graph.getAdjacencyList();
-        this.deliveryHubList = graph.getDeliveryHubList();
+        this.deliveryHubList = graph.getAllDeliveryHub();
     }
 
     /**
@@ -28,7 +28,7 @@ public class Dijkstra_deliveryHub {
      * Method Responsible for updating the DeliveryHub to ensure any dynamically added DeliveryHubs are added
      */
     public void updateDeliveryHub() {
-        this.deliveryHubList = graph.getDeliveryHubList();
+        this.deliveryHubList = graph.getAllDeliveryHub();
     }
 
 
