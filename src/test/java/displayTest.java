@@ -72,6 +72,17 @@ public class displayTest {
         display.add_edge(new Edge(new Vertex<>("M"), new Vertex<>("N"), 2));
         display.modify_edge(new Edge(new Vertex<>("M"), new Vertex<>("N"), 2), new Vertex<>("X"), new Vertex<>("Z"), 5);
         assertTrue(display.doesEdgeExist("XZ"));
+        assertFalse(display.doesEdgeExist("MN"));
+        assertNull(graph.findEdgeAndReturn(graph.findVertexAndReturn(new Vertex<>("M")), graph.findVertexAndReturn(new Vertex<>("N"))));
+
+
+        Edge edge = graph.findEdgeAndReturn(graph.findVertexAndReturn(new Vertex<>("X")), graph.findVertexAndReturn(new Vertex<>("Z")));
+
+        assertEquals(edge.getStart_node().getNodeValue(), graph.findVertexAndReturn(new Vertex<>("X")).getNodeValue());
+        assertEquals(edge.getConnecting_node().getNodeValue(), graph.findVertexAndReturn(new Vertex<>("Z")).getNodeValue());
+        assertEquals(edge.getDistance_weight(), 2);
+
+
     }
 
     @Test
