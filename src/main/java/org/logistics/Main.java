@@ -5,7 +5,6 @@ import org.logistics.model.Package;
 import org.logistics.view.Display;
 
 import java.util.HashSet;
-import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -110,7 +109,7 @@ public class Main {
                 }
 
                 // Find Relevant Edge
-                Edge edge_edge = graph.findEdge(vehicle.getCurrent_location(), nextVertex);
+                Edge edge_edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextVertex);
 
                 // Increase Congestion Weight by one
                 edge_edge.addCongestion_weight();
