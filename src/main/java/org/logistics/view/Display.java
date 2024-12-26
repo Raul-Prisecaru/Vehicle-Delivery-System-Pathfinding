@@ -137,10 +137,12 @@ public class Display {
             System.out.println("Enter DeliveryHub Value");
             System.out.print(":: ");
             String vertex_value = scanner.next();
-            graphinformation.add_deliveryHub(new DeliveryHub<String>(vertex_value));
+            graphinformation.add_deliveryHub(new DeliveryHub<>(vertex_value));
 
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
+            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+
 
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -150,10 +152,12 @@ public class Display {
     public void add_deliveryHub(DeliveryHub<String> deliveryHub) {
         try {
             String vertex_value = deliveryHub.getNodeValue();
-            graphinformation.add_deliveryHub(new DeliveryHub<String>(vertex_value));
+            graphinformation.add_deliveryHub(new DeliveryHub<>(vertex_value));
 
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
+            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+
 
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -167,9 +171,12 @@ public class Display {
             System.out.println("Enter CustomerLocation Value");
             System.out.print(":: ");
             String vertex_value = scanner.next();
-            graphinformation.add_customerLocation(new CustomerLocation<String>(vertex_value));
+            graphinformation.add_customerLocation(new CustomerLocation<>(vertex_value));
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
+            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+
+
 
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -179,9 +186,11 @@ public class Display {
     public void add_customerLocation(CustomerLocation<String> customerLocation) {
         try {
             String vertex_value = customerLocation.getNodeValue();
-            graphinformation.add_customerLocation(new CustomerLocation<String>(vertex_value));
+            graphinformation.add_customerLocation(new CustomerLocation<>(vertex_value));
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
+            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+
 
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -196,7 +205,7 @@ public class Display {
             System.out.print(":: ");
             String vertex_value = scanner.next();
 
-            graphinformation.remove_vertex(new Vertex<String>(vertex_value));
+            graphinformation.remove_vertex(new Vertex<>(vertex_value));
             graph.removeNode(vertex_value);
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -208,7 +217,7 @@ public class Display {
             // code to remove DeliveryHub
             String vertex_value = deliveryHub.getNodeValue();
 
-            graphinformation.remove_vertex(new Vertex<String>(vertex_value));
+            graphinformation.remove_vertex(new Vertex<>(vertex_value));
             graph.removeNode(vertex_value);
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -224,7 +233,7 @@ public class Display {
             System.out.print(":: ");
             String vertex_value = scanner.next();
 
-            graphinformation.remove_vertex(new Vertex<String>(vertex_value));
+            graphinformation.remove_vertex(new Vertex<>(vertex_value));
             graph.removeNode(vertex_value);
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -236,7 +245,7 @@ public class Display {
             // code to remove CustomerLocation
             String vertex_value = customerLocation.getNodeValue();
 
-            graphinformation.remove_vertex(new Vertex<String>(vertex_value));
+            graphinformation.remove_vertex(new Vertex<>(vertex_value));
             graph.removeNode(vertex_value);
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -259,7 +268,7 @@ public class Display {
             System.out.print(":: ");
             int distance_weight = scanner.nextInt();
 
-            graphinformation.add_directed_edge(new Vertex<String>(start_vertex), new Vertex<String>(connecting_vertex), distance_weight);
+            graphinformation.add_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), distance_weight);
 
             Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex, true);
             edge.setAttribute("ui.label", distance_weight);
@@ -278,7 +287,7 @@ public class Display {
 
             int distance_weight = edge_edge.getDistance_weight();
 
-            graphinformation.add_directed_edge(new Vertex<String>(start_vertex), new Vertex<String>(connecting_vertex), distance_weight);
+            graphinformation.add_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), distance_weight);
 
             Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex, true);
             edge.setAttribute("ui.label", distance_weight);
@@ -315,7 +324,7 @@ public class Display {
             String new_connecting_vertex = scanner.next();
 
             // TODO: An Error has occurred: Cannot invoke "java.util.LinkedList.remove(Object)" because the return value of "java.util.HashMap.get(Object)" is null
-            graphinformation.modify_edge(new Vertex<String>(start_vertex), new Vertex<String>(connecting_vertex), new_distance, new Vertex<String>(new_start_vertex), new Vertex<String>(new_connecting_vertex));
+            graphinformation.modify_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), new_distance, new Vertex<>(new_start_vertex), new Vertex<>(new_connecting_vertex));
 
             graph.removeEdge(start_vertex + "" + connecting_vertex);
             Edge edge = graph.addEdge(new_start_vertex + "" + new_connecting_vertex, new_start_vertex, new_connecting_vertex, true);
@@ -342,7 +351,7 @@ public class Display {
             String new_connecting_vertex = newConnecting.getNodeValue();
 
             // TODO: An Error has occurred: Cannot invoke "java.util.LinkedList.remove(Object)" because the return value of "java.util.HashMap.get(Object)" is null
-            graphinformation.modify_edge(new Vertex<String>(start_vertex), new Vertex<String>(connecting_vertex), new_distance, new Vertex<String>(new_start_vertex), new Vertex<String>(new_connecting_vertex));
+            graphinformation.modify_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), newDistance, new Vertex<>(new_start_vertex), new Vertex<>(new_connecting_vertex));
 
             graph.removeEdge(start_vertex + "" + connecting_vertex);
             Edge edge = graph.addEdge(new_start_vertex + "" + new_connecting_vertex, new_start_vertex, new_connecting_vertex, true);
@@ -367,7 +376,7 @@ public class Display {
             System.out.print(":: ");
             String connecting_vertex = scanner.next();
 
-            graphinformation.remove_directed_edge(new Vertex(start_vertex), new Vertex(connecting_vertex));
+            graphinformation.remove_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex));
             graph.removeEdge(start_vertex + "" + connecting_vertex);
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -381,7 +390,7 @@ public class Display {
 
             String connecting_vertex = edge_edge.getConnecting_node().getNodeValue();
 
-            graphinformation.remove_directed_edge(new Vertex<String>(start_vertex), new Vertex<String>(connecting_vertex));
+            graphinformation.remove_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex));
             graph.removeEdge(start_vertex + "" + connecting_vertex);
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -422,4 +431,8 @@ public class Display {
     public boolean doesEdgeExist(String edgeID) {
         return graph.getEdge(edgeID) != null;
     }
+
+
 }
+
+
