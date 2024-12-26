@@ -16,8 +16,8 @@ public class displayTest {
 
         assertTrue(display.doesNodeExist("V"));
         assertTrue(display.doesNodeExist("M"));
-//        assertTrue(graph.getAdjacencyList().containsKey(new DeliveryHub<>("M")));
-//        assertTrue(graph.getAdjacencyList().containsKey(new CustomerLocation<>("V")));
+        assertEquals(graph.findVertexAndReturn(new Vertex<>("V")).getNodeValue(), new Vertex<>("V").getNodeValue());
+        assertEquals(graph.findVertexAndReturn(new Vertex<>("M")).getNodeValue(), new Vertex<>("M").getNodeValue());
 
     }
 
