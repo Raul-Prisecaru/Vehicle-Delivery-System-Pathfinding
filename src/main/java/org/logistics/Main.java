@@ -20,10 +20,6 @@ public class Main {
         // Initializing GUI
         Display displayGraph = new Display(graph);
 
-        // Creating GUI
-        displayGraph.createGraph();
-        displayGraph.displayGUI();
-
         // Initializing DeliveryHub Vertexes
         DeliveryHub<String> deliveryHubA = new DeliveryHub<String>("A");
         DeliveryHub<String> deliveryHubB = new DeliveryHub<String>("B");
@@ -48,10 +44,6 @@ public class Main {
         // Adding Packages to the vehicle
         vehicle1.add_deliveryPackage(PriorityphonePackage);
         vehicle1.add_deliveryPackage(NonPriorityphonePackage);
-
-        deliveryHubA.generatePackage(graph, 2);
-        deliveryHubB.generatePackage(graph, 2);
-
 
         // Adding DeliveryHub to the Graph
         graph.add_deliveryHub(deliveryHubA);
@@ -81,6 +73,14 @@ public class Main {
         graph.add_directed_edge(customerLocationF, customerLocationG, 2);
 
         graph.add_directed_edge(customerLocationG, deliveryHubA, 4);
+
+        // Generating Packages for the DeliveryHubs
+        deliveryHubA.generatePackage(graph, 2);
+        deliveryHubB.generatePackage(graph, 2);
+
+        // Creating GUI
+        displayGraph.createGraph();
+        displayGraph.displayGUI();
 
 
         // Simulation Logic
@@ -153,15 +153,19 @@ public class Main {
 
                     // For Every Package in the deliveryHub
                     for (Package package_package : currentDeliveryHub.getPackages()) {
-                        // TODO: Check if vehicle is full and break the loop if full
 
-                        currentDeliveryHub.generatePackage(graph);
+                        if (vehicle.get_deliveryPackages().size() < 2) {
+                            currentDeliveryHub.generatePackage(graph);
 
-                        // Remove the package from the deliveryHub
-                        currentDeliveryHub.removePackages(package_package);
+                            // Remove the package from the deliveryHub
+                            currentDeliveryHub.removePackages(package_package);
 
-                        // Add package to the Vehicle
-                        vehicle.add_deliveryPackage(package_package);
+                            // Add package to the Vehicle
+                            vehicle.add_deliveryPackage(package_package);
+                        }
+                        else {
+                            break;
+                        }
                     }
                 }
 
