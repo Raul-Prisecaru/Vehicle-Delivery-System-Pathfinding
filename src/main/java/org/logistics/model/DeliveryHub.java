@@ -101,7 +101,7 @@ public class DeliveryHub<T> extends Vertex<T> {
 
             int randomStringInt = random.nextInt(itemNames.length);
 
-            int randomCustomerLocationInt = random.nextInt(graph.getAllCustomerLocation().size());
+            int randomCustomerLocationInt = random.nextInt(customerLocationList.size());
 
             this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10)));
         }
