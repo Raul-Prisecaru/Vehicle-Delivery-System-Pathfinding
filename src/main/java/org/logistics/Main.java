@@ -9,7 +9,6 @@ import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) throws Exception {
-        HashSet<Vehicle> list_of_vehicles = new HashSet<>();
 
         // Initializing Graph
         Graph graph = new Graph();
@@ -32,19 +31,12 @@ public class Main {
         CustomerLocation<String> customerLocationF = new CustomerLocation<String>("F");
         CustomerLocation<String> customerLocationG = new CustomerLocation<String>("G");
 
-        // Initializing Vehicle
-        Vehicle vehicle1 = new Vehicle(deliveryHubA);
+        // Creating Vehicle
+        graph.createVehicle(deliveryHubA);
 
-        // adding Vehicle to the HashSet
-        list_of_vehicles.add(vehicle1);
-
-        // Initializing Priority Package and Non-Priority Package
-        Package PriorityphonePackage = new Package("Iphone", customerLocationF, 1);
-        Package NonPriorityphonePackage = new Package("Iphone", customerLocationE, 0);
-
-        // Adding Packages to the vehicle
-        vehicle1.add_deliveryPackage(PriorityphonePackage);
-        vehicle1.add_deliveryPackage(NonPriorityphonePackage);
+        for (Vehicle vehicle : graph.getVehicleList()) {
+            vehicle.add_deliveryPackage(new Package("TestItem", customerLocationF, 4));
+        }
 
         // Adding DeliveryHub to the Graph
         graph.add_deliveryHub(deliveryHubA);
@@ -88,7 +80,7 @@ public class Main {
         while (true) {
 
             // For every vehicle
-            for (Vehicle vehicle : list_of_vehicles) {
+            for (Vehicle vehicle : graph.getVehicleList()) {
 
                 // If vehicle has no travel destinations
                 if (vehicle.getTravelDestinations().isEmpty()) {
@@ -114,6 +106,9 @@ public class Main {
                 // Highlight the current position of the Vehicle
                 Vertex<String> nextVertex = vehicle.getTravelDestinations().pop();
 
+                if (nextVertex == vehicle.getCurrent_location()) {
+                    continue;
+                }
                 // Find Relevant Edge
                 Edge edge_edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextVertex);
 
