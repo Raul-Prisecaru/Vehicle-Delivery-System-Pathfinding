@@ -74,8 +74,8 @@ public class DeliveryHub<T> extends Vertex<T> {
     }
 
     /**
-     * Method Responsible for adding Package to the DeliveryHub
-     * @param package_add (Package) - Package to add to the HashSet
+     * Method Responsible automatically generating new packages
+     * @param graph (Graph) - graph to get customerLocation from
      */
     public void generatePackage(Graph graph) {
         String[] itemNames = {"Fan", "Phone", "Microphone", "Laptop", "Headphone", "Mouse", "Console"};
@@ -88,18 +88,22 @@ public class DeliveryHub<T> extends Vertex<T> {
         this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10));)
     }
 
+    /**
+     * Method Responsible for automatically generating x amount of new packages
+     * @param graph (Graph) - graph to get customerLocations from
+     * @param total (int) - total number of new packages to be generated
+     */
     public void generatePackage(Graph graph ,int total) {
         String[] itemNames = {"Fan", "Phone", "Microphone", "Laptop", "Headphone", "Mouse", "Console"};
         ArrayList<CustomerLocation<String>> customerLocationList = graph.getAllCustomerLocation();
 
         for (int i = 0; i < total; i++) {
 
+            int randomStringInt = random.nextInt(itemNames.length);
 
-        int randomStringInt = random.nextInt(itemNames.length);
+            int randomCustomerLocationInt = random.nextInt(graph.getAllCustomerLocation().size());
 
-        int randomCustomerLocationInt = random.nextInt(graph.getAllCustomerLocation().size());
-
-        this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10));)
+            this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10));)
         }
     }
 
