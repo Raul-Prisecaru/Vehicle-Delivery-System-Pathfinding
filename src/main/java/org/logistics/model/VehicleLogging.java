@@ -1,14 +1,13 @@
 package org.logistics.model;
 
 import java.util.HashMap;
-import java.util.HashSet;
 import java.util.LinkedList;
 
-public class vehicleLogging {
+public class VehicleLogging {
 
     HashMap<Vehicle, LinkedList<String>> vehicleLogs;
 
-    public vehicleLogging() {
+    public VehicleLogging() {
         vehicleLogs = new HashMap<>();
     }
 
