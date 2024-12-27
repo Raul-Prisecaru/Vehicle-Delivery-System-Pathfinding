@@ -50,7 +50,7 @@ public class Display {
             node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
         }
 
-        // TODO: Make this more efficient by turing nested for loop into a singular loop
+
         for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
             for (org.logistics.model.Edge currentEdge : this.graphinformation.getAdjacencyList().get(vertex)) {
 
@@ -86,9 +86,18 @@ public class Display {
         viewer.enableAutoLayout(new SpringBox());
 
         ViewPanel viewPanel = (ViewPanel) viewer.addDefaultView(false);
-        frame.add(viewPanel, BorderLayout.CENTER);
 
-        JPanel buttonPanel = new JPanel(new GridLayout(2, 4, 10, 10)); // Grid layout for buttons
+        JPanel splitPanel = new JPanel(new GridLayout(1 ,2));
+
+        splitPanel.add(new JButton());
+
+        splitPanel.add(viewPanel);
+
+        frame.add(splitPanel);
+
+
+
+        JPanel buttonPanel = new JPanel(new GridLayout(2, 4, 10, 10));
 
         JButton addDeliverHubButton = new JButton("Add DeliverHub Vertex");
         addDeliverHubButton.addActionListener(e -> add_deliveryHub());
@@ -128,8 +137,6 @@ public class Display {
 
         frame.setSize(1200, 800);
         frame.setVisible(true);
-//        Viewer viewer = graph.display();
-//        viewer.enableAutoLayout(new SpringBox());
     }
 
     public void add_deliveryHub() {
