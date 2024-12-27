@@ -89,9 +89,12 @@ public class Display {
 
         JPanel splitPanel = new JPanel(new GridLayout(1 ,2));
 
-        splitPanel.add(new JButton());
-
         splitPanel.add(viewPanel);
+
+        JPanel logPanel = new JPanel();
+        logPanel.setLayout(new BoxLayout(logPanel, BoxLayout.Y_AXIS));
+
+        splitPanel.add(logPanel);
 
         frame.add(splitPanel);
 
@@ -438,7 +441,6 @@ public class Display {
     public boolean doesEdgeExist(String edgeID) {
         return graph.getEdge(edgeID) != null;
     }
-
 
 }
 
