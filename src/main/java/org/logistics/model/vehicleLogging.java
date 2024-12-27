@@ -1,6 +1,7 @@
 package org.logistics.model;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.LinkedList;
 
 public class vehicleLogging {
@@ -20,5 +21,16 @@ public class vehicleLogging {
         linkedList.add("Status:" + statusLog);
 
         vehicleLogs.put(vehicle, linkedList);
+    }
+
+
+    public LinkedList<String> getVehicleLog(Vehicle vehicle) {
+
+        if (vehicleLogs.get(vehicle) != null) {
+            return vehicleLogs.get(vehicle);
+
+        }
+
+        return null;
     }
 }
