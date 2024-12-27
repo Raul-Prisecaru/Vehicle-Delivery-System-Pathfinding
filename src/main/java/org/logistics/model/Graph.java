@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Graph {
     private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList = new HashMap<>();
-
+    private HashSet<Vehicle> vehicleList = new HashSet<>();
     /**
      * Method Responsible for adding deliveryHub to the Hashmap
      * @param start_vertex (DeliveryHub) - DeliveryHub to add
@@ -219,8 +219,15 @@ public class Graph {
                 customerLocations.add((CustomerLocation<String>) vertex);
             }
         }
-
         return customerLocations;
+    }
+
+    public void createVehicle(Vertex<String> starting_position) {
+        vehicleList.add(new Vehicle(starting_position));
+    }
+
+    public HashSet<Vehicle> getVehicleList() {
+        return vehicleList;
     }
 
 }
