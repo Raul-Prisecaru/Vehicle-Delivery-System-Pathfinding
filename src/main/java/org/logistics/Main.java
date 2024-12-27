@@ -10,70 +10,80 @@ public class Main {
     public static void main(String[] args) throws Exception {
         HashSet<Vehicle> list_of_vehicles = new HashSet<>();
 
-
-        // Creating Graph Environment
+        // Initializing Graph
         Graph graph = new Graph();
 
+        // Initializing dijkstra Algorithm
         Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
         Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation(graph);
 
+        // Initializing GUI
         Display displayGraph = new Display(graph);
 
-        // Creating DeliveryHub Nodes
+        // Creating GUI
+        displayGraph.createGraph();
+        displayGraph.displayGUI();
+
+        // Initializing DeliveryHub Vertexes
         DeliveryHub<String> deliveryHubA = new DeliveryHub<String>("A");
         DeliveryHub<String> deliveryHubB = new DeliveryHub<String>("B");
 
-        // Creating CustomerLocation Nodes
+        // Initializing CustomerLocation Vertexes
         CustomerLocation<String> customerLocationC = new CustomerLocation<String>("C");
         CustomerLocation<String> customerLocationD = new CustomerLocation<String>("D");
         CustomerLocation<String> customerLocationE = new CustomerLocation<String>("E");
         CustomerLocation<String> customerLocationF = new CustomerLocation<String>("F");
         CustomerLocation<String> customerLocationG = new CustomerLocation<String>("G");
 
-        // Creating Packages
+        // Initializing Vehicle
         Vehicle vehicle1 = new Vehicle(deliveryHubA);
+
+        // adding Vehicle to the HashSet
         list_of_vehicles.add(vehicle1);
 
+        // Initializing Priority Package and Non-Priority Package
         Package PriorityphonePackage = new Package("Iphone", customerLocationF, 1);
         Package NonPriorityphonePackage = new Package("Iphone", customerLocationE, 0);
+
+        // Adding Packages to the vehicle
         vehicle1.add_deliveryPackage(PriorityphonePackage);
         vehicle1.add_deliveryPackage(NonPriorityphonePackage);
 
-        deliveryHubA.getPackages().add(PriorityphonePackage);
-        deliveryHubB.getPackages().add(NonPriorityphonePackage);
+        deliveryHubA.generatePackage(graph, 2);
+        deliveryHubB.generatePackage(graph, 2);
 
-        // Creating Vertexes
+
+        // Adding DeliveryHub to the Graph
         graph.add_deliveryHub(deliveryHubA);
         graph.add_deliveryHub(deliveryHubB);
 
+        // Adding CustomerLocation to the Graph
         graph.add_customerLocation(customerLocationC);
         graph.add_customerLocation(customerLocationD);
         graph.add_customerLocation(customerLocationE);
-        graph.add_customerLocation(customerLocationF); // New Vertex
-        graph.add_customerLocation(customerLocationG); // New Vertex
+        graph.add_customerLocation(customerLocationF);
+        graph.add_customerLocation(customerLocationG);
 
-        // Creating Edges
-        graph.add_directed_edge(deliveryHubA, deliveryHubB, 4); // Distance: 4
-        graph.add_directed_edge(deliveryHubA, customerLocationC, 2); // Distance: 2
-        graph.add_directed_edge(deliveryHubB, customerLocationC, 1); // Distance: 1
-        graph.add_directed_edge(deliveryHubB, customerLocationD, 2); // Distance: 2
-        graph.add_directed_edge(deliveryHubB, customerLocationE, 3); // Distance: 3
-        graph.add_directed_edge(customerLocationC, customerLocationE, 1); // Distance: 1
-        graph.add_directed_edge(customerLocationE, customerLocationD, 5); // Distance: 5
+        // Adding Weighted Edges connections to the Graph
+        graph.add_directed_edge(deliveryHubA, deliveryHubB, 4);
+        graph.add_directed_edge(deliveryHubA, customerLocationC, 2);
 
-        // New Edges to Connect New Vertexes
-        graph.add_directed_edge(customerLocationE, customerLocationF, 3); // Distance: 3
-        graph.add_directed_edge(customerLocationF, customerLocationG, 2); // Distance: 2
-        graph.add_directed_edge(customerLocationG, deliveryHubA, 4); // Distance: 4
+        graph.add_directed_edge(deliveryHubB, customerLocationC, 1);
+        graph.add_directed_edge(deliveryHubB, customerLocationD, 2);
+        graph.add_directed_edge(deliveryHubB, customerLocationE, 3);
 
-        // Additional Edges to Ensure Reachability
-        graph.add_directed_edge(customerLocationD, customerLocationF, 2); // Distance: 2
-        graph.add_directed_edge(customerLocationC, customerLocationG, 6); // Distance: 6
+        graph.add_directed_edge(customerLocationC, customerLocationE, 1);
+        graph.add_directed_edge(customerLocationC, customerLocationG, 6);
+        graph.add_directed_edge(customerLocationD, customerLocationF, 2);
 
-        // Create Initial Graph and display
-        displayGraph.createGraph();
-        displayGraph.displayGUI();
+        graph.add_directed_edge(customerLocationE, customerLocationD, 5);
+        graph.add_directed_edge(customerLocationE, customerLocationF, 3);
+        graph.add_directed_edge(customerLocationF, customerLocationG, 2);
 
+        graph.add_directed_edge(customerLocationG, deliveryHubA, 4);
+
+
+        // Simulation Logic
         while (true) {
 
             // For every vehicle
@@ -97,11 +107,11 @@ public class Main {
                     }
                 }
 
-
+            // If Vehicle has travel Destinations
             if (!vehicle.getTravelDestinations().isEmpty()) {
+
                 // Highlight the current position of the Vehicle
                 Vertex<String> nextVertex = vehicle.getTravelDestinations().pop();
-
 
                 // Find Relevant Edge
                 Edge edge_edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextVertex);
@@ -130,10 +140,11 @@ public class Main {
                 // Update Label of the edge to reflect those changes
                 displayGraph.updateEdge(edge_edge);
 
-
             }
 
+            // if Vehicle Travel Destination is empty
             if (vehicle.getTravelDestinations().isEmpty()) {
+
                 // If vehicle is in a DeliveryHub
                 if (vehicle.getCurrent_location() instanceof DeliveryHub) {
 
@@ -151,7 +162,6 @@ public class Main {
 
                         // Add package to the Vehicle
                         vehicle.add_deliveryPackage(package_package);
-//                        vehicle.get_deliveryPackages().add(package_package);
                     }
                 }
 
@@ -160,10 +170,19 @@ public class Main {
 
                     CustomerLocation<String> customerLocation = (CustomerLocation<String>) vehicle.getCurrent_location();
 
+                    // For every package in the vehicle
                     for (Package package_package : vehicle.get_deliveryPackages()) {
+
+                        // If package destination is the same as the current position
                         if (package_package.getDestination() == customerLocation) {
+
+                            // Give package to the Customer
                             customerLocation.addCollectedPackage(package_package);
+
+                            // Remove package from the vehicle
                             vehicle.remove_deliveryPackage(package_package);
+
+                            // Break the loop
                             break;
                         }
                     }
