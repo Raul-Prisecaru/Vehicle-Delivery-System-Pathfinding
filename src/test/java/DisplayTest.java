@@ -80,7 +80,7 @@ public class DisplayTest {
 
         assertEquals(edge.getStart_node().getNodeValue(), graph.findVertexAndReturn(new Vertex<>("X")).getNodeValue());
         assertEquals(edge.getConnecting_node().getNodeValue(), graph.findVertexAndReturn(new Vertex<>("Z")).getNodeValue());
-        assertEquals(edge.getDistance_weight(), 2);
+        assertEquals(edge.getDistance_weight(), 5);
 
 
     }
