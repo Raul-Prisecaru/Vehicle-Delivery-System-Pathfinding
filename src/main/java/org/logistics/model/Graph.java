@@ -3,8 +3,6 @@ package org.logistics.model;
 import java.util.*;
 
 public class Graph {
-    private HashSet<DeliveryHub<String>> deliveryHubList = new HashSet<>();
-    private HashSet<CustomerLocation<String>> customerLocationList = new HashSet<>();
     private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList = new HashMap<>();
 
     /**
@@ -16,7 +14,7 @@ public class Graph {
 
         // Adds to the hashmap if start_node does not exist
         if (adjacencyList.get(start_vertex) == null) {
-            deliveryHubList.add(start_vertex);
+//            deliveryHubList.add(start_vertex);
             adjacencyList.put(start_vertex, new LinkedList<>());
         } else {
             throw new Exception("Node: " + start_vertex.getNodeValue() + " Already Exists, Cannot be Added");
@@ -32,7 +30,6 @@ public class Graph {
 
         // Adds to the hashmap if start_node does not exist
         if (adjacencyList.get(start_vertex) == null) {
-            customerLocationList.add(start_vertex);
             adjacencyList.put(start_vertex, new LinkedList<>());
         } else {
             throw new Exception("Node: " + start_vertex.getNodeValue() + " Already Exists, Cannot be Added");
@@ -197,9 +194,9 @@ public class Graph {
     }
 
 
-    public HashSet<DeliveryHub<String>> getDeliveryHubList() {
-        return deliveryHubList;
-    }
+//    public HashSet<DeliveryHub<String>> getDeliveryHubList() {
+//        return deliveryHubList;
+//    }
 
 
     public HashSet<DeliveryHub<String>> getAllDeliveryHub() {
@@ -214,8 +211,8 @@ public class Graph {
     }
 
 
-    public HashSet<CustomerLocation<String>> getAllCustomerLocation() {
-        HashSet<CustomerLocation<String>> customerLocations = new HashSet<>();
+    public ArrayList<CustomerLocation<String>> getAllCustomerLocation() {
+        ArrayList<CustomerLocation<String>> customerLocations = new ArrayList<>();
 
         for (Vertex<String> vertex : adjacencyList.keySet()) {
             if (vertex instanceof CustomerLocation<String>) {
