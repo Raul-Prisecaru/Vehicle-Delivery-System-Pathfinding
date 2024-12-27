@@ -144,7 +144,7 @@ public class Main {
                     for (Package package_package : currentDeliveryHub.getPackages()) {
                         // TODO: Check if vehicle is full and break the loop if full
 
-                        currentDeliveryHub.addPackage(new Package("TestITem", customerLocationF, 0));
+                        currentDeliveryHub.generatePackage(graph);
 
                         // Remove the package from the deliveryHub
                         currentDeliveryHub.removePackages(package_package);
