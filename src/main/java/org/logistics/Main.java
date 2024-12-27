@@ -5,6 +5,7 @@ import org.logistics.model.Package;
 import org.logistics.view.Display;
 
 import java.util.HashSet;
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -151,22 +152,29 @@ public class Main {
                     // Store the deliveryHub
                     DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
 
-                    // For Every Package in the deliveryHub
-                    for (Package package_package : currentDeliveryHub.getPackages()) {
+                    // Iterator to safely delete packages from deliveryHub (Avoids ConcurrentModification Exception)
+                    Iterator<Package> packageIterator = currentDeliveryHub.getPackages().iterator();
 
-                        if (vehicle.get_deliveryPackages().size() < 2) {
-                            currentDeliveryHub.generatePackage(graph);
+                    // If there is a package
+                    while (packageIterator.hasNext()) {
 
-                            // Remove the package from the deliveryHub
-                            currentDeliveryHub.removePackages(package_package);
+                        // If Vehicle has less than two packages OR deliveryHub isn't empty
+                        if (vehicle.get_deliveryPackages().size() < 2 || !currentDeliveryHub.getPackages().isEmpty()) {
+                            // Retrieve the current package
+                            Package package_package = packageIterator.next();
 
                             // Add package to the Vehicle
                             vehicle.add_deliveryPackage(package_package);
+
+
+                            // Remove the package from the deliveryHub safely
+                            packageIterator.remove();
+
                         }
-                        else {
-                            break;
-                        }
+
                     }
+                    currentDeliveryHub.generatePackage(graph);
+
                 }
 
                 // If vehicle is in a CustomerLocation
