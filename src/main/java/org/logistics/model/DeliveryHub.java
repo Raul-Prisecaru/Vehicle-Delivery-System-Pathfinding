@@ -2,9 +2,11 @@ package org.logistics.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.Random;
 
 public class DeliveryHub<T> extends Vertex<T> {
     HashSet<Package> packages = new HashSet<Package>();
+    Random random = new Random();
 
     /**
      * Constructor Responsible for setting the value of the DeliveryHub Vertex
@@ -75,9 +77,17 @@ public class DeliveryHub<T> extends Vertex<T> {
      * Method Responsible for adding Package to the DeliveryHub
      * @param package_add (Package) - Package to add to the HashSet
      */
-    public void addPackage(Package package_add) {
-        this.packages.add(package_add);
+    public void generatePackage(Graph graph) {
+        String[] itemNames = {"Fan", "Phone", "Microphone", "Laptop", "Headphone", "Mouse", "Console"};
+        ArrayList<CustomerLocation<String>> customerLocationList = graph.getAllCustomerLocation();
+
+        int randomStringInt = random.nextInt(itemNames.length);
+
+        int randomCustomerLocationInt = random.nextInt(graph.getAllCustomerLocation().size());
+
+        this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10));)
     }
+
 
     /**
      * Method Responsible for removing package from the DeliveryHub
