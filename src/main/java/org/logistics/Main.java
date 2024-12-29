@@ -107,8 +107,11 @@ public class Main {
 
                         for (Vertex<String> vertex : vehicle.getTravelDestinations()) {
                             for (Vertex<String> vertex2 : vehicle.getTravelDestinations()) {
-                                if (graph.findEdgeAndReturn(vertex, vertex2) != null) {
-                                    displayGraph.visualise_edge(new Edge(vertex, vertex2, 0), 1);
+                                Edge edge = graph.findEdgeAndReturn(vertex, vertex2);
+                                if ( edge != null) {
+                                    displayGraph.visualise_edge(edge, 1);
+                                    edge.addCongestion_weight();
+
                                 }
                             }
                         }
@@ -124,8 +127,11 @@ public class Main {
 
                         for (Vertex<String> vertex : vehicle.getTravelDestinations()) {
                             for (Vertex<String> vertex2 : vehicle.getTravelDestinations()) {
-                                if (graph.findEdgeAndReturn(vertex, vertex2) != null) {
-                                    displayGraph.visualise_edge(new Edge(vertex, vertex2, 0), 1);
+                                Edge edge = graph.findEdgeAndReturn(vertex, vertex2);
+                                if ( edge != null) {
+                                    displayGraph.visualise_edge(edge, 1);
+                                    edge.addCongestion_weight();
+
                                 }
                             }
                         }
