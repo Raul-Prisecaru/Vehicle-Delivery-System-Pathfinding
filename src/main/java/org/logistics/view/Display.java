@@ -144,7 +144,6 @@ public class Display {
 
     public void add_deliveryHub() {
         try {
-
             String vertex_value = JOptionPane.showInputDialog(null,
                     "Enter DeliveryHub Value:",
                     "Add DeliveryHub",
@@ -171,10 +170,6 @@ public class Display {
             }
 
 
-
-
-
-
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
         }
@@ -199,13 +194,31 @@ public class Display {
 
     public void add_customerLocation() {
         try {
-            System.out.println("Enter CustomerLocation Value");
-            System.out.print(":: ");
-            String vertex_value = scanner.next();
-            graphinformation.add_customerLocation(new CustomerLocation<>(vertex_value));
-            Node vertex = graph.addNode(vertex_value);
-            vertex.setAttribute("ui.label", vertex_value);
-            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            String vertex_value = JOptionPane.showInputDialog(null,
+                    "Enter CustomerLocation Value:",
+                    "Add CustomerLocation",
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (vertex_value != null && !vertex_value.trim().isEmpty()) {
+
+                graphinformation.add_customerLocation(new CustomerLocation<>(vertex_value));
+                Node vertex = graph.addNode(vertex_value);
+                vertex.setAttribute("ui.label", vertex_value);
+                vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+
+
+                JOptionPane.showMessageDialog(null,
+                        "CustomerLocation '" + vertex_value + "' added successfully.",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "CustomerLocation value cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
 
 
 
