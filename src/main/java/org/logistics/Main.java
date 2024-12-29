@@ -159,6 +159,8 @@ public class Main {
                 // Vehicle Travels to the vertex
                 vehicle.travel(nextVertex);
 
+                displayGraph.visualise_edge(edge_edge, 0);
+
                 // Timer
                 Thread.sleep(1500 );
 
