@@ -223,7 +223,10 @@ public class Display {
 
 
         } catch (Exception e) {
-            System.out.println("An Error has occurred: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -267,7 +270,10 @@ public class Display {
 
 
         } catch (Exception e) {
-            System.out.println("An Error has occurred: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -311,7 +317,10 @@ public class Display {
 
 
         } catch (Exception e) {
-            System.out.println("An Error has occurred: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -384,7 +393,10 @@ public class Display {
 
 
         } catch (Exception e) {
-            System.out.println("An Error has occurred: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -491,7 +503,10 @@ public class Display {
                     JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
-            System.out.println("An Error has occurred: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -562,7 +577,10 @@ public class Display {
 
 
         } catch (Exception e) {
-            System.out.println("An Error has occurred: " + e.getMessage());
+            JOptionPane.showMessageDialog(null,
+                    e.getMessage(),
+                    "Error",
+                    JOptionPane.ERROR_MESSAGE);
         }
     }
 
