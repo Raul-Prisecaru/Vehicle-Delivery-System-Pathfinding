@@ -153,9 +153,6 @@ public class Main {
                 // Find Relevant Edge
                 Edge edge_edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextVertex);
 
-                // Increase Congestion Weight by one
-                edge_edge.addCongestion_weight();
-
                 // Update Label of the edge to reflect those changes
                 displayGraph.updateEdge(edge_edge);
 
