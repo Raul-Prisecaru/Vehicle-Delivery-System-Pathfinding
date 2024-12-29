@@ -309,8 +309,7 @@ public class Display {
             }
 
 
-            graphinformation.remove_vertex(new Vertex<>(vertex_value));
-            graph.removeNode(vertex_value);
+
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
         }
