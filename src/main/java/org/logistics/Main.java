@@ -105,6 +105,15 @@ public class Main {
                         // Find the shortest route towards customer based on package
                         dijkstra_customerLocation.find_shortest_customer(vehicle);
 
+                        for (Vertex<String> vertex : vehicle.getTravelDestinations()) {
+                            for (Vertex<String> vertex2 : vehicle.getTravelDestinations()) {
+                                if (graph.findEdgeAndReturn(vertex, vertex2) != null) {
+                                    displayGraph.visualise_edge(new Edge(vertex, vertex2, 0), 1);
+                                }
+                            }
+                        }
+
+
                     }
 
                     // If Vehicle has NO packages
@@ -112,18 +121,29 @@ public class Main {
 
                         // Find the shortest route towards closest deliveryHub
                         dijkstra_deliveryHub.find_shortest_delivery(vehicle);
+
+                        for (Vertex<String> vertex : vehicle.getTravelDestinations()) {
+                            for (Vertex<String> vertex2 : vehicle.getTravelDestinations()) {
+                                if (graph.findEdgeAndReturn(vertex, vertex2) != null) {
+                                    displayGraph.visualise_edge(new Edge(vertex, vertex2, 0), 1);
+                                }
+                            }
+                        }
                     }
                 }
 
             // If Vehicle has travel Destinations
             if (!vehicle.getTravelDestinations().isEmpty()) {
 
+
                 // Highlight the current position of the Vehicle
                 Vertex<String> nextVertex = vehicle.getTravelDestinations().pop();
+
 
                 if (nextVertex == vehicle.getCurrent_location()) {
                     continue;
                 }
+
                 // Find Relevant Edge
                 Edge edge_edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextVertex);
 
