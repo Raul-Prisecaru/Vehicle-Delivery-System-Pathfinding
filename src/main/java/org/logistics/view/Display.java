@@ -438,10 +438,13 @@ public class Display {
         Edge current_edge = graph.getEdge(edge.getStart_node().getNodeValue() + "" + edge.getConnecting_node().getNodeValue());
 
         if (current_edge != null) {
-            System.out.println("Edge isnt null");
             if (OnOff == 1) {
-                System.out.println("Found edge");
                 current_edge.setAttribute("ui.style", "fill-color: red;");
+            }
+
+            if (OnOff == 0) {
+                current_edge.setAttribute("ui.style", "fill-color: black;");
+
             }
         }
     }
