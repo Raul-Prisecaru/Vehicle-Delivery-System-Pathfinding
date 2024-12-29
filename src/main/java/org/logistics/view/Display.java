@@ -144,14 +144,24 @@ public class Display {
 
     public void add_deliveryHub() {
         try {
-            System.out.println("Enter DeliveryHub Value");
-            System.out.print(":: ");
-            String vertex_value = scanner.next();
+
+            String vertex_value = JOptionPane.showInputDialog(null,
+                    "Enter DeliveryHub Value:",
+                    "Add DeliveryHub",
+                    JOptionPane.PLAIN_MESSAGE);
+
             graphinformation.add_deliveryHub(new DeliveryHub<>(vertex_value));
 
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
             vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+
+
+            JOptionPane.showMessageDialog(null,
+                    "DeliveryHub '" + vertex_value + "' added successfully.",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+
 
 
         } catch (Exception e) {
