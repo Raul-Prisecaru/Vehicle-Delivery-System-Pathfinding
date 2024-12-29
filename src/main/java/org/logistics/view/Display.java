@@ -333,13 +333,11 @@ public class Display {
         try {
 
 
-            // Prompt for Start Vertex
             String start_vertex = JOptionPane.showInputDialog(null,
                     "Enter Start Vertex:",
                     "Add Edge",
                     JOptionPane.PLAIN_MESSAGE);
 
-            // If the user cancels or leaves input empty, exit
             if (start_vertex == null || start_vertex.trim().isEmpty()) {
                 JOptionPane.showMessageDialog(null,
                         "Start Vertex cannot be empty.",
@@ -348,7 +346,6 @@ public class Display {
                 return;
             }
 
-            // Prompt for Connecting Vertex
             String connecting_vertex = JOptionPane.showInputDialog(null,
                     "Enter Connecting Vertex:",
                     "Add Edge",
@@ -362,7 +359,6 @@ public class Display {
                 return;
             }
 
-            // Prompt for Distance Weight
             String distance_weight = JOptionPane.showInputDialog(null,
                     "Enter Distance Weight (number):",
                     "Add Edge",
@@ -415,34 +411,84 @@ public class Display {
 
     public void modify_edge() {
         try {
-            // code to modify Edge
-            System.out.println("Enter Existing Start Vertex");
-            System.out.print(":: ");
-            String start_vertex = scanner.next();
+            String start_vertex = JOptionPane.showInputDialog(null,
+                    "Enter Existing Start Vertex:",
+                    "Continue",
+                    JOptionPane.PLAIN_MESSAGE);
 
-            System.out.println("Enter Existing connecting Vertex");
-            System.out.print(":: ");
-            String connecting_vertex = scanner.next();
+            if (start_vertex == null || start_vertex.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Start Vertex cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-            System.out.println("Enter New Distance weight");
-            System.out.print(":: ");
-            int new_distance = scanner.nextInt();
+            String connecting_vertex = JOptionPane.showInputDialog(null,
+                    "Enter Existing Connecting Vertex:",
+                    "Continue",
+                    JOptionPane.PLAIN_MESSAGE);
 
-            System.out.println("Enter new Start Vertex");
-            System.out.print(":: ");
-            String new_start_vertex = scanner.next();
+            if (connecting_vertex == null || connecting_vertex.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Connecting Vertex cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
-            System.out.println("Enter new Connecting Vertex");
-            System.out.print(":: ");
-            String new_connecting_vertex = scanner.next();
+            String new_distance = JOptionPane.showInputDialog(null,
+                    "Enter New Distance",
+                    "Continue",
+                    JOptionPane.PLAIN_MESSAGE);
 
-            // TODO: An Error has occurred: Cannot invoke "java.util.LinkedList.remove(Object)" because the return value of "java.util.HashMap.get(Object)" is null
-            graphinformation.modify_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), new_distance, new Vertex<>(new_start_vertex), new Vertex<>(new_connecting_vertex));
+            if (new_distance == null || new_distance.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Distance Weight cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String new_start_vertex = JOptionPane.showInputDialog(null,
+                    "Enter New Start Vertex",
+                    "Continue",
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (new_start_vertex == null || new_start_vertex.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "New Start Vertex cannot be empty",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+
+            String new_connecting_vertex = JOptionPane.showInputDialog(null,
+                    "Enter New Connecting Vertex",
+                    "Modify Edge",
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (new_connecting_vertex == null || new_connecting_vertex.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "New Connecting Vertex cannot be empty",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+
+            graphinformation.modify_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), Integer.parseInt(new_distance), new Vertex<>(new_start_vertex), new Vertex<>(new_connecting_vertex));
 
             graph.removeEdge(start_vertex + "" + connecting_vertex);
             Edge edge = graph.addEdge(new_start_vertex + "" + new_connecting_vertex, new_start_vertex, new_connecting_vertex, true);
             edge.setAttribute("ui.label", new_distance);
 
+
+            JOptionPane.showMessageDialog(null,
+                    "Edge Successfully Modified",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
 
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
@@ -480,17 +526,41 @@ public class Display {
 
     public void remove_edge() {
         try {
-            // code to remove Edge
-            System.out.println("Enter Start Vertex");
-            System.out.print(":: ");
-            String start_vertex = scanner.next();
+            String start_vertex = JOptionPane.showInputDialog(null,
+                    "Enter Start Vertex:",
+                    "Continue",
+                    JOptionPane.PLAIN_MESSAGE);
 
-            System.out.println("Enter connecting Vertex");
-            System.out.print(":: ");
-            String connecting_vertex = scanner.next();
+            if (start_vertex == null || start_vertex.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Start Vertex cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            String connecting_vertex = JOptionPane.showInputDialog(null,
+                    "Enter Connecting Vertex:",
+                    "Delete Vertex",
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (connecting_vertex == null || connecting_vertex.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Connecting Vertex cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
             graphinformation.remove_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex));
             graph.removeEdge(start_vertex + "" + connecting_vertex);
+
+            JOptionPane.showMessageDialog(null,
+                    "Edge Successfully Deleted",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
+
+
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
         }
