@@ -150,17 +150,28 @@ public class Display {
                     "Add DeliveryHub",
                     JOptionPane.PLAIN_MESSAGE);
 
-            graphinformation.add_deliveryHub(new DeliveryHub<>(vertex_value));
+            if (vertex_value != null && !vertex_value.trim().isEmpty()) {
+                graphinformation.add_deliveryHub(new DeliveryHub<>(vertex_value));
 
-            Node vertex = graph.addNode(vertex_value);
-            vertex.setAttribute("ui.label", vertex_value);
-            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+                Node vertex = graph.addNode(vertex_value);
+                vertex.setAttribute("ui.label", vertex_value);
+                vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
 
 
-            JOptionPane.showMessageDialog(null,
-                    "DeliveryHub '" + vertex_value + "' added successfully.",
-                    "Success",
-                    JOptionPane.INFORMATION_MESSAGE);
+                JOptionPane.showMessageDialog(null,
+                        "DeliveryHub '" + vertex_value + "' added successfully.",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "DeliveryHub value cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+
+
 
 
 
