@@ -434,6 +434,18 @@ public class Display {
 
     }
 
+    public void visualise_edge(org.logistics.model.Edge edge, int OnOff) {
+        Edge current_edge = graph.getEdge(edge.getStart_node().getNodeValue() + "" + edge.getConnecting_node().getNodeValue());
+
+        if (current_edge != null) {
+            System.out.println("Edge isnt null");
+            if (OnOff == 1) {
+                System.out.println("Found edge");
+                current_edge.setAttribute("ui.style", "fill-color: red;");
+            }
+        }
+    }
+
     public boolean doesNodeExist(String nodeID) {
         return graph.getNode(nodeID) != null;
     }
