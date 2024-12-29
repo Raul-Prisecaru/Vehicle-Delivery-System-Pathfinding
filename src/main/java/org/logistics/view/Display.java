@@ -417,7 +417,7 @@ public class Display {
      * @param vertex (Vertex) - Vertex to highlight
      * @param OnOff (int) - 0 to turn off highlight, 1 to turn on highlight
      */
-    public void visualise_vehicle(Vertex<String> vertex, int OnOff) {
+    public void visualise_vertex(Vertex<String> vertex, int OnOff) {
         Node current_Node = graph.getNode(vertex.getNodeValue());
 
         if (OnOff == 0) {

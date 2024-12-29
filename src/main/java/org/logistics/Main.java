@@ -4,9 +4,7 @@ import org.logistics.model.*;
 import org.logistics.model.Package;
 import org.logistics.view.Display;
 
-import java.util.HashSet;
 import java.util.Iterator;
-import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws Exception {
@@ -136,7 +134,7 @@ public class Main {
                 displayGraph.updateEdge(edge_edge);
 
                 // Highlight the current position of the Vehicle
-                displayGraph.visualise_vehicle(nextVertex, 1);
+                displayGraph.visualise_vertex(nextVertex, 1);
 
                 // Vehicle Travels to the vertex
                 vehicle.travel(nextVertex);
@@ -145,7 +143,7 @@ public class Main {
                 Thread.sleep(1500 );
 
                 // Remove the highlight of current position
-                displayGraph.visualise_vehicle(nextVertex, 0);
+                displayGraph.visualise_vertex(nextVertex, 0);
 
                 // Decrease Congestion by one
                 edge_edge.removeCongestion_weight();
