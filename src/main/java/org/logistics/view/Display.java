@@ -244,13 +244,28 @@ public class Display {
 
     public void remove_deliveryHub() {
         try {
-            // code to remove DeliveryHub
-            System.out.println("Enter DeliveryHub Value");
-            System.out.print(":: ");
-            String vertex_value = scanner.next();
+            String vertex_value = JOptionPane.showInputDialog(null,
+                    "Enter DeliveryHub Value:",
+                    "Delete DeliveryHub",
+                    JOptionPane.PLAIN_MESSAGE);
 
-            graphinformation.remove_vertex(new Vertex<>(vertex_value));
-            graph.removeNode(vertex_value);
+            if (vertex_value != null && !vertex_value.trim().isEmpty()) {
+                graphinformation.remove_vertex(new Vertex<>(vertex_value));
+                graph.removeNode(vertex_value);
+
+                JOptionPane.showMessageDialog(null,
+                        "DeliveryHub '" + vertex_value + "' deleted successfully.",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "DeliveryHub value cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
+
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
         }
@@ -272,10 +287,27 @@ public class Display {
 
     public void remove_customerLocation() {
         try {
-            // code to remove CustomerLocation
-            System.out.println("Enter CustomerLocation Value");
-            System.out.print(":: ");
-            String vertex_value = scanner.next();
+            String vertex_value = JOptionPane.showInputDialog(null,
+                    "Enter CustomerLocation Value:",
+                    "Delete CustomerLocation",
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (vertex_value != null && !vertex_value.trim().isEmpty()) {
+                graphinformation.remove_vertex(new Vertex<>(vertex_value));
+                graph.removeNode(vertex_value);
+
+                JOptionPane.showMessageDialog(null,
+                        "CustomerLocation '" + vertex_value + "' deleted successfully.",
+                        "Success",
+                        JOptionPane.INFORMATION_MESSAGE);
+
+            } else {
+                JOptionPane.showMessageDialog(null,
+                        "CustomerLocation value cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+            }
+
 
             graphinformation.remove_vertex(new Vertex<>(vertex_value));
             graph.removeNode(vertex_value);
