@@ -331,22 +331,60 @@ public class Display {
 
     public void add_edge() {
         try {
-            System.out.println("Enter Start Vertex");
-            System.out.print(":: ");
-            String start_vertex = scanner.next();
 
-            System.out.println("Enter connecting Vertex");
-            System.out.print(":: ");
-            String connecting_vertex = scanner.next();
 
-            System.out.println("Enter distance weight");
-            System.out.print(":: ");
-            int distance_weight = scanner.nextInt();
+            // Prompt for Start Vertex
+            String start_vertex = JOptionPane.showInputDialog(null,
+                    "Enter Start Vertex:",
+                    "Add Edge",
+                    JOptionPane.PLAIN_MESSAGE);
 
-            graphinformation.add_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), distance_weight);
+            // If the user cancels or leaves input empty, exit
+            if (start_vertex == null || start_vertex.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Start Vertex cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Prompt for Connecting Vertex
+            String connecting_vertex = JOptionPane.showInputDialog(null,
+                    "Enter Connecting Vertex:",
+                    "Add Edge",
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (connecting_vertex == null || connecting_vertex.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Connecting Vertex cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            // Prompt for Distance Weight
+            String distance_weight = JOptionPane.showInputDialog(null,
+                    "Enter Distance Weight (number):",
+                    "Add Edge",
+                    JOptionPane.PLAIN_MESSAGE);
+
+            if (distance_weight == null || distance_weight.trim().isEmpty()) {
+                JOptionPane.showMessageDialog(null,
+                        "Distance Weight cannot be empty.",
+                        "Error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+
+            graphinformation.add_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), Integer.parseInt(distance_weight));
 
             Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex, true);
             edge.setAttribute("ui.label", distance_weight);
+
+            JOptionPane.showMessageDialog(null,
+                    "Edge Successfully Added",
+                    "Success",
+                    JOptionPane.INFORMATION_MESSAGE);
 
 
         } catch (Exception e) {
