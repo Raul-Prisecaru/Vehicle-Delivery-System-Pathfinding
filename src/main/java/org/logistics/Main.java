@@ -6,12 +6,15 @@ import org.logistics.view.Display;
 
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 
 public class Main {
     public static void main(String[] args) throws Exception {
 
         // Initializing Graph
         Graph graph = new Graph();
+
+        // Initializing vehicleLogging
 
         // Initializing dijkstra Algorithm
         Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
@@ -81,6 +84,18 @@ public class Main {
 
             // For every vehicle
             for (Vehicle vehicle : graph.getVehicleList()) {
+                System.out.println("--- Logs ---");
+                System.out.println("Vehicle: " + vehicle);
+                System.out.println("---");
+                System.out.println("Current Location: " + vehicle.getCurrent_location().getNodeValue());
+                for (Package package_package : vehicle.get_deliveryPackages()) {
+                    System.out.println("---");
+                    System.out.println("Package Name: " + package_package.getItem_Name());
+                    System.out.println("Package Location: " + package_package.getDestination());
+                    System.out.println("Package Priority: " + package_package.getPriority());
+                }
+
+                System.out.println("Travel Destinations: " + vehicle.getTravelDestinations());
 
                 // If vehicle has no travel destinations
                 if (vehicle.getTravelDestinations().isEmpty()) {
@@ -88,8 +103,10 @@ public class Main {
                     // If Vehicle HAS packages
                     if (!vehicle.get_deliveryPackages().isEmpty()) {
 
+
                         // Find the shortest route towards customer based on package
                         dijkstra_customerLocation.find_shortest_customer(vehicle);
+
                     }
 
                     // If Vehicle has NO packages
