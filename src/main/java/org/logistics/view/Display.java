@@ -69,11 +69,11 @@ public class Display {
 
     }
 
-//    public void updateEdge(org.logistics.model.Edge edge_edge) {
-//        graph.removeEdge(edge_edge.getStart_node().getNodeValue() + "" + edge_edge.getConnecting_node().getNodeValue());
-//        Edge edge = graph.addEdge(edge_edge.getStart_node().getNodeValue() + "" + edge_edge.getConnecting_node().getNodeValue(), edge_edge.getStart_node().getNodeValue(), edge_edge.getConnecting_node().getNodeValue(), true);
-//        edge.setAttribute("ui.label", edge_edge.getTime_weight());
-//    }
+    public void updateEdge(org.logistics.model.Edge edge_edge) {
+        graph.removeEdge(edge_edge.getStart_node().getNodeValue() + "" + edge_edge.getConnecting_node().getNodeValue());
+        Edge edge = graph.addEdge(edge_edge.getStart_node().getNodeValue() + "" + edge_edge.getConnecting_node().getNodeValue(), edge_edge.getStart_node().getNodeValue(), edge_edge.getConnecting_node().getNodeValue(), true);
+        edge.setAttribute("ui.label", edge_edge.getTime_weight());
+    }
 
     public void displayGUI(){
         JFrame frame = new JFrame("GraphStream");
@@ -83,7 +83,7 @@ public class Display {
         System.setProperty("org.graphstream.ui.renderer", "org.graphstream.ui.swing_viewer.SwingViewer");
         SwingViewer viewer = new SwingViewer(graph, Viewer.ThreadingModel.GRAPH_IN_GUI_THREAD);
 
-        viewer.enableAutoLayout(new SpringBox());
+        viewer.enableAutoLayout();
 
         ViewPanel viewPanel = (ViewPanel) viewer.addDefaultView(false);
 
