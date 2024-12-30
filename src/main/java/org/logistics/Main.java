@@ -153,8 +153,7 @@ public class Main {
                 Thread.sleep(1500 );
 
 
-                displayGraph.visualise_edge(edge_edge, 0);
-                displayGraph.visualise_vertex(nextVertex, 0);
+                dehighlightVisitedEdge(displayGraph, edge_edge, nextVertex);
                 Thread.sleep(1500 );
 
 
@@ -214,18 +213,7 @@ public class Main {
                     // For every package in the vehicle
                     for (Package package_package : vehicle.get_deliveryPackages()) {
 
-                        // If package destination is the same as the current position
-                        if (package_package.getDestination() == customerLocation) {
-
-                            // Give package to the Customer
-                            customerLocation.addCollectedPackage(package_package);
-
-                            // Remove package from the vehicle
-                            vehicle.remove_deliveryPackage(package_package);
-
-                            // Break the loop
-                            break;
-                        }
+                        if (customerDeliverPackage(vehicle, package_package, customerLocation)) break;
                     }
                 }
             }
@@ -233,6 +221,27 @@ public class Main {
             }
         }
 
+    }
+
+    private static boolean customerDeliverPackage(Vehicle vehicle, Package package_package, CustomerLocation<String> customerLocation) {
+        // If package destination is the same as the current position
+        if (package_package.getDestination() == customerLocation) {
+
+            // Give package to the Customer
+            customerLocation.addCollectedPackage(package_package);
+
+            // Remove package from the vehicle
+            vehicle.remove_deliveryPackage(package_package);
+
+            // Break the loop
+            return true;
+        }
+        return false;
+    }
+
+    private static void dehighlightVisitedEdge(Display displayGraph, Edge edge_edge, Vertex<String> nextVertex) {
+        displayGraph.visualise_edge(edge_edge, 0);
+        displayGraph.visualise_vertex(nextVertex, 0);
     }
 
     private static void updateEdgePath(Graph graph, Display displayGraph, Vehicle vehicle) {
@@ -244,7 +253,7 @@ public class Main {
                     edge.addCongestion_weight();
 
                     // Update Label of the edge to reflect those changes
-//                                    displayGraph.updateEdge(edge);
+                    displayGraph.updateEdge(edge);
                 }
             }
             Edge edgeTest = graph.findEdgeAndReturn(vehicle.getCurrent_location(), vertex);
@@ -253,7 +262,7 @@ public class Main {
                 edgeTest.addCongestion_weight();
 
                 // Update Label of the edge to reflect those changes
-//                                displayGraph.updateEdge(edgeTest);
+                displayGraph.updateEdge(edgeTest);
             }
         }
     }
