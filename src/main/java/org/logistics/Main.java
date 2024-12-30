@@ -7,6 +7,23 @@ import org.logistics.view.Display;
 import java.util.Iterator;
 
 public class Main {
+
+
+    public static void printVehicleLogs(Vehicle vehicle) {
+        System.out.println("--- Logs ---");
+        System.out.println("Vehicle: " + vehicle);
+        System.out.println("---");
+        System.out.println("Current Location: " + vehicle.getCurrent_location().getNodeValue());
+        for (Package package_package : vehicle.get_deliveryPackages()) {
+            System.out.println("---");
+            System.out.println("Package Name: " + package_package.getItem_Name());
+            System.out.println("Package Location: " + package_package.getDestination());
+            System.out.println("Package Priority: " + package_package.getPriority());
+        }
+
+        System.out.println("Travel Destinations: " + vehicle.getTravelDestinations());
+    }
+
     public static void main(String[] args) throws Exception {
 
         // Initializing Graph
@@ -76,24 +93,13 @@ public class Main {
         displayGraph.createGraph();
         displayGraph.displayGUI();
 
-
         // Simulation Logic
         while (true) {
 
             // For every vehicle
             for (Vehicle vehicle : graph.getVehicleList()) {
-                System.out.println("--- Logs ---");
-                System.out.println("Vehicle: " + vehicle);
-                System.out.println("---");
-                System.out.println("Current Location: " + vehicle.getCurrent_location().getNodeValue());
-                for (Package package_package : vehicle.get_deliveryPackages()) {
-                    System.out.println("---");
-                    System.out.println("Package Name: " + package_package.getItem_Name());
-                    System.out.println("Package Location: " + package_package.getDestination());
-                    System.out.println("Package Priority: " + package_package.getPriority());
-                }
 
-                System.out.println("Travel Destinations: " + vehicle.getTravelDestinations());
+                printVehicleLogs(vehicle);
 
                 // If vehicle has no travel destinations
                 if (vehicle.getTravelDestinations().isEmpty()) {
@@ -105,16 +111,7 @@ public class Main {
                         // Find the shortest route towards customer based on package
                         dijkstra_customerLocation.find_shortest_customer(vehicle);
 
-                        for (Vertex<String> vertex : vehicle.getTravelDestinations()) {
-                            for (Vertex<String> vertex2 : vehicle.getTravelDestinations()) {
-                                Edge edge = graph.findEdgeAndReturn(vertex, vertex2);
-                                if ( edge != null) {
-                                    displayGraph.visualise_edge(edge, 1);
-                                    edge.addCongestion_weight();
-
-                                }
-                            }
-                        }
+                        updateEdgePath(graph, displayGraph, vehicle);
 
 
                     }
@@ -125,16 +122,7 @@ public class Main {
                         // Find the shortest route towards closest deliveryHub
                         dijkstra_deliveryHub.find_shortest_delivery(vehicle);
 
-                        for (Vertex<String> vertex : vehicle.getTravelDestinations()) {
-                            for (Vertex<String> vertex2 : vehicle.getTravelDestinations()) {
-                                Edge edge = graph.findEdgeAndReturn(vertex, vertex2);
-                                if ( edge != null) {
-                                    displayGraph.visualise_edge(edge, 1);
-                                    edge.addCongestion_weight();
-
-                                }
-                            }
-                        }
+                        updateEdgePath(graph, displayGraph, vehicle);
                     }
                 }
 
@@ -153,28 +141,34 @@ public class Main {
                 // Find Relevant Edge
                 Edge edge_edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextVertex);
 
-                // Update Label of the edge to reflect those changes
-                displayGraph.updateEdge(edge_edge);
-
-                // Highlight the current position of the Vehicle
-                displayGraph.visualise_vertex(nextVertex, 1);
+                // Decrease Congestion by one
+                edge_edge.removeCongestion_weight();
 
                 // Vehicle Travels to the vertex
                 vehicle.travel(nextVertex);
-
-                displayGraph.visualise_edge(edge_edge, 0);
+                // Highlight the current position of the Vehicle
+                displayGraph.visualise_vertex(nextVertex, 1);
 
                 // Timer
                 Thread.sleep(1500 );
 
-                // Remove the highlight of current position
-                displayGraph.visualise_vertex(nextVertex, 0);
 
-                // Decrease Congestion by one
-                edge_edge.removeCongestion_weight();
+                displayGraph.visualise_edge(edge_edge, 0);
+                displayGraph.visualise_vertex(nextVertex, 0);
+                Thread.sleep(1500 );
+
 
                 // Update Label of the edge to reflect those changes
-                displayGraph.updateEdge(edge_edge);
+//                displayGraph.updateEdge(edge_edge);
+
+
+
+                // Remove the highlight of current position
+
+
+
+
+
 
             }
 
@@ -208,7 +202,7 @@ public class Main {
                         }
 
                     }
-                    currentDeliveryHub.generatePackage(graph);
+                    currentDeliveryHub.generatePackage(graph, 2);
 
                 }
 
@@ -239,6 +233,29 @@ public class Main {
             }
         }
 
+    }
+
+    private static void updateEdgePath(Graph graph, Display displayGraph, Vehicle vehicle) {
+        for (Vertex<String> vertex : vehicle.getTravelDestinations()) {
+            for (Vertex<String> vertex2 : vehicle.getTravelDestinations()) {
+                Edge edge = graph.findEdgeAndReturn(vertex, vertex2);
+                if ( edge != null) {
+                    displayGraph.visualise_edge(edge, 1);
+                    edge.addCongestion_weight();
+
+                    // Update Label of the edge to reflect those changes
+//                                    displayGraph.updateEdge(edge);
+                }
+            }
+            Edge edgeTest = graph.findEdgeAndReturn(vehicle.getCurrent_location(), vertex);
+            if (edgeTest != null) {
+                displayGraph.visualise_edge(edgeTest, 1);
+                edgeTest.addCongestion_weight();
+
+                // Update Label of the edge to reflect those changes
+//                                displayGraph.updateEdge(edgeTest);
+            }
+        }
     }
 
 }
