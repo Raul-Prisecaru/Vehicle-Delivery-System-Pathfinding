@@ -138,8 +138,25 @@ public class Main {
                     dehighlightVisitedEdge(displayGraph, edge, nextPosition, vehicle);
 
                     vehicle.travel(nextPosition);
+                    TimeUnit.SECONDS.sleep(1);
+                }
+
+
+                if (vehicle.getTravelDestinations().isEmpty()) {
+
+                    if (vehicle.getCurrent_location() instanceof CustomerLocation<String>) {
+                        customerDeliverPackage(vehicle, (CustomerLocation<String>) vehicle.getCurrent_location());
+                    }
+
+                    if (vehicle.getCurrent_location() instanceof DeliveryHub<String>) {
+                        DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
+                        vehiclePickupPackages(vehicle, currentDeliveryHub);
+                        currentDeliveryHub.generatePackage(graph, 2);
+
+                    }
 
                 }
+
 
 
 
@@ -152,7 +169,10 @@ public class Main {
     }
 
 
-    private static void vehiclePickupPackages(Vehicle vehicle, DeliveryHub<String> currentDeliveryHub, Iterator<Package> packageIterator) throws Exception {
+    private static void vehiclePickupPackages(Vehicle vehicle, DeliveryHub<String> currentDeliveryHub) throws Exception {
+
+        Iterator<Package> packageIterator = currentDeliveryHub.getPackages().iterator();
+
         // If Vehicle has less than two packages OR deliveryHub isn't empty
         if (vehicle.get_deliveryPackages().size() < 2 || !currentDeliveryHub.getPackages().isEmpty()) {
             // Retrieve the current package
@@ -164,23 +184,25 @@ public class Main {
 
             // Remove the package from the deliveryHub safely
             packageIterator.remove();
-
         }
     }
 
-    private static boolean customerDeliverPackage(Vehicle vehicle, Package package_package, CustomerLocation<String> customerLocation) {
+    private static boolean customerDeliverPackage(Vehicle vehicle, CustomerLocation<String> customerLocation) {
         // If package destination is the same as the current position
-        if (package_package.getDestination() == customerLocation) {
+        for (Package package_package : vehicle.get_deliveryPackages()) {
+            if (package_package.getDestination() == customerLocation) {
 
-            // Give package to the Customer
-            customerLocation.addCollectedPackage(package_package);
+                // Give package to the Customer
+                customerLocation.addCollectedPackage(package_package);
 
-            // Remove package from the vehicle
-            vehicle.remove_deliveryPackage(package_package);
+                // Remove package from the vehicle
+                vehicle.remove_deliveryPackage(package_package);
 
-            // Break the loop
-            return true;
+                // Break the loop
+                return true;
+            }
         }
+
         return false;
     }
 
