@@ -113,9 +113,12 @@ public class Main {
                     }
 
                     if (vehicle.get_deliveryPackages().isEmpty()) {
-                        // Go To Delivery Hub
-                    }
 
+                        dijkstra_deliveryHub.find_shortest_delivery(vehicle);
+
+                        updateEdgePath(graph, displayGraph, vehicle);
+
+                    }
 
                 }
 
@@ -128,12 +131,6 @@ public class Main {
 
 
     }
-
-
-
-
-
-
 
 
     private static void vehiclePickupPackages(Vehicle vehicle, DeliveryHub<String> currentDeliveryHub, Iterator<Package> packageIterator) throws Exception {
@@ -191,10 +188,12 @@ public class Main {
         }
 
         Vertex<String> firstDestination = travelDestinations.getLast();
-        Edge edgeFromCurrent = graph.findEdgeAndReturn(vehicle.getCurrent_location(), firstDestination);
+        Edge edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), firstDestination);
 
-        if (edgeFromCurrent != null) {
-            highlightAndUpdateEdge(edgeFromCurrent, displayGraph);
+        if (edge != null) {
+            displayGraph.visualise_edge(edge, 1);
+            edge.addCongestion_weight();
+            displayGraph.updateEdge(edge);
         }
     }
 
