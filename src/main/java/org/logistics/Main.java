@@ -182,13 +182,15 @@ public class Main {
             Vertex<String> currentVertex = travelDestinations.get(i);
             Vertex<String> nextVertex = travelDestinations.get(i + 1);
 
-            Edge edge = graph.findEdgeAndReturn(currentVertex, nextVertex);
+            Edge edge = graph.findEdgeAndReturn(nextVertex, currentVertex);
             if (edge != null) {
-                highlightAndUpdateEdge(edge, displayGraph);
+                displayGraph.visualise_edge(edge, 1);
+                edge.addCongestion_weight();
+                displayGraph.updateEdge(edge);
             }
         }
 
-        Vertex<String> firstDestination = travelDestinations.get(0);
+        Vertex<String> firstDestination = travelDestinations.getLast();
         Edge edgeFromCurrent = graph.findEdgeAndReturn(vehicle.getCurrent_location(), firstDestination);
 
         if (edgeFromCurrent != null) {
@@ -197,9 +199,7 @@ public class Main {
     }
 
     private static void highlightAndUpdateEdge(Edge edge, Display displayGraph) {
-        displayGraph.visualise_edge(edge, 1);
-        edge.addCongestion_weight();
-        displayGraph.updateEdge(edge);
+
     }
 
 }
