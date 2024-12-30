@@ -107,24 +107,16 @@ public class Main {
 
                 if (vehicle.getTravelDestinations().isEmpty()) {
                     if (!vehicle.get_deliveryPackages().isEmpty()) {
-
                         dijkstra_customerLocation.find_shortest_customer(vehicle);
-
                         updateEdgePath(graph, displayGraph, vehicle);
-
                         TimeUnit.SECONDS.sleep(1);
-
-
                     }
 
+
                     if (vehicle.get_deliveryPackages().isEmpty()) {
-
                         dijkstra_deliveryHub.find_shortest_delivery(vehicle);
-
                         updateEdgePath(graph, displayGraph, vehicle);
                         TimeUnit.SECONDS.sleep(1);
-
-
                     }
 
                 }
@@ -132,21 +124,18 @@ public class Main {
 
                 if (!vehicle.getTravelDestinations().isEmpty()) {
                     Vertex<String> nextPosition = vehicle.getTravelDestinations().pop();
-
                     Edge edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextPosition);
-
-                    dehighlightVisitedEdge(displayGraph, edge, nextPosition, vehicle);
-
+                    deHighlightVisitedEdge(displayGraph, edge, nextPosition, vehicle);
                     vehicle.travel(nextPosition);
                     TimeUnit.SECONDS.sleep(1);
                 }
 
 
                 if (vehicle.getTravelDestinations().isEmpty()) {
-
                     if (vehicle.getCurrent_location() instanceof CustomerLocation<String>) {
                         customerDeliverPackage(vehicle, (CustomerLocation<String>) vehicle.getCurrent_location());
                     }
+
 
                     if (vehicle.getCurrent_location() instanceof DeliveryHub<String>) {
                         DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
@@ -206,7 +195,7 @@ public class Main {
         return false;
     }
 
-    private static void dehighlightVisitedEdge(Display displayGraph, Edge edge_edge, Vertex<String> nextVertex, Vehicle vehicle) {
+    private static void deHighlightVisitedEdge(Display displayGraph, Edge edge_edge, Vertex<String> nextVertex, Vehicle vehicle) {
         displayGraph.visualise_edge(edge_edge, 0);
         displayGraph.visualise_vertex(vehicle.getCurrent_location(), 0);
         edge_edge.removeCongestion_weight();
