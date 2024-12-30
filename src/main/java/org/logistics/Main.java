@@ -102,6 +102,8 @@ public class Main {
         while (true) {
             for (Vehicle vehicle : graph.getVehicleList()) {
                 displayGraph.visualise_vertex(vehicle.getCurrent_location(), 1);
+                TimeUnit.SECONDS.sleep(1);
+
 
                 if (vehicle.getTravelDestinations().isEmpty()) {
                     if (!vehicle.get_deliveryPackages().isEmpty()) {
@@ -110,6 +112,9 @@ public class Main {
 
                         updateEdgePath(graph, displayGraph, vehicle);
 
+                        TimeUnit.SECONDS.sleep(1);
+
+
                     }
 
                     if (vehicle.get_deliveryPackages().isEmpty()) {
@@ -117,8 +122,22 @@ public class Main {
                         dijkstra_deliveryHub.find_shortest_delivery(vehicle);
 
                         updateEdgePath(graph, displayGraph, vehicle);
+                        TimeUnit.SECONDS.sleep(1);
+
 
                     }
+
+                }
+
+
+                if (!vehicle.getTravelDestinations().isEmpty()) {
+                    Vertex<String> nextPosition = vehicle.getTravelDestinations().pop();
+
+                    Edge edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextPosition);
+
+                    dehighlightVisitedEdge(displayGraph, edge, nextPosition, vehicle);
+
+                    vehicle.travel(nextPosition);
 
                 }
 
