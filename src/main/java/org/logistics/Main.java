@@ -55,6 +55,7 @@ public class Main {
 
         // Creating Vehicle
         graph.createVehicle(deliveryHubA);
+        graph.createVehicle(deliveryHubB);
 
         for (Vehicle vehicle : graph.getVehicleList()) {
             vehicle.add_deliveryPackage(new Package("TestItem", customerLocationF, 4));
@@ -101,7 +102,10 @@ public class Main {
 
         while (true) {
             for (Vehicle vehicle : graph.getVehicleList()) {
-                displayGraph.visualise_vertex(vehicle.getCurrent_location(), 1);
+                for (Vehicle vehicle1 : graph.getVehicleList()) {
+                    displayGraph.visualise_vertex(vehicle1.getCurrent_location(), 1);
+
+                }
                 TimeUnit.SECONDS.sleep(1);
 
 
