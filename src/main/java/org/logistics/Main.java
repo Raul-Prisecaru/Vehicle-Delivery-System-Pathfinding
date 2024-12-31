@@ -139,7 +139,7 @@ public class Main {
                     Package check_package = checkIfPackageCustomerLocation(vehicle);
 
                     if (check_package != null) {
-                        customerDeliverPackage((CustomerLocation<String>) vehicle.getCurrent_location(), check_package);
+                        customerDeliverPackage((CustomerLocation<String>) vehicle.getCurrent_location(), check_package, vehicle);
                     }
                 }
 
@@ -192,8 +192,10 @@ public class Main {
         }
     }
 
-    private static void customerDeliverPackage(CustomerLocation<String> customerLocation, Package package_package) {
+    private static void customerDeliverPackage(CustomerLocation<String> customerLocation, Package package_package, Vehicle vehicle) {
         customerLocation.addCollectedPackage(package_package);
+        vehicle.remove_deliveryPackage(package_package);
+
     }
 
     private static void deHighlightVisitedEdge(Display displayGraph, Edge edge_edge, Vertex<String> nextVertex, Vehicle vehicle) {
