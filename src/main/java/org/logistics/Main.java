@@ -253,6 +253,16 @@ public class Main {
             }
         }
 
+        for (CustomerLocation<String> customerLocation : graph.getAllCustomerLocation()) {
+            System.out.println("CustomerLocation: " + customerLocation.getNodeValue());
+
+            for (Package package_package : customerLocation.getCollectedPackages()) {
+                System.out.println("Package: " + package_package.getItem_Name());
+                System.out.println("-- Package Destination: " + package_package.getDestination());
+                System.out.println("-- Package Priority: " + package_package.getPriority());
+            }
+        }
+
     }
 
 }
