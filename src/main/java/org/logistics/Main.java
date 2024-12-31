@@ -228,4 +228,8 @@ public class Main {
     }
 
 
+    private static void logs(Graph graph, Vehicle vehicle) {
+
+    }
+
 }
