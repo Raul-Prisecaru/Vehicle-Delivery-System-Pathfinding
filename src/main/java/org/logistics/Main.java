@@ -136,7 +136,11 @@ public class Main {
 
                 if (vehicle.getTravelDestinations().isEmpty()) {
                     if (vehicle.getCurrent_location() instanceof CustomerLocation<String>) {
-                        customerDeliverPackage(vehicle, (CustomerLocation<String>) vehicle.getCurrent_location());
+                        Package check_package = checkIfPackageCustomerLocation(vehicle);
+
+                        if (check_package != null) {
+                            customerDeliverPackage(vehicle, (CustomerLocation<String>) vehicle.getCurrent_location());
+                        }
                     }
 
 
@@ -157,6 +161,16 @@ public class Main {
 
         }
 
+
+    }
+
+    private static Package checkIfPackageCustomerLocation(Vehicle vehicle) {
+        for (Package package_package : vehicle.get_deliveryPackages()) {
+            if (package_package.getDestination() == vehicle.getCurrent_location()) {
+                return package_package;
+            }
+        }
+        return null;
 
     }
 
