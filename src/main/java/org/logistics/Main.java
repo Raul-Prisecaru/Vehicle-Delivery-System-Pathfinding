@@ -139,7 +139,7 @@ public class Main {
                         Package check_package = checkIfPackageCustomerLocation(vehicle);
 
                         if (check_package != null) {
-                            customerDeliverPackage(vehicle, (CustomerLocation<String>) vehicle.getCurrent_location());
+                            customerDeliverPackage((CustomerLocation<String>) vehicle.getCurrent_location(), check_package);
                         }
                     }
 
@@ -193,23 +193,8 @@ public class Main {
         }
     }
 
-    private static boolean customerDeliverPackage(Vehicle vehicle, CustomerLocation<String> customerLocation) {
-        // If package destination is the same as the current position
-        for (Package package_package : vehicle.get_deliveryPackages()) {
-            if (package_package.getDestination() == customerLocation) {
-
-                // Give package to the Customer
-                customerLocation.addCollectedPackage(package_package);
-
-                // Remove package from the vehicle
-                vehicle.remove_deliveryPackage(package_package);
-
-                // Break the loop
-                return true;
-            }
-        }
-
-        return false;
+    private static void customerDeliverPackage(CustomerLocation<String> customerLocation, Package package_package) {
+        customerLocation.addCollectedPackage(package_package);
     }
 
     private static void deHighlightVisitedEdge(Display displayGraph, Edge edge_edge, Vertex<String> nextVertex, Vehicle vehicle) {
