@@ -242,6 +242,17 @@ public class Main {
                 System.out.println("-- Package Priority: " + package_package.getPriority());
             }
         }
+
+        for (DeliveryHub<String> deliveryHub : graph.getAllDeliveryHub()) {
+            System.out.println("DeliveryHub: " + deliveryHub.getNodeValue());
+
+            for (Package package_package : deliveryHub.getPackages()) {
+                System.out.println("Package: " + package_package.getItem_Name());
+                System.out.println("-- Package Destination: " + package_package.getDestination());
+                System.out.println("-- Package Priority: " + package_package.getPriority());
+            }
+        }
+
     }
 
 }
