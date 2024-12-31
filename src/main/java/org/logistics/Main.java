@@ -100,6 +100,7 @@ public class Main {
 
 
         while (true) {
+            logs(graph);
             for (Vehicle vehicle : graph.getVehicleList()) {
                 for (Vehicle vehicle1 : graph.getVehicleList()) {
                     displayGraph.visualise_vertex(vehicle1.getCurrent_location(), 1);
@@ -228,8 +229,19 @@ public class Main {
     }
 
 
-    private static void logs(Graph graph, Vehicle vehicle) {
+    private static void logs(Graph graph) {
+        System.out.println("--- Logs ---");
+        for (Vehicle vehicle : graph.getVehicleList()) {
+            System.out.println("Vehicle: " + vehicle);
+            System.out.println("-- Vehicle Current Position: " + vehicle.getCurrent_location());
+            System.out.println("-- Vehicle Destinations: " + vehicle.getTravelDestinations());
 
+            for (Package package_package : vehicle.get_deliveryPackages()) {
+                System.out.println("Package: " + package_package.getItem_Name());
+                System.out.println("-- Package Destination: " + package_package.getDestination());
+                System.out.println("-- Package Priority: " + package_package.getPriority());
+            }
+        }
     }
 
 }
