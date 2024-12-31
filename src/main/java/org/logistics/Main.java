@@ -134,24 +134,22 @@ public class Main {
                 }
 
 
-                if (vehicle.getTravelDestinations().isEmpty()) {
-                    if (vehicle.getCurrent_location() instanceof CustomerLocation<String>) {
-                        Package check_package = checkIfPackageCustomerLocation(vehicle);
+                if (vehicle.getCurrent_location() instanceof CustomerLocation<String>) {
+                    Package check_package = checkIfPackageCustomerLocation(vehicle);
 
-                        if (check_package != null) {
-                            customerDeliverPackage((CustomerLocation<String>) vehicle.getCurrent_location(), check_package);
-                        }
+                    if (check_package != null) {
+                        customerDeliverPackage((CustomerLocation<String>) vehicle.getCurrent_location(), check_package);
                     }
+                }
 
 
-                    if (vehicle.getCurrent_location() instanceof DeliveryHub<String> && vehicle.get_deliveryPackages().size() < 2) {
-                        DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
-                        vehiclePickupPackages(vehicle, currentDeliveryHub);
-                        currentDeliveryHub.generatePackage(graph, 2);
-
-                    }
+                if (vehicle.getCurrent_location() instanceof DeliveryHub<String> && vehicle.get_deliveryPackages().size() < 2) {
+                    DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
+                    vehiclePickupPackages(vehicle, currentDeliveryHub);
+                    currentDeliveryHub.generatePackage(graph, 2);
 
                 }
+
 
 
 
