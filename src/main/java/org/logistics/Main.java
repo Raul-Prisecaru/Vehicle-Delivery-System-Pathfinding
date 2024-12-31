@@ -227,8 +227,5 @@ public class Main {
         }
     }
 
-    private static void highlightAndUpdateEdge(Edge edge, Display displayGraph) {
-
-    }
 
 }
