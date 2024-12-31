@@ -55,8 +55,7 @@ public class Main {
 
         // Creating Vehicle
         graph.createVehicle(deliveryHubA);
-        graph.createVehicle(deliveryHubB);
-
+//        graph.createVehicle(deliveryHubB);
         for (Vehicle vehicle : graph.getVehicleList()) {
             vehicle.add_deliveryPackage(new Package("TestItem", customerLocationF, 4));
         }
@@ -141,7 +140,7 @@ public class Main {
                     }
 
 
-                    if (vehicle.getCurrent_location() instanceof DeliveryHub<String>) {
+                    if (vehicle.getCurrent_location() instanceof DeliveryHub<String> && vehicle.get_deliveryPackages().size() < 2) {
                         DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
                         vehiclePickupPackages(vehicle, currentDeliveryHub);
                         currentDeliveryHub.generatePackage(graph, 2);
