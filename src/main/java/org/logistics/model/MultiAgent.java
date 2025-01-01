@@ -40,6 +40,7 @@ public class MultiAgent {
             vehicleList.add(vehicle);
         }
 
+        // TODO: Optimise this so it can handle more than 3 vehicles
         Vehicle vehicle1 = vehicleList.getFirst();
         Vehicle vehicle2 = vehicleList.getLast();
 
