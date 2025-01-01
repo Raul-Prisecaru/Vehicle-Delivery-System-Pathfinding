@@ -126,7 +126,7 @@ public class Main {
 
 
                 if (vehicle.getCurrent_location() instanceof CustomerLocation<String>) {
-                    Package check_package = checkIfPackageCustomerLocation(vehicle);
+                    Package check_package = checkIfPackageIsForCustomerLocation(vehicle);
 
                     if (check_package != null) {
                         customerDeliverPackage((CustomerLocation<String>) vehicle.getCurrent_location(), check_package, vehicle);
@@ -149,7 +149,12 @@ public class Main {
 
     }
 
-    private static Package checkIfPackageCustomerLocation(Vehicle vehicle) {
+    /**
+     * Method Responsible fer checking if any of the package in the vehicle is for the CustomerLocation
+     * @param vehicle (Vehicle) - vehicle to get packages from and check with it's current location
+     * @return package for customerLocation else null
+     */
+    private static Package checkIfPackageIsForCustomerLocation(Vehicle vehicle) {
         for (Package package_package : vehicle.get_deliveryPackages()) {
             if (package_package.getDestination() == vehicle.getCurrent_location()) {
                 return package_package;
@@ -159,7 +164,12 @@ public class Main {
 
     }
 
-
+    /**
+     * Method Responsible for package to be picked up from DeliveryHub
+     * @param vehicle (Vehicle) - vehicle to add the package to
+     * @param currentDeliveryHub (DeliveryHub) - package to search and remove from
+     * @throws Exception - throws Exception if vehicle is full
+     */
     private static void vehiclePickupPackages(Vehicle vehicle, DeliveryHub<String> currentDeliveryHub) throws Exception {
 
         Iterator<Package> packageIterator = currentDeliveryHub.getPackages().iterator();
@@ -178,6 +188,12 @@ public class Main {
         }
     }
 
+    /**
+     * Method Responsible for package to be delivered to the CustomerLocation
+     * @param customerLocation (CustomerLocation) - customerLocation to add the package to
+     * @param package_package (Package) - Packager to add to customerLocation and remove from Vehicle
+     * @param vehicle (Vehicle) - which vehicle to remove package from
+     */
     private static void customerDeliverPackage(CustomerLocation<String> customerLocation, Package package_package, Vehicle vehicle) {
         customerLocation.addCollectedPackage(package_package);
         vehicle.remove_deliveryPackage(package_package);
