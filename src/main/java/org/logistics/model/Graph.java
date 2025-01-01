@@ -203,8 +203,8 @@ public class Graph {
      * Method Responsible for retrieving all DeliveryHubs from the adjacencyList
      * @return HashSet of DeliveryHubs
      */
-    public HashSet<DeliveryHub<String>> getAllDeliveryHub() {
-        HashSet<DeliveryHub<String>> deliveryHubs = new HashSet<>();
+    public ArrayList<DeliveryHub<String>> getAllDeliveryHub() {
+        ArrayList<DeliveryHub<String>> deliveryHubs = new ArrayList<>();
 
         for (Vertex<String> vertex : adjacencyList.keySet()) {
             if (vertex instanceof DeliveryHub<String>) {
@@ -218,8 +218,8 @@ public class Graph {
      * Method Responsible for retrieving all CustomerLocations from the adjacencyList
      * @return HashSet of CustomerLocations
      */
-    public HashSet<CustomerLocation<String>> getAllCustomerLocation() {
-        HashSet<CustomerLocation<String>> customerLocations = new HashSet<>();
+    public ArrayList<CustomerLocation<String>> getAllCustomerLocation() {
+        ArrayList<CustomerLocation<String>> customerLocations = new ArrayList<>();
 
         for (Vertex<String> vertex : adjacencyList.keySet()) {
             if (vertex instanceof CustomerLocation<String>) {
