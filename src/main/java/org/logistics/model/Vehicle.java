@@ -98,6 +98,7 @@ public class Vehicle {
             }
 
             if (vertex == specifiedLocation) {
+                count++;
                 return count;
             }
         }
