@@ -85,6 +85,24 @@ public class Vehicle {
             ;
     }
 
+    /**
+     * Method Responsible for finding the number of travel steps remaining to a specified Location
+     */
+    public int findTravelSteps(Vertex<String> specifiedLocation) {
+        int count = 0;
+
+        for (Vertex<String> vertex : getTravelDestinations()) {
+            if (vertex != specifiedLocation) {
+                count++;
+            }
+
+            if (vertex == specifiedLocation) {
+                return count;
+            }
+        }
+        return -1;
+    }
+
 
 
 }
