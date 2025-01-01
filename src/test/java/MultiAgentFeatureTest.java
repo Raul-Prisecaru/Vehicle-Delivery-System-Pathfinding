@@ -41,6 +41,9 @@ public class MultiAgentFeatureTest {
         graph.add_directed_edge(customerLocationC, customerLocationD,5);
         graph.add_directed_edge(customerLocationC, customerLocationE,5);
 
+        customerLocationC.addStoredVehicles(vehicle1);
+        customerLocationC.addStoredVehicles(vehicle2);
+
         MultiAgent multiAgent = new MultiAgent(graph);
 
         CustomerLocation<String> foundCustomerLocation = multiAgent.findMultipleVehiclesInCustomerLocations();
