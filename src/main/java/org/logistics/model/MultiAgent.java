@@ -57,6 +57,20 @@ public class MultiAgent {
                 }
             }
         }
+
+        if (vehicle2.get_deliveryPackages().size() < 2) {
+            for (Package package_package : vehicle1.get_deliveryPackages()) {
+                int vehicle1Steps = vehicle1.findTravelSteps(package_package.getDestination());
+                int vehicle2Steps = vehicle2.findTravelSteps(package_package.getDestination());
+
+                if (vehicle1Steps != -1 && vehicle2Steps != -1) {
+                    if (vehicle2Steps < vehicle1Steps) {
+                        vehicle1.remove_deliveryPackage(package_package);
+                        vehicle2.add_deliveryPackage(package_package);
+                    }
+                }
+            }
+        }
     }
 
 }
