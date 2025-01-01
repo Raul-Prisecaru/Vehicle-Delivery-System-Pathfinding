@@ -12,22 +12,6 @@ import java.util.Iterator;
 
 public class Main {
 
-
-    public static void printVehicleLogs(Vehicle vehicle) {
-        System.out.println("--- Logs ---");
-        System.out.println("Vehicle: " + vehicle);
-        System.out.println("---");
-        System.out.println("Current Location: " + vehicle.getCurrent_location().getNodeValue());
-        for (Package package_package : vehicle.get_deliveryPackages()) {
-            System.out.println("---");
-            System.out.println("Package Name: " + package_package.getItem_Name());
-            System.out.println("Package Location: " + package_package.getDestination());
-            System.out.println("Package Priority: " + package_package.getPriority());
-        }
-
-        System.out.println("Travel Destinations: " + vehicle.getTravelDestinations());
-    }
-
     public static void main(String[] args) throws Exception {
 
         // Initializing Graph
@@ -150,10 +134,6 @@ public class Main {
                     currentDeliveryHub.generatePackage(graph, 2);
 
                 }
-
-
-
-
 
             }
 
