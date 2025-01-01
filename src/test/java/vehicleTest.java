@@ -84,12 +84,25 @@ public class vehicleTest {
 
     }
 
+    @Test
     void findTravelSteps() {
         CustomerLocation<String> customerLocationA = new CustomerLocation<>("A");
         CustomerLocation<String> customerLocationB = new CustomerLocation<>("B");
         CustomerLocation<String> customerLocationC = new CustomerLocation<>("C");
         CustomerLocation<String> customerLocationD = new CustomerLocation<>("D");
         CustomerLocation<String> customerLocationE = new CustomerLocation<>("E");
+
+        Vehicle testVehicleSteps = new Vehicle(customerLocationA);
+
+        testVehicleSteps.addTravelDestination(customerLocationB);
+        testVehicleSteps.addTravelDestination(customerLocationC);
+        testVehicleSteps.addTravelDestination(customerLocationD);
+        testVehicleSteps.addTravelDestination(customerLocationE);
+
+        int customerLocationSteps = testVehicleSteps.findTravelSteps(customerLocationE);
+        int invalidCustomerLocationSteps = testVehicleSteps.findTravelSteps(new CustomerLocation<>("G"));
+        assertEquals(4, customerLocationSteps);
+        assertEquals(-1, invalidCustomerLocationSteps);
     }
 
 }
