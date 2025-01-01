@@ -52,7 +52,41 @@ public class MultiAgentFeatureTest {
     }
 
 
-    void vehicleCommunicate() {
+    void vehicleCommunicate() throws Exception {
+        Graph graph = new Graph();
 
+
+        // Creating CustomerLocation Nodes
+        CustomerLocation<String> customerLocationA = new CustomerLocation<>("A");
+        CustomerLocation<String> customerLocationB = new CustomerLocation<>("B");
+        CustomerLocation<String> customerLocationC = new CustomerLocation<>("C");
+        CustomerLocation<String> customerLocationD = new CustomerLocation<>("D");
+        CustomerLocation<String> customerLocationE = new CustomerLocation<>("E");
+
+        // Creating Packages
+        Vehicle vehicle1 = new Vehicle(customerLocationC);
+        Vehicle vehicle2 = new Vehicle(customerLocationC);
+
+        graph.add_customerLocation(customerLocationA);
+        graph.add_customerLocation(customerLocationB);
+        graph.add_customerLocation(customerLocationC);
+        graph.add_customerLocation(customerLocationD);
+        graph.add_customerLocation(customerLocationE);
+
+        // Creating Edges
+        graph.add_directed_edge(customerLocationA, customerLocationB, 5);
+        graph.add_directed_edge(customerLocationB, customerLocationE, 5);
+        graph.add_directed_edge(customerLocationE, customerLocationD, 5);
+        graph.add_directed_edge(customerLocationD, customerLocationA, 5);
+
+        graph.add_directed_edge(customerLocationC, customerLocationA,5);
+        graph.add_directed_edge(customerLocationC, customerLocationB,5);
+        graph.add_directed_edge(customerLocationC, customerLocationD,5);
+        graph.add_directed_edge(customerLocationC, customerLocationE,5);
+
+        customerLocationC.addStoredVehicles(vehicle1);
+        customerLocationC.addStoredVehicles(vehicle2);
+
+        MultiAgent multiAgent = new MultiAgent(graph);
     }
 }
