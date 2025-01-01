@@ -184,13 +184,26 @@ public class Main {
 
     }
 
-    private static void deHighlightVisitedEdge(Display displayGraph, Edge edge_edge, Vertex<String> nextVertex, Vehicle vehicle) {
+    /**
+     * Method Responsible for removing the specified edge highlight alongside with it's congestionWeight
+     * @param displayGraph (Display) - GUI to update the highlight and edge label from
+     * @param edge_edge (Edge) - Edge to remove highlight and congestion weight from
+     * @param vehicle (Vehicle) - Used to remove highlight from vehicle's current position
+     */
+    private static void deHighlightVisitedEdge(Display displayGraph, Edge edge_edge, Vehicle vehicle) {
         displayGraph.visualise_edge(edge_edge, 0);
         displayGraph.visualise_vertex(vehicle.getCurrent_location(), 0);
         edge_edge.removeCongestion_weight();
         displayGraph.updateEdge(edge_edge);
     }
 
+    /**
+     * Method Responsible for highlighting and adding congestion
+     * to the every edge in vehicle's travelDestinations
+     * @param graph (Graph) - Used to find the relevant Edge in AdjacencyList
+     * @param displayGraph (Display) - Used to reflect and highlight the path in the GUI
+     * @param vehicle (Vehicle) - Vehicle to find and highlight the path for
+     */
     private static void updateEdgePath(Graph graph, Display displayGraph, Vehicle vehicle) {
         List<Vertex<String>> travelDestinations = new ArrayList<>(vehicle.getTravelDestinations());
 
@@ -216,7 +229,11 @@ public class Main {
         }
     }
 
-
+    /**
+     * Method Responsible for generating logs.
+     * This will generate logs for all vehicles, and DeliveryHubs & CustomerLocations
+     * @param graph (Graph) - graph to get the status of everything from
+     */
     private static void logs(Graph graph) {
         System.out.println("--- Logs ---");
         for (Vehicle vehicle : graph.getVehicleList()) {
