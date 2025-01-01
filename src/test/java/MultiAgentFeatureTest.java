@@ -51,7 +51,7 @@ public class MultiAgentFeatureTest {
 
     }
 
-
+    @Test
     void vehicleCommunicate() throws Exception {
         Graph graph = new Graph();
 
@@ -66,9 +66,9 @@ public class MultiAgentFeatureTest {
         // Creating Packages
         Vehicle vehicle1 = new Vehicle(customerLocationC);
         Vehicle vehicle2 = new Vehicle(customerLocationC);
+        Package vehicle2Package = new Package("TestItem", customerLocationE, 5);
 
-        vehicle1.add_deliveryPackage(new Package("TestItem", null, 5));
-        vehicle2.add_deliveryPackage(new Package("TestItem", customerLocationE, 5));
+        vehicle2.add_deliveryPackage(vehicle2Package);
 
         vehicle1.addTravelDestination(customerLocationD);
         vehicle1.addTravelDestination(customerLocationE);
@@ -98,5 +98,11 @@ public class MultiAgentFeatureTest {
         customerLocationC.addStoredVehicles(vehicle2);
 
         MultiAgent multiAgent = new MultiAgent(graph);
+        multiAgent.vehicleCommunicate(customerLocationC);
+
+
+        for (Package package_package : vehicle1.get_deliveryPackages()) {
+                assertEquals(package_package, vehicle2Package);
+            }
+        }
     }
-}
