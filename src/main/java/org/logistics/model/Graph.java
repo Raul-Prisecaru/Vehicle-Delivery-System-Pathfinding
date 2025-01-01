@@ -182,7 +182,12 @@ public class Graph {
     }
 
 
-
+    /**
+     * Method Responsible for finding Edge in the AdjacencyList
+     * @param start_vertex (Vertex) - start vertex of the edge
+     * @param connecting_vertex (Vertex) - connecting vertex of the edge
+     * @return Edge if found, else null
+     */
     public Edge findEdgeAndReturn(Vertex<String> start_vertex, Vertex<String> connecting_vertex) {
         for (Edge edge : adjacencyList.get(start_vertex)) {
             if (Objects.equals(edge.getConnecting_node().getNodeValue(), connecting_vertex.getNodeValue())) {
