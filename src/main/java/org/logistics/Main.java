@@ -119,7 +119,7 @@ public class Main {
                 if (!vehicle.getTravelDestinations().isEmpty()) {
                     Vertex<String> nextPosition = vehicle.getTravelDestinations().pop();
                     Edge edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextPosition);
-                    deHighlightVisitedEdge(displayGraph, edge, nextPosition, vehicle);
+                    deHighlightVisitedEdge(displayGraph, edge, vehicle);
                     vehicle.travel(nextPosition);
                     TimeUnit.SECONDS.sleep(1);
                 }
