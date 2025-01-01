@@ -4,7 +4,7 @@ import java.util.*;
 
 public class Dijkstra_deliveryHub {
     private Graph graph;
-    private HashSet<DeliveryHub<String>> deliveryHubList = new HashSet<>();
+    private ArrayList<DeliveryHub<String>> deliveryHubList = new ArrayList<>();
     private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList = new HashMap<>();
 
     /**
