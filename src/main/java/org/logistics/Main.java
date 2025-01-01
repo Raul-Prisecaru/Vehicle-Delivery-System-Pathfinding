@@ -17,7 +17,8 @@ public class Main {
         // Initializing Graph
         Graph graph = new Graph();
 
-        // Initializing vehicleLogging
+        // Initializing multiAgent
+        MultiAgent multiAgent = new MultiAgent(graph);
 
         // Initializing dijkstra Algorithm
         Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
@@ -80,6 +81,9 @@ public class Main {
         // Creating GUI
         displayGraph.createGraph();
         displayGraph.displayGUI();
+
+        // Initializing multiAgent
+        MultiAgent multiAgent = new MultiAgent(graph);
 
 
 
