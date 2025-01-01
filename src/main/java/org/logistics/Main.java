@@ -17,9 +17,6 @@ public class Main {
         // Initializing Graph
         Graph graph = new Graph();
 
-        // Initializing multiAgent
-        MultiAgent multiAgent = new MultiAgent(graph);
-
         // Initializing dijkstra Algorithm
         Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
         Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation(graph);
