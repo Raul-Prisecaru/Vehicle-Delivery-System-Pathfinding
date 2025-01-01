@@ -111,6 +111,11 @@ public class Main {
                 }
 
 
+                CustomerLocation<String> multipleVehicleCustomerLocation = multiAgent.findMultipleVehiclesInCustomerLocations();
+                if (multipleVehicleCustomerLocation != null) {
+                    multiAgent.vehicleCommunicate(multipleVehicleCustomerLocation);
+                }
+
                 if (!vehicle.getTravelDestinations().isEmpty()) {
                     Vertex<String> nextPosition = vehicle.getTravelDestinations().pop();
                     Edge edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextPosition);
