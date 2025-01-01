@@ -40,6 +40,11 @@ public class MultiAgentFeatureTest {
         graph.add_directed_edge(customerLocationC, customerLocationB,5);
         graph.add_directed_edge(customerLocationC, customerLocationD,5);
         graph.add_directed_edge(customerLocationC, customerLocationE,5);
+
+        MultiAgent multiAgent = new MultiAgent(graph);
+
+
+
     }
 
 
