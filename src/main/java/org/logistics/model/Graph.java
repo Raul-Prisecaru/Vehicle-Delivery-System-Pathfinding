@@ -224,10 +224,18 @@ public class Graph {
         return customerLocations;
     }
 
+    /**
+     * Method Responsible for creating a vehicle
+     * @param starting_position (Vertex) starting position of the vehicle
+     */
     public void createVehicle(Vertex<String> starting_position) {
         vehicleList.add(new Vehicle(starting_position));
     }
 
+    /**
+     * Method Responsible for retrieving the list of vehicles
+     * @return HashSet of vehicles
+     */
     public HashSet<Vehicle> getVehicleList() {
         return vehicleList;
     }
