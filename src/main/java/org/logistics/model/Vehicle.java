@@ -87,6 +87,7 @@ public class Vehicle {
 
     /**
      * Method Responsible for finding the number of travel steps remaining to a specified Location
+     * @param specifiedLocation (Vertex) - vertex to find number of steps of
      */
     public int findTravelSteps(Vertex<String> specifiedLocation) {
         int count = 0;
