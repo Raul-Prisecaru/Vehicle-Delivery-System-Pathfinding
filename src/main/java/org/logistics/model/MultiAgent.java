@@ -27,7 +27,18 @@ public class MultiAgent {
      * Method Responsible for allowing the Vehicle to communicate and figure out if
      * one of the packages from the vehicle1 is closer to vehicle2 path and vice versa
      */
-    public void vehicleCommunicate() {
+    public void vehicleCommunicate(CustomerLocation<String> customerLocation) {
+        ArrayList<Vehicle> vehicleList = new ArrayList<>();
+
+        if (customerLocation.getStoredVehicles().size() < 2) {
+            return;
+        }
+        for (Vehicle vehicle : customerLocation.getStoredVehicles()) {
+            vehicleList.add(vehicle);
+        }
+
+        Vehicle vehicle1 = vehicleList.getFirst();
+        Vehicle vehicle2 = vehicleList.getLast();
 
     }
 
