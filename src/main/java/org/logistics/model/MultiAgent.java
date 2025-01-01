@@ -8,8 +8,15 @@ public class MultiAgent {
     }
 
     // TODO: For time being this will do but shorten the method name
-    public void findMultipleVehiclesInCustomerLocations() {
+    public CustomerLocation<String> findMultipleVehiclesInCustomerLocations() {
+        for (CustomerLocation<String> customerLocation : graph.getAllCustomerLocation()) {
+            if (customerLocation.getStoredVehicles().size() >= 2) {
+                // TODO: Make this return multiple
+                return customerLocation;
+            }
+        }
 
+        return null;
     }
 
 }
