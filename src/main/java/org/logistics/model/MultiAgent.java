@@ -1,5 +1,8 @@
 package org.logistics.model;
 
+import java.util.ArrayList;
+
+
 public class MultiAgent {
     private Graph graph;
 
@@ -40,6 +43,14 @@ public class MultiAgent {
         Vehicle vehicle1 = vehicleList.getFirst();
         Vehicle vehicle2 = vehicleList.getLast();
 
+        if (vehicle1.get_deliveryPackages().size() < 2) {
+            for (Package package_package : vehicle2.get_deliveryPackages()) {
+                int vehicle1Steps = vehicle1.findTravelSteps(package_package.getDestination());
+                int vehicle2Steps = vehicle2.findTravelSteps(package_package.getDestination());
+
+                if ()
+            }
+        }
     }
 
 }
