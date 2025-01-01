@@ -84,4 +84,12 @@ public class vehicleTest {
 
     }
 
+    void findTravelSteps() {
+        CustomerLocation<String> customerLocationA = new CustomerLocation<>("A");
+        CustomerLocation<String> customerLocationB = new CustomerLocation<>("B");
+        CustomerLocation<String> customerLocationC = new CustomerLocation<>("C");
+        CustomerLocation<String> customerLocationD = new CustomerLocation<>("D");
+        CustomerLocation<String> customerLocationE = new CustomerLocation<>("E");
+    }
+
 }
