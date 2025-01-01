@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class MultiAgentFeatureTest {
 
-
+    @Test
     void findMultipleVehiclesInCustomerLocations() throws Exception {
         Graph graph = new Graph();
 
@@ -43,7 +43,8 @@ public class MultiAgentFeatureTest {
 
         MultiAgent multiAgent = new MultiAgent(graph);
 
-
+        CustomerLocation<String> foundCustomerLocation = multiAgent.findMultipleVehiclesInCustomerLocations();
+        assertEquals(customerLocationC, foundCustomerLocation);
 
     }
 
