@@ -67,6 +67,16 @@ public class MultiAgentFeatureTest {
         Vehicle vehicle1 = new Vehicle(customerLocationC);
         Vehicle vehicle2 = new Vehicle(customerLocationC);
 
+        vehicle1.add_deliveryPackage(new Package("TestItem", null, 5));
+        vehicle2.add_deliveryPackage(new Package("TestItem", customerLocationE, 5));
+
+        vehicle1.addTravelDestination(customerLocationD);
+        vehicle1.addTravelDestination(customerLocationE);
+
+        vehicle2.addTravelDestination(customerLocationA);
+        vehicle2.addTravelDestination(customerLocationB);
+        vehicle2.addTravelDestination(customerLocationE);
+
         graph.add_customerLocation(customerLocationA);
         graph.add_customerLocation(customerLocationB);
         graph.add_customerLocation(customerLocationC);
