@@ -30,7 +30,7 @@ public class MultiAgent {
      * Method Responsible for allowing the Vehicle to communicate and figure out if
      * one of the packages from the vehicle1 is closer to vehicle2 path and vice versa
      */
-    public void vehicleCommunicate(CustomerLocation<String> customerLocation) {
+    public void vehicleCommunicate(CustomerLocation<String> customerLocation) throws Exception {
         ArrayList<Vehicle> vehicleList = new ArrayList<>();
 
         if (customerLocation.getStoredVehicles().size() < 2) {
@@ -48,7 +48,12 @@ public class MultiAgent {
                 int vehicle1Steps = vehicle1.findTravelSteps(package_package.getDestination());
                 int vehicle2Steps = vehicle2.findTravelSteps(package_package.getDestination());
 
-                if ()
+                if (vehicle1Steps != -1 && vehicle2Steps != -1) {
+                    if (vehicle1Steps < vehicle2Steps) {
+                        vehicle2.remove_deliveryPackage(package_package);
+                        vehicle1.add_deliveryPackage(package_package);
+                    }
+                }
             }
         }
     }
