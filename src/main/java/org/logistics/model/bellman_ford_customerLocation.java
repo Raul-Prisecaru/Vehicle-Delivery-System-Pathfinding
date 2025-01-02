@@ -37,11 +37,7 @@ public class bellman_ford_customerLocation {
             vertex.setDistance(Integer.MAX_VALUE);
         }
 
-        Vertex<String> start_vertex = vehicle.getCurrent_location();
-        start_vertex.setDistance(0);
 
-        unvisited.add(start_vertex);
-        predecessor.put(start_vertex, null);
 
         Package package_package = new Package(null, null, -1);
 
@@ -57,35 +53,42 @@ public class bellman_ford_customerLocation {
             package_package = vehicle.get_deliveryPackages().peek();
         }
 
-        while (!unvisited.isEmpty()) {
-            Vertex<String> current = unvisited.poll();
+        while(iteration != 0) {
+            Vertex<String> start_vertex = vehicle.getCurrent_location();
 
-            if (!visited.contains(current) && current.getDistance() != Integer.MAX_VALUE) {
-                for (Edge edge : adjacencyList.get(current)) {
-                    int totalDistance = current.getDistance() + edge.getTime_weight();
+            unvisited.add(start_vertex);
+            predecessor.put(start_vertex, null);
 
-                    if (totalDistance < edge.getConnecting_node().getDistance()) {
-                        edge.getConnecting_node().setDistance(totalDistance);
-                        unvisited.remove(edge.getConnecting_node());
-                        unvisited.add(edge.getConnecting_node());
+            while (!unvisited.isEmpty()) {
+                Vertex<String> current = unvisited.poll();
 
-                        predecessor.remove(edge.getConnecting_node(), current);
-                        predecessor.put(edge.getConnecting_node(), current);
+                if (!visited.contains(current) && current.getDistance() != Integer.MAX_VALUE) {
+                    for (Edge edge : adjacencyList.get(current)) {
+                        int totalDistance = current.getDistance() + edge.getTime_weight();
+
+                        if (totalDistance < edge.getConnecting_node().getDistance()) {
+                            edge.getConnecting_node().setDistance(totalDistance);
+                            unvisited.remove(edge.getConnecting_node());
+                            unvisited.add(edge.getConnecting_node());
+
+                            predecessor.remove(edge.getConnecting_node(), current);
+                            predecessor.put(edge.getConnecting_node(), current);
+                        }
+
+
                     }
-
+                    unvisited.remove(current);
+                    visited.add(current);
 
                 }
-                unvisited.remove(current);
-                visited.add(current);
 
             }
+            iteration--;
+            visited.clear();
+            predecessor.clear();
 
-            if (iteration != 0) {
-                iteration--;
-            }
         }
-
     }
 
-    }
 }
+
