@@ -30,6 +30,8 @@ public class bellman_ford_customerLocation {
         HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
         PriorityQueue<Vertex<String>> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
         Queue<Vertex<String>> visited = new LinkedList<>();
+        int iteration = (graph.getAllDeliveryHub().size() + graph.getAllCustomerLocation().size()) - 1;
+
 
         for (Vertex<String> vertex : adjacencyList.keySet()) {
             vertex.setDistance(Integer.MAX_VALUE);
@@ -54,6 +56,36 @@ public class bellman_ford_customerLocation {
         if (vehicle.get_deliveryPackages().size() == 1) {
             package_package = vehicle.get_deliveryPackages().peek();
         }
+
+        while (!unvisited.isEmpty()) {
+            Vertex<String> current = unvisited.poll();
+
+            if (!visited.contains(current) && current.getDistance() != Integer.MAX_VALUE) {
+                for (Edge edge : adjacencyList.get(current)) {
+                    int totalDistance = current.getDistance() + edge.getTime_weight();
+
+                    if (totalDistance < edge.getConnecting_node().getDistance()) {
+                        edge.getConnecting_node().setDistance(totalDistance);
+                        unvisited.remove(edge.getConnecting_node());
+                        unvisited.add(edge.getConnecting_node());
+
+                        predecessor.remove(edge.getConnecting_node(), current);
+                        predecessor.put(edge.getConnecting_node(), current);
+                    }
+
+
+                }
+                unvisited.remove(current);
+                visited.add(current);
+
+            }
+
+            if (iteration != 0) {
+                iteration--;
+            }
+        }
+
+    }
 
     }
 }
