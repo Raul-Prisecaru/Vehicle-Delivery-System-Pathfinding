@@ -1,7 +1,6 @@
 package org.logistics.model;
 
-import java.util.HashMap;
-import java.util.LinkedList;
+import java.util.*;
 
 public class bellman_ford_customerLocation {
     private Graph graph;
@@ -28,6 +27,33 @@ public class bellman_ford_customerLocation {
      * @param vehicle - Vehicle to find shortest path for
      */
     public void find_shortest_customer(Vehicle vehicle) {
+        HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
+        PriorityQueue<Vertex<String>> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
+        Queue<Vertex<String>> visited = new LinkedList<>();
+
+        for (Vertex<String> vertex : adjacencyList.keySet()) {
+            vertex.setDistance(Integer.MAX_VALUE);
+        }
+
+        Vertex<String> start_vertex = vehicle.getCurrent_location();
+        start_vertex.setDistance(0);
+
+        unvisited.add(start_vertex);
+        predecessor.put(start_vertex, null);
+
+        Package package_package = new Package(null, null, -1);
+
+        if (vehicle.get_deliveryPackages().size() == 2) {
+            for (Package package_package_temp : vehicle.get_deliveryPackages()) {
+                if (package_package_temp.getPriority() > package_package.getPriority()) {
+                    package_package = package_package_temp;
+                }
+            }
+        } else
+
+        if (vehicle.get_deliveryPackages().size() == 1) {
+            package_package = vehicle.get_deliveryPackages().peek();
+        }
 
     }
 }
