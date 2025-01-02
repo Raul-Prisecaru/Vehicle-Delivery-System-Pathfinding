@@ -2,7 +2,7 @@ package org.logistics.model;
 
 import java.util.*;
 
-public class bellman_ford_customerLocation {
+public class Bellman_ford_customerLocation {
     private Graph graph;
     private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList;
 
@@ -10,7 +10,7 @@ public class bellman_ford_customerLocation {
      * Constructor
      * @param graph - Graph Environment
      */
-    public bellman_ford_customerLocation(Graph graph) {
+    public Bellman_ford_customerLocation(Graph graph) {
         this.graph = graph;
         this.adjacencyList = graph.getAdjacencyList();
     }
@@ -37,7 +37,8 @@ public class bellman_ford_customerLocation {
             vertex.setDistance(Integer.MAX_VALUE);
         }
 
-
+        Vertex<String> start_vertex = vehicle.getCurrent_location();
+        start_vertex.setDistance(0);
 
         Package package_package = new Package(null, null, -1);
 
@@ -54,7 +55,7 @@ public class bellman_ford_customerLocation {
         }
 
         while(iteration != 0) {
-            Vertex<String> start_vertex = vehicle.getCurrent_location();
+
 
             unvisited.add(start_vertex);
             predecessor.put(start_vertex, null);
@@ -84,8 +85,8 @@ public class bellman_ford_customerLocation {
 
             }
             iteration--;
-            visited.clear();
-            predecessor.clear();
+
+
 
         }
 
