@@ -3,35 +3,14 @@ package org.logistics.model;
 import java.util.*;
 
 public class Dijkstra_customerLocation {
-    private Graph graph;
-    private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList = new HashMap<>();
-
-    /**
-     * Constructor is responsible for setting the Graph and adjacencyList
-     * @param graph - Graph Environment
-     */
-    public Dijkstra_customerLocation(Graph graph) {
-        this.graph = graph;
-        this.adjacencyList = graph.getAdjacencyList();
-    }
-
-    /**
-     * Method Responsible for updating the adjacencyList to ensure any new dynamically added Vertexes or edges are added
-     */
-    // TODO: Ensure this actually updates the adjacencyList upon adding a new Vertex
-    public void updateAdjacencyList() {
-        this.adjacencyList = graph.getAdjacencyList();
-    }
-
       /**
       * Method responsible for using dijkstra's algorithm to find the quickest route to customerLocation Based on Vehicles packages
       * @param vehicle (Vehicle) - vehicle to find the quickest route for based on packages
       */
-    public void find_shortest_customer(Vehicle vehicle) {
-        updateAdjacencyList();
+    public void find_shortest_customer(Vehicle vehicle, Graph graph) {
         HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
 
-        for (Vertex<String> vertex : adjacencyList.keySet()) {
+        for (Vertex<String> vertex : graph.getAdjacencyList().keySet()) {
             vertex.setDistance(Integer.MAX_VALUE);
         }
 
@@ -64,7 +43,21 @@ public class Dijkstra_customerLocation {
         while (!unvisited.isEmpty()) {
             Vertex<String> current = unvisited.poll();
             if (!visited.contains(current)) {
-                for (Edge edge : adjacencyList.get(current)) {
+
+//                System.out.println("AdJacencyLISt for " + current + graph.getAdjacencyList().get(current));
+//                if (graph.getAdjacencyList().get(current) == null) {
+//                    System.out.println("I have skipped: " + current.getNodeValue());
+//                    continue;
+//                }
+
+                for (Edge edge : graph.getEdges(current)) {
+                    if (Objects.equals(current.getNodeValue(), "AB")) {
+                        System.out.println("IT WORKS LLALA");
+                    }
+
+                    if (current.getNodeValue() == "AB") {
+                        System.out.println("IT WORKS LLALA");
+                    }
                     int totalDistance = current.getDistance() + edge.getTime_weight();
 
                     if (totalDistance < edge.getConnecting_node().getDistance()) {
