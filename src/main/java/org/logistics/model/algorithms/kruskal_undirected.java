@@ -36,8 +36,8 @@ public class kruskal_undirected {
 
     }
 
-    public Vertex<String> getPointerPair() {
-        return null;
+    public Vertex<String> getPointerPair(Vertex<String> vertex) {
+        return vertexSets.get(vertex);
     }
 
 
