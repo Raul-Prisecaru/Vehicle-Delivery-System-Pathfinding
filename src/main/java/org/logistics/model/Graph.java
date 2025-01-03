@@ -189,11 +189,17 @@ public class Graph {
      * @return Edge if found, else null
      */
     public Edge findEdgeAndReturn(Vertex<String> start_vertex, Vertex<String> connecting_vertex) {
-        for (Edge edge : adjacencyList.get(start_vertex)) {
+        for (Edge edge : this.getEdges(start_vertex)) {
             if (Objects.equals(edge.getConnecting_node().getNodeValue(), connecting_vertex.getNodeValue())) {
                 return edge;
             }
         }
+
+//        for (Edge edge : adjacencyList.get(start_vertex)) {
+//            if (Objects.equals(edge.getConnecting_node().getNodeValue(), connecting_vertex.getNodeValue())) {
+//                return edge;
+//            }
+//        }
 
         return null;
     }
@@ -243,6 +249,17 @@ public class Graph {
      */
     public HashSet<Vehicle> getVehicleList() {
         return vehicleList;
+    }
+
+    public LinkedList<Edge> getEdges(Vertex<String> vertex) {
+        Vertex<String > foundVertex = this.findVertexAndReturn(vertex);
+        if (foundVertex != null) {
+            return adjacencyList.get(this.findVertexAndReturn(vertex));
+
+        } else {
+            System.out.println(vertex + " Is Null");
+        }
+        return null;
     }
 
 }
