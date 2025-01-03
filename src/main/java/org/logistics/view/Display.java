@@ -87,16 +87,16 @@ public class Display {
 
         ViewPanel viewPanel = (ViewPanel) viewer.addDefaultView(false);
 
-        JPanel splitPanel = new JPanel(new GridLayout(1 ,2));
+//        JPanel splitPanel = new JPanel(new GridLayout(1 ,2));
 
-        splitPanel.add(viewPanel);
+//        splitPanel.add(viewPanel);
 
         JPanel logPanel = new JPanel();
         logPanel.setLayout(new BoxLayout(logPanel, BoxLayout.Y_AXIS));
 
-        splitPanel.add(logPanel);
-
-        frame.add(splitPanel);
+//        splitPanel.add(logPanel);
+//
+        frame.add(viewPanel);
 
 
 
@@ -369,7 +369,7 @@ public class Display {
             }
 
             String distance_weight = JOptionPane.showInputDialog(null,
-                    "Enter Distance Weight (number):",
+                    String.format("Enter Distance Weight between %s and %s (number):", start_vertex, connecting_vertex),
                     "Add Edge",
                     JOptionPane.PLAIN_MESSAGE);
 
@@ -381,10 +381,15 @@ public class Display {
                 return;
             }
 
+
+
+
+
             graphinformation.add_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), Integer.parseInt(distance_weight));
 
             Edge edge = graph.addEdge(start_vertex + "" + connecting_vertex, start_vertex, connecting_vertex, true);
             edge.setAttribute("ui.label", distance_weight);
+
 
             JOptionPane.showMessageDialog(null,
                     "Edge Successfully Added",
