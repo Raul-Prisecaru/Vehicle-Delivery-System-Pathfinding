@@ -13,9 +13,14 @@ public class Dijkstra_deliveryHub {
      */
     public void find_shortest_delivery(Vehicle vehicle, Graph graph) {
 
-        for (Vertex<String> vertex : graph.getAdjacencyList().keySet()) {
+        for (Vertex<String> vertex : graph.getAllDeliveryHub()) {
             vertex.setDistance(Integer.MAX_VALUE);
         }
+
+        for (Vertex<String> vertex : graph.getAllCustomerLocation()) {
+            vertex.setDistance(Integer.MAX_VALUE);
+        }
+
         HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
 
         PriorityQueue<Vertex<String>> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex<String>::getDistance));

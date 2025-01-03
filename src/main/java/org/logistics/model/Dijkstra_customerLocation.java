@@ -10,7 +10,11 @@ public class Dijkstra_customerLocation {
     public void find_shortest_customer(Vehicle vehicle, Graph graph) {
         HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
 
-        for (Vertex<String> vertex : graph.getAdjacencyList().keySet()) {
+        for (Vertex<String> vertex : graph.getAllDeliveryHub()) {
+            vertex.setDistance(Integer.MAX_VALUE);
+        }
+
+        for (Vertex<String> vertex : graph.getAllCustomerLocation()) {
             vertex.setDistance(Integer.MAX_VALUE);
         }
 
