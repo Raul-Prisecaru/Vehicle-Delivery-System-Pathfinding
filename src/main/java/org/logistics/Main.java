@@ -2,6 +2,8 @@ package org.logistics;
 
 import org.logistics.model.*;
 import org.logistics.model.Package;
+import org.logistics.model.algorithms.Dijkstra_customerLocation;
+import org.logistics.model.algorithms.Dijkstra_deliveryHub;
 import org.logistics.view.Display;
 
 import java.util.ArrayList;
@@ -117,7 +119,10 @@ public class Main {
 
                 if (!vehicle.getTravelDestinations().isEmpty()) {
                     Vertex<String> nextPosition = vehicle.getTravelDestinations().pop();
+
                     Edge edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextPosition);
+
+
 
                     if (edge == null) {
                         continue;
@@ -132,8 +137,10 @@ public class Main {
                 if (vehicle.getCurrent_location() instanceof CustomerLocation<String>) {
                     Package check_package = checkIfPackageIsForCustomerLocation(vehicle);
 
-                    if (check_package != null) {
+                    while (check_package != null) {
                         customerDeliverPackage((CustomerLocation<String>) vehicle.getCurrent_location(), check_package, vehicle);
+                        check_package = checkIfPackageIsForCustomerLocation(vehicle);
+
                     }
                 }
 
