@@ -3,39 +3,27 @@ package org.logistics.model;
 import java.util.*;
 
 public class Bellman_ford_customerLocation {
-    private Graph graph;
-    private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList;
-
-    /**
-     * Constructor
-     * @param graph - Graph Environment
-     */
-    public Bellman_ford_customerLocation(Graph graph) {
-        this.graph = graph;
-        this.adjacencyList = graph.getAdjacencyList();
-    }
-
-    /**
-     * Method Responsible for updating the adjacencyList
-     */
-    public void update_adjacencyList() {
-        this.adjacencyList = graph.getAdjacencyList();
-    }
 
     /**
      * Method Responsible for finding the shortest path to the highest priority package in the vehicle
      * @param vehicle - Vehicle to find shortest path for
      */
-    public void find_shortest_customer(Vehicle vehicle) {
+    public void find_shortest_customer(Vehicle vehicle, Graph graph) {
         HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
         PriorityQueue<Vertex<String>> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
         Queue<Vertex<String>> visited = new LinkedList<>();
         int iteration = (graph.getAllDeliveryHub().size() + graph.getAllCustomerLocation().size()) - 1;
 
 
-        for (Vertex<String> vertex : adjacencyList.keySet()) {
+        for (Vertex<String> vertex : graph.getAllDeliveryHub()) {
             vertex.setDistance(Integer.MAX_VALUE);
         }
+
+        for (Vertex<String> vertex : graph.getAllCustomerLocation()) {
+            vertex.setDistance(Integer.MAX_VALUE);
+        }
+
+
 
         Vertex<String> start_vertex = vehicle.getCurrent_location();
         start_vertex.setDistance(0);
@@ -64,7 +52,7 @@ public class Bellman_ford_customerLocation {
                 Vertex<String> current = unvisited.poll();
 
                 if (!visited.contains(current) && current.getDistance() != Integer.MAX_VALUE) {
-                    for (Edge edge : adjacencyList.get(current)) {
+                    for (Edge edge : graph.getEdges(current)) {
                         int totalDistance = current.getDistance() + edge.getTime_weight();
 
                         if (totalDistance < edge.getConnecting_node().getDistance()) {
