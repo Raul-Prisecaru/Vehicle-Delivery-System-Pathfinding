@@ -12,7 +12,7 @@ public class BellmanFordCustomerLocationTest {
     @Test
     void dijkstraCustomerTest() throws Exception {
         Graph graph = new Graph();
-        Bellman_ford_customerLocation bellmanFordCustomerLocation = new Bellman_ford_customerLocation(graph);
+        Bellman_ford_customerLocation bellmanFordCustomerLocation = new Bellman_ford_customerLocation();
 
         // Creating DeliveryHub Nodes
         DeliveryHub<String> deliveryHubA = new DeliveryHub<String>("A");
@@ -75,7 +75,7 @@ public class BellmanFordCustomerLocationTest {
         tempStackExpected.add(customerLocationE);
         tempStackExpected.add(customerLocationC);
 
-        bellmanFordCustomerLocation.find_shortest_customer(vehicle1);
+        bellmanFordCustomerLocation.find_shortest_customer(vehicle1, graph);
         tempStackVehicle = vehicle1.getTravelDestinations();
         boolean isPathSame = tempStackVehicle.equals(tempStackExpected);
         System.out.println(tempStackVehicle);

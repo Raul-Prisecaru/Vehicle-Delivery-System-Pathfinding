@@ -10,7 +10,7 @@ public class DijkstraDeliveryHubTest {
     @Test
     void dijkstraDeliveryTest() throws Exception {
         Graph graph = new Graph();
-        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
+        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub();
 
         // Creating DeliveryHub Nodes
         DeliveryHub<String> deliveryHubA = new DeliveryHub<String>("A");
@@ -65,7 +65,7 @@ public class DijkstraDeliveryHubTest {
         tempStackExpected.add(deliveryHubA);
         tempStackExpected.add(customerLocationG);
 
-        dijkstra_deliveryHub.find_shortest_delivery(vehicle1);
+        dijkstra_deliveryHub.find_shortest_delivery(vehicle1, graph);
         tempStackVehicle = vehicle1.getTravelDestinations();
         boolean isPathSame = tempStackVehicle.equals(tempStackExpected);
         System.out.println(tempStackVehicle);

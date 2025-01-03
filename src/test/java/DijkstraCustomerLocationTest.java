@@ -11,7 +11,7 @@ public class DijkstraCustomerLocationTest {
     @Test
     void dijkstraCustomerTest() throws Exception {
         Graph graph = new Graph();
-        Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation(graph);
+        Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation();
 
         // Creating DeliveryHub Nodes
         DeliveryHub<String> deliveryHubA = new DeliveryHub<String>("A");
@@ -74,7 +74,7 @@ public class DijkstraCustomerLocationTest {
         tempStackExpected.add(customerLocationE);
         tempStackExpected.add(customerLocationC);
 
-        dijkstra_customerLocation.find_shortest_customer(vehicle1);
+        dijkstra_customerLocation.find_shortest_customer(vehicle1, graph);
         tempStackVehicle = vehicle1.getTravelDestinations();
         boolean isPathSame = tempStackVehicle.equals(tempStackExpected);
         System.out.println(tempStackVehicle);
