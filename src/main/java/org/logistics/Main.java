@@ -18,8 +18,8 @@ public class Main {
         Graph graph = new Graph();
 
         // Initializing dijkstra Algorithm
-        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
-        Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation(graph);
+        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub();
+        Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation();
 
         // Initializing GUI
         Display displayGraph = new Display(graph);
@@ -93,17 +93,16 @@ public class Main {
                 }
                 TimeUnit.SECONDS.sleep(1);
 
-
                 if (vehicle.getTravelDestinations().isEmpty()) {
                     if (!vehicle.get_deliveryPackages().isEmpty()) {
-                        dijkstra_customerLocation.find_shortest_customer(vehicle);
+                        dijkstra_customerLocation.find_shortest_customer(vehicle, graph);
                         updateEdgePath(graph, displayGraph, vehicle);
                         TimeUnit.SECONDS.sleep(1);
                     }
 
 
                     if (vehicle.get_deliveryPackages().isEmpty()) {
-                        dijkstra_deliveryHub.find_shortest_delivery(vehicle);
+                        dijkstra_deliveryHub.find_shortest_delivery(vehicle, graph);
                         updateEdgePath(graph, displayGraph, vehicle);
                         TimeUnit.SECONDS.sleep(1);
                     }
@@ -119,6 +118,11 @@ public class Main {
                 if (!vehicle.getTravelDestinations().isEmpty()) {
                     Vertex<String> nextPosition = vehicle.getTravelDestinations().pop();
                     Edge edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), nextPosition);
+
+                    if (edge == null) {
+                        continue;
+                    }
+
                     deHighlightVisitedEdge(displayGraph, edge, vehicle);
                     vehicle.travel(nextPosition);
                     TimeUnit.SECONDS.sleep(1);
