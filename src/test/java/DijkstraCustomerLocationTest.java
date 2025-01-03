@@ -3,6 +3,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import org.logistics.model.*;
 import org.logistics.model.Package;
 import org.logistics.model.Vehicle;
+import org.logistics.model.algorithms.Dijkstra_customerLocation;
 
 import java.util.Stack;
 

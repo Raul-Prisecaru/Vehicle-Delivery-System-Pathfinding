@@ -1,6 +1,7 @@
 import org.junit.jupiter.api.Test;
 import org.logistics.model.Package;
 import org.logistics.model.*;
+import org.logistics.model.algorithms.Bellman_ford_customerLocation;
 
 import java.util.Stack;
 
