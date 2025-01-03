@@ -9,6 +9,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 
 public class kruskal_undirected {
+    private HashMap<Vertex<String>, Vertex<String>> vertexSets = new HashMap<>();
 
     /**
      * Constructor
@@ -21,7 +22,7 @@ public class kruskal_undirected {
      * Method Responsible for finding MST of the undirected Graph
      */
     public void find_MST(Graph undirected_graph) {
-        HashMap<Vertex<String>, Vertex<String>> vertexSets = new HashMap<>();
+        vertexSets.clear();
 
         for (DeliveryHub<String> deliveryHub : undirected_graph.getAllDeliveryHub()) {
             vertexSets.put(deliveryHub, deliveryHub);
@@ -32,6 +33,11 @@ public class kruskal_undirected {
         }
 
 
+
+    }
+
+    public Vertex<String> getPointerPair() {
+        return null;
     }
 
 
