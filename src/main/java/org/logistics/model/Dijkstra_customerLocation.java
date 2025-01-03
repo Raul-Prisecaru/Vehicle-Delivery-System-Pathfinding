@@ -44,20 +44,7 @@ public class Dijkstra_customerLocation {
             Vertex<String> current = unvisited.poll();
             if (!visited.contains(current)) {
 
-//                System.out.println("AdJacencyLISt for " + current + graph.getAdjacencyList().get(current));
-//                if (graph.getAdjacencyList().get(current) == null) {
-//                    System.out.println("I have skipped: " + current.getNodeValue());
-//                    continue;
-//                }
-
                 for (Edge edge : graph.getEdges(current)) {
-                    if (Objects.equals(current.getNodeValue(), "AB")) {
-                        System.out.println("IT WORKS LLALA");
-                    }
-
-                    if (current.getNodeValue() == "AB") {
-                        System.out.println("IT WORKS LLALA");
-                    }
                     int totalDistance = current.getDistance() + edge.getTime_weight();
 
                     if (totalDistance < edge.getConnecting_node().getDistance()) {
