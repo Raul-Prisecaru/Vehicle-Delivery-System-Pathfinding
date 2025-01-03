@@ -13,9 +13,6 @@ public class Dijkstra_deliveryHub {
      */
     public void find_shortest_delivery(Vehicle vehicle, Graph graph) {
 
-        System.out.println("INSIDE DELIVERYHUB ALGORTITHM");
-        System.out.println(graph.getAdjacencyList());
-
         for (Vertex<String> vertex : graph.getAdjacencyList().keySet()) {
             vertex.setDistance(Integer.MAX_VALUE);
         }
@@ -33,21 +30,6 @@ public class Dijkstra_deliveryHub {
         while (!unvisited.isEmpty()) {
             Vertex<String> current = unvisited.poll();
             if (!visited.contains(current)) {
-//                System.out.println("I AM IN DELIVERYHUB");
-
-//                System.out.println("GRAPH: " + graph.getAdjacencyList());
-//                if (graph.getAdjacencyList().get(current) == null) {
-//                    System.out.println("I have skipped: " + current.getNodeValue());
-//                    System.out.println("Edge of vertex: " + graph.getAdjacencyList().get(current));
-//                    continue;
-//                }
-
-//                if (graph.getEdges(new Vertex<>("AB")) != null) {
-//                    System.out.println("AB HAS BEEN FOUND I REPEAT");
-//                    System.out.println(graph.getEdges(new Vertex<>("AB")).peek().getConnecting_node().getNodeValue());
-//                } else if (graph.getEdges(new Vertex<>("AB")) == null) {
-//                    System.out.println("I REPEAT CURRENT IS NULL::: " + current);
-//                }
 
                 for (Edge edge : graph.getEdges(current)) {
                     if (Objects.equals(current.getNodeValue(), "AB")) {
