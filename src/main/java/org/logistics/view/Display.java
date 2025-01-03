@@ -44,15 +44,43 @@ public class Display {
                         "}");
 
 
-        for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
+//        for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
+//            Node node = graph.addNode(vertex.getNodeValue());
+//            node.setAttribute("ui.label", vertex.getNodeValue());
+//            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+//        }
+
+        for (Vertex<String> vertex : this.graphinformation.getAllDeliveryHub()) {
+            Node node = graph.addNode(vertex.getNodeValue());
+            node.setAttribute("ui.label", vertex.getNodeValue());
+            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+        }
+
+        for (Vertex<String> vertex : this.graphinformation.getAllCustomerLocation()) {
             Node node = graph.addNode(vertex.getNodeValue());
             node.setAttribute("ui.label", vertex.getNodeValue());
             node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
         }
 
 
-        for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
-            for (org.logistics.model.Edge currentEdge : this.graphinformation.getAdjacencyList().get(vertex)) {
+//        for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
+//            for (org.logistics.model.Edge currentEdge : this.graphinformation.getAdjacencyList().get(vertex)) {
+//
+//                if (currentEdge == null) {
+//                    break;
+//                }
+//
+//                String id = currentEdge.getStart_node().getNodeValue() + currentEdge.getConnecting_node().getNodeValue();
+//                Edge edge = graph.addEdge(id, currentEdge.getStart_node().getNodeValue(), currentEdge.getConnecting_node().getNodeValue(), true);
+//                edge.setAttribute("ui.label", currentEdge.getTime_weight());
+//
+//            }
+//
+//        }
+
+
+        for (Vertex<String> vertex : this.graphinformation.getAllDeliveryHub()) {
+            for (org.logistics.model.Edge currentEdge : this.graphinformation.getEdges(vertex)) {
 
                 if (currentEdge == null) {
                     break;
@@ -66,6 +94,21 @@ public class Display {
 
         }
 
+
+        for (Vertex<String> vertex : this.graphinformation.getAllCustomerLocation()) {
+            for (org.logistics.model.Edge currentEdge : this.graphinformation.getEdges(vertex)) {
+
+                if (currentEdge == null) {
+                    break;
+                }
+
+                String id = currentEdge.getStart_node().getNodeValue() + currentEdge.getConnecting_node().getNodeValue();
+                Edge edge = graph.addEdge(id, currentEdge.getStart_node().getNodeValue(), currentEdge.getConnecting_node().getNodeValue(), true);
+                edge.setAttribute("ui.label", currentEdge.getTime_weight());
+
+            }
+
+        }
 
     }
 
