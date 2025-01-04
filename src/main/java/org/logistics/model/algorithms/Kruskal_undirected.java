@@ -63,6 +63,7 @@ public class Kruskal_undirected {
      */
     public HashMap<Vertex<String>, Vertex<String>> find_MST() {
         vertexSets.clear();
+        int cost = 0;
 
         // Initial Stuff
         generateStartVertexesForHashMap(undirected_graph);
@@ -71,13 +72,14 @@ public class Kruskal_undirected {
         for (Edge edge : weightsHashSet) {
             if (getPointerPair(edge.getStart_node()) != getPointerPair(edge.getConnecting_node())) {
                 vertexSets.put(edge.getConnecting_node(), edge.getStart_node());
+                cost += edge.getDistance_weight();
             }
         }
 
         for (Vertex<String> vertex : vertexSets.keySet()) {
             System.out.println(vertex + " -> " + vertexSets.get(vertex));
         }
-
+        System.out.println("Cost: " + cost);
         return vertexSets;
 
     }
