@@ -23,6 +23,7 @@ public class main {
 
             case 2:
                 org.logistics.controller.undirectedGraphSimulation.runSimulation();
+                break;
         }
     }
 }
