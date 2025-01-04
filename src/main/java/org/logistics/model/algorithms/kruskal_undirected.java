@@ -6,15 +6,28 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
+
 public class kruskal_undirected {
     private HashMap<Vertex<String>, Vertex<String>> vertexSets = new HashMap<>();
     private HashMap<Integer, Edge> weights = new HashMap<>();
+    private Graph undirected_graph;
 
     /**
      * Constructor
      */
-    public kruskal_undirected() {
+    public kruskal_undirected() throws Exception {
+        Graph undirected_graph = new Graph();
 
+        undirected_graph.add_customerLocation(new CustomerLocation<>("A"));
+        undirected_graph.add_customerLocation(new CustomerLocation<>("B"));
+        undirected_graph.add_customerLocation(new CustomerLocation<>("C"));
+
+        undirected_graph.add_undirected_edge(new CustomerLocation<>("A"), new CustomerLocation<>("B"), 1);
+        undirected_graph.add_undirected_edge(new CustomerLocation<>("A"), new CustomerLocation<>("C"), 2);
+        undirected_graph.add_undirected_edge(new CustomerLocation<>("B"), new CustomerLocation<>("C"), 3);
+
+
+        this.undirected_graph = undirected_graph;
     }
 
 
