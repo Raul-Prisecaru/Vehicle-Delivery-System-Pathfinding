@@ -14,56 +14,28 @@ public class Kruskal_undirected {
      * Constructor
      */
     public Kruskal_undirected(Graph graph) throws Exception {
-//        Graph undirected_graph = new Graph();
-//
-//        CustomerLocation<String> customerLocationA = new CustomerLocation<>("A");
-//        CustomerLocation<String> customerLocationB = new CustomerLocation<>("B");
-//        CustomerLocation<String> customerLocationC = new CustomerLocation<>("C");
-//        CustomerLocation<String> customerLocationD = new CustomerLocation<>("D");
-//        CustomerLocation<String> customerLocationE = new CustomerLocation<>("E");
-//        CustomerLocation<String> customerLocationF = new CustomerLocation<>("F");
-//        CustomerLocation<String> customerLocationG = new CustomerLocation<>("G");
-//
-//        undirected_graph.add_customerLocation(customerLocationA);
-//        undirected_graph.add_customerLocation(customerLocationB);
-//        undirected_graph.add_customerLocation(customerLocationC);
-//        undirected_graph.add_customerLocation(customerLocationD);
-//        undirected_graph.add_customerLocation(customerLocationE);
-//        undirected_graph.add_customerLocation(customerLocationF);
-//        undirected_graph.add_customerLocation(customerLocationG);
-//
-//        undirected_graph.add_undirected_edge(customerLocationA, customerLocationB, 2);
-//        undirected_graph.add_undirected_edge(customerLocationA, customerLocationC, 3);
-//        undirected_graph.add_undirected_edge(customerLocationA, customerLocationD, 3);
-//
-//        undirected_graph.add_undirected_edge(customerLocationB, customerLocationC, 4);
-//        undirected_graph.add_undirected_edge(customerLocationB, customerLocationE, 3);
-//
-//        undirected_graph.add_undirected_edge(customerLocationC, customerLocationD, 5);
-//        undirected_graph.add_undirected_edge(customerLocationC, customerLocationE, 1);
-//
-//        undirected_graph.add_undirected_edge(customerLocationD, customerLocationF, 7);
-//
-//        undirected_graph.add_undirected_edge(customerLocationE, customerLocationF, 8);
-//        undirected_graph.add_undirected_edge(customerLocationF, customerLocationG, 9);
-//
-
         this.undirected_graph = graph;
     }
 
-
-    public Vertex<String> find(Vertex<String> vertex) {
-        if (!vertexSets.get(vertex).equals(vertex)) {
-            return find(vertexSets.get(vertex));
+    /**
+     * Method Responsible for finding the parent of the provided Child Vertex
+     * @param childVertex (vertex) - Child Vertex to find Parent Vertex
+     * @return vertex - Parent Vertex of Child Vertex
+     */
+    public Vertex<String> find(Vertex<String> childVertex) {
+        if (!vertexSets.get(childVertex).equals(childVertex)) {
+            return find(vertexSets.get(childVertex));
         }
-        return vertexSets.get(vertex);
+        return vertexSets.get(childVertex);
     }
 
-    public void union(Vertex<String> root1, Vertex<String> root2) {
-        vertexSets.put(root1, root2);
+    /** Method Responsible for connecting vertexes in the same group
+     * @param childVertex (Vertex) - Child Vertex to connect with Parent Vertex
+     * @param parentVertex (Vertex) - Parent Vertex to connect with Child Vertex
+     */
+    public void union(Vertex<String> childVertex, Vertex<String> parentVertex) {
+        vertexSets.put(childVertex, parentVertex);
     }
-
-
 
     /**
      * Method Responsible for finding MST of the undirected Graph
@@ -73,8 +45,8 @@ public class Kruskal_undirected {
         int cost = 0;
 
         // Initial Stuff
-        generateStartVertexesForHashMap(undirected_graph);
-        getWeightsIncreasingOrder(undirected_graph);
+        generateStartVertexesForHashMap();
+        getWeightsIncreasingOrder();
 
         for (Edge edge : weightsHashSet) {
             Vertex<String> childVertex = find(edge.getStart_node());
@@ -91,8 +63,11 @@ public class Kruskal_undirected {
         return vertexSets;
     }
 
+    /**
+     * Method Responsible for taking the edges from graph and sorting them in ascending order.
+     */
     // TODO: Might be best to perhaps apply a sorting algorithm instead?
-    public void getWeightsIncreasingOrder(Graph undirected_graph) {
+    public void getWeightsIncreasingOrder() {
         if (vertexSets.isEmpty()) {
             return;
         }
@@ -111,7 +86,11 @@ public class Kruskal_undirected {
         }
     }
 
-    public void generateStartVertexesForHashMap(Graph undirected_graph) {
+    /**
+     * Method Responsible for taking vertexes from the graph
+     * and adding to the Parent HashMap while vertexes are connected to itself
+     */
+    public void generateStartVertexesForHashMap() {
     for (DeliveryHub<String> deliveryHub : undirected_graph.getAllDeliveryHub()) {
         vertexSets.put(deliveryHub, deliveryHub);
     }
