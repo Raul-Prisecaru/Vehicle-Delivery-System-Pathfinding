@@ -43,12 +43,6 @@ public class directedGraphDisplay {
                         "}");
 
 
-//        for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
-//            Node node = graph.addNode(vertex.getNodeValue());
-//            node.setAttribute("ui.label", vertex.getNodeValue());
-//            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
-//        }
-
         for (Vertex<String> vertex : this.graphinformation.getAllDeliveryHub()) {
             Node node = graph.addNode(vertex.getNodeValue());
             node.setAttribute("ui.label", vertex.getNodeValue());
@@ -58,25 +52,8 @@ public class directedGraphDisplay {
         for (Vertex<String> vertex : this.graphinformation.getAllCustomerLocation()) {
             Node node = graph.addNode(vertex.getNodeValue());
             node.setAttribute("ui.label", vertex.getNodeValue());
-            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/home.png');");
         }
-
-
-//        for (Vertex<String> vertex : this.graphinformation.getAdjacencyList().keySet()) {
-//            for (org.logistics.model.Edge currentEdge : this.graphinformation.getAdjacencyList().get(vertex)) {
-//
-//                if (currentEdge == null) {
-//                    break;
-//                }
-//
-//                String id = currentEdge.getStart_node().getNodeValue() + currentEdge.getConnecting_node().getNodeValue();
-//                Edge edge = graph.addEdge(id, currentEdge.getStart_node().getNodeValue(), currentEdge.getConnecting_node().getNodeValue(), true);
-//                edge.setAttribute("ui.label", currentEdge.getTime_weight());
-//
-//            }
-//
-//        }
-
 
         for (Vertex<String> vertex : this.graphinformation.getAllDeliveryHub()) {
             for (org.logistics.model.Edge currentEdge : this.graphinformation.getEdges(vertex)) {
@@ -246,7 +223,7 @@ public class directedGraphDisplay {
                 graphinformation.add_customerLocation(new CustomerLocation<>(vertex_value));
                 Node vertex = graph.addNode(vertex_value);
                 vertex.setAttribute("ui.label", vertex_value);
-                vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+                vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/home.png');");
 
 
                 JOptionPane.showMessageDialog(null,
@@ -278,7 +255,7 @@ public class directedGraphDisplay {
             graphinformation.add_customerLocation(new CustomerLocation<>(vertex_value));
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
-            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/home.png');");
 
 
         } catch (Exception e) {
@@ -422,9 +399,6 @@ public class directedGraphDisplay {
                         JOptionPane.ERROR_MESSAGE);
                 return;
             }
-
-
-
 
 
             graphinformation.add_directed_edge(new Vertex<>(start_vertex), new Vertex<>(connecting_vertex), Integer.parseInt(distance_weight));
@@ -659,7 +633,14 @@ public class directedGraphDisplay {
         Node current_Node = graph.getNode(vertex.getNodeValue());
 
         if (OnOff == 0) {
-            current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            if (vertex instanceof DeliveryHub<String>) {
+                current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+
+            }
+
+            if (vertex instanceof CustomerLocation<String>) {
+                current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/home.png');");
+            }
 
         }
 
