@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 
 public class Kruskal_undirected {
     private HashMap<Vertex<String>, Vertex<String>> vertexSets = new HashMap<>();
-    private HashSet<Edge> weightsHashSet = new HashSet<>();
+    private PriorityQueue<Edge> weightsHashSet = new PriorityQueue<>(Comparator.comparingInt(Edge::getDistance_weight));
     private Graph undirected_graph;
 
     /**
@@ -50,8 +50,6 @@ public class Kruskal_undirected {
 //        undirected_graph.add_undirected_edge(customerLocationE, customerLocationF, 8);
 //        undirected_graph.add_undirected_edge(customerLocationF, customerLocationG, 9);
 //
-
-
 
         this.undirected_graph = graph;
     }
