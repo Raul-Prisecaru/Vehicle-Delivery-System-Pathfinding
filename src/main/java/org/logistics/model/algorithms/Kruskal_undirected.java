@@ -23,6 +23,14 @@ public class Kruskal_undirected {
      * @return vertex - Parent Vertex of Child Vertex
      */
     public Vertex<String> find(Vertex<String> childVertex) {
+        Vertex<String> testVertex = undirected_graph.findVertexAndReturn(childVertex);
+        if (testVertex != null) {
+            System.out.println(testVertex + " Isnt null");
+            childVertex = testVertex;
+        } else {
+            System.out.println("Found null");
+        }
+
         if (!vertexSets.get(childVertex).equals(childVertex)) {
             return find(vertexSets.get(childVertex));
         }
