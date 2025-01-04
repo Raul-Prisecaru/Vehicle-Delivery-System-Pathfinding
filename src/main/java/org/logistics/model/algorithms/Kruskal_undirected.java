@@ -17,39 +17,39 @@ public class Kruskal_undirected {
      * Constructor
      */
     public Kruskal_undirected(Graph graph) throws Exception {
-        Graph undirected_graph = new Graph();
-
-        CustomerLocation<String> customerLocationA = new CustomerLocation<>("A");
-        CustomerLocation<String> customerLocationB = new CustomerLocation<>("B");
-        CustomerLocation<String> customerLocationC = new CustomerLocation<>("C");
-        CustomerLocation<String> customerLocationD = new CustomerLocation<>("D");
-        CustomerLocation<String> customerLocationE = new CustomerLocation<>("E");
-        CustomerLocation<String> customerLocationF = new CustomerLocation<>("F");
-        CustomerLocation<String> customerLocationG = new CustomerLocation<>("G");
-
-        undirected_graph.add_customerLocation(customerLocationA);
-        undirected_graph.add_customerLocation(customerLocationB);
-        undirected_graph.add_customerLocation(customerLocationC);
-        undirected_graph.add_customerLocation(customerLocationD);
-        undirected_graph.add_customerLocation(customerLocationE);
-        undirected_graph.add_customerLocation(customerLocationF);
-        undirected_graph.add_customerLocation(customerLocationG);
-
-        undirected_graph.add_undirected_edge(customerLocationA, customerLocationB, 2);
-        undirected_graph.add_undirected_edge(customerLocationA, customerLocationC, 3);
-        undirected_graph.add_undirected_edge(customerLocationA, customerLocationD, 3);
-
-        undirected_graph.add_undirected_edge(customerLocationB, customerLocationC, 4);
-        undirected_graph.add_undirected_edge(customerLocationB, customerLocationE, 3);
-
-        undirected_graph.add_undirected_edge(customerLocationC, customerLocationD, 5);
-        undirected_graph.add_undirected_edge(customerLocationC, customerLocationE, 1);
-
-        undirected_graph.add_undirected_edge(customerLocationD, customerLocationF, 7);
-
-        undirected_graph.add_undirected_edge(customerLocationE, customerLocationF, 8);
-        undirected_graph.add_undirected_edge(customerLocationF, customerLocationG, 9);
-
+//        Graph undirected_graph = new Graph();
+//
+//        CustomerLocation<String> customerLocationA = new CustomerLocation<>("A");
+//        CustomerLocation<String> customerLocationB = new CustomerLocation<>("B");
+//        CustomerLocation<String> customerLocationC = new CustomerLocation<>("C");
+//        CustomerLocation<String> customerLocationD = new CustomerLocation<>("D");
+//        CustomerLocation<String> customerLocationE = new CustomerLocation<>("E");
+//        CustomerLocation<String> customerLocationF = new CustomerLocation<>("F");
+//        CustomerLocation<String> customerLocationG = new CustomerLocation<>("G");
+//
+//        undirected_graph.add_customerLocation(customerLocationA);
+//        undirected_graph.add_customerLocation(customerLocationB);
+//        undirected_graph.add_customerLocation(customerLocationC);
+//        undirected_graph.add_customerLocation(customerLocationD);
+//        undirected_graph.add_customerLocation(customerLocationE);
+//        undirected_graph.add_customerLocation(customerLocationF);
+//        undirected_graph.add_customerLocation(customerLocationG);
+//
+//        undirected_graph.add_undirected_edge(customerLocationA, customerLocationB, 2);
+//        undirected_graph.add_undirected_edge(customerLocationA, customerLocationC, 3);
+//        undirected_graph.add_undirected_edge(customerLocationA, customerLocationD, 3);
+//
+//        undirected_graph.add_undirected_edge(customerLocationB, customerLocationC, 4);
+//        undirected_graph.add_undirected_edge(customerLocationB, customerLocationE, 3);
+//
+//        undirected_graph.add_undirected_edge(customerLocationC, customerLocationD, 5);
+//        undirected_graph.add_undirected_edge(customerLocationC, customerLocationE, 1);
+//
+//        undirected_graph.add_undirected_edge(customerLocationD, customerLocationF, 7);
+//
+//        undirected_graph.add_undirected_edge(customerLocationE, customerLocationF, 8);
+//        undirected_graph.add_undirected_edge(customerLocationF, customerLocationG, 9);
+//
 
 
 
@@ -61,7 +61,7 @@ public class Kruskal_undirected {
     /**
      * Method Responsible for finding MST of the undirected Graph
      */
-    public void find_MST() {
+    public HashMap<Vertex<String>, Vertex<String>> find_MST() {
         vertexSets.clear();
 
         // Initial Stuff
@@ -77,6 +77,8 @@ public class Kruskal_undirected {
         for (Vertex<String> vertex : vertexSets.keySet()) {
             System.out.println(vertex + " -> " + vertexSets.get(vertex));
         }
+
+        return vertexSets;
 
     }
 
