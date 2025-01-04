@@ -4,12 +4,13 @@ import org.logistics.model.*;
 
 import java.util.Comparator;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.PriorityQueue;
 
 
 public class kruskal_undirected {
     private HashMap<Vertex<String>, Vertex<String>> vertexSets = new HashMap<>();
-    private HashMap<Integer, Edge> weights = new HashMap<>();
+    private HashSet<Edge> weights = new HashSet<>();
     private Graph undirected_graph;
 
     /**
@@ -40,6 +41,14 @@ public class kruskal_undirected {
 
         // Initial Stuff
         generateStartVertexesForHashMap(undirected_graph);
+        getWeightsIncreasingOrder(undirected_graph);
+
+        for (Integer integer : weights.keySet()) {
+            for (Edge edge : weights.values()) {
+
+            }
+
+        }
 
     }
 
@@ -62,7 +71,7 @@ public class kruskal_undirected {
         }
 
         for (Edge edge : orderedWeightsByComparator) {
-            weights.put(edge.getDistance_weight(), edge);
+            weights.add(edge);
         }
     }
 
