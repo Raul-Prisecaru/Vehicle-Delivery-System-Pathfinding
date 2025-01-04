@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.PriorityQueue;
 
 
-public class kruskal_undirected {
+public class Kruskal_undirected {
     private HashMap<Vertex<String>, Vertex<String>> vertexSets = new HashMap<>();
     private HashSet<Edge> weightsHashSet = new HashSet<>();
     private Graph undirected_graph;
@@ -16,7 +16,7 @@ public class kruskal_undirected {
     /**
      * Constructor
      */
-    public kruskal_undirected() throws Exception {
+    public Kruskal_undirected(Graph graph) throws Exception {
         Graph undirected_graph = new Graph();
 
         CustomerLocation<String> customerLocationA = new CustomerLocation<>("A");
@@ -53,7 +53,7 @@ public class kruskal_undirected {
 
 
 
-        this.undirected_graph = undirected_graph;
+        this.undirected_graph = graph;
     }
 
 
@@ -121,9 +121,9 @@ public class kruskal_undirected {
     }
 
     public static void main(String[] args) throws Exception {
-        kruskal_undirected kruskalUndirected = new kruskal_undirected();
-
-        kruskalUndirected.find_MST();
+//        Kruskal_undirected kruskalUndirected = new Kruskal_undirected();
+//
+//        kruskalUndirected.find_MST();
     }
 
 
