@@ -22,13 +22,13 @@ public class Kruskal_undirected {
      * @param childVertex (vertex) - Child Vertex to find Parent Vertex
      * @return vertex - Parent Vertex of Child Vertex
      */
-    public Vertex<String> find(Vertex<String> childVertex) {
-        Vertex<String> testVertex = undirected_graph.findVertexAndReturn(childVertex);
-        if (testVertex != null) {
-            System.out.println(testVertex + " Isnt null");
-            childVertex = testVertex;
+    public Vertex<String> find(Vertex<String> childVertex) throws Exception {
+        Vertex<String> foundVertex = undirected_graph.findVertexAndReturn(childVertex);
+
+        if (foundVertex != null) {
+            childVertex = foundVertex;
         } else {
-            System.out.println("Found null");
+            throw new Exception(childVertex.getNodeValue() + " was not Found in the graph");
         }
 
         if (!vertexSets.get(childVertex).equals(childVertex)) {
@@ -48,7 +48,7 @@ public class Kruskal_undirected {
     /**
      * Method Responsible for finding MST of the undirected Graph
      */
-    public HashMap<Vertex<String>, Vertex<String>> find_MST() {
+    public HashMap<Vertex<String>, Vertex<String>> find_MST() throws Exception {
         vertexSets.clear();
         int cost = 0;
 
