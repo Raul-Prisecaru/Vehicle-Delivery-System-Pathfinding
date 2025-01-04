@@ -14,7 +14,7 @@ import java.util.concurrent.TimeUnit;
 
 public class undirectedGraphSimulation {
 
-    public static void main(String[] args) throws Exception {
+    public static void runSimulation() throws Exception {
 
         // Initializing Graph
         Graph graph = new Graph();
