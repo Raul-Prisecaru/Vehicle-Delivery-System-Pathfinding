@@ -10,6 +10,7 @@ import org.graphstream.ui.view.Viewer;
 import org.logistics.model.CustomerLocation;
 import org.logistics.model.DeliveryHub;
 import org.logistics.model.Vertex;
+import org.logistics.model.algorithms.Kruskal_undirected;
 
 import javax.swing.*;
 import java.awt.*;
@@ -18,10 +19,13 @@ import java.util.Scanner;
 public class undirectedGraphDisplay {
     private org.logistics.model.Graph graphinformation;
     Graph graph = new SingleGraph("Tutorial 1");
+    Kruskal_undirected kruskalUndirected;
 
 
-    public undirectedGraphDisplay(org.logistics.model.Graph graph) {
+    public undirectedGraphDisplay(org.logistics.model.Graph graph) throws Exception {
         this.graphinformation = graph;
+        kruskalUndirected = new Kruskal_undirected(graph);
+
     }
 
     public void createGraph() {
@@ -149,6 +153,7 @@ public class undirectedGraphDisplay {
         printAdjacencyListButton.addActionListener(e -> print_adjacencyList());
 
         JButton runKruskalAlgorithmButton = new JButton("run Kruskal");
+        runKruskalAlgorithmButton.addActionListener(e -> runKruskalAlgorithm());
 
         buttonPanel.add(addDeliverHubButton);
         buttonPanel.add(removeDeliverHubButton);
@@ -356,6 +361,17 @@ public class undirectedGraphDisplay {
 
             graphinformation.remove_vertex(new Vertex<>(vertex_value));
             graph.removeNode(vertex_value);
+        } catch (Exception e) {
+            System.out.println("An Error has occurred: " + e.getMessage());
+        }
+    }
+
+
+    public void runKruskalAlgorithm() {
+        try {
+            System.out.println("Algorithm has been ran");
+            kruskalUndirected.find_MST();
+            System.out.println("Algorithm has been executed");
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
         }
