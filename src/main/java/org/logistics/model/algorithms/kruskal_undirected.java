@@ -2,6 +2,7 @@ package org.logistics.model.algorithms;
 
 import org.logistics.model.*;
 
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.PriorityQueue;
 
@@ -38,12 +39,16 @@ public class kruskal_undirected {
             return;
         }
 
-        PriorityQueue<Edge> orderedWeightsByComparator = new PriorityQueue();
+        PriorityQueue<Edge> orderedWeightsByComparator = new PriorityQueue<>(Comparator.comparingInt(Edge::getDistance_weight));
 
         for (Vertex<String> vertex : vertexSets.keySet()) {
             for (Edge edge : undirected_graph.getEdges(vertex)) {
                 orderedWeightsByComparator.add(edge);
             }
+        }
+
+        for (Edge edge : orderedWeightsByComparator) {
+            weights.put(edge.getDistance_weight(), edge);
         }
     }
 
