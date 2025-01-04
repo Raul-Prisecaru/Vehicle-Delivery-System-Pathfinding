@@ -153,8 +153,11 @@ public class undirectedGraphDisplay {
         JButton printAdjacencyListButton = new JButton("Print AdjacencyList");
         printAdjacencyListButton.addActionListener(e -> print_adjacencyList());
 
-        JButton runKruskalAlgorithmButton = new JButton("run Kruskal");
+        JButton runKruskalAlgorithmButton = new JButton("Run Kruskal");
         runKruskalAlgorithmButton.addActionListener(e -> runKruskalAlgorithm());
+
+        JButton clearVisualButton = new JButton("Clear Visuals");
+        clearVisualButton.addActionListener(e -> clearVisual());
 
         buttonPanel.add(addDeliverHubButton);
         buttonPanel.add(removeDeliverHubButton);
@@ -165,12 +168,22 @@ public class undirectedGraphDisplay {
         buttonPanel.add(removeEdgeButton);
         buttonPanel.add(printAdjacencyListButton);
         buttonPanel.add(runKruskalAlgorithmButton);
+        buttonPanel.add(clearVisualButton);
+
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
 
         frame.setSize(1200, 800);
         frame.setVisible(true);
+    }
+
+    public void clearVisual() {
+        try {
+
+        } catch (Exception e) {
+            System.out.println("Err");
+        }
     }
 
     public void add_deliveryHub() {
@@ -370,11 +383,29 @@ public class undirectedGraphDisplay {
 
     public void runKruskalAlgorithm() {
         try {
+
+            for (DeliveryHub<String> deliveryHub : graphinformation.getAllDeliveryHub()) {
+                this.visualise_vertex(deliveryHub, 0);
+                for (org.logistics.model.Edge edge : graphinformation.getEdges(deliveryHub)) {
+                    this.visualise_edge(edge, 0);
+
+                }
+            }
+
+            for (CustomerLocation<String> customerLocation : graphinformation.getAllCustomerLocation()) {
+                this.visualise_vertex(customerLocation, 0);
+                for (org.logistics.model.Edge edge : graphinformation.getEdges(customerLocation)) {
+                    this.visualise_edge(edge, 0);
+
+                }
+            }
+
+
             HashMap<Vertex<String>, Vertex<String>> vertexHashMap = kruskalUndirected.find_MST();
 
             for (Vertex<String> vertex : vertexHashMap.keySet()) {
                 visualise_vertex(vertex, 1);
-                visualise_edge(new org.logistics.model.Edge(vertexHashMap.get(vertex),vertex, 0), 1);
+                visualise_edge(new org.logistics.model.Edge(vertex, vertexHashMap.get(vertex), 0), 1);
             }
 
         } catch (Exception e) {
