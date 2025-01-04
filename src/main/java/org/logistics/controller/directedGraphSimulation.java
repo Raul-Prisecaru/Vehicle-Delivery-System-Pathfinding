@@ -14,6 +14,12 @@ import java.util.Iterator;
 
 public class directedGraphSimulation {
 
+    /**
+     * 1 - Dijkstra Pathfinding
+     * 2 - Bellman-ford
+     */
+    private int pathfindingOption = 0;
+
     public static void runSimulation() throws Exception {
 
         // Initializing Graph
@@ -295,6 +301,11 @@ public class directedGraphSimulation {
             }
         }
 
+    }
+
+
+    public void setPathfindingOption(int pathfindingOption) {
+        this.pathfindingOption = pathfindingOption;
     }
 
 }
