@@ -373,6 +373,7 @@ public class undirectedGraphDisplay {
             HashMap<Vertex<String>, Vertex<String>> vertexHashMap = kruskalUndirected.find_MST();
 
             for (Vertex<String> vertex : vertexHashMap.keySet()) {
+                visualise_vertex(vertex, 1);
                 visualise_edge(new org.logistics.model.Edge(vertexHashMap.get(vertex),vertex, 0), 1);
             }
 
