@@ -10,7 +10,7 @@ import java.util.PriorityQueue;
 
 public class kruskal_undirected {
     private HashMap<Vertex<String>, Vertex<String>> vertexSets = new HashMap<>();
-    private HashSet<Edge> weights = new HashSet<>();
+    private HashSet<Edge> weightsHashSet = new HashSet<>();
     private Graph undirected_graph;
 
     /**
@@ -36,18 +36,15 @@ public class kruskal_undirected {
     /**
      * Method Responsible for finding MST of the undirected Graph
      */
-    public void find_MST(Graph undirected_graph) {
+    public void find_MST() {
         vertexSets.clear();
 
         // Initial Stuff
         generateStartVertexesForHashMap(undirected_graph);
         getWeightsIncreasingOrder(undirected_graph);
 
-        for (Integer integer : weights.keySet()) {
-            for (Edge edge : weights.values()) {
-
-            }
-
+        for (Edge edge : weightsHashSet) {
+            System.out.println(edge.getDistance_weight());
         }
 
     }
@@ -70,8 +67,9 @@ public class kruskal_undirected {
             }
         }
 
-        for (Edge edge : orderedWeightsByComparator) {
-            weights.add(edge);
+        while (!orderedWeightsByComparator.isEmpty()) {
+            Edge edge = orderedWeightsByComparator.poll();
+            weightsHashSet.add(edge);
         }
     }
 
@@ -83,6 +81,12 @@ public class kruskal_undirected {
         for (CustomerLocation<String> customerLocation : undirected_graph.getAllCustomerLocation()) {
             vertexSets.put(customerLocation, customerLocation);
         }
+    }
+
+    public static void main(String[] args) throws Exception {
+        kruskal_undirected kruskalUndirected = new kruskal_undirected();
+
+        kruskalUndirected.find_MST();
     }
 
 
