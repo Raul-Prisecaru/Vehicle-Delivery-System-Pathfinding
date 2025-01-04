@@ -34,6 +34,7 @@ public class kruskal_undirected {
         return vertexSets.get(vertex);
     }
 
+    // TODO: Might be best to perhaps apply a sorting algorithm instead?
     public void getWeightsIncreasingOrder(Graph undirected_graph) {
         if (vertexSets.isEmpty()) {
             return;
