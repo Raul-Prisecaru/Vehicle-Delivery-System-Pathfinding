@@ -2,10 +2,7 @@ package org.logistics.model.algorithms;
 
 import org.logistics.model.*;
 
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.PriorityQueue;
+import java.util.*;
 
 
 public class Kruskal_undirected {
@@ -55,6 +52,18 @@ public class Kruskal_undirected {
     }
 
 
+    public Vertex<String> find(Vertex<String> vertex) {
+        if (!vertexSets.get(vertex).equals(vertex)) {
+            return find(vertexSets.get(vertex));
+        }
+        return vertexSets.get(vertex);
+    }
+
+    public void union(Vertex<String> root1, Vertex<String> root2) {
+        vertexSets.put(root1, root2);
+    }
+
+
 
     /**
      * Method Responsible for finding MST of the undirected Graph
@@ -68,28 +77,18 @@ public class Kruskal_undirected {
         getWeightsIncreasingOrder(undirected_graph);
 
         for (Edge edge : weightsHashSet) {
-            if (getPointerPair(edge.getStart_node()) != getPointerPair(edge.getConnecting_node())) {
-                vertexSets.put(edge.getConnecting_node(), edge.getStart_node());
+            Vertex<String> childVertex = find(edge.getStart_node());
+            Vertex<String> parentVertex = find(edge.getConnecting_node());
+
+            if (!childVertex.equals(parentVertex)) {
+                union(edge.getStart_node(), edge.getConnecting_node());
                 cost += edge.getDistance_weight();
+                System.out.println(edge.getStart_node() + " -> " + edge.getConnecting_node());
             }
         }
 
-        for (Vertex<String> vertex : vertexSets.keySet()) {
-            System.out.println(vertex + " -> " + vertexSets.get(vertex));
-        }
         System.out.println("Cost: " + cost);
         return vertexSets;
-
-    }
-
-    public Vertex<String> getPointerPair(Vertex<String> vertex) {
-        Vertex<String> findCustomer = undirected_graph.findVertexAndReturn(vertex);
-
-        if (findCustomer != null) {
-            return vertexSets.get(findCustomer);
-        }
-
-        return null;
     }
 
     // TODO: Might be best to perhaps apply a sorting algorithm instead?
@@ -113,13 +112,13 @@ public class Kruskal_undirected {
     }
 
     public void generateStartVertexesForHashMap(Graph undirected_graph) {
-        for (DeliveryHub<String> deliveryHub : undirected_graph.getAllDeliveryHub()) {
-            vertexSets.put(deliveryHub, deliveryHub);
-        }
+    for (DeliveryHub<String> deliveryHub : undirected_graph.getAllDeliveryHub()) {
+        vertexSets.put(deliveryHub, deliveryHub);
+    }
 
-        for (CustomerLocation<String> customerLocation : undirected_graph.getAllCustomerLocation()) {
-            vertexSets.put(customerLocation, customerLocation);
-        }
+    for (CustomerLocation<String> customerLocation : undirected_graph.getAllCustomerLocation()) {
+        vertexSets.put(customerLocation, customerLocation);
+    }
     }
 
 
