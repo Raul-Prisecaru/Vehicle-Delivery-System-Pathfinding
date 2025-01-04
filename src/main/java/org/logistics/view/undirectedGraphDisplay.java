@@ -53,13 +53,13 @@ public class undirectedGraphDisplay {
         for (Vertex<String> vertex : this.graphinformation.getAllDeliveryHub()) {
             Node node = graph.addNode(vertex.getNodeValue());
             node.setAttribute("ui.label", vertex.getNodeValue());
-            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/grey-building.png');");
         }
 
         for (Vertex<String> vertex : this.graphinformation.getAllCustomerLocation()) {
             Node node = graph.addNode(vertex.getNodeValue());
             node.setAttribute("ui.label", vertex.getNodeValue());
-            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/grey-home.png');");
         }
 
 
@@ -185,7 +185,7 @@ public class undirectedGraphDisplay {
 
                 Node vertex = graph.addNode(vertex_value);
                 vertex.setAttribute("ui.label", vertex_value);
-                vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+                vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/grey-building.png');");
 
 
                 JOptionPane.showMessageDialog(null,
@@ -213,7 +213,7 @@ public class undirectedGraphDisplay {
 
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
-            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/grey-building.png');");
 
 
         } catch (Exception e) {
@@ -235,7 +235,7 @@ public class undirectedGraphDisplay {
                 graphinformation.add_customerLocation(new CustomerLocation<>(vertex_value));
                 Node vertex = graph.addNode(vertex_value);
                 vertex.setAttribute("ui.label", vertex_value);
-                vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+                vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/grey-home.png');");
 
 
                 JOptionPane.showMessageDialog(null,
@@ -267,7 +267,7 @@ public class undirectedGraphDisplay {
             graphinformation.add_customerLocation(new CustomerLocation<>(vertex_value));
             Node vertex = graph.addNode(vertex_value);
             vertex.setAttribute("ui.label", vertex_value);
-            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            vertex.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/grey-home.png');");
 
 
         } catch (Exception e) {
@@ -658,14 +658,26 @@ public class undirectedGraphDisplay {
         Node current_Node = graph.getNode(vertex.getNodeValue());
 
         if (OnOff == 0) {
-            current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
+            if (vertex instanceof DeliveryHub<String>) {
+                current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/grey-building.png');");
+
+            }
+
+            if (vertex instanceof CustomerLocation<String>) {
+                current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/grey-home.png');");
+            }
 
         }
 
         if (OnOff == 1) {
-//            current_Node.setAttribute("ui.style", "fill-color: red;");
-            current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/fast-delivery.png');");
+            if (vertex instanceof DeliveryHub<String>) {
+                current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/building.png');");
 
+            }
+
+            if (vertex instanceof CustomerLocation<String>) {
+                current_Node.setAttribute("ui.style", "fill-image: url('src/main/java/org/logistics/view/icons/home.png');");
+            }
 
         }
 
