@@ -1,18 +1,17 @@
-package org.logistics;
+package org.logistics.controller;
 
-import org.logistics.model.*;
 import org.logistics.model.Package;
+import org.logistics.model.*;
 import org.logistics.model.algorithms.Dijkstra_customerLocation;
 import org.logistics.model.algorithms.Dijkstra_deliveryHub;
 import org.logistics.view.Display;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
-import java.util.Iterator;
-
-public class Main {
+public class undirectedGraphSimulation {
 
     public static void main(String[] args) throws Exception {
 
