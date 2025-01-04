@@ -122,11 +122,7 @@ public class Kruskal_undirected {
         }
     }
 
-    public static void main(String[] args) throws Exception {
-//        Kruskal_undirected kruskalUndirected = new Kruskal_undirected();
-//
-//        kruskalUndirected.find_MST();
-    }
+
 
 
 
