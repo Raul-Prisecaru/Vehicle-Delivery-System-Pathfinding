@@ -1,7 +1,6 @@
 package org.logistics.view;
 import org.graphstream.graph.*;
 import org.graphstream.graph.implementations.*;
-import org.graphstream.ui.layout.springbox.implementations.SpringBox;
 import org.graphstream.ui.swing_viewer.SwingViewer;
 import org.graphstream.ui.view.Viewer;
 import org.graphstream.ui.swing_viewer.ViewPanel;
@@ -13,13 +12,13 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.Scanner;
 
-public class Display {
+public class directedGraphDisplay {
     private org.logistics.model.Graph graphinformation;
     Scanner scanner = new Scanner(System.in);
     Graph graph = new SingleGraph("Tutorial 1");
 
 
-    public Display(org.logistics.model.Graph graph) {
+    public directedGraphDisplay(org.logistics.model.Graph graph) {
         this.graphinformation = graph;
     }
 

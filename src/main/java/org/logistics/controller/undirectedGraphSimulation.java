@@ -4,7 +4,7 @@ import org.logistics.model.Package;
 import org.logistics.model.*;
 import org.logistics.model.algorithms.Dijkstra_customerLocation;
 import org.logistics.model.algorithms.Dijkstra_deliveryHub;
-import org.logistics.view.Display;
+import org.logistics.view.directedGraphDisplay;
 
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -23,7 +23,7 @@ public class undirectedGraphSimulation {
         Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation();
 
         // Initializing GUI
-        Display displayGraph = new Display(graph);
+        directedGraphDisplay directedGraphDisplayGraph = new directedGraphDisplay(graph);
 
         // Initializing DeliveryHub Vertexes
         DeliveryHub<String> deliveryHubA = new DeliveryHub<String>("A");
@@ -77,8 +77,8 @@ public class undirectedGraphSimulation {
         deliveryHubB.generatePackage(graph, 2);
 
         // Creating GUI
-        displayGraph.createGraph();
-        displayGraph.displayGUI();
+        directedGraphDisplayGraph.createGraph();
+        directedGraphDisplayGraph.displayGUI();
 
         // Initializing multiAgent
         MultiAgent multiAgent = new MultiAgent(graph);
@@ -89,7 +89,7 @@ public class undirectedGraphSimulation {
             logs(graph);
             for (Vehicle vehicle : graph.getVehicleList()) {
                 for (Vehicle vehicle1 : graph.getVehicleList()) {
-                    displayGraph.visualise_vertex(vehicle1.getCurrent_location(), 1);
+                    directedGraphDisplayGraph.visualise_vertex(vehicle1.getCurrent_location(), 1);
 
                 }
                 TimeUnit.SECONDS.sleep(1);
@@ -97,14 +97,14 @@ public class undirectedGraphSimulation {
                 if (vehicle.getTravelDestinations().isEmpty()) {
                     if (!vehicle.get_deliveryPackages().isEmpty()) {
                         dijkstra_customerLocation.find_shortest_customer(vehicle, graph);
-                        updateEdgePath(graph, displayGraph, vehicle);
+                        updateEdgePath(graph, directedGraphDisplayGraph, vehicle);
                         TimeUnit.SECONDS.sleep(1);
                     }
 
 
                     if (vehicle.get_deliveryPackages().isEmpty()) {
                         dijkstra_deliveryHub.find_shortest_delivery(vehicle, graph);
-                        updateEdgePath(graph, displayGraph, vehicle);
+                        updateEdgePath(graph, directedGraphDisplayGraph, vehicle);
                         TimeUnit.SECONDS.sleep(1);
                     }
 
@@ -127,7 +127,7 @@ public class undirectedGraphSimulation {
                         continue;
                     }
 
-                    deHighlightVisitedEdge(displayGraph, edge, vehicle);
+                    deHighlightVisitedEdge(directedGraphDisplayGraph, edge, vehicle);
                     vehicle.travel(nextPosition);
                     TimeUnit.SECONDS.sleep(1);
                 }
@@ -212,25 +212,25 @@ public class undirectedGraphSimulation {
 
     /**
      * Method Responsible for removing the specified edge highlight alongside with it's congestionWeight
-     * @param displayGraph (Display) - GUI to update the highlight and edge label from
+     * @param directedGraphDisplayGraph (Display) - GUI to update the highlight and edge label from
      * @param edge_edge (Edge) - Edge to remove highlight and congestion weight from
      * @param vehicle (Vehicle) - Used to remove highlight from vehicle's current position
      */
-    private static void deHighlightVisitedEdge(Display displayGraph, Edge edge_edge, Vehicle vehicle) {
-        displayGraph.visualise_edge(edge_edge, 0);
-        displayGraph.visualise_vertex(vehicle.getCurrent_location(), 0);
+    private static void deHighlightVisitedEdge(directedGraphDisplay directedGraphDisplayGraph, Edge edge_edge, Vehicle vehicle) {
+        directedGraphDisplayGraph.visualise_edge(edge_edge, 0);
+        directedGraphDisplayGraph.visualise_vertex(vehicle.getCurrent_location(), 0);
         edge_edge.removeCongestion_weight();
-        displayGraph.updateEdge(edge_edge);
+        directedGraphDisplayGraph.updateEdge(edge_edge);
     }
 
     /**
      * Method Responsible for highlighting and adding congestion
      * to the every edge in vehicle's travelDestinations
      * @param graph (Graph) - Used to find the relevant Edge in AdjacencyList
-     * @param displayGraph (Display) - Used to reflect and highlight the path in the GUI
+     * @param directedGraphDisplayGraph (Display) - Used to reflect and highlight the path in the GUI
      * @param vehicle (Vehicle) - Vehicle to find and highlight the path for
      */
-    private static void updateEdgePath(Graph graph, Display displayGraph, Vehicle vehicle) {
+    private static void updateEdgePath(Graph graph, directedGraphDisplay directedGraphDisplayGraph, Vehicle vehicle) {
         List<Vertex<String>> travelDestinations = new ArrayList<>(vehicle.getTravelDestinations());
 
         for (int i = 0; i < travelDestinations.size() - 1; i++) {
@@ -239,9 +239,9 @@ public class undirectedGraphSimulation {
 
             Edge edge = graph.findEdgeAndReturn(nextVertex, currentVertex);
             if (edge != null) {
-                displayGraph.visualise_edge(edge, 1);
+                directedGraphDisplayGraph.visualise_edge(edge, 1);
                 edge.addCongestion_weight();
-                displayGraph.updateEdge(edge);
+                directedGraphDisplayGraph.updateEdge(edge);
             }
         }
 
@@ -249,9 +249,9 @@ public class undirectedGraphSimulation {
         Edge edge = graph.findEdgeAndReturn(vehicle.getCurrent_location(), firstDestination);
 
         if (edge != null) {
-            displayGraph.visualise_edge(edge, 1);
+            directedGraphDisplayGraph.visualise_edge(edge, 1);
             edge.addCongestion_weight();
-            displayGraph.updateEdge(edge);
+            directedGraphDisplayGraph.updateEdge(edge);
         }
     }
 
