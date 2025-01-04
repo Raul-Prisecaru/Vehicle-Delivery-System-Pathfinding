@@ -3,6 +3,7 @@ package org.logistics.model.algorithms;
 import org.logistics.model.*;
 
 import java.util.HashMap;
+import java.util.PriorityQueue;
 
 public class kruskal_undirected {
     private HashMap<Vertex<String>, Vertex<String>> vertexSets = new HashMap<>();
@@ -32,8 +33,18 @@ public class kruskal_undirected {
         return vertexSets.get(vertex);
     }
 
-    public void getWeightsIncreasingOrder() {
+    public void getWeightsIncreasingOrder(Graph undirected_graph) {
+        if (vertexSets.isEmpty()) {
+            return;
+        }
 
+        PriorityQueue<Edge> orderedWeightsByComparator = new PriorityQueue();
+
+        for (Vertex<String> vertex : vertexSets.keySet()) {
+            for (Edge edge : undirected_graph.getEdges(vertex)) {
+                orderedWeightsByComparator.add(edge);
+            }
+        }
     }
 
     public void generateStartVertexesForHashMap(Graph undirected_graph) {
