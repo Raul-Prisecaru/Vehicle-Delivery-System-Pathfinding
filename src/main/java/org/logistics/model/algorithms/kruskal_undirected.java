@@ -19,13 +19,38 @@ public class kruskal_undirected {
     public kruskal_undirected() throws Exception {
         Graph undirected_graph = new Graph();
 
-        undirected_graph.add_customerLocation(new CustomerLocation<>("A"));
-        undirected_graph.add_customerLocation(new CustomerLocation<>("B"));
-        undirected_graph.add_customerLocation(new CustomerLocation<>("C"));
+        CustomerLocation<String> customerLocationA = new CustomerLocation<>("A");
+        CustomerLocation<String> customerLocationB = new CustomerLocation<>("B");
+        CustomerLocation<String> customerLocationC = new CustomerLocation<>("C");
+        CustomerLocation<String> customerLocationD = new CustomerLocation<>("D");
+        CustomerLocation<String> customerLocationE = new CustomerLocation<>("E");
+        CustomerLocation<String> customerLocationF = new CustomerLocation<>("F");
+        CustomerLocation<String> customerLocationG = new CustomerLocation<>("G");
 
-        undirected_graph.add_undirected_edge(new CustomerLocation<>("A"), new CustomerLocation<>("B"), 1);
-        undirected_graph.add_undirected_edge(new CustomerLocation<>("A"), new CustomerLocation<>("C"), 2);
-        undirected_graph.add_undirected_edge(new CustomerLocation<>("B"), new CustomerLocation<>("C"), 3);
+        undirected_graph.add_customerLocation(customerLocationA);
+        undirected_graph.add_customerLocation(customerLocationB);
+        undirected_graph.add_customerLocation(customerLocationC);
+        undirected_graph.add_customerLocation(customerLocationD);
+        undirected_graph.add_customerLocation(customerLocationE);
+        undirected_graph.add_customerLocation(customerLocationF);
+        undirected_graph.add_customerLocation(customerLocationG);
+
+        undirected_graph.add_undirected_edge(customerLocationA, customerLocationB, 2);
+        undirected_graph.add_undirected_edge(customerLocationA, customerLocationC, 3);
+        undirected_graph.add_undirected_edge(customerLocationA, customerLocationD, 3);
+
+        undirected_graph.add_undirected_edge(customerLocationB, customerLocationC, 4);
+        undirected_graph.add_undirected_edge(customerLocationB, customerLocationE, 3);
+
+        undirected_graph.add_undirected_edge(customerLocationC, customerLocationD, 5);
+        undirected_graph.add_undirected_edge(customerLocationC, customerLocationE, 1);
+
+        undirected_graph.add_undirected_edge(customerLocationD, customerLocationF, 7);
+
+        undirected_graph.add_undirected_edge(customerLocationE, customerLocationF, 8);
+        undirected_graph.add_undirected_edge(customerLocationF, customerLocationG, 9);
+
+
 
 
         this.undirected_graph = undirected_graph;
@@ -44,13 +69,25 @@ public class kruskal_undirected {
         getWeightsIncreasingOrder(undirected_graph);
 
         for (Edge edge : weightsHashSet) {
-            System.out.println(edge.getDistance_weight());
+            if (getPointerPair(edge.getStart_node()) != getPointerPair(edge.getConnecting_node())) {
+                vertexSets.put(edge.getConnecting_node(), edge.getStart_node());
+            }
+        }
+
+        for (Vertex<String> vertex : vertexSets.keySet()) {
+            System.out.println(vertex + " -> " + vertexSets.get(vertex));
         }
 
     }
 
     public Vertex<String> getPointerPair(Vertex<String> vertex) {
-        return vertexSets.get(vertex);
+        Vertex<String> findCustomer = undirected_graph.findVertexAndReturn(vertex);
+
+        if (findCustomer != null) {
+            return vertexSets.get(findCustomer);
+        }
+
+        return null;
     }
 
     // TODO: Might be best to perhaps apply a sorting algorithm instead?
