@@ -14,6 +14,7 @@ import org.logistics.model.algorithms.Kruskal_undirected;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class undirectedGraphDisplay {
@@ -369,9 +370,12 @@ public class undirectedGraphDisplay {
 
     public void runKruskalAlgorithm() {
         try {
-            System.out.println("Algorithm has been ran");
-            kruskalUndirected.find_MST();
-            System.out.println("Algorithm has been executed");
+            HashMap<Vertex<String>, Vertex<String>> vertexHashMap = kruskalUndirected.find_MST();
+
+            for (Vertex<String> vertex : vertexHashMap.keySet()) {
+                visualise_edge(new org.logistics.model.Edge(vertexHashMap.get(vertex),vertex, 0), 1);
+            }
+
         } catch (Exception e) {
             System.out.println("An Error has occurred: " + e.getMessage());
         }
