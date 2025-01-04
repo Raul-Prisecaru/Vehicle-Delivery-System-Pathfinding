@@ -76,8 +76,30 @@ public class Graph {
 
         adjacencyList.get(exist_start).add(vertex_edge);
 
+    }
+
+
+    // TODO: Improve?
+    public void add_undirected_edge(Vertex<String> start_vertex, Vertex<String> connecting_node, int distance_weight) {
+        Vertex<String> exist_start = this.findVertexAndReturn(start_vertex);
+        Vertex<String> exist_connecting = this.findVertexAndReturn(connecting_node);
+
+        if (exist_start == null) {
+            System.out.println("Vertex: " + start_vertex.getNodeValue() + " Does not exist");
+            return;
+        }
+
+        if (exist_connecting == null) {
+            System.out.println("Vertex: " + connecting_node.getNodeValue() + " Does not exist");
+            return;
+
+        }
+        Edge vertex_edge = new Edge(start_vertex, connecting_node, distance_weight);
+
+        adjacencyList.get(exist_start).add(vertex_edge);
 
     }
+
 
     /**
      * Method Responsible for modifying existing edge
