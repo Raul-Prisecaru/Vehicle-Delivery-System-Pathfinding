@@ -17,7 +17,19 @@ public class CongestionPrediction {
     /**
      * Method Responsible for calculating congestion prediction of provided edge
      */
-    public void calculateCongestion() {
+    public int calculateCongestion(Vertex<String> vertex1, Vertex<String> vertex2) {
+        int total = 0;
+        int percentage = 0;
+        Edge foundEdge = graph.findEdgeAndReturn(vertex1, vertex2);
 
+        if (foundEdge == null) {
+            return -1;
+        }
+
+        for (int congestionLevels : foundEdge.getCongestionHistory().keySet()) {
+            total += foundEdge.getCongestionHistory().get(congestionLevels);
+        }
+
+        return percentage;
     }
 }
