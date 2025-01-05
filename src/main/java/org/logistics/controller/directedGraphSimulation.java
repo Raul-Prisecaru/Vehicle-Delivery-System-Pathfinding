@@ -52,7 +52,7 @@ public class directedGraphSimulation {
         graph.createVehicle(deliveryHubA);
 //        graph.createVehicle(deliveryHubB);
         for (Vehicle vehicle : graph.getVehicleList()) {
-            vehicle.add_deliveryPackage(new Package("TestItem", customerLocationF, 4));
+            vehicle.add_deliveryPackage(new Package("TestItem", customerLocationF, 4, 5, 2));
         }
 
         // Adding DeliveryHub to the Graph
