@@ -171,6 +171,7 @@ public class directedGraphSimulation {
 
                     while (check_package != null) {
                         customerDeliverPackage((CustomerLocation<String>) vehicle.getCurrent_location(), check_package, vehicle);
+                        System.out.println("Vehicle has dropped packages to " + check_package.getDestination());
                         check_package = checkIfPackageIsForCustomerLocation(vehicle);
 
                     }
@@ -180,6 +181,7 @@ public class directedGraphSimulation {
                 if (vehicle.getCurrent_location() instanceof DeliveryHub<String> && vehicle.get_deliveryPackages().size() < 2) {
                     DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
                     vehiclePickupPackages(vehicle, currentDeliveryHub);
+                    System.out.println("Vehicle has picked up package from " + currentDeliveryHub);
                     currentDeliveryHub.generatePackage(graph, 2, currentDeliveryHub);
 
                 }
@@ -296,17 +298,19 @@ public class directedGraphSimulation {
     private static void logs(Graph graph) {
         System.out.println("--- Logs ---");
         for (Vehicle vehicle : graph.getVehicleList()) {
+            System.out.println("--- Vehicle Information ---");
             System.out.println("Vehicle: " + vehicle);
             System.out.println("-- Vehicle Current Position: " + vehicle.getCurrent_location());
             System.out.println("-- Vehicle Destinations: " + vehicle.getTravelDestinations());
 
             for (Package package_package : vehicle.get_deliveryPackages()) {
-                System.out.println("Package: " + package_package.getItem_Name());
+                System.out.println("Vehicle Package: " + package_package.getItem_Name());
                 System.out.println("-- Package Destination: " + package_package.getDestination());
                 System.out.println("-- Package Priority: " + package_package.getPriority());
             }
         }
-
+        System.out.println();
+        System.out.println("--- DeliveryHubs Information ---");
         for (DeliveryHub<String> deliveryHub : graph.getAllDeliveryHub()) {
             System.out.println("DeliveryHub: " + deliveryHub.getNodeValue());
 
@@ -316,7 +320,8 @@ public class directedGraphSimulation {
                 System.out.println("-- Package Priority: " + package_package.getPriority());
             }
         }
-
+        System.out.println();
+        System.out.println("--- CustomerLocation Information ---");
         for (CustomerLocation<String> customerLocation : graph.getAllCustomerLocation()) {
             System.out.println("CustomerLocation: " + customerLocation.getNodeValue());
 
