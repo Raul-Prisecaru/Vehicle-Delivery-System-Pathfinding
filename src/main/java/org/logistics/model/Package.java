@@ -6,7 +6,7 @@ public class Package {
     private int fragile;
     private int importance;
     private int deliveryClass;
-
+    private DeliveryHub<String> deliveryHub;
     private int priority;
 
     /**
@@ -21,6 +21,13 @@ public class Package {
         this.item_Name = item_Name;
         this.destination = destination;
         this.priority = fragile + importance + deliveryClass;
+    }
+
+    public Package(String item_Name, CustomerLocation<String> destination, int fragile, int importance, int deliveryClass, DeliveryHub<String> deliveryHub) {
+        this.item_Name = item_Name;
+        this.destination = destination;
+        this.priority = fragile + importance + deliveryClass;
+        this.deliveryHub = deliveryHub;
     }
 
     /**
@@ -45,6 +52,10 @@ public class Package {
      */
     public int getPriority() {
         return this.priority;
+    }
+
+    public DeliveryHub<String> getDeliveryHub() {
+        return this.deliveryHub;
     }
 
 
