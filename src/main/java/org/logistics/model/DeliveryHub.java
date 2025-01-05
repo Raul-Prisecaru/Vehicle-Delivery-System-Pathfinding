@@ -107,6 +107,20 @@ public class DeliveryHub<T> extends Vertex<T> {
         }
     }
 
+    public void generatePackage(Graph graph ,int total, DeliveryHub<String> deliveryHub) {
+        String[] itemNames = {"Fan", "Phone", "Microphone", "Laptop", "Headphone", "Mouse", "Console"};
+        ArrayList<CustomerLocation<String>> customerLocationList = graph.getAllCustomerLocation();
+
+        for (int i = 0; i < total; i++) {
+
+            int randomStringInt = random.nextInt(itemNames.length);
+
+            int randomCustomerLocationInt = random.nextInt(customerLocationList.size());
+
+            this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10), random.nextInt(10), random.nextInt(10), deliveryHub));
+        }
+    }
+
 
     /**
      * Method Responsible for removing package from the DeliveryHub
