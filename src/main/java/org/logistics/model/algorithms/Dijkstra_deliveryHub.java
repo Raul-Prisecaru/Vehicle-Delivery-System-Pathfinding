@@ -45,6 +45,16 @@ public class Dijkstra_deliveryHub {
         }
     }
 
+    public DeliveryHub<String> findPriorityDeliveryHub() {
+        HashMap<DeliveryHub<String>, Integer> priorityDelivery = new HashMap<>();
+
+        for (DeliveryHub<String> deliveryHub : graph.getAllDeliveryHub()) {
+            priorityDelivery.put(deliveryHub, 0);
+        }
+
+        return null;
+    }
+
 
 
     /**
