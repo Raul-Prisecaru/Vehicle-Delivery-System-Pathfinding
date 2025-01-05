@@ -85,7 +85,7 @@ public class DeliveryHub<T> extends Vertex<T> {
 
         int randomCustomerLocationInt = random.nextInt(graph.getAllCustomerLocation().size());
 
-        this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10)));
+        this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10), random.nextInt(10), random.nextInt(10)));
     }
 
     /**
@@ -103,7 +103,7 @@ public class DeliveryHub<T> extends Vertex<T> {
 
             int randomCustomerLocationInt = random.nextInt(customerLocationList.size());
 
-            this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10)));
+            this.packages.add(new Package(itemNames[randomStringInt], customerLocationList.get(randomCustomerLocationInt), random.nextInt(10), random.nextInt(10), random.nextInt(10)));
         }
     }
 
