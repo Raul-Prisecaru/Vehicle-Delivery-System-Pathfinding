@@ -13,7 +13,7 @@ public class Dijkstra_deliveryHub {
         this.graph = graph;
     }
 
-    HashSet<Package> packageHashSet = new HashSet<>();
+    ArrayList<Package> packageArrayList = new ArrayList<>();
 
     public void retrieveAndSortPackagesFromDeliveryHub()  {
         HashSet<Package> tempPackageHashSet = new HashSet<>();
@@ -40,7 +40,11 @@ public class Dijkstra_deliveryHub {
             }
         }
 
+        for (Package package_package : packageList) {
+            packageArrayList.add(package_package);
+        }
     }
+
 
 
     /**
