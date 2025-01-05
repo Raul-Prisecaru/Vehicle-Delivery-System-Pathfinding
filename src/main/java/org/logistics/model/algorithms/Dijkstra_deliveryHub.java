@@ -52,7 +52,22 @@ public class Dijkstra_deliveryHub {
             priorityDelivery.put(deliveryHub, 0);
         }
 
-        return null;
+        for (Package package_package : packageArrayList) {
+            priorityDelivery.put(package_package.getDeliveryHub(), priorityDelivery.get(package_package.getDeliveryHub()) + package_package.getPriority());
+        }
+
+        DeliveryHub<String> highestDelivery = null;
+        int min_value = Integer.MIN_VALUE;
+
+
+        for (DeliveryHub<String> deliveryHub : priorityDelivery.keySet()) {
+            if (priorityDelivery.get(deliveryHub) > min_value) {
+                highestDelivery = deliveryHub;
+                min_value = priorityDelivery.get(deliveryHub);
+            }
+        }
+
+        return highestDelivery;
     }
 
 
