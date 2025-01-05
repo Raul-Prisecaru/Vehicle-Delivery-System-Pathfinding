@@ -5,6 +5,8 @@ import java.util.*;
 public class Graph {
     private HashMap<Vertex<String>, LinkedList<Edge>> adjacencyList = new HashMap<>();
     private HashSet<Vehicle> vehicleList = new HashSet<>();
+    private int pathfindingOption = 2;
+
     /**
      * Method Responsible for adding deliveryHub to the Hashmap
      * @param start_vertex (DeliveryHub) - DeliveryHub to add
@@ -284,5 +286,13 @@ public class Graph {
         return null;
     }
 
+
+    public void setPathfindingOption(int pathfindingOption) {
+        this.pathfindingOption = pathfindingOption;
+    }
+
+    public int getPathfindingOption() {
+        return pathfindingOption;
+    }
 }
 
