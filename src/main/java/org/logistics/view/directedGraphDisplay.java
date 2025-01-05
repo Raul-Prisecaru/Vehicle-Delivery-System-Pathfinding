@@ -145,6 +145,9 @@ public class directedGraphDisplay {
         JButton printAdjacencyListButton = new JButton("Print AdjacencyList");
         printAdjacencyListButton.addActionListener(e -> print_adjacencyList());
 
+        JButton switchAlgorithmButton = new JButton("Switch Algorithm");
+        switchAlgorithmButton.addActionListener(e -> switchPathfindingButton());
+
         buttonPanel.add(addDeliverHubButton);
         buttonPanel.add(removeDeliverHubButton);
         buttonPanel.add(addCustomerLocationButton);
@@ -153,6 +156,7 @@ public class directedGraphDisplay {
         buttonPanel.add(modifyEdgeButton);
         buttonPanel.add(removeEdgeButton);
         buttonPanel.add(printAdjacencyListButton);
+        buttonPanel.add(switchAlgorithmButton);
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -665,6 +669,22 @@ public class directedGraphDisplay {
                 current_edge.setAttribute("ui.style", "fill-color: black;");
 
             }
+        }
+    }
+
+    public void switchPathfindingButton() {
+        try {
+            if (graphinformation.getPathfindingOption() == 1) {
+                System.out.println("Switched to Bellman-ford Algorithm");
+                graphinformation.setPathfindingOption(2);
+            } else {
+                System.out.println("Switched to Dijkstra's Algorithm");
+                graphinformation.setPathfindingOption(1);
+            }
+
+
+        } catch (Exception e) {
+            System.out.println("There has been an error: " + e.getMessage() );
         }
     }
 
