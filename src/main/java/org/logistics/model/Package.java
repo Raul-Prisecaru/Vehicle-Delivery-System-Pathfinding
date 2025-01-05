@@ -58,5 +58,9 @@ public class Package {
         return this.deliveryHub;
     }
 
+    public void setDeliveryHub(DeliveryHub<String> newDeliveryHub) {
+        this.deliveryHub = newDeliveryHub;
+    }
+
 
 }
