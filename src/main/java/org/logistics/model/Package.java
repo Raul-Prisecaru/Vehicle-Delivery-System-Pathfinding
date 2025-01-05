@@ -3,18 +3,24 @@ package org.logistics.model;
 public class Package {
     private String item_Name;
     private CustomerLocation<String> destination;
+    private int fragile;
+    private int importance;
+    private int deliveryClass;
+
     private int priority;
 
     /**
      * Constructor to setting up a package
      * @param item_Name (String) - item name
      * @param destination (CustomerLocation) - Destination of the package
-     * @param priority (int) -
+     * @param fragile (int) - fragile of the package
+     * @param importance (int) - importance of the package;
+     * @param deliveryClass (int) - deliveryClass of the Package
      */
-    public Package(String item_Name, CustomerLocation<String> destination, int priority) {
+    public Package(String item_Name, CustomerLocation<String> destination, int fragile, int importance, int deliveryClass) {
         this.item_Name = item_Name;
         this.destination = destination;
-        this.priority = priority;
+        this.priority = fragile + importance + deliveryClass;
     }
 
     /**
