@@ -30,10 +30,13 @@ public class CongestionPrediction {
         }
 
         for (int congestionLevels : foundEdge.getCongestionHistory().keySet()) {
+            congestionLevelPercentage.put(congestionLevels, 0);
             total += foundEdge.getCongestionHistory().get(congestionLevels);
         }
 
         for (int congestionLevels : foundEdge.getCongestionHistory().keySet()) {
+            int calculation = (foundEdge.getCongestionHistory().get(congestionLevels) / total * 100);
+            congestionLevelPercentage.put(congestionLevels, calculation);
 
         }
 
