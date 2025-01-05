@@ -85,8 +85,8 @@ public class directedGraphSimulation {
         graph.add_directed_edge(customerLocationG, deliveryHubA, 4);
 
         // Generating Packages for the DeliveryHubs
-        deliveryHubA.generatePackage(graph, 2);
-        deliveryHubB.generatePackage(graph, 2);
+        deliveryHubA.generatePackage(graph, 2, deliveryHubA);
+        deliveryHubB.generatePackage(graph, 2, deliveryHubB);
 
         // Creating GUI
         directedGraphDisplayGraph.createGraph();
@@ -178,7 +178,7 @@ public class directedGraphSimulation {
                 if (vehicle.getCurrent_location() instanceof DeliveryHub<String> && vehicle.get_deliveryPackages().size() < 2) {
                     DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
                     vehiclePickupPackages(vehicle, currentDeliveryHub);
-                    currentDeliveryHub.generatePackage(graph, 2);
+                    currentDeliveryHub.generatePackage(graph, 2, currentDeliveryHub);
 
                 }
 
