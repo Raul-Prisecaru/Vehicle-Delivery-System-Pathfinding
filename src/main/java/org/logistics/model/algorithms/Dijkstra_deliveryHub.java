@@ -15,8 +15,8 @@ public class Dijkstra_deliveryHub {
 
     HashSet<Package> packageHashSet = new HashSet<>();
 
-    public void retrievePackagesFromDeliveryHub()  {
-
+    public HashSet<Package> retrievePackagesFromDeliveryHub()  {
+        HashSet<Package> tempPackageHashSet = new HashSet<>();
         for (DeliveryHub<String> deliveryHub : graph.getAllDeliveryHub()) {
             for (org.logistics.model.Package package_package : deliveryHub.getPackages()) {
                 if (package_package.getDeliveryHub() == null) {
@@ -24,12 +24,12 @@ public class Dijkstra_deliveryHub {
 
                 }
 
-                packageHashSet.add(package_package);
-
+                tempPackageHashSet.add(package_package);
             }
         }
-    }
 
+        return tempPackageHashSet;
+    }
 
     /**
      * Method responsible for using dijkstra's algorithm to find the quickest route to deliveryHub
