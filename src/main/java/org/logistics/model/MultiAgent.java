@@ -1,6 +1,7 @@
 package org.logistics.model;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 
 
 public class MultiAgent {
@@ -10,19 +11,16 @@ public class MultiAgent {
         this.graph = graph;
     }
 
-    // TODO: For time being this will do but shorten the method name
-    public CustomerLocation<String> findMultipleVehiclesInCustomerLocations() {
-
+    public HashSet<CustomerLocation<String>> findMultipleVehiclesInCustomerLocations() {
+        HashSet<CustomerLocation<String>> multiCustomerLocations = new HashSet<>();
         for (CustomerLocation<String> customerLocation : graph.getAllCustomerLocation()) {
 
             if (customerLocation.getStoredVehicles().size() >= 2) {
-
-                // TODO: Make this return multiple
-                return customerLocation;
+                multiCustomerLocations.add(customerLocation);
             }
         }
 
-        return null;
+        return multiCustomerLocations;
     }
 
     // TODO: Probably improve description
