@@ -2,6 +2,8 @@ import org.junit.jupiter.api.Test;
 import org.logistics.model.*;
 import org.logistics.model.Package;
 
+import java.util.HashSet;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -46,8 +48,8 @@ public class MultiAgentFeatureTest {
 
         MultiAgent multiAgent = new MultiAgent(graph);
 
-        CustomerLocation<String> foundCustomerLocation = multiAgent.findMultipleVehiclesInCustomerLocations();
-        assertEquals(customerLocationC, foundCustomerLocation);
+        HashSet<CustomerLocation<String>> foundCustomerLocation = multiAgent.findMultipleVehiclesInCustomerLocations();
+        assertTrue(foundCustomerLocation.contains(customerLocationC));
 
     }
 
@@ -98,7 +100,8 @@ public class MultiAgentFeatureTest {
         customerLocationC.addStoredVehicles(vehicle2);
 
         MultiAgent multiAgent = new MultiAgent(graph);
-        multiAgent.vehicleCommunicate(customerLocationC);
+        HashSet<CustomerLocation<String>> foundCustomerLocation = multiAgent.findMultipleVehiclesInCustomerLocations();
+        multiAgent.vehicleCommunicate(foundCustomerLocation);
 
 
         for (Package package_package : vehicle1.get_deliveryPackages()) {
