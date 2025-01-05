@@ -1,10 +1,13 @@
 package org.logistics.model;
 
 
+import java.util.HashMap;
+
 public class Edge {
     // Nodes
     private Vertex<String> start_vertex;
     private Vertex<String> connecting_vertex;
+    private HashMap<Integer, Integer> congestionHistory = new HashMap<>();
 
     // Weights
     private int distance_weight;
@@ -23,6 +26,7 @@ public class Edge {
         this.distance_weight = distance_weight;
 
         this.time_weight = this.congestion_weight + this.distance_weight;
+        this.congestionHistory.put(time_weight, this.congestionHistory.get(time_weight) + 1);
     }
 
     /**
@@ -72,6 +76,8 @@ public class Edge {
     public void addCongestion_weight() {
         this.congestion_weight++;
         this.time_weight = this.congestion_weight + distance_weight;
+
+        this.congestionHistory.put(time_weight, congestionHistory.get(time_weight) + 1);
     }
 
     public void removeCongestion_weight() {
