@@ -78,6 +78,7 @@ public class Dijkstra_deliveryHub {
      * @Return None
      */
     public void find_shortest_delivery(Vehicle vehicle, Graph graph) {
+        packageArrayList.clear();
 
         for (Vertex<String> vertex : graph.getAllDeliveryHub()) {
             vertex.setDistance(Integer.MAX_VALUE);
@@ -127,15 +128,10 @@ public class Dijkstra_deliveryHub {
             }
         }
 
-        DeliveryHub<String> deliveryHub_shortest = null;
-        int minDistance = Integer.MAX_VALUE;
+        retrieveAndSortPackagesFromDeliveryHub();
+        DeliveryHub<String> deliveryHub_shortest = findPriorityDeliveryHub();
 
-        for (DeliveryHub<String> deliveryHub : graph.getAllDeliveryHub()) {
-            if (deliveryHub.getDistance() < minDistance) {
-                minDistance = deliveryHub.getDistance();
-                deliveryHub_shortest = deliveryHub;
-            }
-        }
+
 
 
         Vertex<String> endVertex = deliveryHub_shortest;
