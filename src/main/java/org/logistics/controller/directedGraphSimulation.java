@@ -9,6 +9,7 @@ import org.logistics.model.algorithms.Dijkstra_deliveryHub;
 import org.logistics.view.directedGraphDisplay;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.concurrent.TimeUnit;
 
@@ -143,7 +144,7 @@ public class directedGraphSimulation {
                 }
 
 
-                CustomerLocation<String> multipleVehicleCustomerLocation = multiAgent.findMultipleVehiclesInCustomerLocations();
+                HashSet<CustomerLocation<String>> multipleVehicleCustomerLocation = multiAgent.findMultipleVehiclesInCustomerLocations();
                 if (multipleVehicleCustomerLocation != null) {
                     multiAgent.vehicleCommunicate(multipleVehicleCustomerLocation);
                 }
