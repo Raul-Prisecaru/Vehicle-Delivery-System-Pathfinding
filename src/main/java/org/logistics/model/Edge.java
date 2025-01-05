@@ -83,6 +83,9 @@ public class Edge {
     public void removeCongestion_weight() {
         this.congestion_weight--;
         this.time_weight = this.congestion_weight + distance_weight;
+
+        this.congestionHistory.put(time_weight, congestionHistory.get(time_weight) + 1);
+
     }
 
     /**
@@ -99,6 +102,10 @@ public class Edge {
      */
     public void setDistance_weight(int distance_weight) {
         this.distance_weight = distance_weight;
+    }
+
+    public HashMap<Integer, Integer> getCongestionHistory() {
+        return congestionHistory;
     }
 
 //    @Override
