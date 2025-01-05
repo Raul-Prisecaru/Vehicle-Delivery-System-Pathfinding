@@ -1,11 +1,34 @@
 package org.logistics.model.algorithms;
 
 import org.logistics.model.*;
+import org.logistics.model.Package;
 
 import java.util.*;
 
 public class Dijkstra_deliveryHub {
 
+    private Graph graph;
+
+    public Dijkstra_deliveryHub(Graph graph) {
+        this.graph = graph;
+    }
+
+    HashSet<Package> packageHashSet = new HashSet<>();
+
+    public void retrievePackagesFromDeliveryHub()  {
+
+        for (DeliveryHub<String> deliveryHub : graph.getAllDeliveryHub()) {
+            for (org.logistics.model.Package package_package : deliveryHub.getPackages()) {
+                if (package_package.getDeliveryHub() == null) {
+                    package_package.setDeliveryHub(deliveryHub);
+
+                }
+
+                packageHashSet.add(package_package);
+
+            }
+        }
+    }
 
 
     /**
