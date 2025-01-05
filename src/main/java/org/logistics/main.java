@@ -8,6 +8,8 @@ import java.util.Scanner;
 public class main {
 
     public static void main(String[] args) throws Exception {
+        directedGraphSimulation directedGraphSimulation = new directedGraphSimulation();
+        undirectedGraphSimulation undirectedGraphSimulation = new undirectedGraphSimulation();
         Scanner scanner = new Scanner(System.in);
         System.out.println("-- Currently there are two simulation available --");
         System.out.println("- Simulation 1: Directed, Dijkstra Algorithm, Bellman-ford");
@@ -18,11 +20,11 @@ public class main {
 
         switch (simulation_option) {
             case 1:
-                org.logistics.controller.directedGraphSimulation.runSimulation();
+                directedGraphSimulation.runSimulation();
                 break;
 
             case 2:
-                org.logistics.controller.undirectedGraphSimulation.runSimulation();
+                undirectedGraphSimulation.runSimulation();
                 break;
         }
     }
