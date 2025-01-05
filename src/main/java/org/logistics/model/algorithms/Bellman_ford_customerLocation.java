@@ -31,7 +31,7 @@ public class Bellman_ford_customerLocation {
         Vertex<String> start_vertex = vehicle.getCurrent_location();
         start_vertex.setDistance(0);
 
-        org.logistics.model.Package package_package = new org.logistics.model.Package(null, null, -1);
+        org.logistics.model.Package package_package = new org.logistics.model.Package(null, null, -1, 0, 0);
 
         if (vehicle.get_deliveryPackages().size() == 2) {
             for (Package package_package_temp : vehicle.get_deliveryPackages()) {

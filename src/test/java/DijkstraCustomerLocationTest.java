@@ -28,8 +28,8 @@ public class DijkstraCustomerLocationTest {
         // Creating Packages
         Vehicle vehicle1 = new Vehicle(deliveryHubA);
 
-        Package PriorityphonePackage = new Package("Iphone", customerLocationF, 1);
-        Package NonPriorityphonePackage = new Package("Iphone", customerLocationE, 0);
+        Package PriorityphonePackage = new Package("Iphone", customerLocationF, 1, 1, 1);
+        Package NonPriorityphonePackage = new Package("Iphone", customerLocationE, 0, 0, 0);
         vehicle1.add_deliveryPackage(PriorityphonePackage);
 //        vehicle1.add_deliveryPackage(NonPriorityphonePackage);
         deliveryHubA.getPackages().add(PriorityphonePackage);

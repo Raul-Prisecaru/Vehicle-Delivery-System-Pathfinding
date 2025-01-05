@@ -30,7 +30,7 @@ public class Dijkstra_customerLocation {
         unvisited.add(start_vertex);
         predecessor.put(start_vertex, null);
 
-        org.logistics.model.Package package_package = new org.logistics.model.Package(null, null, -1);
+        org.logistics.model.Package package_package = new org.logistics.model.Package(null, null, -1, 0, 0);
 
         if (vehicle.get_deliveryPackages().size() == 2) {
             // Compare the two packages

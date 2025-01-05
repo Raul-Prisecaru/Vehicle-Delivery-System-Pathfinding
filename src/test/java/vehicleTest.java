@@ -31,7 +31,7 @@ public class vehicleTest {
 
     @Test
     public void updateDeliveryPackages() throws Exception {
-        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2));
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation("B"), 2, 0, 0));
 
         assertFalse(testVehicle.get_deliveryPackages().isEmpty());
 
@@ -40,12 +40,12 @@ public class vehicleTest {
 
     @Test
     public void MaxCapacity() throws Exception {
-        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2));
-        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2));
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2, 0,0));
+        testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2, 0, 0));
 
         // Assert that adding a third package throws an exception
         assertThrows(Exception.class,
-                () -> testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2))
+                () -> testVehicle.add_deliveryPackage(new Package("testItem", new CustomerLocation<String>("B"), 2, 0, 0))
         );
     }
 

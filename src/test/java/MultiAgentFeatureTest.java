@@ -66,7 +66,7 @@ public class MultiAgentFeatureTest {
         // Creating Packages
         Vehicle vehicle1 = new Vehicle(customerLocationC);
         Vehicle vehicle2 = new Vehicle(customerLocationC);
-        Package vehicle2Package = new Package("TestItem", customerLocationE, 5);
+        Package vehicle2Package = new Package("TestItem", customerLocationE, 5, 1, 1);
 
         vehicle2.add_deliveryPackage(vehicle2Package);
 

@@ -7,7 +7,7 @@ import org.logistics.model.Package;
 
 public class packageTest {
     CustomerLocation customerLocationTest = new CustomerLocation("B");
-    Package testPackage = new Package("TestItem", customerLocationTest, 1);
+    Package testPackage = new Package("TestItem", customerLocationTest, 1, 0, 0);
 
     @Test
     void getItemName() {
