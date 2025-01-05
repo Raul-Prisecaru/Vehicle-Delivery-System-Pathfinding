@@ -26,9 +26,6 @@ public class directedGraphSimulation {
         // Initializing Graph
         Graph graph = new Graph();
 
-        // Initializing dijkstra Algorithm
-        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub();
-        Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation();
 
         // Initializing bellman-ford
         Bellman_ford_customerLocation bellmanFordCustomerLocation = new Bellman_ford_customerLocation();
@@ -47,6 +44,10 @@ public class directedGraphSimulation {
         CustomerLocation<String> customerLocationE = new CustomerLocation<String>("E");
         CustomerLocation<String> customerLocationF = new CustomerLocation<String>("F");
         CustomerLocation<String> customerLocationG = new CustomerLocation<String>("G");
+
+        // Initializing dijkstra Algorithm
+        Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation();
+        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
 
         // Creating Vehicle
         graph.createVehicle(deliveryHubA);

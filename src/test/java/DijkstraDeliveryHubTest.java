@@ -11,7 +11,6 @@ public class DijkstraDeliveryHubTest {
     @Test
     void dijkstraDeliveryTest() throws Exception {
         Graph graph = new Graph();
-        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub();
 
         // Creating DeliveryHub Nodes
         DeliveryHub<String> deliveryHubA = new DeliveryHub<String>("A");
@@ -54,6 +53,8 @@ public class DijkstraDeliveryHubTest {
         // Additional Edges to Ensure Reachability
         graph.add_directed_edge(customerLocationD, customerLocationF, 2); // Distance: 2
         graph.add_directed_edge(customerLocationC, customerLocationG, 6); // Distance: 6
+
+        Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub(graph);
 
         //Logic Stuff
 
