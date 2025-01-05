@@ -20,9 +20,9 @@ public class directedGraphSimulation {
      * 1 - Dijkstra Pathfinding
      * 2 - Bellman-ford
      */
-    private int pathfindingOption = 0;
+    private int pathfindingOption = 2;
 
-    public static void runSimulation() throws Exception {
+    public void runSimulation() throws Exception {
 
         // Initializing Graph
         Graph graph = new Graph();
@@ -109,14 +109,29 @@ public class directedGraphSimulation {
 
                 if (vehicle.getTravelDestinations().isEmpty()) {
                     if (!vehicle.get_deliveryPackages().isEmpty()) {
-                        dijkstra_customerLocation.find_shortest_customer(vehicle, graph);
+                        if (getPathfindingOption() == 1) {
+                            dijkstra_customerLocation.find_shortest_customer(vehicle, graph);
+                        }
+
+                        if (getPathfindingOption() == 2) {
+                            bellmanFordCustomerLocation.find_shortest_customer(vehicle, graph);
+                        }
+
                         updateEdgePath(graph, directedGraphDisplayGraph, vehicle);
                         TimeUnit.SECONDS.sleep(1);
                     }
 
 
                     if (vehicle.get_deliveryPackages().isEmpty()) {
-                        dijkstra_deliveryHub.find_shortest_delivery(vehicle, graph);
+
+                        if (getPathfindingOption() == 1) {
+                            dijkstra_deliveryHub.find_shortest_delivery(vehicle, graph);
+                        }
+
+                        if (getPathfindingOption() == 2) {
+                            bellmanFordDeliveryLocation.find_shortest_delivery(vehicle, graph);
+                        }
+
                         updateEdgePath(graph, directedGraphDisplayGraph, vehicle);
                         TimeUnit.SECONDS.sleep(1);
                     }
@@ -312,6 +327,10 @@ public class directedGraphSimulation {
 
     public void setPathfindingOption(int pathfindingOption) {
         this.pathfindingOption = pathfindingOption;
+    }
+
+    public int getPathfindingOption() {
+        return pathfindingOption;
     }
 
 }
