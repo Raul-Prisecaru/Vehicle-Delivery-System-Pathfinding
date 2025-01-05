@@ -2,6 +2,8 @@ package org.logistics.controller;
 
 import org.logistics.model.*;
 import org.logistics.model.Package;
+import org.logistics.model.algorithms.Bellman_ford_customerLocation;
+import org.logistics.model.algorithms.Bellman_ford_deliveryLocation;
 import org.logistics.model.algorithms.Dijkstra_customerLocation;
 import org.logistics.model.algorithms.Dijkstra_deliveryHub;
 import org.logistics.view.directedGraphDisplay;
@@ -28,6 +30,10 @@ public class directedGraphSimulation {
         // Initializing dijkstra Algorithm
         Dijkstra_deliveryHub dijkstra_deliveryHub = new Dijkstra_deliveryHub();
         Dijkstra_customerLocation dijkstra_customerLocation = new Dijkstra_customerLocation();
+
+        // Initializing bellman-ford
+        Bellman_ford_customerLocation bellmanFordCustomerLocation = new Bellman_ford_customerLocation();
+        Bellman_ford_deliveryLocation bellmanFordDeliveryLocation = new Bellman_ford_deliveryLocation();
 
         // Initializing GUI
         directedGraphDisplay directedGraphDisplayGraph = new directedGraphDisplay(graph);
