@@ -1,5 +1,7 @@
 package org.logistics.model;
 
+import java.util.HashMap;
+
 /**
  * Class Responsible for predicting Congestions on Edges
  */
@@ -17,19 +19,24 @@ public class CongestionPrediction {
     /**
      * Method Responsible for calculating congestion prediction of provided edge
      */
-    public int calculateCongestion(Vertex<String> vertex1, Vertex<String> vertex2) {
+    public HashMap<Integer, Integer> calculateCongestion(Vertex<String> vertex1, Vertex<String> vertex2) {
+        HashMap<Integer, Integer> congestionLevelPercentage = new HashMap<>();
+
         int total = 0;
-        int percentage = 0;
         Edge foundEdge = graph.findEdgeAndReturn(vertex1, vertex2);
 
         if (foundEdge == null) {
-            return -1;
+            return null;
         }
 
         for (int congestionLevels : foundEdge.getCongestionHistory().keySet()) {
             total += foundEdge.getCongestionHistory().get(congestionLevels);
         }
 
-        return percentage;
+        for (int congestionLevels : foundEdge.getCongestionHistory().keySet()) {
+
+        }
+
+        return congestionLevelPercentage;
     }
 }
