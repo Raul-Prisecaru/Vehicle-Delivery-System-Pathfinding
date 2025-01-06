@@ -148,6 +148,9 @@ public class directedGraphDisplay {
         JButton switchAlgorithmButton = new JButton("Switch Algorithm");
         switchAlgorithmButton.addActionListener(e -> switchPathfindingButton());
 
+        JButton createVehicleButton = new JButton("Create Vehicle");
+        createVehicleButton.addActionListener(e -> addVehicleButton());
+
         buttonPanel.add(addDeliverHubButton);
         buttonPanel.add(removeDeliverHubButton);
         buttonPanel.add(addCustomerLocationButton);
@@ -157,6 +160,7 @@ public class directedGraphDisplay {
         buttonPanel.add(removeEdgeButton);
         buttonPanel.add(printAdjacencyListButton);
         buttonPanel.add(switchAlgorithmButton);
+        buttonPanel.add(createVehicleButton);
 
         frame.add(buttonPanel, BorderLayout.SOUTH);
 
@@ -692,6 +696,7 @@ public class directedGraphDisplay {
     public void addVehicleButton() {
         try {
             graphinformation.createVehicle(graphinformation.getAllDeliveryHub().getFirst());
+            System.out.println("Vehicle Created");
         } catch (Exception e) {
             System.out.println("There has been an error creating Vehicle:" + e.getMessage());
         }
