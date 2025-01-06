@@ -8,6 +8,7 @@ import java.util.*;
 public class Dijkstra_deliveryHub {
 
     private Graph graph;
+    CongestionPrediction congestionPrediction;
 
     public Dijkstra_deliveryHub(Graph graph) {
         this.graph = graph;
@@ -79,6 +80,8 @@ public class Dijkstra_deliveryHub {
      */
     public void find_shortest_delivery(Vehicle vehicle, Graph graph) {
         packageArrayList.clear();
+        congestionPrediction = new CongestionPrediction(graph);
+
 
         for (Vertex<String> vertex : graph.getAllDeliveryHub()) {
             vertex.setDistance(Integer.MAX_VALUE);
@@ -104,12 +107,7 @@ public class Dijkstra_deliveryHub {
             if (!visited.contains(current)) {
 
                 for (Edge edge : graph.getEdges(current)) {
-                    if (Objects.equals(current.getNodeValue(), "AB")) {
-                        System.out.println("IT WORKED");
-                    }
-
-
-                    int totalDistance = current.getDistance() + edge.getTime_weight();
+                    int totalDistance = current.getDistance() + getEdgeEstimateTimeWeight(edge);
 
                     if (totalDistance < edge.getConnecting_node().getDistance()) {
                         edge.getConnecting_node().setDistance(totalDistance);
@@ -146,6 +144,21 @@ public class Dijkstra_deliveryHub {
                 break;
             }
         }
+    }
+
+
+    private int getEdgeEstimateTimeWeight(Edge edge) {
+        HashMap<Integer, Integer> predictionCalculations = congestionPrediction.calculateCongestion(edge.getStart_node(), edge.getConnecting_node());
+        int congestionLevel = Integer.MIN_VALUE;
+        int percentagePrediction = Integer.MIN_VALUE;
+
+        for (Integer integer : predictionCalculations.keySet()) {
+            if (predictionCalculations.get(integer) > percentagePrediction) {
+                congestionLevel = integer;
+                percentagePrediction = predictionCalculations.get(integer);
+            }
+        }
+        return congestionLevel + edge.getDistance_weight();
     }
 
 
