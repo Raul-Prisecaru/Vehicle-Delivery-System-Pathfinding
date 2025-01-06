@@ -2,6 +2,7 @@ package org.logistics.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Random;
 
 public class DeliveryHub<T> extends Vertex<T> {
@@ -44,7 +45,7 @@ public class DeliveryHub<T> extends Vertex<T> {
      * Method Responsible for returning the ArrayList containing all the vehicle at the DeliveryHub
      * @return ArrayList<Vehicle> - ArrayList of Vehicles at the DeliveryHub
      */
-    public ArrayList<Vehicle> getStoredVehicles() {
+    public List<Vehicle> getStoredVehicles() {
         return super.getStoredVehicles();
     }
 
