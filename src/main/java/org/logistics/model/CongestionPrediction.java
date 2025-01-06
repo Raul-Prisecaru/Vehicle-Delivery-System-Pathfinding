@@ -18,6 +18,8 @@ public class CongestionPrediction {
 
     /**
      * Method Responsible for calculating congestion prediction of provided edge
+     * @param vertex1 (Vertex) - starting vertex of the edge
+     * @param vertex2 (Vertex) - connecting vertex of the edge
      */
     public HashMap<Integer, Integer> calculateCongestion(Vertex<String> vertex1, Vertex<String> vertex2) {
         HashMap<Integer, Integer> congestionLevelPercentage = new HashMap<>();
