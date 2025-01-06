@@ -2,6 +2,7 @@ package org.logistics.model;
 
 import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
 
 public class CustomerLocation<T> extends Vertex<T> {
     HashSet<Package> collected_packages = new HashSet<Package>();
@@ -58,7 +59,7 @@ public class CustomerLocation<T> extends Vertex<T> {
      * Method Responsible for returning the vehicles currently at the CustomerLocation
      * @return ArrayList<Vehicle> - ArrayList containing vehicles
      */
-    public ArrayList<Vehicle> getStoredVehicles() {
+    public List<Vehicle> getStoredVehicles() {
         return super.getStoredVehicles();
     }
 
