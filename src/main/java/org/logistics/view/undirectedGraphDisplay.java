@@ -180,7 +180,21 @@ public class undirectedGraphDisplay {
 
     public void clearVisual() {
         try {
+            for (DeliveryHub<String> deliveryHub : graphinformation.getAllDeliveryHub()) {
+                this.visualise_vertex(deliveryHub, 0);
+                for (org.logistics.model.Edge edge : graphinformation.getEdges(deliveryHub)) {
+                    this.visualise_edge(edge, 0);
 
+                }
+            }
+
+            for (CustomerLocation<String> customerLocation : graphinformation.getAllCustomerLocation()) {
+                this.visualise_vertex(customerLocation, 0);
+                for (org.logistics.model.Edge edge : graphinformation.getEdges(customerLocation)) {
+                    this.visualise_edge(edge, 0);
+
+                }
+            }
         } catch (Exception e) {
             System.out.println("Err");
         }
