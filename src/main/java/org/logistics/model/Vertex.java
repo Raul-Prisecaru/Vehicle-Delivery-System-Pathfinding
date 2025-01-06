@@ -1,10 +1,11 @@
 package org.logistics.model;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Vertex<T> {
     private T value;
-    private ArrayList<Vehicle> storedVehicles = new ArrayList<>();
+    private List<Vehicle> storedVehicles = new ArrayList<>();
     private int distance = Integer.MAX_VALUE;
 
     public Vertex(T value){
@@ -39,7 +40,7 @@ public class Vertex<T> {
      * Method Responsible for returning the ArrayList containing vehicle at the Vertex
      * @return ArrayList<Vehicle> - ArrayList of vehicle at the Vertex
      */
-    public ArrayList<Vehicle> getStoredVehicles() {
+    public List<Vehicle> getStoredVehicles() {
         return this.storedVehicles;
     }
 
@@ -49,5 +50,10 @@ public class Vertex<T> {
      */
     public void addStoredVehicles(Vehicle vehicle) {
         this.storedVehicles.add(vehicle);
+    }
+
+    @Override
+    public String toString() {
+        return "Vertex: " + getNodeValue();
     }
 }
