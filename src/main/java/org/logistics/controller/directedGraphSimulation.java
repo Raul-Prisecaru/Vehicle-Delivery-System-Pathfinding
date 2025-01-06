@@ -183,7 +183,7 @@ public class directedGraphSimulation {
                     DeliveryHub<String> currentDeliveryHub = (DeliveryHub<String>) vehicle.getCurrent_location();
                     vehiclePickupPackages(vehicle, currentDeliveryHub);
                     System.out.println("Vehicle has picked up package from " + currentDeliveryHub);
-                    currentDeliveryHub.generatePackage(graph, 2, currentDeliveryHub);
+                    generatePackagesEveryDeliveryHub(graph);
 
                 }
 
@@ -195,6 +195,8 @@ public class directedGraphSimulation {
 
 
     }
+
+
 
     /**
      * Method Responsible fer checking if any of the package in the vehicle is for the CustomerLocation
@@ -332,6 +334,12 @@ public class directedGraphSimulation {
             }
         }
 
+    }
+
+    private void generatePackagesEveryDeliveryHub(Graph graph) {
+        for (DeliveryHub<String> deliveryHub : graph.getAllDeliveryHub()) {
+            deliveryHub.generatePackage(graph, 2);
+        }
     }
 
 
