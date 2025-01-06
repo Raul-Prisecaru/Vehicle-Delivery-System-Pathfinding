@@ -52,9 +52,10 @@ public class directedGraphSimulation {
 
         // Creating Vehicle
         graph.createVehicle(deliveryHubA);
+        graph.createVehicle(deliveryHubA);
 //        graph.createVehicle(deliveryHubB);
         for (Vehicle vehicle : graph.getVehicleList()) {
-            vehicle.add_deliveryPackage(new Package("TestItem", customerLocationF, 4, 5, 2));
+            vehicle.add_deliveryPackage(new Package("TestItem", customerLocationG, 4, 5, 2));
         }
 
         // Adding DeliveryHub to the Graph
@@ -96,7 +97,6 @@ public class directedGraphSimulation {
 
         // Initializing multiAgent
         MultiAgent multiAgent = new MultiAgent(graph);
-
 
 
         while (true) {
@@ -156,12 +156,13 @@ public class directedGraphSimulation {
 
 
 
-                    if (edge == null) {
+                    if (nextPosition == null || edge == null) {
                         continue;
                     }
 
                     deHighlightVisitedEdge(directedGraphDisplayGraph, edge, vehicle);
                     vehicle.travel(nextPosition);
+
                     TimeUnit.SECONDS.sleep(1);
                 }
 
@@ -187,6 +188,7 @@ public class directedGraphSimulation {
                 }
 
             }
+            TimeUnit.SECONDS.sleep(1);
 
 
         }
@@ -217,10 +219,8 @@ public class directedGraphSimulation {
      */
     private static void vehiclePickupPackages(Vehicle vehicle, DeliveryHub<String> currentDeliveryHub) throws Exception {
 
-        Iterator<Package> packageIterator = currentDeliveryHub.getPackages().iterator();
-
-        // If Vehicle has less than two packages OR deliveryHub isn't empty
-        if (vehicle.get_deliveryPackages().size() < 2 || !currentDeliveryHub.getPackages().isEmpty()) {
+        if (!currentDeliveryHub.getPackages().isEmpty() && vehicle.get_deliveryPackages().size() < 2) {
+            Iterator<Package> packageIterator = currentDeliveryHub.getPackages().iterator();
             // Retrieve the current package
             Package package_package = packageIterator.next();
 
