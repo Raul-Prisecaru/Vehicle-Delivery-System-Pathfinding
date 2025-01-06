@@ -74,14 +74,13 @@ public class Graph {
             return;
 
         }
-        Edge vertex_edge = new Edge(start_vertex, connecting_node, distance_weight);
+        Edge vertex_edge = new Edge(exist_start, exist_connecting, distance_weight);
 
-        adjacencyList.get(exist_start).add(vertex_edge);
+        adjacencyList.get(exist_start).addLast(vertex_edge);
 
     }
 
 
-    // TODO: Improve?
     public void add_undirected_edge(Vertex<String> start_vertex, Vertex<String> connecting_node, int distance_weight) {
         Vertex<String> exist_start = this.findVertexAndReturn(start_vertex);
         Vertex<String> exist_connecting = this.findVertexAndReturn(connecting_node);
