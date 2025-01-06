@@ -6,12 +6,13 @@ import org.logistics.model.*;
 import java.util.*;
 
 public class Bellman_ford_deliveryLocation {
-
+    CongestionPrediction congestionPrediction;
     /**
      * Method Responsible for finding the shortest path to the highest priority package in the vehicle
      * @param vehicle - Vehicle to find shortest path for
      */
     public void find_shortest_delivery(Vehicle vehicle, Graph graph) {
+        congestionPrediction = new CongestionPrediction(graph);
         HashMap<Vertex<String>, Vertex<String>> predecessor = new HashMap<>();
         PriorityQueue<Vertex<String>> unvisited = new PriorityQueue<>(Comparator.comparingInt(Vertex::getDistance));
         Queue<Vertex<String>> visited = new LinkedList<>();
@@ -42,7 +43,7 @@ public class Bellman_ford_deliveryLocation {
 
                 if (!visited.contains(current) && current.getDistance() != Integer.MAX_VALUE) {
                     for (Edge edge : graph.getEdges(current)) {
-                        int totalDistance = current.getDistance() + edge.getTime_weight();
+                        int totalDistance = current.getDistance() + getEdgeEstimateTimeWeight(edge);
 
                         if (totalDistance < edge.getConnecting_node().getDistance()) {
                             edge.getConnecting_node().setDistance(totalDistance);
@@ -87,6 +88,20 @@ public class Bellman_ford_deliveryLocation {
                 break;
             }
         }
+    }
+
+    private int getEdgeEstimateTimeWeight(Edge edge) {
+        HashMap<Integer, Integer> predictionCalculations = congestionPrediction.calculateCongestion(edge.getStart_node(), edge.getConnecting_node());
+        int congestionLevel = Integer.MIN_VALUE;
+        int percentagePrediction = Integer.MIN_VALUE;
+
+        for (Integer integer : predictionCalculations.keySet()) {
+            if (predictionCalculations.get(integer) > percentagePrediction) {
+                congestionLevel = integer;
+                percentagePrediction = predictionCalculations.get(integer);
+            }
+        }
+        return congestionLevel + edge.getDistance_weight();
     }
 
 }
