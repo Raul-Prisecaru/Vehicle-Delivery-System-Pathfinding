@@ -101,8 +101,9 @@ public class directedGraphSimulation {
 
         while (true) {
             logs(graph);
-            for (Vehicle vehicle : graph.getVehicleList()) {
-                for (Vehicle vehicle1 : graph.getVehicleList()) {
+            List<Vehicle> vehicles = new ArrayList<>(graph.getVehicleList());
+            for (Vehicle vehicle : vehicles) {
+                for (Vehicle vehicle1 : vehicles) {
                     directedGraphDisplayGraph.visualise_vertex(vehicle1.getCurrent_location(), 1);
 
                 }
