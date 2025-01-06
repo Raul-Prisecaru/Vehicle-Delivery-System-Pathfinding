@@ -688,6 +688,17 @@ public class directedGraphDisplay {
         }
     }
 
+
+    public void addVehicleButton() {
+        try {
+            graphinformation.createVehicle(graphinformation.getAllDeliveryHub().getFirst());
+        } catch (Exception e) {
+            System.out.println("There has been an error creating Vehicle:" + e.getMessage());
+        }
+
+
+    }
+
     public boolean doesNodeExist(String nodeID) {
         return graph.getNode(nodeID) != null;
     }
