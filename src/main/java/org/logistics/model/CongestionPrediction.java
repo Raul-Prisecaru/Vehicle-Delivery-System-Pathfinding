@@ -28,20 +28,22 @@ public class CongestionPrediction {
         Edge foundEdge = graph.findEdgeAndReturn(vertex1, vertex2);
 
         if (foundEdge == null) {
-            return null;
+            return null; // Return null if no edge is found
         }
 
-        for (int congestionLevels : foundEdge.getCongestionHistory().keySet()) {
-            congestionLevelPercentage.put(congestionLevels, 0);
-            total += foundEdge.getCongestionHistory().get(congestionLevels);
+
+        for (int count : foundEdge.getCongestionHistory().values()) {
+            total += count;
         }
 
-        for (int congestionLevels : foundEdge.getCongestionHistory().keySet()) {
-            int calculation = (foundEdge.getCongestionHistory().get(congestionLevels) / total * 100);
-            congestionLevelPercentage.put(congestionLevels, calculation);
 
+        for (int congestionLevel : foundEdge.getCongestionHistory().keySet()) {
+            int count = foundEdge.getCongestionHistory().get(congestionLevel);
+            int percentage = (int) (((double) count / total) * 100);
+            congestionLevelPercentage.put(congestionLevel, percentage);
         }
 
         return congestionLevelPercentage;
     }
+
 }
