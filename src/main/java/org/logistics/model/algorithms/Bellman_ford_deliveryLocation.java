@@ -101,6 +101,10 @@ public class Bellman_ford_deliveryLocation {
                 percentagePrediction = predictionCalculations.get(integer);
             }
         }
+
+        if (percentagePrediction == Integer.MIN_VALUE) {
+            return edge.getCongestion_weight() + edge.getDistance_weight();
+        }
         return congestionLevel + edge.getDistance_weight();
     }
 
