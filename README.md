@@ -17,5 +17,6 @@ Delivery System project is used to demonstrate how vehicles would find the most 
 
 ---
 
-## Video showcase
-[Link Here]
+## Quick Video showcase
+https://github.com/user-attachments/assets/6bcff55e-fc19-49a3-844e-00fe97cde02c
+
