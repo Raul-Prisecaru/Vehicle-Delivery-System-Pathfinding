@@ -107,7 +107,8 @@ public class directedGraphSimulation {
                     directedGraphDisplayGraph.visualise_vertex(vehicle1.getCurrent_location(), 1);
 
                 }
-                TimeUnit.SECONDS.sleep(1);
+                TimeUnit.MILLISECONDS.sleep(500);
+
 
                 if (vehicle.getTravelDestinations().isEmpty()) {
                     if (!vehicle.get_deliveryPackages().isEmpty()) {
@@ -122,7 +123,7 @@ public class directedGraphSimulation {
                         }
 
                         updateEdgePath(graph, directedGraphDisplayGraph, vehicle);
-                        TimeUnit.SECONDS.sleep(1);
+                        TimeUnit.MILLISECONDS.sleep(500);
                     }
 
 
@@ -139,7 +140,7 @@ public class directedGraphSimulation {
                         }
 
                         updateEdgePath(graph, directedGraphDisplayGraph, vehicle);
-                        TimeUnit.SECONDS.sleep(1);
+                        TimeUnit.MILLISECONDS.sleep(500);
                     }
 
                 }
@@ -164,7 +165,7 @@ public class directedGraphSimulation {
                     deHighlightVisitedEdge(directedGraphDisplayGraph, edge, vehicle);
                     vehicle.travel(nextPosition);
 
-                    TimeUnit.SECONDS.sleep(1);
+                    TimeUnit.MILLISECONDS.sleep(500);
                 }
 
 
@@ -189,7 +190,7 @@ public class directedGraphSimulation {
                 }
 
             }
-            TimeUnit.SECONDS.sleep(1);
+            TimeUnit.MILLISECONDS.sleep(500);
 
 
         }
